@@ -15,7 +15,7 @@
 <img src="https://raw.githubusercontent.com/yarnpkg/assets/master/yarn-kitten-full.png" alt="yarn-img" width="15%"/></a>
 
 <a href="https://golang.org/dl">
-<img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang-img" width="15%"/></a>
+<img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang-img" width="10%"/></a>
 
 
 ### 安裝完後檢查環境是否正確運作
@@ -105,5 +105,5 @@ firefox http://localhost:9527/ --start-debugger-server
 
 ### 其他參考
 
-https://reactjs.org/
-https://www.typescriptlang.org/docs/home.html
+https://reactjs.org/  
+https://www.typescriptlang.org/docs/home.html  
