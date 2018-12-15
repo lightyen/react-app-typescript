@@ -1,0 +1,16 @@
+{
+    "editor.detectIndentation": false,
+    "npm.autoDetect": "off",
+    "typescript.tsc.autoDetect": "off",
+    "typescript.preferences.quoteStyle": "double",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "terminal.integrated.env.windows": {
+        "PATH": "${workspaceFolder}\\node_modules\\.bin;${env:PATH}"
+    },
+    "terminal.integrated.env.linux": {
+        "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
+    },
+    "terminal.integrated.env.osx": {
+        "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
+    },
+}

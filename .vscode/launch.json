@@ -1,0 +1,36 @@
+{
+    // 使用 IntelliSense 以得知可用的屬性。
+    // 暫留以檢視現有屬性的描述。
+    // 如需詳細資訊，請瀏覽: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Firefox",
+            "type": "firefox",
+            "request": "attach",
+            "port": 6000,
+            "sourceMaps": "client",
+            "url": "http://localhost:9527/",
+            "webRoot": "${workspaceFolder}",
+            "pathMappings": [
+                { "url": "webpack:///~/", "path": "${webRoot}/node_modules/" },
+                { "url": "webpack:///./~/", "path": "${webRoot}/node_modules/" },
+                { "url": "webpack:///./", "path": "${webRoot}/" },
+                { "url": "webpack:///src/", "path": "${webRoot}/src/" },
+                { "url": "webpack:///", "path": "" },
+            ],
+        },
+        {
+            "name": "Attach to Chrome",
+            "type": "chrome",
+            "request": "attach",
+            "sourceMaps": true,
+            "url": "http://localhost:9527/",
+            "webRoot": "${workspaceFolder}",
+            "port": 9222,
+            "pathMapping": {
+                "/": "${webRoot}"
+            }
+        }
+    ]
+}

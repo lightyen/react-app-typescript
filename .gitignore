@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.webpack/*.js
+*.log
+debug
+package-lock.json
+yarn.lock

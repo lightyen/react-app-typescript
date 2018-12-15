@@ -1,0 +1,169 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "建置(webpack development)",
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            },
+            "type": "shell",
+            "command": "yarn",
+            "args": [
+                "run",
+                "webpack-development"
+            ],
+            "dependsOn": [
+                "建置(webpack configuration)"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "建置(webpack production)",
+            "group": "build",
+            "type": "shell",
+            "command": "yarn",
+            "args": [
+                "run",
+                "webpack-production"
+            ],
+            "dependsOn": [
+                "建置(webpack configuration)"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "建置 [Watch] (webpack development)",
+            "group": "build",
+            "type": "shell",
+            "command": "yarn",
+            "args": [
+                "run",
+                "webpack-watch"
+            ],
+            "dependsOn": [
+                "建置(webpack configuration)"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "建置(webpack configuration)",
+            "group": "none",
+            "type": "shell",
+            "command": "node_modules/.bin/tsc",
+            "windows": {
+                "command": "node_modules\\.bin\\tsc.cmd"
+            },
+            "args": [
+                "--project",
+                ".webpack",
+                "--outDir",
+                ".webpack"
+            ],
+            "problemMatcher": "$tsc",
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "webpack-analyzer",
+            "group": "test",
+            "type": "shell",
+            "command": "yarn",
+            "args": [
+                "run",
+                "webpack-analyzer"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "tslint",
+            "type": "shell",
+            "group": "test",
+            "command": "node_modules/.bin/tslint --config tslint.json 'src/**/*.{ts,tsx}' '.webpack/**/*.ts'",
+            "windows": {
+                "command": "node_modules\\.bin\\tslint.cmd --config tslint.json 'src\\**\\*.{ts,tsx}' '.webpack\\**\\*.ts'"
+            },
+            "problemMatcher": "$tsc",
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "go dev server",
+            "type": "shell",
+            "group": "test",
+            "command": "goexec",
+            "args": [
+                "'http.ListenAndServe(\":9527\", http.FileServer(http.Dir(\"./dist\")))'"
+            ],
+            "windows": {
+                "args": [
+                    "\"http.ListenAndServe(\\\":9527\\\", http.FileServer(http.Dir(\\\"./dist\\\")))\""
+                ]
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "Open Firefox with Debugger",
+            "type": "shell",
+            "group": "test",
+            "isBackground": false,
+            "linux": {
+                "command": "firefox http://localhost:9527/ --start-debugger-server 6000",
+            },
+            "windows": {
+                "command": "start firefox http://localhost:9527/ -start-debugger-server 6000",
+            },
+            "osx": {
+                "command": "open -a firefox http://localhost:9527/ --args --start-debugger-server=\"6000\""
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "Open Chrome with Debugger",
+            "type": "shell",
+            "group": "none",
+            "isBackground": true,
+            "linux": {
+                "command": "google-chrome http://localhost:9527/ --remote-debugging-port=9222"
+            },
+            "windows": {
+                "command": "start chrome http://localhost:9527/ --remote-debugging-port=9222"
+            },
+            "osx": {
+                "command": "open -a \"Google Chrome\" http://localhost:9527/ --args --remote-debugging-port=\"9222\""
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "yarn",
+            "type": "shell",
+            "group": "none",
+            "isBackground": true,
+            "command": "yarn",
+            "runOptions": {
+                "runOn": "folderOpen" 
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            },
+        }
+    ]
+}
