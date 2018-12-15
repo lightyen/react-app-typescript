@@ -1,4 +1,4 @@
-# react app template
+# react app typescript
 
 這是一個關於用 typescript 開發 react app 的一個範本
 
