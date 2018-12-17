@@ -165,7 +165,7 @@ const conf: Configuration = {
                 excludeChunks: exclude,
                 title: titles[name],
                 template: path.join("src", "public", name + ".ejs"),
-                favicon: path.join("assets", "images", "favicon.ico"),
+                favicon: path.join("src", "assets", "images", "favicon.ico"),
                 inject: "body",
             })
         }),
