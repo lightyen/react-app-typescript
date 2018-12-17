@@ -1,6 +1,6 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:latest", "tslint-react"],
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
     "exclude": ["src/**/*.d.ts"]
   },
@@ -23,7 +23,6 @@
     "member-ordering": false,
     "arrow-parens": false,
     "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"],
-    "semicolon": [true, "never"],
     "jsx-boolean-value": false,
     "jsx-no-bind": true,
     "jsx-no-multiline-js": false,
