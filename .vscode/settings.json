@@ -3,8 +3,6 @@
     "editor.formatOnSave": true,
     "formatFiles.excludePattern": "**/node_modules,**/dist/**,.gitignore,.editorconfig,yarn.lock",
     "files.associations": { "*.ejs": "html", ".prettierrc": "json" },
-    "npm.autoDetect": "off",
-    "typescript.tsc.autoDetect": "off",
     "typescript.preferences.quoteStyle": "double",
     "typescript.tsdk": "node_modules/typescript/lib",
     "terminal.integrated.env.windows": {
@@ -15,5 +13,7 @@
     },
     "terminal.integrated.env.osx": {
         "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
-    }
+    },
+    "npm.autoDetect": "off",
+    "typescript.tsc.autoDetect": "off"
 }
