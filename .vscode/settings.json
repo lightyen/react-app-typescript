@@ -1,5 +1,8 @@
 {
     "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "formatFiles.excludePattern": "**/node_modules,**/dist/**,.gitignore,.editorconfig,yarn.lock",
+    "files.associations": { "*.ejs": "html", ".prettierrc": "json" },
     "npm.autoDetect": "off",
     "typescript.tsc.autoDetect": "off",
     "typescript.preferences.quoteStyle": "double",
@@ -12,5 +15,5 @@
     },
     "terminal.integrated.env.osx": {
         "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
-    },
+    }
 }

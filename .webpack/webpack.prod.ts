@@ -49,7 +49,5 @@ export default webpackMerge(baseWebpackConfig, {
             // "@ant-design/icons/lib/dist$": path.resolve(__dirname, "../renderer/icons.ts"),
         },
     },
-    plugins: [
-        new ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
-    ],
+    plugins: [new ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/)],
 })

@@ -1,15 +1,11 @@
 {
-    "extends": "../.config/tsconfig.base",
-    "compilerOptions": {
-        "module": "commonjs",
-        "moduleResolution": "node",  
-        "target": "es5",
-        "lib": [
-            "esnext",
-        ],
-        "typeRoots": []
-    },
-    "include": [
-        "../.webpack/*.ts",
-    ],
+  "extends": "../.config/tsconfig.base",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": ["esnext"],
+    "typeRoots": []
+  },
+  "include": ["../.webpack/*.ts"]
 }

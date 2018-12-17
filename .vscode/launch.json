@@ -14,11 +14,14 @@
             "webRoot": "${workspaceFolder}",
             "pathMappings": [
                 { "url": "webpack:///~/", "path": "${webRoot}/node_modules/" },
-                { "url": "webpack:///./~/", "path": "${webRoot}/node_modules/" },
+                {
+                    "url": "webpack:///./~/",
+                    "path": "${webRoot}/node_modules/"
+                },
                 { "url": "webpack:///./", "path": "${webRoot}/" },
                 { "url": "webpack:///src/", "path": "${webRoot}/src/" },
-                { "url": "webpack:///", "path": "" },
-            ],
+                { "url": "webpack:///", "path": "" }
+            ]
         },
         {
             "name": "Attach to Chrome",

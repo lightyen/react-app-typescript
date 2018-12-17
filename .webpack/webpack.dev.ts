@@ -1,4 +1,3 @@
-
 import { HotModuleReplacementPlugin, NamedChunksPlugin, NamedModulesPlugin } from "webpack"
 import * as webpackMerge from "webpack-merge"
 import baseWebpackConfig from "./webpack.config"
@@ -17,9 +16,5 @@ export default webpackMerge(baseWebpackConfig, {
         poll: 1000,
         ignored: ["node_modules"],
     },
-    plugins: [
-        new HotModuleReplacementPlugin(),
-        new NamedModulesPlugin(),
-        new NamedChunksPlugin(),
-    ],
+    plugins: [new HotModuleReplacementPlugin(), new NamedModulesPlugin(), new NamedChunksPlugin()],
 })

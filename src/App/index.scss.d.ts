@@ -1,1 +1,1 @@
-export const mystyle: string;
+export const mystyle: string

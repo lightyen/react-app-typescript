@@ -9,13 +9,8 @@
             },
             "type": "shell",
             "command": "yarn",
-            "args": [
-                "run",
-                "webpack-development"
-            ],
-            "dependsOn": [
-                "建置(webpack configuration)"
-            ],
+            "args": ["run", "webpack-development"],
+            "dependsOn": ["建置(webpack configuration)"],
             "problemMatcher": []
         },
         {
@@ -23,13 +18,8 @@
             "group": "build",
             "type": "shell",
             "command": "yarn",
-            "args": [
-                "run",
-                "webpack-production"
-            ],
-            "dependsOn": [
-                "建置(webpack configuration)"
-            ],
+            "args": ["run", "webpack-production"],
+            "dependsOn": ["建置(webpack configuration)"],
             "problemMatcher": []
         },
         {
@@ -37,17 +27,12 @@
             "group": "build",
             "type": "shell",
             "command": "yarn",
-            "args": [
-                "run",
-                "webpack-watch"
-            ],
-            "dependsOn": [
-                "建置(webpack configuration)"
-            ],
+            "args": ["run", "webpack-watch"],
+            "dependsOn": ["建置(webpack configuration)"],
             "problemMatcher": [],
             "presentation": {
                 "clear": true
-            },
+            }
         },
         {
             "label": "建置(webpack configuration)",
@@ -57,30 +42,22 @@
             "windows": {
                 "command": "node_modules\\.bin\\tsc.cmd"
             },
-            "args": [
-                "--project",
-                ".webpack",
-                "--outDir",
-                ".webpack"
-            ],
+            "args": ["--project", ".webpack", "--outDir", ".webpack"],
             "problemMatcher": "$tsc",
             "presentation": {
                 "clear": true
-            },
+            }
         },
         {
             "label": "webpack-analyzer",
             "group": "test",
             "type": "shell",
             "command": "yarn",
-            "args": [
-                "run",
-                "webpack-analyzer"
-            ],
+            "args": ["run", "webpack-analyzer"],
             "problemMatcher": [],
             "presentation": {
                 "clear": true
-            },
+            }
         },
         {
             "label": "tslint",
@@ -93,7 +70,7 @@
             "problemMatcher": "$tsc",
             "presentation": {
                 "clear": true
-            },
+            }
         },
         {
             "label": "go dev server",
@@ -111,7 +88,7 @@
             "problemMatcher": [],
             "presentation": {
                 "clear": true
-            },
+            }
         },
         {
             "label": "Open Firefox with Debugger",
@@ -119,10 +96,10 @@
             "group": "test",
             "isBackground": false,
             "linux": {
-                "command": "firefox http://localhost:9527/ --start-debugger-server 6000",
+                "command": "firefox http://localhost:9527/ --start-debugger-server 6000"
             },
             "windows": {
-                "command": "start firefox http://localhost:9527/ -start-debugger-server 6000",
+                "command": "start firefox http://localhost:9527/ -start-debugger-server 6000"
             },
             "osx": {
                 "command": "open -a firefox http://localhost:9527/ --args --start-debugger-server=\"6000\""
@@ -130,7 +107,7 @@
             "problemMatcher": [],
             "presentation": {
                 "clear": true
-            },
+            }
         },
         {
             "label": "Open Chrome with Debugger",
@@ -149,7 +126,7 @@
             "problemMatcher": [],
             "presentation": {
                 "clear": true
-            },
+            }
         },
         {
             "label": "yarn",
@@ -158,12 +135,12 @@
             "isBackground": true,
             "command": "yarn",
             "runOptions": {
-                "runOn": "folderOpen" 
+                "runOn": "folderOpen"
             },
             "problemMatcher": [],
             "presentation": {
                 "clear": true
-            },
+            }
         }
     ]
 }

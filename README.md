@@ -2,7 +2,6 @@
 
 這是一個關於用 typescript 開發 react app 的一個範本
 
-
 ### 開發環境準備
 
 <a href="https://code.visualstudio.com">
@@ -16,7 +15,6 @@
 
 <a href="https://golang.org/dl">
 <img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang-img" width="10%"/></a>
-
 
 ### 安裝完後檢查環境是否正確運作
 
@@ -33,15 +31,15 @@ yarn -v
 go version
 ```
 
-
 ### 安裝 VSCode 擴充元件
 
-* **Debug for Chrome**
-* **Debug for Firefox**
-* **TSLint**
-* **Awesome Typescript Problem Matcher**
-* **GitLens**
-
+- **Debug for Firefox**
+- **Debug for Chrome**
+- **TSLint**
+- **Awesome Typescript Problem Matcher**
+- **GitLens**
+- _Prettier_
+- _Format Files_
 
 ### Build 建置
 
@@ -61,7 +59,6 @@ yarn run webpack-development
 
 詳細資訊描述在：**.vscode/tasks.json**
 
-
 ### Debug 調試
 
 需要[goexec](https://github.com/shurcooL/goexec)
@@ -80,30 +77,31 @@ goexec 'http.ListenAndServe(\":9527\", http.FileServer(http.Dir(\"./dist\")))'
 firefox http://localhost:9527/ --start-debugger-server
 ```
 
-在vscode中鍵入 `F5` attach 到 browser 進行調試
+在 vscode 中鍵入 `F5` attach 到 browser 進行調試
 
 > Firefox 需要去 **about:debugging** 勾選 **Enable debugging of add-ons** 才可以使用
 
 詳細資訊描述在：**.vscode/tasks.json**
 
-
 ### 依賴性問題
 
-* css-loader@2.x 與 typings-for-css-modules-loader@1.7.0 有衝突，暫不升級
+- css-loader@2.x 與 typings-for-css-modules-loader@1.7.0 有衝突，暫不升級
 
-
-### TSLint 程式碼規範工具
+### TSLint 程式碼規範
 
 約定程式碼風格：
 
-* string字串 以 雙引號 `"` 表示
-* statement 除非特例 否則結尾不用分號 `;`
-* 原則上仿照golang
+- string 字串 以 雙引號 `"` 表示
+- statement 除非特例 否則結尾不用分號 `;`
+- 原則上仿照 golang
 
 相關設定在**tslint.json**
 
+### editorconfig, prettier 程式碼風格
+
+按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格，我偏好縮排為 **4** 個空格
 
 ### 其他參考
 
 https://reactjs.org/  
-https://www.typescriptlang.org/docs/home.html  
+https://www.typescriptlang.org/docs/home.html
