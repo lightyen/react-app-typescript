@@ -2,7 +2,7 @@ import React from "react"
 
 import * as style from "./index.scss"
 
-export class App extends React.Component {
+export class MainPage extends React.Component {
     private clickme = () => {
         console.log("hello")
     }
