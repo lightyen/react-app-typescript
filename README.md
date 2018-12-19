@@ -43,6 +43,7 @@ go version
 - **GitLens**
 - _Prettier_
 - _Format Files_
+- _EditorConfig for VS Code_
 
 ### Build 建置
 
@@ -96,7 +97,6 @@ firefox http://localhost:9527/ --start-debugger-server
 
 - string 字串 以 雙引號 `"` 表示
 - statement 除非特例 否則結尾不用分號 `;`
-- 原則上仿照 golang
 
 相關設定在**tslint.json**
 
@@ -106,5 +106,5 @@ firefox http://localhost:9527/ --start-debugger-server
 
 ### 其他參考
 
-https://reactjs.org/
-https://www.typescriptlang.org/docs/home.html
+- https://reactjs.org/
+- https://www.typescriptlang.org/docs/home.html
