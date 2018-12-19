@@ -170,6 +170,13 @@ const conf: Configuration = {
                 filename: name + ".html",
                 excludeChunks: exclude,
                 title: titles[name],
+                minify:
+                    process.env.NODE_ENV !== "production"
+                        ? false
+                        : {
+                              collapseWhitespace: true,
+                              minifyCSS: true,
+                          },
                 template: path.join("src", "template", name + ".ejs"),
                 favicon: path.join("src", "assets", "images", "favicon.ico"),
                 inject: "body",

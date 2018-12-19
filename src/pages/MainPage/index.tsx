@@ -1,5 +1,7 @@
 import React from "react"
 
+import { Button } from "antd"
+
 import * as style from "./index.scss"
 
 export class MainPage extends React.Component {
@@ -8,10 +10,6 @@ export class MainPage extends React.Component {
     }
 
     public render() {
-        return (
-            <button className={style.mystyle} onClick={this.clickme}>
-                Click me!
-            </button>
-        )
+        return <Button onClick={this.clickme}>Click me!</Button>
     }
 }
