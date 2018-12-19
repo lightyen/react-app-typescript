@@ -7,6 +7,7 @@ import * as HtmlWebpackPlugin from "html-webpack-plugin"
 import * as MiniCssExtractPlugin from "mini-css-extract-plugin"
 const WebpackBar = require("webpackbar")
 const packageJSON = require("../package.json")
+import { TsConfigPathsPlugin } from "awesome-typescript-loader"
 // var nodeExternals = require('webpack-node-externals')
 const entry: Entry = {
     index: "./src/index.tsx",
@@ -139,6 +140,11 @@ const conf: Configuration = {
     },
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".jsx"],
+        plugins: [
+            new TsConfigPathsPlugin({
+                configFile: "tsconfig.json",
+            }),
+        ],
     },
     plugins: [
         new WebpackBar({ color: "blue" }),
