@@ -1,5 +1,7 @@
 import { HotModuleReplacementPlugin, NamedChunksPlugin, NamedModulesPlugin } from "webpack"
 import * as webpackMerge from "webpack-merge"
+
+process.env.NODE_ENV = "development"
 import baseWebpackConfig from "./webpack.config"
 
 export default webpackMerge(baseWebpackConfig, {

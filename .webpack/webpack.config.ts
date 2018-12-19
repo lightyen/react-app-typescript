@@ -85,7 +85,7 @@ const conf: Configuration = {
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
                     { loader: "css-loader" },
                     {
                         loader: "postcss-loader",
@@ -96,7 +96,7 @@ const conf: Configuration = {
             {
                 test: /\.less$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
                     { loader: "css-loader" },
                     {
                         loader: "postcss-loader",
@@ -117,7 +117,7 @@ const conf: Configuration = {
             {
                 test: /\.s(a|c)ss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
                     {
                         loader: "typings-for-css-modules-loader",
                         options: {
@@ -144,7 +144,7 @@ const conf: Configuration = {
         new WebpackBar({ color: "blue" }),
         new EventHooksPlugin({
             beforeRun: () => {
-                shell.rm("-rf", distPath + "/*.*")
+                shell.rm("-rf", distPath + "/*")
             },
             done: () => {},
         }),

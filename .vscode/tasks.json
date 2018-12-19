@@ -54,6 +54,7 @@
             "type": "shell",
             "command": "yarn",
             "args": ["run", "webpack-analyzer"],
+            "dependsOn": ["建置(webpack configuration)"],
             "problemMatcher": [],
             "presentation": {
                 "clear": true
