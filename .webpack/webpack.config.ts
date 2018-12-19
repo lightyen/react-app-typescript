@@ -180,6 +180,7 @@ const conf: Configuration = {
                 template: path.join("src", "template", name + ".ejs"),
                 favicon: path.join("src", "assets", "images", "favicon.ico"),
                 inject: "body",
+                development: '<div id="this-is-for-development"></div>',
             })
         }),
     ),
