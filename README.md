@@ -15,6 +15,9 @@
 
 <a href="https://golang.org/dl">
 <img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang-img" width="10%"/></a>
+<br />
+
+<img src="https://raw.githubusercontent.com/lightyen/react-app-typescript/master/env.png" />
 
 ### 安裝完後檢查環境是否正確運作
 
@@ -103,5 +106,5 @@ firefox http://localhost:9527/ --start-debugger-server
 
 ### 其他參考
 
-https://reactjs.org/  
+https://reactjs.org/
 https://www.typescriptlang.org/docs/home.html
