@@ -1,17 +1,17 @@
 {
-    "extends": "./.config/tsconfig.base",
-    "compilerOptions": {
-        "jsx": "react",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "target": "es5",
-        "lib": [
-            "esnext",
-            "dom"
-        ]
-    },
-    "include": [
-        "src/**/*",
-        "src/**/*.d.ts"
+  "extends": "./.config/tsconfig.base",
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": [
+      "esnext",
+      "dom"
     ]
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*.d.ts"
+  ]
 }
