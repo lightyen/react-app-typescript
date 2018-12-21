@@ -11,12 +11,12 @@ import { TsConfigPathsPlugin } from "awesome-typescript-loader"
 // var nodeExternals = require('webpack-node-externals')
 const entry: Entry = {
     index: "./src/index.tsx",
-    // 404:    "./src/notfound.tsx",
+    404: "./src/404.tsx",
 }
 
 const titles = {
     index: packageJSON.name,
-    // 404: "Not Found",
+    404: "Not Found",
 }
 
 const distPath = path.resolve(__dirname, "../dist")

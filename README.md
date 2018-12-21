@@ -40,6 +40,7 @@ go version
 - **Debug for Chrome**
 - **TSLint**
 - **Awesome Typescript Problem Matcher**
+- **Go**
 - **GitLens**
 - _Prettier_
 - _Format Files_
@@ -47,7 +48,12 @@ go version
 
 ### Build 建置
 
+以下指令皆為 linux 平台，windows 注意換成`\\`
+
 ```shell
+# clone
+git clone https://github.com/lightyen/react-app-typescript
+
 # 進入專案資料夾
 cd <project_name>
 
@@ -65,19 +71,16 @@ yarn run webpack-development
 
 ### Debug 調試
 
-需要[goexec](https://github.com/shurcooL/goexec)
-
-```shell
-go get -u github.com/shurcooL/goexec
-```
+webserver 是我用 golang 撰寫的一個 web server 小程式
 
 在建立完應用的 bundle.js 之後
 
 ```shell
 # run web server
-goexec 'http.ListenAndServe(\":9527\", http.FileServer(http.Dir(\"./dist\")))'
+go build -o .webserver/.webserver .webserver/main.go
+.webserver/.webserver
 
-# run debug mode browser
+# run browser in debug mode
 firefox http://localhost:9527/ --start-debugger-server
 ```
 
@@ -102,7 +105,11 @@ firefox http://localhost:9527/ --start-debugger-server
 
 ### editorconfig, prettier 程式碼風格
 
-按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格，我偏好縮排為 **4** 個空格
+按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格，縮排偏好為 **4** 個空格
+
+### 範例 UI
+
+- https://ant.design/docs/react/introduce
 
 ### 其他參考
 

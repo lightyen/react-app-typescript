@@ -74,19 +74,29 @@
             }
         },
         {
-            "label": "go dev server",
+            "label": "build dev-webserver",
+            "type": "shell",
+            "group": "none",
+            "command": "go",
+            "args": ["build"],
+            "options": {
+                "cwd": "${workspaceFolder}/.webserver"
+            },
+            "problemMatcher": "$go",
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "go webserver",
             "type": "shell",
             "group": "test",
-            "command": "goexec",
-            "args": [
-                "'http.ListenAndServe(\":9527\", http.FileServer(http.Dir(\"./dist\")))'"
-            ],
+            "command": "./.webserver/.webserver",
             "windows": {
-                "args": [
-                    "\"http.ListenAndServe(\\\":9527\\\", http.FileServer(http.Dir(\\\"./dist\\\")))\""
-                ]
+                "command": ".webserver\\.webserver.exe"
             },
-            "problemMatcher": [],
+            "dependsOn": ["build dev-webserver"],
+            "problemMatcher": "$go",
             "presentation": {
                 "clear": true
             }
