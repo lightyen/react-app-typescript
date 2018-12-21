@@ -55,7 +55,7 @@ go version
 git clone https://github.com/lightyen/react-app-typescript
 
 # 進入專案資料夾
-cd <project_name>
+cd react-app-typescript
 
 # 初始化nodejs project
 yarn
