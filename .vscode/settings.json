@@ -2,7 +2,10 @@
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "formatFiles.excludePattern": "node_modules,dist,src/assets,.webpack/*.js,.gitignore,.editorconfig,yarn.lock",
-    "files.associations": { "*.ejs": "html", ".prettierrc": "json" },
+    "files.associations": {
+        "*.ejs": "html",
+        ".prettierrc": "json"
+    },
     "typescript.preferences.quoteStyle": "double",
     "typescript.tsdk": "node_modules/typescript/lib",
     "terminal.integrated.env.windows": {

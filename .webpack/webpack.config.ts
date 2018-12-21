@@ -152,7 +152,7 @@ const conf: Configuration = {
             beforeRun: () => {
                 shell.rm("-rf", distPath + "/*")
             },
-            done: () => {},
+            done: () => { },
         }),
         new MiniCssExtractPlugin({
             filename: "[name].[hash].css",
@@ -174,13 +174,13 @@ const conf: Configuration = {
                     process.env.NODE_ENV !== "production"
                         ? false
                         : {
-                              collapseWhitespace: true,
-                              minifyCSS: true,
-                          },
+                            collapseWhitespace: true,
+                            minifyCSS: true,
+                        },
                 template: path.join("src", "template", name + ".ejs"),
                 favicon: path.join("src", "assets", "images", "favicon.ico"),
                 inject: "body",
-                development: '<div id="this-is-for-development"></div>',
+                development: process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",
             })
         }),
     ),
