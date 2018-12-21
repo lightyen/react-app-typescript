@@ -10,6 +10,6 @@ export class MainPage extends React.Component {
     }
 
     public render() {
-        return <Button className={style.mystyle} onClick={this.clickme}>Click me!</Button>
+        return <Button onClick={this.clickme}>Click me!</Button>
     }
 }
