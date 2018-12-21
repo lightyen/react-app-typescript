@@ -9,7 +9,7 @@ export default class NotFoundPage extends React.Component {
         return (
             <a href="/">
                 <Button>
-                    <div>找不到你要的資源呢</div>
+                    <div>找不到你要的資源呢!</div>
                 </Button>
             </a>
         )

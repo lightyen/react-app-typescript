@@ -125,8 +125,7 @@ const conf: Configuration = {
                             modules: true,
                             namedExport: true,
                             camelCase: true,
-                            minimize: true,
-                            localIdentName: "[local]-[hash]",
+                            localIdentName: "[local]-[hash:base64:6]",
                         },
                     },
                     {
