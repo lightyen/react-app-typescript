@@ -4,12 +4,8 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es5",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "typeRoots": []
   },
-  "include": [
-    "../.webpack/*.ts"
-  ]
+  "include": ["../.webpack/*.ts"]
 }
