@@ -1,7 +1,8 @@
 node_modules/
 dist/
 .webpack/*.js
-.webserver/*webserver*
+.webserver/.webserver
+.webserver/.webserver.exe
 *.log
 debug
 package-lock.json
