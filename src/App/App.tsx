@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { MainPage } from "../pages"
 
 export class App extends React.Component {
-
     private isDevelopment(): boolean {
         if (document.getElementById("this-is-for-development-node")) {
             return true
@@ -13,7 +12,6 @@ export class App extends React.Component {
     }
 
     public render() {
-        console.log(this.isDevelopment())
         return (
             <BrowserRouter>
                 <Switch>

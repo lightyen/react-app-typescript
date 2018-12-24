@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "webpack-development": "webpack --config .webpack/webpack.dev",
-    "webpack-watch": "webpack --config .webpack/webpack.dev --watch --info-verbosity verbose",
+    "webpack-watch": "webpack --config .webpack/webpack.watch -w --info-verbosity verbose",
     "webpack-production": "webpack --config .webpack/webpack.prod",
     "webpack-analyzer": "webpack --config .webpack/webpack.analyzer"
   },
@@ -29,6 +29,8 @@
     "antd": "^3.11.2",
     "autoprefixer": "^9.4.3",
     "awesome-typescript-loader": "^5.2.1",
+    "browser-sync": "^2.26.3",
+    "browser-sync-webpack-plugin": "^2.2.2",
     "css-loader": "^1.0.1",
     "event-hooks-webpack-plugin": "^2.1.1",
     "file-loader": "^3.0.1",
