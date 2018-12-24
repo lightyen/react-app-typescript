@@ -53,6 +53,8 @@ func init() {
 }
 
 func main() {
+	// public, _ := filepath.Abs(public)
+	//fileServer := http.FileServer(http.Dir(public))
 
 	webServer := &http.Server{
 		Addr:         fmt.Sprintf(":%s", port),
