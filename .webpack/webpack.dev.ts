@@ -2,7 +2,7 @@ import { HotModuleReplacementPlugin, NamedChunksPlugin, NamedModulesPlugin } fro
 import * as webpackMerge from "webpack-merge"
 
 process.env.NODE_ENV = "development"
-import baseWebpackConfig from "./webpack.config"
+import baseWebpackConfig from "./webpack.common"
 
 export default webpackMerge(baseWebpackConfig, {
     performance: {
@@ -18,5 +18,9 @@ export default webpackMerge(baseWebpackConfig, {
         poll: 1000,
         ignored: ["node_modules"],
     },
-    plugins: [new HotModuleReplacementPlugin(), new NamedModulesPlugin(), new NamedChunksPlugin()],
+    plugins: [
+        // new HotModuleReplacementPlugin(),
+        new NamedModulesPlugin(),
+        new NamedChunksPlugin()
+    ],
 })

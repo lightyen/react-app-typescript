@@ -1,15 +1,13 @@
 import React from "react"
-
-import { Button } from "antd"
-
-import * as style from "./index.scss"
+import { Example, ExampleSFC } from "components/Example"
 
 export class MainPage extends React.Component {
-    private clickme = () => {
-        console.log("hello")
+
+    private click = () => {
+        console.log("Hello React!")
     }
 
     public render() {
-        return <Button onClick={this.clickme}>Click me!</Button>
+        return <Example value="Hello React!" onClick={this.click} />
     }
 }

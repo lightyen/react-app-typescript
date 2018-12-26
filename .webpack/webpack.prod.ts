@@ -3,7 +3,7 @@ import { ContextReplacementPlugin } from "webpack"
 import * as path from "path"
 
 process.env.NODE_ENV = "production"
-import baseWebpackConfig from "./webpack.config"
+import baseWebpackConfig from "./webpack.common"
 
 export default webpackMerge(baseWebpackConfig, {
     performance: {

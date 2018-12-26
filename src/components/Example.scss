@@ -1,0 +1,18 @@
+.example {
+    color: #2070a1;
+    background: #f8ffff;
+    padding: 10px 30px;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #2070a1;
+    display: inline-block;
+}
+
+.example:hover {
+    color: #2b8fce;
+}
+
+.example:active {
+    background: #c4e8ff;
+}

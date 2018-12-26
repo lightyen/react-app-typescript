@@ -1,17 +1,16 @@
 import React from "react"
-
-import { Button } from "antd"
+import { Example } from "components/Example"
 
 import * as style from "./NotFoundPage.scss"
 
 export default class NotFoundPage extends React.Component {
+
+    private backHome = () => {
+        window.location.replace("/")
+    }
     public render() {
         return (
-            <a href="/">
-                <Button>
-                    <div>找不到你要的資源呢!</div>
-                </Button>
-            </a>
+            <Example value="找不到你要的資源呢!" onClick={this.backHome} />
         )
     }
 }

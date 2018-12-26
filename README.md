@@ -1,6 +1,6 @@
 # react app typescript
 
-這是一個關於用 typescript 開發 react app 的開箱即用環境範本
+這是一個用 react 撰寫的環境範本專案，開箱即用，全程使用Typescript。
 
 ### 開發環境準備
 
@@ -107,11 +107,8 @@ firefox http://localhost:9527/ --start-debugger-server
 
 按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格，縮排偏好為 **4** 個空格
 
-### 範例 UI
-
-- https://ant.design/docs/react/introduce
-
 ### 其他參考
 
 - https://reactjs.org/
 - https://www.typescriptlang.org/docs/home.html
+- https://github.com/enaqx/awesome-react

@@ -22,7 +22,10 @@
     "no-empty": false,
     "no-implicit-dependencies": [
       true,
-      "dev"
+      "dev",
+      [
+        "components"
+      ],
     ],
     "no-console": false,
     "no-var-requires": false,
