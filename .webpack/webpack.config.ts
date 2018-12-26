@@ -1,7 +1,6 @@
 import { Configuration, Entry, DllReferencePlugin } from "webpack"
 import * as path from "path"
-import * as EventHooksPlugin from "event-hooks-webpack-plugin"
-import * as shell from "shelljs"
+import * as CleanWebpackPlugin from "clean-webpack-plugin"
 import TsImportPlugin = require("ts-import-plugin")
 import * as HtmlWebpackPlugin from "html-webpack-plugin"
 import * as MiniCssExtractPlugin from "mini-css-extract-plugin"
@@ -27,12 +26,12 @@ const conf: Configuration = {
     entry,
     output: {
         path: distPath,
-        filename: "[name].[hash].js",
+        filename: "[name].[chunkhash].js",
         publicPath: "/",
     },
     target: "web",
     resolveLoader: {
-        modules: ["node_modules", "./.webpack/loaders"],
+        modules: ["node_modules"],
     },
     module: {
         rules: [
@@ -147,15 +146,13 @@ const conf: Configuration = {
     },
     plugins: [
         new WebpackBar({ color: "blue" }),
-        new EventHooksPlugin({
-            beforeRun: () => {
-                shell.rm("-rf", distPath + "/*")
-            },
-            done: () => { },
+        new CleanWebpackPlugin(["dist"], {
+            root: path.resolve(__dirname, ".."),
+            verbose: true,
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].[hash].css",
-            chunkFilename: "[id].[hash].css",
+            filename: "[name].[contenthash].css",
+            chunkFilename: "vendor.[contenthash].css",
         }),
         // new DllReferencePlugin({
         //     context: vendor,
@@ -173,13 +170,14 @@ const conf: Configuration = {
                     process.env.NODE_ENV !== "production"
                         ? false
                         : {
-                            collapseWhitespace: true,
-                            minifyCSS: true,
-                        },
+                              collapseWhitespace: true,
+                              minifyCSS: true,
+                          },
                 template: path.join("src", "template", name + ".ejs"),
                 favicon: path.join("src", "assets", "images", "favicon.ico"),
                 inject: "body",
-                development: process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",
+                development:
+                    process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",
             })
         }),
     ),
