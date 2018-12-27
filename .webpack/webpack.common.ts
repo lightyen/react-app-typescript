@@ -1,13 +1,14 @@
 import { Configuration, Entry, DllReferencePlugin } from "webpack"
 import * as path from "path"
 import * as CleanWebpackPlugin from "clean-webpack-plugin"
-import TsImportPlugin = require("ts-import-plugin")
 import * as HtmlWebpackPlugin from "html-webpack-plugin"
 import * as MiniCssExtractPlugin from "mini-css-extract-plugin"
+import { TsConfigPathsPlugin } from "awesome-typescript-loader"
+import TsImportPlugin = require("ts-import-plugin")
 const WebpackBar = require("webpackbar")
 const packageJSON = require("../package.json")
-import { TsConfigPathsPlugin } from "awesome-typescript-loader"
 // var nodeExternals = require('webpack-node-externals')
+
 const entry: Entry = {
     index: "./src/index.tsx",
     404: "./src/404.tsx",

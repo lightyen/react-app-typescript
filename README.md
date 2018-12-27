@@ -1,6 +1,6 @@
 # react app typescript
 
-這是一個用 react 撰寫的環境範本專案，開箱即用，全程使用Typescript。
+這是一個用 react 撰寫的環境範本專案，自訂義 webpack 設定，結合 Typescript, Mobx, sass 等相關技術鏈，開箱即用。
 
 ### 開發環境準備
 
@@ -22,15 +22,10 @@
 ### 安裝完後檢查環境是否正確運作
 
 ```shell
-# vscode 版本
 code -v
-# nodejs 版本
 node -v
-# npm 版本
 npm -v
-# yarn 版本
 yarn -v
-# golang 版本
 go version
 ```
 
@@ -69,11 +64,13 @@ yarn run webpack-development
 
 詳細資訊描述在：**.vscode/tasks.json**
 
+> 以上指令僅供參考，想獲得更好的開發體驗推薦使用 **vscode**
+
 ### Debug 調試
 
 webserver 是我用 golang 撰寫的一個 web server 小程式
 
-在建立完應用的 bundle.js 之後
+在建立完應用的靜態檔案之後
 
 ```shell
 # run web server
@@ -92,7 +89,7 @@ firefox http://localhost:9527/ --start-debugger-server
 
 ### 依賴性問題
 
-- css-loader@2.x 與 typings-for-css-modules-loader@1.7.0 有衝突，暫不升級
+- css-loader@2.x 與 typings-for-css-modules-loader@1.7.0 發現有衝突，暫不升級
 
 ### TSLint 程式碼規範
 

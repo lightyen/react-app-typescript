@@ -1,14 +1,8 @@
 {
   "defaultSeverity": "error",
-  "extends": [
-    "tslint:recommended",
-    "tslint-react",
-    "tslint-config-prettier"
-  ],
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
-    "exclude": [
-      "src/**/*.d.ts"
-    ]
+    "exclude": ["src/**/*.d.ts"]
   },
   "jsRules": {},
   "rules": {
@@ -20,13 +14,7 @@
     "max-classes-per-file": false,
     "no-submodule-imports": false,
     "no-empty": false,
-    "no-implicit-dependencies": [
-      true,
-      "dev",
-      [
-        "components"
-      ],
-    ],
+    "no-implicit-dependencies": [true, "dev", ["components", "stores"]],
     "no-console": false,
     "no-var-requires": false,
     "no-duplicate-imports": false,
@@ -34,11 +22,7 @@
     "no-bitwise": false,
     "member-ordering": false,
     "arrow-parens": false,
-    "variable-name": [
-      true,
-      "allow-leading-underscore",
-      "allow-pascal-case"
-    ],
+    "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"],
     "jsx-boolean-value": false,
     "jsx-no-bind": true,
     "jsx-no-multiline-js": false,

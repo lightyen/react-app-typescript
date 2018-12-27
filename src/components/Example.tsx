@@ -8,27 +8,22 @@ interface IProps {
 }
 
 export class Example extends React.Component<Partial<IProps>> {
-
     private static defaultProps: Partial<IProps> = {
-        value: "hello world"
+        value: "hello world",
     }
 
     public render() {
         return (
-            <a
-                className={style.example}
-                onClick={this.props.onClick}>
+            <button className={style.example} onClick={this.props.onClick}>
                 <span>{this.props.value}</span>
-            </a>
+            </button>
         )
     }
 }
 
 export const ExampleSFC: React.SFC<IProps> = ({ value = "hello world", onClick }) => {
     return (
-        <a
-            className={style.example}
-            onClick={onClick}>
+        <a className={style.example} onClick={onClick}>
             <span>{value}</span>
         </a>
     )

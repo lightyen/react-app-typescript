@@ -5,19 +5,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "target": "es5",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "paths": {
-      "components/*": [
-        "src/components/*"
-      ],
+      "components/*": ["src/components/*"],
+      "stores": ["src/stores"]
     }
   },
-  "include": [
-    "src/**/*",
-    "src/**/*.d.ts"
-  ]
+  "include": ["src/**/*", "src/**/*.d.ts"]
 }
