@@ -1,5 +1,5 @@
 import React from "react"
-import { Example, ExampleSFC } from "components/Example"
+import { Example, ExampleSFC } from "components"
 import { inject, observer } from "mobx-react"
 import { AppStore, IStore } from "stores"
 

@@ -14,7 +14,7 @@
     "max-classes-per-file": false,
     "no-submodule-imports": false,
     "no-empty": false,
-    "no-implicit-dependencies": [true, "dev", ["components", "stores"]],
+    "no-implicit-dependencies": [true, ["components", "stores"]],
     "no-console": false,
     "no-var-requires": false,
     "no-duplicate-imports": false,
