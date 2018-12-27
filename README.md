@@ -43,7 +43,7 @@ go version
 
 ### Build 建置
 
-以下指令皆為 linux 平台，windows 注意換成`\\`
+以下指令皆為 linux 平台，windows 平台路徑注意改成 `\\`
 
 ```shell
 # clone
