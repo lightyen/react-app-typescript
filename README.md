@@ -1,4 +1,4 @@
-# react app typescript
+# react app typescript &middot; ![](https://img.shields.io/github/license/lightyen/react-app-typescript.svg?style=flat-square)![](https://img.shields.io/github/package-json/v/lightyen/react-app-typescript.svg)
 
 這是一個用 react 撰寫的環境範本專案，自訂義 webpack 設定，結合 Typescript, Mobx, sass 等相關技術鏈，開箱即用。
 
