@@ -3,5 +3,5 @@ language: node_js
 node_js:
   - node
 
-install:
+before_script:
   - ./node_modules/.bin/tsc --project .webpack --outDir .webpack
