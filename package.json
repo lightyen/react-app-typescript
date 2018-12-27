@@ -14,7 +14,8 @@
     "webpack-development": "webpack --config .webpack/webpack.dev",
     "webpack-watch": "webpack --config .webpack/webpack.watch -w --info-verbosity verbose",
     "webpack-production": "webpack --config .webpack/webpack.prod",
-    "webpack-analyzer": "webpack --config .webpack/webpack.analyzer"
+    "webpack-analyzer": "webpack --config .webpack/webpack.analyzer",
+    "test": "webpack --config .webpack/webpack.prod"
   },
   "devDependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
