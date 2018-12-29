@@ -18,6 +18,5 @@
         "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
     },
     "npm.autoDetect": "off",
-    "typescript.tsc.autoDetect": "off",
-    "prettier.tabWidth": 4
+    "typescript.tsc.autoDetect": "off"
 }

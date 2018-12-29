@@ -1,6 +1,6 @@
 # react app typescript &middot; ![](https://travis-ci.com/lightyen/react-app-typescript.svg?branch=master)![](https://img.shields.io/github/license/lightyen/react-app-typescript.svg)
 
-這是一個用 react 撰寫的環境範本專案，自訂義 webpack 設定，結合 Typescript, Mobx, sass 等相關技術鏈，開箱即用。
+這是一個用 react 撰寫的環境範本專案，自訂義 webpack 設定，結合 Typescript, Mobx, react-router, Sass 等相關技術鏈，開箱即用。
 
 ### 開發環境準備
 

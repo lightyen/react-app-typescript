@@ -1,7 +1,7 @@
 import React from "react"
 import { Example } from "components"
 
-import * as style from "./NotFoundPage.scss"
+import * as style from "./index.scss"
 
 export default class NotFoundPage extends React.Component {
     private backHome = () => {

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <style>
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+            }
+        </style>
+    </head>
 
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>
-        <%= htmlWebpackPlugin.options.title %>
-    </title>
-    <style>
-        body {
-            margin: 0;
-        }
-    </style>
-</head>
-
-<body>
-    <%= htmlWebpackPlugin.options.development %>
-    <div id="404"></div>
-</body>
-
+    <body>
+        <%= htmlWebpackPlugin.options.development %>
+        <div id="404"></div>
+    </body>
 </html>

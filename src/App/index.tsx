@@ -4,12 +4,10 @@ import { Provider } from "mobx-react"
 import { MainPage } from "../pages"
 import { AppStore } from "stores"
 
-interface IProps {}
-
-export class App extends React.Component<IProps> {
+export default class App extends React.Component<{}> {
     private appStore: AppStore
 
-    constructor(props: IProps) {
+    constructor(props: {}) {
         super(props)
         this.appStore = new AppStore()
     }
