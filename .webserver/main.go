@@ -22,25 +22,36 @@ func (m *myRouter) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	url, err := url.ParseRequestURI(r.RequestURI)
 
 	if err != nil {
+		http.ServeFile(w, r, filepath.Join(m.staticSrc, "404.html"))
+		return
+	}
+
+	if url.Path == "/404" {
+		http.ServeFile(w, r, filepath.Join(m.staticSrc, "404.html"))
 		return
 	}
 
 	src := filepath.Join(m.staticSrc, url.Path)
 
-	switch url.Path {
-	case "/":
-		http.ServeFile(w, r, src)
-	case "/404":
-		http.ServeFile(w, r, filepath.Join(m.staticSrc, "404.html"))
-	default:
-		fileInfo, err := os.Stat(src)
-		if err != nil || fileInfo.IsDir() {
-			http.Redirect(w, r, "/404", http.StatusMovedPermanently)
-			// http.Redirect(w, r, "/", http.StatusMovedPermanently)
-		} else {
-			http.ServeFile(w, r, src)
-		}
+	fileInfo, err := os.Stat(src)
+
+	if err != nil {
+		http.Redirect(w, r, "/404", http.StatusMovedPermanently)
+		return
 	}
+
+	if fileInfo.IsDir() {
+		s := filepath.Join(src, "index.html")
+		_, err := os.Stat(s)
+		if err != nil {
+			http.Redirect(w, r, "/404", http.StatusMovedPermanently)
+			return
+		}
+		http.ServeFile(w, r, s)
+		return
+	}
+
+	http.ServeFile(w, r, src)
 }
 
 var public string
