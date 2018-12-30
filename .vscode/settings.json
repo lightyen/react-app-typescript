@@ -1,6 +1,7 @@
 {
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
+    "editor.tabSize": 4,
     "formatFiles.excludePattern": "node_modules,dist,src/assets,.webpack/*.js,.gitignore,.editorconfig,yarn.lock",
     "files.associations": {
         "*.ejs": "html",
@@ -18,5 +19,6 @@
         "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
     },
     "npm.autoDetect": "off",
-    "typescript.tsc.autoDetect": "off"
+    "typescript.tsc.autoDetect": "off",
+    "go.formatTool": "goformat"
 }
