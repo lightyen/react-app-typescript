@@ -37,11 +37,16 @@ const conf: Configuration = {
     module: {
         rules: [
             {
-                test: /\.ts(x?)$/,
+                test: /\.(js|ts)x?$/,
                 loader: "awesome-typescript-loader",
                 options: {
                     configFileName: "tsconfig.json",
                     silent: true,
+                    // useBabel: true,
+                    // babelOptions: {
+                    //     babelrc: true,
+                    // },
+                    // babelCore: "@babel/core",
                     getCustomTransformers: () => ({
                         before: [
                             TsImportPlugin([

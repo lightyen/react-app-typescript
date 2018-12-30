@@ -23,8 +23,8 @@ export class Example extends React.Component<Partial<IProps>> {
 
 export const ExampleSFC: React.SFC<IProps> = ({ value = "hello world", onClick }) => {
     return (
-        <a className={style.example} onClick={onClick}>
+        <button className={style.example} onClick={onClick}>
             <span>{value}</span>
-        </a>
+        </button>
     )
 }
