@@ -1,6 +1,6 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
-import { Example, ExampleSFC } from "components"
+import { Example, ExampleFC } from "components"
 import { inject, observer } from "mobx-react"
 import { AppStore, IStore } from "stores"
 

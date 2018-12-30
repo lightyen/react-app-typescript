@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from "react"
+import React, { MouseEventHandler, FunctionComponent } from "react"
 
 import * as style from "./Example.scss"
 
@@ -21,10 +21,16 @@ export class Example extends React.Component<Partial<IProps>> {
     }
 }
 
-export const ExampleSFC: React.SFC<IProps> = ({ value = "hello world", onClick }) => {
-    return (
-        <button className={style.example} onClick={onClick}>
-            <span>{value}</span>
-        </button>
-    )
-}
+export const ExampleFC: FunctionComponent<IProps> = ({ value = "hello world", onClick }) => (
+    <button className={style.example} onClick={onClick}>
+        <span>{value}</span>
+    </button>
+)
+
+// export const ExampleSFC: React.SFC<IProps> = ({ value = "hello world", onClick }) => {
+//     return (
+//         <button className={style.example} onClick={onClick}>
+//             <span>{value}</span>
+//         </button>
+//     )
+// }

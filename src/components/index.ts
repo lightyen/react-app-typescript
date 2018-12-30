@@ -1,1 +1,1 @@
-export { Example, ExampleSFC } from "./Example"
+export { Example, ExampleFC } from "./Example"
