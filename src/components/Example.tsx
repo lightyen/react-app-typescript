@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, FunctionComponent } from "react"
 
-import * as style from "./Example.scss"
+import style from "./Example.scss"
 
 interface IProps {
     value: string
