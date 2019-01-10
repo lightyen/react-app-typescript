@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from "react"
 import { RouteComponentProps } from "react-router-dom"
-import { Example, ExampleFC } from "components"
+import { Example, ExampleFC, ReactHookCounter } from "components"
 import { inject, observer } from "mobx-react"
 import { AppStore, IStore } from "stores"
 
@@ -19,6 +19,7 @@ export class MainPage extends Component<IProps> {
             <Fragment>
                 <Example value="Hello React!" onClick={this.click} />
                 <Counter />
+                <ReactHookCounter />
             </Fragment>
         )
     }

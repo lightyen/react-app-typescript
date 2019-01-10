@@ -1,1 +1,2 @@
-export { Example, ExampleFC } from "./Example"
+export * from "./Example"
+export * from "./ReactHookCounter"
