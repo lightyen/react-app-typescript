@@ -1,12 +1,14 @@
 import Webpack from "webpack"
 import path from "path"
+
+// Plugins
 import CleanWebpackPlugin from "clean-webpack-plugin"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
+import WebpackBarPlugin from "webpackbar"
 import { TsConfigPathsPlugin } from "awesome-typescript-loader"
-import TsImportPlugin = require("ts-import-plugin")
-const WebpackBar = require("webpackbar")
-const packageJSON = require("../package.json")
+import TsImportPlugin from "ts-import-plugin"
+import { name as AppName } from "../package.json"
 // var nodeExternals = require('webpack-node-externals')
 
 const entry: Webpack.Entry = {
@@ -15,7 +17,7 @@ const entry: Webpack.Entry = {
 }
 
 const titles = {
-    index: packageJSON.name,
+    index: AppName,
     404: "Not Found",
 }
 
@@ -162,8 +164,8 @@ export function getBaseConfig(opt?: { dist?: string; src?: string }): Webpack.Co
             ],
         },
         plugins: [
-            new WebpackBar({ color: "blue" }),
-            new CleanWebpackPlugin([path.basename(distPath)], {
+            new WebpackBarPlugin({ color: "blue", profile: true }),
+            new CleanWebpackPlugin(path.basename(distPath), {
                 root: path.resolve(distPath, ".."),
                 verbose: false,
             }),

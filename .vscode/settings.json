@@ -7,7 +7,6 @@
         "*.ejs": "html",
         ".prettierrc": "json"
     },
-    "typescript.preferences.quoteStyle": "double",
     "typescript.tsdk": "node_modules/typescript/lib",
     "terminal.integrated.env.windows": {
         "PATH": "${workspaceFolder}\\node_modules\\.bin;${env:PATH}"

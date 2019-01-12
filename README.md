@@ -1,8 +1,8 @@
 # react app typescript &middot; ![](https://travis-ci.com/lightyen/react-app-typescript.svg?branch=master)![](https://img.shields.io/github/license/lightyen/react-app-typescript.svg)
 
-這是一個用 react 撰寫的環境範本專案，自訂義 webpack 設定，結合 Typescript, Mobx, react-router, Sass 等相關技術鏈，開箱即用。
+這是一個用 React 撰寫的環境範本專案，自訂義 Webpack 設定，結合 Typescript, MobX, react-router, Sass 等相關技術，開箱即用。
 
-### 開發環境準備
+### 需要的開發環境
 
 <a href="https://code.visualstudio.com">
 <img src="https://user-images.githubusercontent.com/49339/32078127-102bbcfe-baa6-11e7-8ab9-b04dcad2035e.png" alt="vscode-img" width="10%"/></a>
@@ -46,13 +46,13 @@ go version
 以下指令皆為 linux 平台，windows 平台路徑注意改成 `\\`
 
 ```shell
-# clone
+# clone this repo
 git clone https://github.com/lightyen/react-app-typescript
 
 # 進入專案資料夾
 cd react-app-typescript
 
-# 初始化nodejs project
+# 初始化
 yarn
 
 # typescript 編譯設定檔
@@ -63,8 +63,6 @@ yarn run webpack-development
 ```
 
 詳細資訊描述在：**.vscode/tasks.json**
-
-> 以上指令僅供參考，想獲得更好的開發體驗推薦使用 **vscode**
 
 ### Debug 調試
 
@@ -87,6 +85,8 @@ firefox http://localhost:8080/ --start-debugger-server
 
 詳細資訊描述在：**.vscode/tasks.json**
 
+### 懶人包
+
 ### 依賴性問題
 
 - css-loader@2.x 與 typings-for-css-modules-loader@1.7.0 發現有衝突，暫不升級
@@ -102,10 +102,15 @@ firefox http://localhost:8080/ --start-debugger-server
 
 ### editorconfig, prettier 程式碼風格
 
-按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格，我的縮排偏好為 **4** 個空格
+按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格
 
-### 其他參考
+> 我的縮排偏好為 **4** 個空格
 
+### 其他參考筆記
+
+- https://www.youtube.com/watch?v=DLX62G4lc44
 - https://reactjs.org/
-- https://www.typescriptlang.org/docs/home.html
 - https://github.com/enaqx/awesome-react
+- https://basarat.gitbooks.io/typescript/content/docs/getting-started.html
+- https://www.typescriptlang.org/
+- https://basarat.gitbooks.io/typescript/docs/jsx/react.html

@@ -2,7 +2,7 @@
   "defaultSeverity": "error",
   "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
   "linterOptions": {
-    "exclude": ["src/**/*.d.ts"]
+    "exclude": [".webpack/*.d.ts", "src/**/*.d.ts"]
   },
   "jsRules": {},
   "rules": {

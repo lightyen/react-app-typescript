@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "webpack-development": "webpack --config .webpack/webpack.dev",
-    "webpack-watch": "webpack --config .webpack/webpack.watch -w --info-verbosity verbose",
+    "webpack-watch": "webpack --config .webpack/webpack.watch --watch --info-verbosity verbose",
     "webpack-production": "webpack --config .webpack/webpack.prod",
     "webpack-analyzer": "webpack --config .webpack/webpack.analyzer",
     "test": "webpack --config .webpack/webpack.prod"
@@ -27,6 +27,7 @@
     "@types/webpack": "^4.4.22",
     "@types/webpack-bundle-analyzer": "^2.13.0",
     "@types/webpack-merge": "^4.1.3",
+    "@types/webpackbar": "^2.6.0",
     "autoprefixer": "^9.4.4",
     "awesome-typescript-loader": "^5.2.1",
     "browser-sync": "^2.26.3",

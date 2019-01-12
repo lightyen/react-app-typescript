@@ -42,7 +42,7 @@
             "windows": {
                 "command": "node_modules\\.bin\\tsc.cmd"
             },
-            "args": ["--project", ".webpack", "--outDir", ".webpack"],
+            "args": ["--project", ".webpack"],
             "problemMatcher": "$tsc",
             "presentation": {
                 "clear": true

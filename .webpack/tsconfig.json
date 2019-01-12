@@ -8,5 +8,5 @@
     "lib": ["esnext"],
     "typeRoots": []
   },
-  "include": ["../.webpack/*.ts"]
+  "include": ["../.webpack/*", "../.webpack/*.d.ts"]
 }
