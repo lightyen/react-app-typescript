@@ -6,7 +6,7 @@ interface IState {
     count: number
 }
 
-export const ReactHookCounter: React.FC = () => {
+export const ReactHookCounter: React.FunctionComponent = () => {
     const [state, setState] = React.useState<IState>({ count: 0 })
     return (
         <div>

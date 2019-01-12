@@ -1,16 +1,31 @@
-import { HotModuleReplacementPlugin, NamedChunksPlugin, NamedModulesPlugin } from "webpack"
-import * as webpackMerge from "webpack-merge"
+import Webpack from "webpack"
+import webpackMerge from "webpack-merge"
+import path from "path"
+import os from "os"
 
 process.env.NODE_ENV = "development"
-import baseWebpackConfig from "./webpack.common"
+import { getBaseConfig } from "./webpack.common"
 
-export default webpackMerge(baseWebpackConfig, {
+// NOTE: 可以選擇你要的 dist 位置
+// const dist = path.resolve(os.homedir(), "Documents", "react-app-typescript", "dist")
+
+export default webpackMerge(getBaseConfig(), {
     performance: {
         hints: false,
         assetFilter: (filename: string) => {
             return filename.endsWith(".css") || filename.endsWith(".js")
         },
     },
+    module: {
+        rules: [
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader",
+            },
+        ],
+    },
+
     mode: "development",
     devtool: "source-map",
     watchOptions: {
@@ -19,8 +34,8 @@ export default webpackMerge(baseWebpackConfig, {
         ignored: ["node_modules"],
     },
     plugins: [
-        // new HotModuleReplacementPlugin(),
-        new NamedModulesPlugin(),
-        new NamedChunksPlugin()
+        new Webpack.HotModuleReplacementPlugin(),
+        new Webpack.NamedModulesPlugin(),
+        new Webpack.NamedChunksPlugin(),
     ],
 })

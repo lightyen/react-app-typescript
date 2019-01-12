@@ -59,7 +59,7 @@ var port string
 
 func init() {
     flag.StringVar(&public, "public", "./dist", "path of static files")
-    flag.StringVar(&port, "port", "9527", "service port")
+    flag.StringVar(&port, "port", "8080", "service port")
     flag.Parse()
 }
 

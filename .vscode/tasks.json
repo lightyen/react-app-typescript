@@ -107,13 +107,13 @@
             "group": "test",
             "isBackground": false,
             "linux": {
-                "command": "firefox http://localhost:9527/ --start-debugger-server 6000"
+                "command": "firefox http://localhost:8080/ --start-debugger-server 6000"
             },
             "windows": {
-                "command": "start firefox http://localhost:9527/ -start-debugger-server 6000"
+                "command": "start firefox http://localhost:8080/ -start-debugger-server 6000"
             },
             "osx": {
-                "command": "open -a firefox http://localhost:9527/ --args --start-debugger-server=\"6000\""
+                "command": "open -a firefox http://localhost:8080/ --args --start-debugger-server=\"6000\""
             },
             "problemMatcher": [],
             "presentation": {
@@ -126,13 +126,13 @@
             "group": "none",
             "isBackground": true,
             "linux": {
-                "command": "google-chrome http://localhost:9527/ --remote-debugging-port=9222"
+                "command": "google-chrome http://localhost:8080/ --remote-debugging-port=9222"
             },
             "windows": {
-                "command": "start chrome http://localhost:9527/ --remote-debugging-port=9222"
+                "command": "start chrome http://localhost:8080/ --remote-debugging-port=9222"
             },
             "osx": {
-                "command": "open -a \"Google Chrome\" http://localhost:9527/ --args --remote-debugging-port=\"9222\""
+                "command": "open -a \"Google Chrome\" http://localhost:8080/ --args --remote-debugging-port=\"9222\""
             },
             "problemMatcher": [],
             "presentation": {

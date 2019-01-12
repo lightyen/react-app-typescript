@@ -1,4 +1,4 @@
-import * as webpackMerge from "webpack-merge"
+import webpackMerge from "webpack-merge"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
 
 process.env.NODE_ENV = "production"

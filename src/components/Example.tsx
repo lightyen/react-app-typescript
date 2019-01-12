@@ -27,6 +27,7 @@ export const ExampleFC: FunctionComponent<IProps> = ({ value = "hello world", on
     </button>
 )
 
+// NOTE: @deprecated
 // export const ExampleSFC: React.SFC<IProps> = ({ value = "hello world", onClick }) => {
 //     return (
 //         <button className={style.example} onClick={onClick}>

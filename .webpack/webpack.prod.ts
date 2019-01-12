@@ -1,11 +1,10 @@
-import * as webpackMerge from "webpack-merge"
-import { ContextReplacementPlugin } from "webpack"
-import * as path from "path"
+import webpackMerge from "webpack-merge"
+import Webpack from "webpack"
 
 process.env.NODE_ENV = "production"
-import baseWebpackConfig from "./webpack.common"
+import { getBaseConfig } from "./webpack.common"
 
-export default webpackMerge(baseWebpackConfig, {
+export default webpackMerge(getBaseConfig(), {
     performance: {
         hints: "warning",
         assetFilter: (filename: string) => {
@@ -51,5 +50,5 @@ export default webpackMerge(baseWebpackConfig, {
             // "@ant-design/icons/lib/dist$": path.resolve(__dirname, "../renderer/icons.ts"),
         },
     },
-    plugins: [new ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/)],
+    plugins: [new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/)],
 })

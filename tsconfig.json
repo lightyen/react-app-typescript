@@ -9,7 +9,8 @@
     "baseUrl": ".",
     "paths": {
       "components": ["src/components"],
-      "stores": ["src/stores"]
+      "stores": ["src/stores"],
+      "utils": ["src/utils"]
     }
   },
   "include": ["src/**/*", "src/**/*.d.ts"]

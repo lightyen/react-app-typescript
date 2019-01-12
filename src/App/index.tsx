@@ -1,8 +1,7 @@
 import React from "react"
-import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { Provider } from "mobx-react"
-import { MainPage } from "../pages"
 import { AppStore } from "stores"
+import { AppRouter } from "./AppRouter"
 
 export default class App extends React.Component<{}> {
     private appStore: AppStore
@@ -15,11 +14,7 @@ export default class App extends React.Component<{}> {
     public render() {
         return (
             <Provider {...this.appStore}>
-                <BrowserRouter>
-                    <Switch>
-                        <Route path="/" component={MainPage} />
-                    </Switch>
-                </BrowserRouter>
+                <AppRouter />
             </Provider>
         )
     }

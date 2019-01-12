@@ -1,8 +1,11 @@
 import React, { Fragment, Component } from "react"
-import { RouteComponentProps } from "react-router-dom"
-import { Example, ExampleFC, ReactHookCounter } from "components"
+import { Switch, Route, RouteComponentProps, Redirect, Link } from "react-router-dom"
+import { Example, ReactHookCounter } from "components"
 import { inject, observer } from "mobx-react"
 import { AppStore, IStore } from "stores"
+import { HelloPage } from "./HelloPage"
+import { MyCounter } from "components"
+import path from "path"
 
 interface IProps extends RouteComponentProps, IStore {}
 
@@ -14,24 +17,19 @@ export class MainPage extends Component<IProps> {
     }
 
     public render() {
-        console.log(this.props.location)
         return (
             <Fragment>
                 <Example value="Hello React!" onClick={this.click} />
-                <Counter />
+                <MyCounter />
                 <ReactHookCounter />
+                <Switch>
+                    <Route path={path.join(this.props.match.url, "hello")} component={HelloPage} />
+                    {/* this is default for no route */}
+                    <Route>
+                        <Link to={path.join(this.props.match.url, "hello")}>Link</Link>
+                    </Route>
+                </Switch>
             </Fragment>
         )
-    }
-}
-
-interface ICounterProps extends IStore {}
-
-@inject(AppStore.User)
-@observer // Notice that when the user store change will trigger this component rendering.
-class Counter extends Component<ICounterProps> {
-    public render() {
-        console.log("counter")
-        return <div>{this.props.user.counter}</div>
     }
 }

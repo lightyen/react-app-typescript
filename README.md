@@ -78,7 +78,7 @@ go build -o .webserver/.webserver .webserver/main.go
 .webserver/.webserver
 
 # run browser in debug mode
-firefox http://localhost:9527/ --start-debugger-server
+firefox http://localhost:8080/ --start-debugger-server
 ```
 
 在 vscode 中鍵入 `F5` attach 到 browser 進行調試
@@ -102,7 +102,7 @@ firefox http://localhost:9527/ --start-debugger-server
 
 ### editorconfig, prettier 程式碼風格
 
-按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格，縮排偏好為 **4** 個空格
+按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格，我的縮排偏好為 **4** 個空格
 
 ### 其他參考
 

@@ -1,9 +1,10 @@
 {
   "extends": "../.config/tsconfig.base",
   "compilerOptions": {
+    "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es6",
     "lib": ["esnext"],
     "typeRoots": []
   },
