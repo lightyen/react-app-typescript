@@ -87,6 +87,11 @@ firefox http://localhost:8080/ --start-debugger-server
 
 ### 懶人包
 
+<img src="https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/00.png"/>
+<img src="https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/01.png"/>
+<img src="https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/02.png"/>
+<img src="https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/03.png"/>
+
 ### 依賴性問題
 
 - css-loader@2.x 與 typings-for-css-modules-loader@1.7.0 發現有衝突，暫不升級
