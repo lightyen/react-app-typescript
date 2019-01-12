@@ -3,6 +3,7 @@ dist/
 .webpack/*.js
 .webserver/.webserver
 .webserver/.webserver.exe
+.directory
 *.log
 debug
 package-lock.json
