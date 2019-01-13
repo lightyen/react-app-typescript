@@ -2,7 +2,7 @@
 
 這是一個用 React 的開發環境範本專案，使用自訂義 Webpack 設定，結合 Typescript, MobX, react-router, Sass 等相關技術，開箱即用且跨平台。
 
-## 安裝開發環境
+## 安裝以下開發環境
 
 <a href="https://code.visualstudio.com">
 <img src="https://user-images.githubusercontent.com/49339/32078127-102bbcfe-baa6-11e7-8ab9-b04dcad2035e.png" alt="vscode-img" width="10%"/></a>
