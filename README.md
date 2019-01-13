@@ -57,7 +57,7 @@ cd react-app-typescript
 yarn
 
 # typescript 編譯設定檔
-./node_modules/.bin/tsc --project .webpack --outDir .webpack
+./node_modules/.bin/tsc --project .webpack
 
 # webpack 自動化打包編譯
 yarn run webpack-development
