@@ -18,6 +18,7 @@
 <br />
 
 ---
+
 ![預覽圖](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/env.png)
 
 #### 安裝完後檢查環境是否正確運作
@@ -101,14 +102,13 @@ firefox http://localhost:8080/ --start-debugger-server
 
 - string 字串 以 雙引號 `"` 表示
 - statement 除非特例 否則結尾不用分號 `;`
-
-相關設定在**tslint.json**
+- 縮排 **4** 個空格
 
 #### editorconfig, prettier 程式碼風格
 
 按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格
 
-> 我的縮排偏好為 **4** 個空格
+> 不喜歡我風格的朋友可以自行修改 **.editorconfig**, **.prettierrc**, **tslint.json**
 
 ## 其他參考
 
