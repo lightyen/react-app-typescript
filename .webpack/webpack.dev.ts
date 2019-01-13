@@ -8,6 +8,7 @@ import { getBaseConfig } from "./webpack.common"
 
 // NOTE: 可以選擇你要的 dist 位置
 // const dist = path.resolve(os.homedir(), "Documents", "react-app-typescript", "dist")
+// getBaseConfig({dist})
 
 export default webpackMerge(getBaseConfig(), {
     performance: {
