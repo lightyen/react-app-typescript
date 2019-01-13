@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "webpack-development": "webpack --config .webpack/webpack.dev",
-    "webpack-watch": "webpack --config .webpack/webpack.watch --watch --info-verbosity verbose",
+    "webpack-watch": "webpack --config .webpack/webpack.watch --info-verbosity none",
     "webpack-production": "webpack --config .webpack/webpack.prod",
     "webpack-analyzer": "webpack --config .webpack/webpack.analyzer",
     "test": "webpack --config .webpack/webpack.prod"

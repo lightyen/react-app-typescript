@@ -7,7 +7,7 @@ import { HelloPage } from "./HelloPage"
 import { MyCounter } from "components"
 import path from "path"
 
-interface IProps extends RouteComponentProps, IStore {}
+interface IProps extends RouteComponentProps, IStore { }
 
 @inject(AppStore.User)
 @observer // Notice that this component will not render again when the user store changed.
@@ -19,7 +19,7 @@ export class MainPage extends Component<IProps> {
     public render() {
         return (
             <Fragment>
-                <Example value="Hello React!" onClick={this.click} />
+                <Example value="Hello World!" onClick={this.click} />
                 <MyCounter />
                 <ReactHookCounter />
                 <Switch>

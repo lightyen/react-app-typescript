@@ -4,6 +4,9 @@ import baseWebpackConfig from "./webpack.dev"
 const BrowserSyncPlugin = require("browser-sync-webpack-plugin")
 
 export default webpackMerge(baseWebpackConfig, {
+    watch: true,
+    watchOptions: {
+    },
     plugins: [
         new BrowserSyncPlugin(
             {
