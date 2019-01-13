@@ -21,7 +21,6 @@ export class MainPage extends Component<IProps> {
             <Fragment>
                 <Example value="Hello World!" onClick={this.click} />
                 <MyCounter />
-                <ReactHookCounter />
                 <Switch>
                     <Route path={path.join(this.props.match.url, "hello")} component={HelloPage} />
                     {/* this is default for no route */}

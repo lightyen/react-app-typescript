@@ -2,12 +2,32 @@
 
 import React from "react"
 
+interface IProps {}
+
 interface IState {
     count: number
+    text: string
 }
 
-export const ReactHookCounter: React.FunctionComponent = () => {
-    const [state, setState] = React.useState<IState>({ count: 0 })
+export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
+    const [state, setState] = React.useState<IState>({ count: 0, text: "" })
+
+    React.useEffect(
+        () => {
+            console.log("count " + state.count)
+        },
+        [state.text],
+    )
+
+    React.useState(null)
+
+    React.useEffect(() => {
+        console.log("mount")
+        return () => {
+            console.log("unmount")
+        }
+    }, [])
+
     return (
         <div>
             <span>the number is {state.count}</span>

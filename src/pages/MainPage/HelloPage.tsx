@@ -1,5 +1,6 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
+import { ReactHookCounter } from "components"
 
 interface IProps extends RouteComponentProps {}
 
@@ -8,7 +9,7 @@ export class HelloPage extends React.Component<IProps> {
         console.log(this.props.location)
         return (
             <div>
-                hello world
+                <ReactHookCounter />
                 <button
                     onClick={() => {
                         this.props.history.goBack()
