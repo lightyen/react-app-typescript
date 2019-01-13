@@ -117,6 +117,6 @@ firefox http://localhost:8080/ --start-debugger-server
 
 - [React Beginners Tutorial](https://www.youtube.com/watch?v=DLX62G4lc44)
 - [React Hook](https://www.youtube.com/watch?v=wXLf18DsV-I)
-- [Awesome][https://github.com/enaqx/awesome-react]
+- [Awesome](https://github.com/enaqx/awesome-react)
 - [Getting Started With TypeScript](https://basarat.gitbooks.io/typescript/content/docs/getting-started.html)
 - [React With TypeScript](https://basarat.gitbooks.io/typescript/docs/jsx/react.html)
