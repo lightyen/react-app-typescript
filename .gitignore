@@ -1,4 +1,4 @@
- node_modules/
+node_modules/
 dist/
 .webpack/*.js
 .webserver/.webserver
