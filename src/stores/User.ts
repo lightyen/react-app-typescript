@@ -17,6 +17,15 @@ export class User {
         this.counter = n
     }
 
+    // NOTE: 或者使用 axios 完成異步請求 data
+    // @action
+    // public async getData() {
+    //     const resp = await axios.get<T>("/api/...")
+    //     runInAction(() => {
+    //         this.data = resp.data
+    //     })
+    // }
+
     constructor() {
         this.setText("")
         runInAction(() => {
