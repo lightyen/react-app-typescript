@@ -49,7 +49,7 @@
             }
         },
         {
-            "label": "webpack-analyzer",
+            "label": "bundle-analyzer",
             "group": "test",
             "type": "shell",
             "command": "yarn",
