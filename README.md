@@ -31,17 +31,24 @@ yarn -v
 go version
 ```
 
-#### 安裝相關 Visual Studio SCode 擴充元件
+#### 安裝相關 Visual Studio Code 擴充元件
 
 - **Debug for Firefox**
 - **Debug for Chrome**
 - **TSLint**
 - **Awesome Typescript Problem Matcher**
 - **Go**
-- **GitLens**
 - _Prettier_
 - _Format Files_
 - _EditorConfig for VS Code_
+
+#### 其他我常用的
+
+- **GitLens**
+- Material Icon Theme
+- Markdown All in One
+- TODO Highlight
+- Fira Code (font)
 
 ### Build 建置
 
