@@ -117,7 +117,7 @@ firefox http://localhost:8080/ --start-debugger-server
 
 > 不喜歡我風格的朋友可以自行修改 **.editorconfig**, **.prettierrc**, **tslint.json**
 
-## 其他參考
+## 其他知識參考
 
 - https://reactjs.org/
 - https://www.typescriptlang.org/
@@ -127,3 +127,7 @@ firefox http://localhost:8080/ --start-debugger-server
 - [Awesome](https://github.com/enaqx/awesome-react)
 - [Getting Started With TypeScript](https://basarat.gitbooks.io/typescript/content/docs/getting-started.html)
 - [React With TypeScript](https://basarat.gitbooks.io/typescript/docs/jsx/react.html)
+
+## 雜談
+
+其實我手邊沒有 macOS，所以我不太確定蘋果派能不能 work😄

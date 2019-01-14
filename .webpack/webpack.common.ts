@@ -53,6 +53,7 @@ export function getBaseConfig(opt?: { dist?: string; src?: string }): Webpack.Co
                     options: {
                         configFileName: "tsconfig.json",
                         silent: true,
+                        // NOTE: 可以選擇使用 babel
                         // useBabel: true,
                         // babelOptions: {
                         //     babelrc: true,
@@ -124,7 +125,7 @@ export function getBaseConfig(opt?: { dist?: string; src?: string }): Webpack.Co
                             options: {
                                 javascriptEnabled: true,
                                 modifyVars: {
-                                    // 改變antd主題色
+                                    // NOTE: 可以改變 ant-design 主題色，如果有的話
                                     // "primary-color": "#1DA57A",
                                 },
                             },
