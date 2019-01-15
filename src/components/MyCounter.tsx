@@ -1,8 +1,8 @@
 import React from "react"
 import { inject, observer } from "mobx-react"
-import { AppStore, IStore } from "stores"
+import { AppStore, IUserStore } from "stores"
 
-interface ICounterProps extends IStore {}
+interface ICounterProps extends IUserStore {}
 
 @inject(AppStore.User)
 @observer // Notice that when the user store change will trigger this component rendering.

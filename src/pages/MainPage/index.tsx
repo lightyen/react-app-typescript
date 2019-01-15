@@ -2,12 +2,12 @@ import React, { Fragment, Component } from "react"
 import { Switch, Route, RouteComponentProps, Redirect, Link } from "react-router-dom"
 import { Example, ReactHookCounter } from "components"
 import { inject, observer } from "mobx-react"
-import { AppStore, IStore } from "stores"
+import { AppStore, IUserStore } from "stores"
 import { HelloPage } from "./HelloPage"
 import { MyCounter } from "components"
 import path from "path"
 
-interface IProps extends RouteComponentProps, IStore {}
+interface IProps extends RouteComponentProps, IUserStore {}
 
 @inject(AppStore.User)
 @observer // Notice that this component will not render again when the user store changed.
