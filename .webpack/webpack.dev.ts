@@ -17,16 +17,6 @@ export default webpackMerge(getBaseConfig(), {
             return filename.endsWith(".css") || filename.endsWith(".js")
         },
     },
-    // FIXME: typescript 能產生 source map，也許這個 loader 不是很需要。
-    module: {
-        rules: [
-            {
-                enforce: "pre",
-                test: /\.js$/,
-                loader: "source-map-loader",
-            },
-        ],
-    },
     mode: "development",
     devtool: "source-map",
     watchOptions: {
