@@ -17,7 +17,7 @@
     "no-implicit-dependencies": [
       true,
       "dev",
-      ["components", "stores", "utils"]
+      ["components", "stores", "model", "utils"]
     ],
     "no-console": false,
     "no-var-requires": false,

@@ -30,6 +30,7 @@
     "@types/webpackbar": "^2.6.0",
     "autoprefixer": "^9.4.4",
     "awesome-typescript-loader": "^5.2.1",
+    "axios": "^0.18.0",
     "browser-sync": "^2.26.3",
     "browser-sync-webpack-plugin": "^2.2.2",
     "clean-webpack-plugin": "^1.0.0",

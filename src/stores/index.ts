@@ -1,1 +1,1 @@
-export { default as AppStore, IStore } from "./AppStore"
+export { default as AppStore, IUserStore } from "./AppStore"

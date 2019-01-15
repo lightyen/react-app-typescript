@@ -10,6 +10,7 @@
     "paths": {
       "components": ["src/components"],
       "stores": ["src/stores"],
+      "model": ["src/stores/model"],
       "utils": ["src/utils"]
     }
   },
