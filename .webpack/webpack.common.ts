@@ -117,15 +117,11 @@ export function getBaseConfig(opt?: { dist?: string; src?: string }): Webpack.Co
                         process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
                         { loader: "css-loader" },
                         {
-                            loader: "postcss-loader",
-                            options: { config: { path: ".config/" } },
-                        },
-                        {
                             loader: "less-loader",
                             options: {
                                 javascriptEnabled: true,
                                 modifyVars: {
-                                    // NOTE: 可以改變 ant-design 主題色，如果有的話
+                                    // NOTE: 如果要改變 ant-design 主題色，則在此
                                     // "primary-color": "#1DA57A",
                                 },
                             },
