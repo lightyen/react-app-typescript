@@ -1,27 +1,27 @@
-import React, { MouseEventHandler, FunctionComponent } from "react"
+import React from "react"
 
 import style from "./Example.scss"
 
 interface IProps {
-    value: string
-    onClick: MouseEventHandler
+    content: string
+    onClick: React.MouseEventHandler
 }
 
 export class Example extends React.Component<Partial<IProps>> {
     private static defaultProps: Partial<IProps> = {
-        value: "hello world",
+        content: "hello world",
     }
 
     public render() {
         return (
             <button className={style.example} onClick={this.props.onClick}>
-                <span>{this.props.value}</span>
+                <span>{this.props.content}</span>
             </button>
         )
     }
 }
 
-export const ExampleFC: FunctionComponent<IProps> = ({ value = "hello world", onClick }) => (
+export const ExampleFC: React.FunctionComponent<IProps> = ({ content: value = "hello world", onClick }) => (
     <button className={style.example} onClick={onClick}>
         <span>{value}</span>
     </button>

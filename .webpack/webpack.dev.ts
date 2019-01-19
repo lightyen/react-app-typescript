@@ -18,15 +18,11 @@ export default webpackMerge(getBaseConfig(), {
         },
     },
     mode: "development",
-    devtool: "source-map",
+    stats: "minimal",
+    devtool: "#inline-source-map",
     watchOptions: {
         aggregateTimeout: 300,
         poll: 1000,
         ignored: ["node_modules"],
     },
-    plugins: [
-        new Webpack.HotModuleReplacementPlugin(),
-        new Webpack.NamedModulesPlugin(),
-        new Webpack.NamedChunksPlugin(),
-    ],
 })

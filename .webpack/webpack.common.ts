@@ -121,7 +121,7 @@ export function getBaseConfig(opt?: { dist?: string; src?: string }): Webpack.Co
                             options: {
                                 javascriptEnabled: true,
                                 modifyVars: {
-                                    // NOTE: 如果要改變 ant-design 主題色，則在此
+                                    // NOTE: 如果有 ant-design 要改變主題色，則在此
                                     // "primary-color": "#1DA57A",
                                 },
                             },

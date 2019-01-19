@@ -17,15 +17,17 @@ export class MainPage extends Component<IProps> {
     }
 
     public render() {
+        const matchUrl = this.props.match.url
+
         return (
             <Fragment>
-                <Example value="Hello World!" onClick={this.click} />
+                <Example content="Hello World" onClick={this.click} />
                 <MyCounter />
                 <Switch>
-                    <Route path={path.join(this.props.match.url, "hello")} component={HelloPage} />
+                    <Route path={path.join(matchUrl, "hello")} component={HelloPage} />
                     {/* this is default for no route */}
                     <Route>
-                        <Link to={path.join(this.props.match.url, "hello")}>Link</Link>
+                        <Link to={path.join(matchUrl, "hello")}>Link</Link>
                     </Route>
                 </Switch>
             </Fragment>

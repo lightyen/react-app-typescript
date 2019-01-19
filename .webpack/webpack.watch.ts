@@ -12,6 +12,7 @@ export default webpackMerge(baseWebpackConfig, {
                 host: "localhost",
                 port: "3000",
                 proxy: "http://localhost:8080/",
+                // logLevel: "silent",
             },
             { reload: true },
         ),
