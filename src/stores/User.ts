@@ -1,6 +1,5 @@
 import { observable, computed, action, flow, runInAction } from "mobx"
 import axios, { AxiosPromise } from "axios"
-import { FlowIterator } from "mobx/lib/api/flow"
 
 interface IterableIterator<T, TNext = any> {}
 

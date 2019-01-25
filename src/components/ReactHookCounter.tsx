@@ -1,4 +1,5 @@
-// NOTE: 需要把 react 更新到測試版本 yarn upgrade react@next react-dom@next
+// NOTE: 16.7.0 並沒有此功能，需要把 react 更新到試玩版才能使用 react hook
+// yarn upgrade react@next react-dom@next
 
 import React from "react"
 
