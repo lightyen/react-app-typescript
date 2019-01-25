@@ -21,7 +21,7 @@ export class MainPage extends Component<IProps> {
 
         return (
             <Fragment>
-                <Example content="Hello World" onClick={this.click} />
+                <Example content="Hello World!" onClick={this.click} />
                 <MyCounter />
                 <Switch>
                     <Route path={path.join(matchUrl, "hello")} component={HelloPage} />

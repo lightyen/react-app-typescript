@@ -49,6 +49,18 @@
             }
         },
         {
+            "label": "建置(webpack dll)",
+            "group": {
+                "isDefault": true,
+                "kind": "build"
+            },
+            "type": "shell",
+            "command": "yarn",
+            "args": ["run", "webpack-dll"],
+            "dependsOn": ["建置(webpack configuration)"],
+            "problemMatcher": []
+        },
+        {
             "label": "bundle-analyzer",
             "group": "test",
             "type": "shell",

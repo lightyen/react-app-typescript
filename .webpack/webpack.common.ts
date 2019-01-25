@@ -1,15 +1,17 @@
+// Base
 import Webpack from "webpack"
 import path from "path"
 
 // Plugins
-import CleanWebpackPlugin from "clean-webpack-plugin"
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import WebpackBarPlugin from "webpackbar"
 import { TsConfigPathsPlugin } from "awesome-typescript-loader"
 import TsImportPlugin from "ts-import-plugin"
+const DelWebpackPlugin = require("del-webpack-plugin")
+
+// Other
 import { name as AppName } from "../package.json"
-// var nodeExternals = require('webpack-node-externals')
 
 const entry: Webpack.Entry = {
     index: "./src/index.tsx",
@@ -21,23 +23,78 @@ const titles = {
     404: "Not Found",
 }
 
-export function getBaseConfig(opt?: { dist?: string; src?: string }): Webpack.Configuration {
-    const vendor = path.resolve(__dirname, "../dist/vendor")
-    let distPath = path.resolve(__dirname, "../dist")
-    let srcPath = path.resolve(__dirname, "../src")
-    if (opt) {
-        if (opt.dist) {
-            distPath = opt.dist
+/** 一些自定義的設定 */
+interface IOptions {
+    /** 輸出位置 */
+    dist?: string
+    /** 程式進入點位置 */
+    src?: string
+    /** 第三方程式庫位置 */
+    vendor?: string
+}
+
+export function getBaseConfig(options?: IOptions): Webpack.Configuration {
+    const distDefaultPath = path.resolve(__dirname, "..", "dist")
+    const srcDefaultPath = path.resolve(__dirname, "..", "src")
+    if (!options) {
+        options = {
+            dist: distDefaultPath,
+            src: srcDefaultPath,
+            vendor: "",
         }
-        if (opt.src) {
-            srcPath = opt.src
+    } else {
+        if (!options.dist) {
+            options.dist = distDefaultPath
         }
+        if (!options.src) {
+            options.src = srcDefaultPath
+        }
+    }
+
+    const plugins: Webpack.Plugin[] = [
+        new WebpackBarPlugin({ color: "blue", profile: true }),
+        new DelWebpackPlugin({
+            include: ["**"],
+            exclude: ["dll.js", "manifest.json"],
+            info: true,
+            keepGeneratedAssets: true,
+            allowExternal: false,
+        }),
+        new MiniCssExtractPlugin({
+            filename: "[name].[contenthash].css",
+        }),
+    ].concat(
+        Object.keys(entry).map((name: string) => {
+            const exclude = Object.keys(entry).slice()
+            exclude.splice(Object.keys(entry).indexOf(name), 1)
+            return new HtmlWebpackPlugin({
+                filename: name + ".html",
+                excludeChunks: exclude,
+                title: titles[name],
+                minify: false,
+                template: path.join(options.src, "template", name + ".ejs"),
+                favicon: path.join(options.src, "assets", "images", "favicon.ico"),
+                inject: "body",
+                dll: options.vendor ? '<script type="text/javascript" src="/dll.js"></script>' : "",
+                development:
+                    process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",
+            })
+        }),
+    )
+
+    if (options.vendor) {
+        plugins.push(
+            new Webpack.DllReferencePlugin({
+                context: options.vendor,
+                manifest: require(path.join(options.vendor, "manifest.json")),
+            }),
+        )
     }
 
     const conf: Webpack.Configuration = {
         entry,
         output: {
-            path: distPath,
+            path: options.dist,
             filename: "[name].[hash].js",
             publicPath: "/",
         },
@@ -169,43 +226,7 @@ export function getBaseConfig(opt?: { dist?: string; src?: string }): Webpack.Co
                 }),
             ],
         },
-        plugins: [
-            new WebpackBarPlugin({ color: "blue", profile: true }),
-            new CleanWebpackPlugin(path.basename(distPath), {
-                root: path.resolve(distPath, ".."),
-                verbose: false,
-            }),
-            new MiniCssExtractPlugin({
-                filename: "[name].[contenthash].css",
-                chunkFilename: "vendor.[contenthash].css",
-            }),
-            // new Webpack.DllReferencePlugin({
-            //     context: vendor,
-            //     manifest: require(path.resolve(__dirname, "../manifest.json")),
-            // }),
-        ].concat(
-            Object.keys(entry).map((name: string) => {
-                const exclude = Object.keys(entry).slice()
-                exclude.splice(Object.keys(entry).indexOf(name), 1)
-                return new HtmlWebpackPlugin({
-                    filename: name + ".html",
-                    excludeChunks: exclude,
-                    title: titles[name],
-                    minify:
-                        process.env.NODE_ENV !== "production"
-                            ? false
-                            : {
-                                  collapseWhitespace: true,
-                                  minifyCSS: true,
-                              },
-                    template: path.join(srcPath, "template", name + ".ejs"),
-                    favicon: path.join(srcPath, "assets", "images", "favicon.ico"),
-                    inject: "body",
-                    development:
-                        process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",
-                })
-            }),
-        ),
+        plugins,
     }
 
     return conf
