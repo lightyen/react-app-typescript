@@ -11,6 +11,10 @@ export default class App extends React.Component<{}> {
         this.appStore = new AppStore()
     }
 
+    public componentDidMount() {
+        document.title = "react-app-typescript"
+    }
+
     public render() {
         return (
             <Provider {...this.appStore}>

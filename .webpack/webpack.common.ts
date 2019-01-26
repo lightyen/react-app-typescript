@@ -18,11 +18,6 @@ const entry: Webpack.Entry = {
     404: "./src/404.tsx",
 }
 
-const titles = {
-    index: AppName,
-    404: "Not Found",
-}
-
 /** 一些自定義的設定 */
 interface IOptions {
     /** 輸出位置 */
@@ -55,7 +50,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
         new WebpackBarPlugin({ color: "blue", profile: true }),
         new DelWebpackPlugin({
             include: ["**"],
-            exclude: ["dll.js", "manifest.json"],
+            exclude: options.vendor ? ["dll.js", "manifest.json"] : [],
             info: true,
             keepGeneratedAssets: true,
             allowExternal: false,
@@ -70,11 +65,10 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
             return new HtmlWebpackPlugin({
                 filename: name + ".html",
                 excludeChunks: exclude,
-                title: titles[name],
                 minify: false,
+                inject: false, // NOTE: 改成在 ejs 手動注入
                 template: path.join(options.src, "template", name + ".ejs"),
                 favicon: path.join(options.src, "assets", "images", "favicon.ico"),
-                inject: "body",
                 dll: options.vendor ? '<script type="text/javascript" src="/dll.js"></script>' : "",
                 development:
                     process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",

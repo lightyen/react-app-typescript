@@ -6,7 +6,7 @@ import os from "os"
 process.env.NODE_ENV = "production"
 import { getBaseConfig } from "./webpack.common"
 
-// NOTE: 可以使用 dll 把第三方庫抽取出來，以減少編譯時間
+// NOTE: 可以使用 dll 模式，以減少編譯時間
 //
 // 1. 先建置 dll
 //

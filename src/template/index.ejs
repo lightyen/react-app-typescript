@@ -2,7 +2,9 @@
 <html>
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-        <title><%= htmlWebpackPlugin.options.title %></title>
+        <%= htmlWebpackPlugin.files.css.map(href => `
+        <link rel="stylesheet" type="text/css" href="${href}" />
+        `).join("") %>
         <style>
             html,
             body {
@@ -13,10 +15,11 @@
             }
         </style>
     </head>
-
     <body>
         <%= htmlWebpackPlugin.options.development %>
         <div id="app"></div>
-        <%= htmlWebpackPlugin.options.dll %>
+        <%= htmlWebpackPlugin.options.dll %> <%= htmlWebpackPlugin.files.js.map(url => `
+        <script type="text/javascript" src="${url}"></script>
+        `).join("") %>
     </body>
 </html>
