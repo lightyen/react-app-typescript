@@ -1,7 +1,5 @@
-// NOTE: 16.7.0 並沒有此功能，需要把 react 更新到試玩版才能使用 react hook
-// yarn upgrade react@next react-dom@next
-
 import React from "react"
+import { Example } from "./Example"
 
 interface IProps {}
 
@@ -13,12 +11,9 @@ interface IState {
 export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
     const [state, setState] = React.useState<IState>({ count: 0, text: "" })
 
-    React.useEffect(
-        () => {
-            console.log("count " + state.count)
-        },
-        [state.text],
-    )
+    React.useEffect(() => {
+        console.log("count " + state.count)
+    }, [state.text])
 
     React.useState(null)
 
@@ -31,14 +26,13 @@ export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
 
     return (
         <div>
-            <span>the number is {state.count}</span>
-            <button
+            <Example
+                content="Hello World"
                 onClick={() => {
                     setState(prev => ({ ...prev, count: prev.count + 1 }))
                 }}
-            >
-                click me
-            </button>
+            />
+            <span>{state.count}</span>
         </div>
     )
 }
