@@ -1,3 +1,6 @@
+// Hooks FAQ
+// https://reactjs.org/docs/hooks-faq.html
+
 import React from "react"
 import { Example } from "./Example"
 
@@ -9,20 +12,28 @@ interface IState {
 }
 
 export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
-    const [state, setState] = React.useState<IState>({ count: 0, text: "" })
+    const createState = (): IState => {
+        console.log("create State")
+        return { count: 3, text: "" }
+    }
 
-    React.useEffect(() => {
-        console.log("count " + state.count)
-    }, [state.text])
-
-    React.useState(null)
+    // createState is only called once
+    const [state, setState] = React.useState<IState>(createState)
 
     React.useEffect(() => {
         console.log("mount")
+        // subscribe something
         return () => {
+            // unsubscribe something
             console.log("unmount")
         }
     }, [])
+
+    React.useEffect(() => {
+        console.log("mount: count = " + state.count)
+    }, [state.text])
+
+    const [hello, setHello] = React.useState(false)
 
     return (
         <div>
