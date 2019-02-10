@@ -35,14 +35,13 @@ export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
 
     const [hello, setHello] = React.useState(false)
 
+    const handleClick = () => {
+        setData(prev => ({ ...prev, count: prev.count + 1 }))
+    }
+
     return (
         <div>
-            <Example
-                content="Hello World"
-                onClick={() => {
-                    setData(prev => ({ ...prev, count: prev.count + 1 }))
-                }}
-            />
+            <Example content="Hello World" onClick={handleClick} />
             <span>{data.count}</span>
         </div>
     )
