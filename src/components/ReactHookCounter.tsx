@@ -6,19 +6,19 @@ import { Example } from "./Example"
 
 interface IProps {}
 
-interface IState {
+interface IData {
     count: number
     text: string
 }
 
 export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
-    const createState = (): IState => {
+    const createData = (): IData => {
         console.log("create State")
         return { count: 3, text: "" }
     }
 
-    // createState is only called once
-    const [state, setState] = React.useState<IState>(createState)
+    // createData is only called once
+    const [data, setData] = React.useState<IData>(createData)
 
     React.useEffect(() => {
         console.log("mount")
@@ -30,8 +30,8 @@ export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
     }, [])
 
     React.useEffect(() => {
-        console.log("mount: count = " + state.count)
-    }, [state.text])
+        console.log("mount: count = " + data.count)
+    }, [data.text])
 
     const [hello, setHello] = React.useState(false)
 
@@ -40,10 +40,10 @@ export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
             <Example
                 content="Hello World"
                 onClick={() => {
-                    setState(prev => ({ ...prev, count: prev.count + 1 }))
+                    setData(prev => ({ ...prev, count: prev.count + 1 }))
                 }}
             />
-            <span>{state.count}</span>
+            <span>{data.count}</span>
         </div>
     )
 }
