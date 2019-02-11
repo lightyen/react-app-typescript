@@ -99,7 +99,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
         module: {
             rules: [
                 {
-                    test: /\.(js|ts)x?$/,
+                    test: /\.tsx?$/,
                     loader: "awesome-typescript-loader",
                     options: {
                         configFileName: "tsconfig.json",
