@@ -21,17 +21,20 @@ export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
     const [data, setData] = React.useState<IData>(createData)
 
     React.useEffect(() => {
-        console.log("mount")
+        console.log("componentDidMount")
         // subscribe something
         return () => {
+            console.log("componentWillUnmount")
             // unsubscribe something
-            console.log("unmount")
         }
     }, [])
 
     React.useEffect(() => {
-        console.log("mount: count = " + data.count)
-    }, [data.text])
+        console.log("data.count DidUpdate: count = " + data.count)
+        return () => {
+            console.log("data.count WillUpdate: count = " + data.count)
+        }
+    }, [data.count])
 
     const [hello, setHello] = React.useState(false)
 
@@ -41,7 +44,7 @@ export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
 
     return (
         <div>
-            <Example content="Hello World" onClick={handleClick} />
+            <Example content="Hook Style Component" onClick={handleClick} />
             <span>{data.count}</span>
         </div>
     )

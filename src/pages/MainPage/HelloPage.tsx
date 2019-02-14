@@ -23,7 +23,7 @@ export class HelloPage extends React.Component<IProps> {
                 <MyCounter />
                 <Button
                     onClick={() => {
-                        this.props.history.goBack()
+                        this.props.history.push("/")
                     }}
                 >
                     Go Back

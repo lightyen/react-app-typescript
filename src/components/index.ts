@@ -1,3 +1,4 @@
 export * from "./Example"
-export * from "./MyCounter"
+export * from "./MobxCounter"
+export * from "./ReactCounter"
 export * from "./ReactHookCounter"

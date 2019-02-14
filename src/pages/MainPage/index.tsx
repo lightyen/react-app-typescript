@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from "react"
 import { Switch, Route, RouteComponentProps, Link } from "react-router-dom"
-import { ReactHookCounter } from "components"
+import { ReactHookCounter, ReactCounter } from "components"
 
 import { HelloPage } from "./HelloPage"
 import path from "path"
@@ -14,6 +14,7 @@ export class MainPage extends Component<IProps> {
 
         return (
             <Fragment>
+                <ReactCounter />
                 <ReactHookCounter />
                 <Switch>
                     <Route path={path.join(matchUrl, "hello")} component={HelloPage} />
