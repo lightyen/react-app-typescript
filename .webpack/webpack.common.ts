@@ -5,6 +5,7 @@ import path from "path"
 // Plugins
 import HtmlWebpackPlugin from "html-webpack-plugin"
 import MiniCssExtractPlugin from "mini-css-extract-plugin"
+import CompressionWebpackPlugin from "compression-webpack-plugin"
 import WebpackBarPlugin from "webpackbar"
 import { TsConfigPathsPlugin } from "awesome-typescript-loader"
 import TsImportPlugin from "ts-import-plugin"
@@ -83,6 +84,10 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                 manifest: require(path.join(options.vendor, "manifest.json")),
             }),
         )
+    }
+
+    if (process.env.NODE_ENV === "production") {
+        plugins.push(new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 8192 }))
     }
 
     const conf: Webpack.Configuration = {
