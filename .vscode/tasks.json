@@ -2,54 +2,57 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "建置(webpack development)",
-            "group": {
-                "isDefault": true,
-                "kind": "build"
+            "label": "yarn",
+            "type": "shell",
+            "group": "none",
+            "isBackground": true,
+            "command": "yarn",
+            "runOptions": {
+                "runOn": "folderOpen"
             },
-            "type": "shell",
-            "command": "yarn",
-            "args": ["run", "webpack-development"],
-            "dependsOn": ["建置(webpack configuration)"],
-            "problemMatcher": []
-        },
-        {
-            "label": "建置(webpack production)",
-            "group": "build",
-            "type": "shell",
-            "command": "yarn",
-            "args": ["run", "webpack-production"],
-            "dependsOn": ["建置(webpack configuration)"],
-            "problemMatcher": []
-        },
-        {
-            "label": "建置 [Watch] (webpack development)",
-            "group": "build",
-            "type": "shell",
-            "command": "yarn",
-            "args": ["run", "webpack-watch"],
-            "dependsOn": ["建置(webpack configuration)"],
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "建置(webpack configuration)",
-            "group": "none",
-            "type": "shell",
-            "command": "node_modules/.bin/tsc",
-            "windows": {
-                "command": "node_modules\\.bin\\tsc.cmd"
+            "label": "建置(Development)",
+            "group": {
+                "isDefault": true,
+                "kind": "build"
             },
-            "args": ["--project", ".webpack"],
-            "problemMatcher": "$tsc",
+            "type": "shell",
+            "command": "yarn",
+            "args": ["test"],
+            "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "建置(webpack dll)",
+            "label": "建置(Production)",
+            "group": "build",
+            "type": "shell",
+            "command": "yarn",
+            "args": ["build"],
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "建置(Watch)",
+            "group": "build",
+            "type": "shell",
+            "command": "yarn",
+            "args": ["start"],
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
+            "label": "建置(DLL)",
             "group": {
                 "isDefault": true,
                 "kind": "build"
@@ -57,8 +60,10 @@
             "type": "shell",
             "command": "yarn",
             "args": ["run", "webpack-dll"],
-            "dependsOn": ["建置(webpack configuration)"],
-            "problemMatcher": []
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
         },
         {
             "label": "bundle-analyzer",
@@ -66,14 +71,13 @@
             "type": "shell",
             "command": "yarn",
             "args": ["run", "webpack-analyzer"],
-            "dependsOn": ["建置(webpack configuration)"],
             "problemMatcher": [],
             "presentation": {
                 "clear": true
             }
         },
         {
-            "label": "tslint",
+            "label": "lint",
             "type": "shell",
             "group": "test",
             "command": "node_modules/.bin/tslint --config tslint.json 'src/**/*.{ts,tsx}' '.webpack/**/*.ts'",
@@ -145,20 +149,6 @@
             },
             "osx": {
                 "command": "open -a \"Google Chrome\" http://localhost:8080/ --args --remote-debugging-port=\"9222\""
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "yarn",
-            "type": "shell",
-            "group": "none",
-            "isBackground": true,
-            "command": "yarn",
-            "runOptions": {
-                "runOn": "folderOpen"
             },
             "problemMatcher": [],
             "presentation": {

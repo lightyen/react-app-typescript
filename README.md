@@ -26,7 +26,6 @@
 ```shell
 code -v
 node -v
-npm -v
 yarn -v
 go version
 ```
@@ -48,34 +47,30 @@ go version
 - Material Icon Theme
 - Markdown All in One
 - TODO Highlight
-- Fira Code (font)
+- Fira Code (字型)
 
 ### Build 建置
 
-以下指令皆為 linux 平台，windows 平台路徑注意改成 `\\`
-
 ```shell
 # clone this repo
-git clone https://github.com/lightyen/react-app-typescript
+git clone https://github.com/lightyen/react-app-typescript.git
 
 # 進入專案資料夾
 cd react-app-typescript
 
-# 初始化
+# 檢查或下載相依程式庫
 yarn
 
-# typescript 編譯設定檔
-./node_modules/.bin/tsc --project .webpack
+# webpack 建置
+yarn build
 
-# webpack 自動化打包編譯
-yarn run webpack-development
+# 或者測試
+yarn test
 ```
 
-### Debug 調試
+### Debug
 
 webserver 是我用 golang 撰寫的一個 web server 小程式
-
-在建立完應用的靜態檔案之後
 
 ```shell
 # run web server
@@ -102,7 +97,7 @@ firefox http://localhost:8080/ --start-debugger-server
 
 ![03.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/03.png)
 
-## 程式碼風格規範
+## 程式碼風格
 
 約定程式碼風格：
 

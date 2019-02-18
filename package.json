@@ -1,7 +1,7 @@
 {
   "name": "react-app-typescript",
   "version": "1.0.0",
-  "description": "react-app-typescript",
+  "description": "react & typescript 結合的開發範本",
   "author": "lightyen",
   "license": "GPL-2.0-only",
   "keywords": [
@@ -11,13 +11,15 @@
     "webpack"
   ],
   "scripts": {
-    "webpack-development": "webpack --config .webpack/webpack.dev",
-    "webpack-production": "webpack --config .webpack/webpack.prod",
-    "webpack-watch": "webpack --config .webpack/webpack.watch --info-verbosity none",
-    "webpack-analyzer": "webpack --config .webpack/webpack.analyzer",
-    "webpack-dll": "webpack --config .webpack/webpack.dll",
-    "build": "webpack --config .webpack/webpack.dev",
-    "test": "webpack --config .webpack/webpack.prod"
+    "tsc-webpack-config": "tsc --project .webpack",
+    "webpack-development": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.dev",
+    "webpack-production": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.prod",
+    "webpack-watch": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.watch",
+    "webpack-dll": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.dll",
+    "webpack-analyzer": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.analyzer",
+    "start": "yarn run webpack-watch",
+    "test": "yarn run webpack-development",
+    "build": "yarn run webpack-production"
   },
   "devDependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
