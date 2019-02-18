@@ -1,4 +1,3 @@
-import path from "path"
 import Webpack from "webpack"
 import webpackMerge from "webpack-merge"
 import {} from "webpack-dev-server"
@@ -8,11 +7,15 @@ export default webpackMerge(baseWebpackConfig, {
     stats: "none",
     devtool: "eval",
     plugins: [new Webpack.NamedModulesPlugin(), new Webpack.HotModuleReplacementPlugin()],
-    // 啟動一個 nodejs web server，並有 hot module reload 功能
+    // 使用 nodejs 啟動一個 web server，並擁有 hot module reload 功能
     devServer: {
         hot: true,
         compress: true,
+        open: true,
         host: "localhost",
         port: 3000,
+        clientLogLevel: "none",
+        historyApiFallback: true,
+        proxy: {},
     },
 })

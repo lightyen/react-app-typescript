@@ -18,5 +18,4 @@ export default webpackMerge(getBaseConfig(), {
         },
     },
     mode: "development",
-    stats: "minimal",
 })

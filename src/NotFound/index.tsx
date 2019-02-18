@@ -3,7 +3,7 @@ import { Example } from "components"
 
 import style from "./index.scss"
 
-export default class NotFoundPage extends React.Component {
+class NotFound extends React.Component {
     private backHome = () => {
         window.location.replace("/")
     }
@@ -14,3 +14,6 @@ export default class NotFoundPage extends React.Component {
         return <Example content="找不到你要的資源呢!" onClick={this.backHome} />
     }
 }
+
+import { hot } from "react-hot-loader/root"
+export default hot(NotFound)
