@@ -5,11 +5,13 @@ const BrowserSyncPlugin = require("browser-sync-webpack-plugin")
 
 export default webpackMerge(baseWebpackConfig, {
     watch: true,
-    stats: "none",
     watchOptions: {
-        ignored: [/node_modules/, /dist/],
         aggregateTimeout: 300,
+        poll: 1000,
+        ignored: ["node_modules"],
     },
+    stats: "none",
+    devtool: "#inline-source-map",
     plugins: [
         new BrowserSyncPlugin(
             {

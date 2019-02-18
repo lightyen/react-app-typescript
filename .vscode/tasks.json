@@ -66,6 +66,17 @@
             }
         },
         {
+            "label": "建置(Hot Server)",
+            "type": "shell",
+            "group": "none",
+            "command": "yarn",
+            "args": ["run", "hot-server"],
+            "problemMatcher": [],
+            "presentation": {
+                "clear": true
+            }
+        },
+        {
             "label": "bundle-analyzer",
             "group": "test",
             "type": "shell",

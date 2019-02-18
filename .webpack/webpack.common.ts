@@ -59,23 +59,27 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
         new MiniCssExtractPlugin({
             filename: "[name].[contenthash].css",
         }),
-    ].concat(
-        Object.keys(entry).map((name: string) => {
+    ]
+
+    for (const name in entry) {
+        if (entry.hasOwnProperty(name)) {
             const exclude = Object.keys(entry).slice()
             exclude.splice(Object.keys(entry).indexOf(name), 1)
-            return new HtmlWebpackPlugin({
-                filename: name + ".html",
-                excludeChunks: exclude,
-                minify: false,
-                inject: false, // NOTE: 改成在 ejs 手動注入
-                template: path.join(options.src, "template", name + ".ejs"),
-                favicon: path.join(options.src, "assets", "images", "favicon.ico"),
-                dll: options.vendor ? '<script type="text/javascript" src="/dll.js"></script>' : "",
-                development:
-                    process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",
-            })
-        }),
-    )
+            plugins.push(
+                new HtmlWebpackPlugin({
+                    filename: name + ".html",
+                    excludeChunks: exclude,
+                    minify: false,
+                    inject: false, // NOTE: 改成在 ejs 手動注入
+                    template: path.join(options.src, "template", name + ".ejs"),
+                    favicon: path.join(options.src, "assets", "images", "favicon.ico"),
+                    dll: options.vendor ? '<script type="text/javascript" src="/dll.js"></script>' : "",
+                    development:
+                        process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",
+                }),
+            )
+        }
+    }
 
     if (options.vendor) {
         plugins.push(
@@ -109,12 +113,11 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                     options: {
                         configFileName: "tsconfig.json",
                         silent: true,
-                        // NOTE: 可以選擇使用 babel
-                        // useBabel: true,
-                        // babelOptions: {
-                        //     babelrc: true,
-                        // },
-                        // babelCore: "@babel/core",
+                        useBabel: true,
+                        babelOptions: {
+                            babelrc: true,
+                        },
+                        babelCore: "@babel/core",
                         getCustomTransformers: () => ({
                             before: [
                                 TsImportPlugin([

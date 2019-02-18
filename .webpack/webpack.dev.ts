@@ -19,10 +19,4 @@ export default webpackMerge(getBaseConfig(), {
     },
     mode: "development",
     stats: "minimal",
-    devtool: "#inline-source-map",
-    watchOptions: {
-        aggregateTimeout: 300,
-        poll: 1000,
-        ignored: ["node_modules"],
-    },
 })
