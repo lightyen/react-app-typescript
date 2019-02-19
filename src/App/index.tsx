@@ -2,8 +2,10 @@ import React from "react"
 import { Provider } from "mobx-react"
 import { AppStore } from "stores"
 import { AppRouter } from "./AppRouter"
+import { hot } from "react-hot-loader/root"
 
-class App extends React.Component {
+@hot
+export default class App extends React.Component {
     private appStore: AppStore
 
     constructor(props: {}) {
@@ -23,6 +25,3 @@ class App extends React.Component {
         )
     }
 }
-
-import { hot } from "react-hot-loader/root"
-export default hot(App)

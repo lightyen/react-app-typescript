@@ -16,7 +16,7 @@ export default webpackMerge(baseWebpackConfig, {
     devServer: {
         hot: true,
         compress: true,
-        open: false,
+        open: true,
         host: "localhost",
         port: 3000,
         clientLogLevel: "none",

@@ -1,5 +1,6 @@
 import webpackMerge from "webpack-merge"
 import Webpack from "webpack"
+import CompressionWebpackPlugin from "compression-webpack-plugin"
 import path from "path"
 import os from "os"
 
@@ -32,5 +33,8 @@ export default webpackMerge(getBaseConfig(), {
     resolve: {
         alias: {},
     },
-    plugins: [new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/)],
+    plugins: [
+        new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
+        new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 8192 }),
+    ],
 })
