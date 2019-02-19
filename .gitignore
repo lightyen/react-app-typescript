@@ -7,3 +7,4 @@ dist/
 *.log
 debug
 package-lock.json
+yarn.lock
