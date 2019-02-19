@@ -20,17 +20,18 @@ const entry: Webpack.Entry = {
 
 /** 一些自定義的設定 */
 interface IOptions {
-    /** 輸出位置 */
+    /** 輸出位置，預設：${workspaceFolder}/dist */
     dist?: string
-    /** 程式進入點位置 */
+    /** 程式進入點位置，預設：${workspaceFolder}/src */
     src?: string
     /** 第三方程式庫位置 */
     vendor?: string
 }
 
 export function getBaseConfig(options?: IOptions): Webpack.Configuration {
-    const distDefaultPath = path.resolve(__dirname, "..", "dist")
-    const srcDefaultPath = path.resolve(__dirname, "..", "src")
+    const workingDirectory = process.cwd()
+    const distDefaultPath = path.resolve(workingDirectory, "dist")
+    const srcDefaultPath = path.resolve(workingDirectory, "src")
     if (!options) {
         options = {
             dist: distDefaultPath,
