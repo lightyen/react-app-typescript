@@ -11,11 +11,16 @@ export default webpackMerge(baseWebpackConfig, {
     devServer: {
         hot: true,
         compress: true,
-        open: true,
+        open: false,
         host: "localhost",
         port: 3000,
         clientLogLevel: "none",
         historyApiFallback: true,
-        proxy: {},
+        // proxy: {
+        //     "apis/": {
+        //         target: "http://xxx.com/",
+        //         headers: { 'Access-Control-Allow-Origin': '*' }
+        //     }
+        // },
     },
 })

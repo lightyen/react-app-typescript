@@ -13,10 +13,6 @@
 <a href="https://yarnpkg.com">
 <img src="https://raw.githubusercontent.com/yarnpkg/assets/master/yarn-kitten-full.png" alt="yarn-img" width="15%"/></a>
 
-<a href="https://golang.org/dl">
-<img src="https://blog.golang.org/go-brand/Go-Logo/SVG/Go-Logo_Blue.svg" alt="golang-img" width="10%"/></a>
-<br />
-
 ---
 
 ![預覽圖](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/env.png)
@@ -27,7 +23,6 @@
 code -v
 node -v
 yarn -v
-go version
 ```
 
 #### 安裝相關 Visual Studio Code 擴充元件
@@ -36,7 +31,6 @@ go version
 - **Debug for Chrome**
 - **TSLint**
 - **Awesome Typescript Problem Matcher**
-- **Go**
 - _Prettier_
 - _Format Files_
 - _EditorConfig for VS Code_
@@ -58,27 +52,24 @@ git clone https://github.com/lightyen/react-app-typescript.git
 # 進入專案資料夾
 cd react-app-typescript
 
-# 檢查或下載相依程式庫
+# 檢查或下載 dependencies
 yarn
 
-# webpack 建置
+# 執行
+yarn start
+
+# or 建置 production
 yarn build
 
-# 或者測試
+# or test build
 yarn test
 ```
 
 ### Debug
 
-webserver 是我用 golang 撰寫的一個 web server 小程式
-
 ```shell
-# run web server
-go build -o .webserver/.webserver .webserver/main.go
-.webserver/.webserver
-
 # run browser in debug mode
-firefox http://localhost:8080/ --start-debugger-server
+firefox http://localhost:3000/ --start-debugger-server
 ```
 
 在 vscode 中鍵入 `F5` attach 到 browser 進行調試
@@ -95,7 +86,7 @@ firefox http://localhost:8080/ --start-debugger-server
 
 ![02.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/02.png)
 
-![03.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/03.png)
+![03.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/hot.png)
 
 ## 程式碼風格
 

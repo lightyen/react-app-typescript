@@ -16,36 +16,11 @@
             }
         },
         {
-            "label": "建置(Development)",
-            "group": {
-                "isDefault": true,
-                "kind": "build"
-            },
-            "type": "shell",
-            "command": "yarn",
-            "args": ["test"],
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
             "label": "建置(Production)",
             "group": "build",
             "type": "shell",
             "command": "yarn",
             "args": ["build"],
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "建置(Watch)",
-            "group": "build",
-            "type": "shell",
-            "command": "yarn",
-            "args": ["start"],
             "problemMatcher": [],
             "presentation": {
                 "clear": true
@@ -66,11 +41,11 @@
             }
         },
         {
-            "label": "建置(Hot Server)",
+            "label": "建置 [Hot] (Development)",
             "type": "shell",
             "group": "none",
             "command": "yarn",
-            "args": ["run", "hot-server"],
+            "args": ["run", "hot"],
             "problemMatcher": [],
             "presentation": {
                 "clear": true
@@ -88,59 +63,18 @@
             }
         },
         {
-            "label": "lint",
-            "type": "shell",
-            "group": "test",
-            "command": "node_modules/.bin/tslint --config tslint.json 'src/**/*.{ts,tsx}' '.webpack/**/*.ts'",
-            "windows": {
-                "command": "node_modules\\.bin\\tslint.cmd --config tslint.json 'src\\**\\*.{ts,tsx}' '.webpack\\**\\*.ts'"
-            },
-            "problemMatcher": "$tsc",
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "build dev-webserver",
-            "type": "shell",
-            "group": "none",
-            "command": "go",
-            "args": ["build"],
-            "options": {
-                "cwd": "${workspaceFolder}/.webserver"
-            },
-            "problemMatcher": "$go",
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "go webserver",
-            "type": "shell",
-            "group": "test",
-            "command": "./.webserver/.webserver",
-            "windows": {
-                "command": ".webserver\\.webserver.exe"
-            },
-            "dependsOn": ["build dev-webserver"],
-            "problemMatcher": "$go",
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
             "label": "Open Firefox with Debugger",
             "type": "shell",
             "group": "test",
             "isBackground": false,
             "linux": {
-                "command": "firefox http://localhost:8080/ --start-debugger-server 6000"
+                "command": "firefox http://localhost:3000/ --start-debugger-server 6000"
             },
             "windows": {
-                "command": "start firefox http://localhost:8080/ -start-debugger-server 6000"
+                "command": "start firefox http://localhost:3000/ -start-debugger-server 6000"
             },
             "osx": {
-                "command": "open -a firefox http://localhost:8080/ --args --start-debugger-server=\"6000\""
+                "command": "open -a firefox http://localhost:3000/ --args --start-debugger-server=\"6000\""
             },
             "problemMatcher": [],
             "presentation": {
@@ -153,13 +87,13 @@
             "group": "none",
             "isBackground": true,
             "linux": {
-                "command": "google-chrome http://localhost:8080/ --remote-debugging-port=9222"
+                "command": "google-chrome http://localhost:3000/ --remote-debugging-port=9222"
             },
             "windows": {
-                "command": "start chrome http://localhost:8080/ --remote-debugging-port=9222"
+                "command": "start chrome http://localhost:3000/ --remote-debugging-port=9222"
             },
             "osx": {
-                "command": "open -a \"Google Chrome\" http://localhost:8080/ --args --remote-debugging-port=\"9222\""
+                "command": "open -a \"Google Chrome\" http://localhost:3000/ --args --remote-debugging-port=\"9222\""
             },
             "problemMatcher": [],
             "presentation": {
