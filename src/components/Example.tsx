@@ -1,6 +1,6 @@
 import React from "react"
 
-import style from "./Example.scss"
+import style from "./Example.css"
 
 interface IProps {
     content: string
