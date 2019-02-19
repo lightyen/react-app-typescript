@@ -1,5 +1,6 @@
+// https://browserl.ist/
 module.exports = {
-    plugins: {
-        autoprefixer: { browsers: "last 5 version" },
-    },
+  plugins: {
+    autoprefixer: { browsers: "defaults" },
+  },
 }

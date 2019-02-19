@@ -9,14 +9,6 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 charset = utf-8
 
-[*.json]
-indent_style = space
-indent_size = 4
-
-[{package.json,tsconfig.json,tslint.json,.travis.yml,.prettierrc,.babelrc}]
-indent_style = space
-indent_size = 2
-
 [*.{tsx,ts,jsx,js,html,ejs}]
 indent_style = space
 indent_size = 4
@@ -26,6 +18,18 @@ max_line_length = 120
 indent_style = space
 indent_size = 4
 max_line_length = 80
+
+[*.json]
+indent_style = space
+indent_size = 2
+
+[{.travis.yml,.prettierrc,.babelrc}]
+indent_style = space
+indent_size = 2
+
+[postcss.config.js]
+indent_style = space
+indent_size = 2
 
 [*.go]
 indent_style = space
