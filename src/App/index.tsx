@@ -3,7 +3,7 @@ import { Provider } from "mobx-react"
 import { AppStore } from "stores"
 import { AppRouter } from "./AppRouter"
 
-class App extends React.Component<{}> {
+class App extends React.Component {
     private appStore: AppStore
 
     constructor(props: {}) {
