@@ -6,6 +6,11 @@ import baseWebpackConfig from "./webpack.dev"
 export default webpackMerge(baseWebpackConfig, {
     stats: "none",
     devtool: "eval",
+    resolve: {
+        alias: {
+            "react-dom": "@hot-loader/react-dom",
+        },
+    },
     plugins: [new Webpack.NamedModulesPlugin(), new Webpack.HotModuleReplacementPlugin()],
     // 使用 nodejs 啟動一個 web server，並擁有 hot module reload 功能
     devServer: {
