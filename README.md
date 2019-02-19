@@ -35,7 +35,7 @@ yarn -v
 - _Format Files_
 - _EditorConfig for VS Code_
 
-#### 其他我常用的
+#### 其他我常用的擴充元件
 
 - **GitLens**
 - Material Icon Theme
@@ -60,9 +60,6 @@ yarn start
 
 # or 建置 production
 yarn build
-
-# or test build
-yarn test
 ```
 
 ### Debug
@@ -92,8 +89,8 @@ firefox http://localhost:3000/ --start-debugger-server
 
 約定程式碼風格：
 
-- string 字串 以 雙引號 `"` 表示
-- statement 除非特例 否則結尾不用分號 `;`
+- string 以雙引號 `"` 表示
+- statement 除非特例，否則結尾不使用分號 `;`
 - 縮排 **4** 個空格
 
 #### editorconfig, prettier 程式碼風格
@@ -108,10 +105,11 @@ firefox http://localhost:3000/ --start-debugger-server
 - https://www.typescriptlang.org/
 
 - [React Beginners Tutorial](https://www.youtube.com/watch?v=DLX62G4lc44)
-- [React Hook](https://www.youtube.com/watch?v=wXLf18DsV-I)
-- [Awesome](https://github.com/enaqx/awesome-react)
 - [Getting Started With TypeScript](https://basarat.gitbooks.io/typescript/content/docs/getting-started.html)
 - [React With TypeScript](https://basarat.gitbooks.io/typescript/docs/jsx/react.html)
+- [React Hook](https://www.youtube.com/watch?v=wXLf18DsV-I)
+- [Awesome](https://github.com/enaqx/awesome-react)
+-
 
 ## 雜談
 

@@ -1,104 +1,104 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "yarn",
-            "type": "shell",
-            "group": "none",
-            "isBackground": true,
-            "command": "yarn",
-            "runOptions": {
-                "runOn": "folderOpen"
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "建置(Production)",
-            "group": "build",
-            "type": "shell",
-            "command": "yarn",
-            "args": ["build"],
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "建置(DLL)",
-            "group": {
-                "isDefault": true,
-                "kind": "build"
-            },
-            "type": "shell",
-            "command": "yarn",
-            "args": ["run", "webpack-dll"],
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "建置 [Hot] (Development)",
-            "type": "shell",
-            "group": "none",
-            "command": "yarn",
-            "args": ["run", "hot"],
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "bundle-analyzer",
-            "group": "test",
-            "type": "shell",
-            "command": "yarn",
-            "args": ["run", "webpack-analyzer"],
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "Open Firefox with Debugger",
-            "type": "shell",
-            "group": "test",
-            "isBackground": false,
-            "linux": {
-                "command": "firefox http://localhost:3000/ --start-debugger-server 6000"
-            },
-            "windows": {
-                "command": "start firefox http://localhost:3000/ -start-debugger-server 6000"
-            },
-            "osx": {
-                "command": "open -a firefox http://localhost:3000/ --args --start-debugger-server=\"6000\""
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        },
-        {
-            "label": "Open Chrome with Debugger",
-            "type": "shell",
-            "group": "none",
-            "isBackground": true,
-            "linux": {
-                "command": "google-chrome http://localhost:3000/ --remote-debugging-port=9222"
-            },
-            "windows": {
-                "command": "start chrome http://localhost:3000/ --remote-debugging-port=9222"
-            },
-            "osx": {
-                "command": "open -a \"Google Chrome\" http://localhost:3000/ --args --remote-debugging-port=\"9222\""
-            },
-            "problemMatcher": [],
-            "presentation": {
-                "clear": true
-            }
-        }
-    ]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "yarn",
+      "type": "shell",
+      "group": "none",
+      "isBackground": true,
+      "command": "yarn",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true
+      }
+    },
+    {
+      "label": "建置(Production)",
+      "group": "build",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["build"],
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true
+      }
+    },
+    {
+      "label": "建置(DLL)",
+      "group": {
+        "isDefault": true,
+        "kind": "build"
+      },
+      "type": "shell",
+      "command": "yarn",
+      "args": ["run", "webpack-dll"],
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true
+      }
+    },
+    {
+      "label": "建置 [Hot] (Development)",
+      "type": "shell",
+      "group": "none",
+      "command": "yarn",
+      "args": ["run", "hot"],
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true
+      }
+    },
+    {
+      "label": "bundle-analyzer",
+      "group": "test",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["run", "webpack-analyzer"],
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true
+      }
+    },
+    {
+      "label": "Open Firefox with Debugger",
+      "type": "shell",
+      "group": "test",
+      "isBackground": false,
+      "linux": {
+        "command": "firefox http://localhost:3000/ --start-debugger-server 6000"
+      },
+      "windows": {
+        "command": "start firefox http://localhost:3000/ -start-debugger-server 6000"
+      },
+      "osx": {
+        "command": "open -a firefox http://localhost:3000/ --args --start-debugger-server=\"6000\""
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true
+      }
+    },
+    {
+      "label": "Open Chrome with Debugger",
+      "type": "shell",
+      "group": "none",
+      "isBackground": true,
+      "linux": {
+        "command": "google-chrome http://localhost:3000/ --remote-debugging-port=9222"
+      },
+      "windows": {
+        "command": "start chrome http://localhost:3000/ --remote-debugging-port=9222"
+      },
+      "osx": {
+        "command": "open -a \"Google Chrome\" http://localhost:3000/ --args --remote-debugging-port=\"9222\""
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "clear": true
+      }
+    }
+  ]
 }

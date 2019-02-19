@@ -1,21 +1,20 @@
 {
-    "editor.formatOnSave": true,
-    "formatFiles.excludePattern": "node_modules,dist,src/assets,.webpack/*.js,.gitignore,.editorconfig,yarn.lock",
-    "files.associations": {
-        "*.ejs": "html",
-        ".prettierrc": "json"
-    },
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "terminal.integrated.env.windows": {
-        "PATH": "${workspaceFolder}\\node_modules\\.bin;${env:PATH}"
-    },
-    "terminal.integrated.env.linux": {
-        "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
-    },
-    "terminal.integrated.env.osx": {
-        "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
-    },
-    "npm.autoDetect": "off",
-    "typescript.tsc.autoDetect": "off",
-    "go.formatTool": "goformat"
+  "editor.formatOnSave": true,
+  "formatFiles.excludePattern": "node_modules,dist,src/assets,.webpack/*.js,.gitignore,.editorconfig,yarn.lock",
+  "files.associations": {
+    "*.ejs": "html",
+    ".prettierrc": "json"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "terminal.integrated.env.windows": {
+    "PATH": "${workspaceFolder}\\node_modules\\.bin;${env:PATH}"
+  },
+  "terminal.integrated.env.linux": {
+    "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
+  },
+  "terminal.integrated.env.osx": {
+    "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
+  },
+  "npm.autoDetect": "off",
+  "typescript.tsc.autoDetect": "off"
 }
