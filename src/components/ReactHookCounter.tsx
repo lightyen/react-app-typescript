@@ -30,9 +30,9 @@ export const ReactHookCounter: React.FunctionComponent<IProps> = props => {
     }, [])
 
     React.useEffect(() => {
-        console.log("data.count DidUpdate: count = " + data.count)
+        console.log("data.count = " + data.count)
         return () => {
-            console.log("data.count WillUpdate: count = " + data.count)
+            console.log("data.count prev = " + data.count)
         }
     }, [data.count])
 

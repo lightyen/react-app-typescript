@@ -14,7 +14,6 @@ export class HelloPage extends React.Component<IProps> {
     }
 
     public render() {
-        console.log(this.props.location)
         return (
             <div>
                 <Button onClick={this.click} type="primary">
