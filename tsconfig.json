@@ -1,5 +1,5 @@
 {
-  "extends": "./.config/tsconfig.base",
+  "extends": "./tsconfig.base",
   "compilerOptions": {
     "jsx": "react",
     "module": "esnext",

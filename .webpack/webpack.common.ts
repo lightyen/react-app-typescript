@@ -175,7 +175,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                         },
                         {
                             loader: "postcss-loader",
-                            options: { config: { path: ".config/" } },
+                            options: { config: { path: "./" } },
                         },
                         "less-loader",
                     ],
@@ -203,7 +203,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                         },
                         {
                             loader: "postcss-loader",
-                            options: { config: { path: ".config/" } },
+                            options: { config: { path: "./" } },
                         },
                         "sass-loader",
                     ],

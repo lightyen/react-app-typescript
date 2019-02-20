@@ -1,5 +1,5 @@
 {
-  "extends": "../.config/tsconfig.base",
+  "extends": "../tsconfig.base",
   "compilerOptions": {
     "esModuleInterop": true,
     "module": "commonjs",
