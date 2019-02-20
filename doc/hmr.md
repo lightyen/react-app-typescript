@@ -1,6 +1,4 @@
-# 一些筆記
-
-## 使用 Hot Module Replacement(HMR)
+# 使用 Hot Module Replacement(HMR)
 
 首先因為 **react-hot-loader** 依賴於 **babel**，所以要先配置 babel 的部份，然後在安裝 react-hot-loader。
 

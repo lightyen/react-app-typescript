@@ -105,6 +105,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
             rules: [
                 {
                     test: /\.tsx?$/,
+                    exclude: /node_modules/,
                     loader: "awesome-typescript-loader",
                     options: {
                         configFileName: "tsconfig.json",
@@ -131,7 +132,6 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                             ],
                         }),
                     },
-                    exclude: /node_modules/,
                 },
                 {
                     test: /\.(png|jp(e?)g|gif|svg)$/,
@@ -156,7 +156,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                     ],
                 },
                 {
-                    test: /\.(less|css)$/,
+                    test: /\.(le|c)ss$/,
                     exclude: /node_modules/,
                     use: [
                         process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
@@ -211,9 +211,9 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                         "sass-loader",
                     ],
                 },
+                // 對屬於 node_modules 的樣式，modules = false：
                 {
-                    // For ant-design
-                    test: /\.less|css$/,
+                    test: /\.(le|c)ss$/,
                     include: /node_modules/,
                     use: [
                         process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,

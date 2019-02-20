@@ -1,5 +1,4 @@
-# doc
+# 一些個人筆記
 
-一些筆記
-
-- [HMR](./hmr.md)
+- [yarn 的常用指令](./yarn.md)
+- [Hot Module Replacement(HMR)](./hmr.md)
