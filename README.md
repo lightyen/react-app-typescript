@@ -109,7 +109,6 @@ firefox http://localhost:3000/ --start-debugger-server
 - [React With TypeScript](https://basarat.gitbooks.io/typescript/docs/jsx/react.html)
 - [React Hook](https://www.youtube.com/watch?v=wXLf18DsV-I)
 - [Awesome](https://github.com/enaqx/awesome-react)
--
 
 ## 雜談
 

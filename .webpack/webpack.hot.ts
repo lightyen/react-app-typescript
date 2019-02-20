@@ -1,9 +1,9 @@
 import Webpack from "webpack"
 import webpackMerge from "webpack-merge"
 import {} from "webpack-dev-server"
-import baseWebpackConfig from "./webpack.dev"
+import baseConfig from "./webpack.dev"
 
-export default webpackMerge(baseWebpackConfig, {
+export default webpackMerge(baseConfig, {
     stats: "none",
     devtool: "eval",
     resolve: {

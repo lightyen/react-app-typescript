@@ -6,7 +6,9 @@
     "moduleResolution": "node",
     "target": "es6",
     "lib": ["esnext"],
-    "typeRoots": []
-  },
-  "include": ["../.webpack/*", "../.webpack/*.d.ts"]
+    "baseUrl": ".",
+    "paths": {
+      "cwd/*": [".webpack/*"]
+    }
+  }
 }

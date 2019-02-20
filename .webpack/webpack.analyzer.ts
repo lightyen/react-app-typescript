@@ -1,10 +1,8 @@
 import webpackMerge from "webpack-merge"
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
+import baseConfig from "./webpack.prod"
 
-process.env.NODE_ENV = "production"
-import baseWebpackConfig from "./webpack.prod"
-
-export default webpackMerge(baseWebpackConfig, {
+export default webpackMerge(baseConfig, {
     plugins: [
         new BundleAnalyzerPlugin({
             analyzerMode: "server",

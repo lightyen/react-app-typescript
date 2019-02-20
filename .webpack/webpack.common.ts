@@ -11,7 +11,7 @@ import TsImportPlugin from "ts-import-plugin"
 const DelWebpackPlugin = require("del-webpack-plugin")
 
 // Other
-import { name as AppName } from "../package.json"
+import { name as AppName } from "cwd/package.json"
 
 const entry: Webpack.Entry = {
     index: "./src/index.tsx",
@@ -28,10 +28,11 @@ interface IOptions {
     vendor?: string
 }
 
-export function getBaseConfig(options?: IOptions): Webpack.Configuration {
+export function createBaseConfig(options?: IOptions): Webpack.Configuration {
     const workingDirectory = process.cwd()
     const distDefaultPath = path.resolve(workingDirectory, "dist")
     const srcDefaultPath = path.resolve(workingDirectory, "src")
+    const devMode = process.env.NODE_ENV !== "production"
     if (!options) {
         options = {
             dist: distDefaultPath,
@@ -74,8 +75,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                     template: path.join(options.src, "template", name + ".ejs"),
                     favicon: path.join(options.src, "assets", "images", "favicon.ico"),
                     dll: options.vendor ? '<script type="text/javascript" src="/dll.js"></script>' : "",
-                    development:
-                        process.env.NODE_ENV !== "production" ? '<div id="this-is-for-development-node"></div>' : "",
+                    development: devMode ? '<div id="this-is-for-development-node"></div>' : "",
                 }),
             )
         }
@@ -98,9 +98,6 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
             publicPath: "/",
         },
         target: "web",
-        resolveLoader: {
-            modules: ["node_modules"],
-        },
         module: {
             rules: [
                 {
@@ -124,7 +121,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                                         style: true,
                                     },
                                     {
-                                        libraryName: "material-ui",
+                                        libraryName: "@material-ui/core",
                                         libraryDirectory: "",
                                         camel2DashComponentName: false,
                                     },
@@ -159,7 +156,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                     test: /\.(le|c)ss$/,
                     exclude: /node_modules/,
                     use: [
-                        process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
+                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
                         {
                             loader: "dts-css-modules-loader",
                             options: {
@@ -187,7 +184,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                     test: /\.s(a|c)ss$/,
                     exclude: /node_modules/,
                     use: [
-                        process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
+                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
                         {
                             loader: "dts-css-modules-loader",
                             options: {
@@ -216,7 +213,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                     test: /\.(le|c)ss$/,
                     include: /node_modules/,
                     use: [
-                        process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
+                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
                         { loader: "css-loader" },
                         {
                             loader: "less-loader",
@@ -233,11 +230,7 @@ export function getBaseConfig(options?: IOptions): Webpack.Configuration {
                 {
                     test: /\.s(a|c)ss$/,
                     include: /node_modules/,
-                    use: [
-                        process.env.NODE_ENV !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
-                        "css-loader",
-                        "sass-loader",
-                    ],
+                    use: [devMode ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
                 },
             ],
         },

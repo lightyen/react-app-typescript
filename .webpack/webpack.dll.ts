@@ -4,7 +4,7 @@ import Webpack from "webpack"
 import path from "path"
 import CleanWebpackPlugin from "clean-webpack-plugin"
 
-const vendorPath = path.resolve(__dirname, "..", "dist")
+const vendorPath = path.resolve(process.cwd(), "dist")
 
 const conf: Webpack.Configuration = {
     mode: "production",
