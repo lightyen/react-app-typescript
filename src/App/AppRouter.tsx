@@ -1,15 +1,11 @@
 import React from "react"
-import { BrowserRouter, HashRouter, Switch, Route } from "react-router-dom"
-import { MainPage } from "../pages"
+import { BrowserRouter, HashRouter, Route } from "react-router-dom"
+import { Main } from "../pages/Main"
 
-interface IProps {}
-
-export class AppRouter extends React.Component<IProps> {
-    public render() {
-        return (
-            <HashRouter>
-                <Route path="/" component={MainPage} />
-            </HashRouter>
-        )
-    }
+export function AppRouter() {
+    return (
+        <HashRouter>
+            <Route path="/" component={Main} />
+        </HashRouter>
+    )
 }

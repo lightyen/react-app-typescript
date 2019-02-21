@@ -4,24 +4,18 @@ import { AppStore } from "stores"
 import { AppRouter } from "./AppRouter"
 import { hot } from "react-hot-loader/root"
 
-@hot
-export default class App extends React.Component {
-    private appStore: AppStore
+export default hot(App)
 
-    constructor(props: {}) {
-        super(props)
-        this.appStore = new AppStore()
-    }
+function App() {
+    const appStore: AppStore = new AppStore()
 
-    public componentDidMount() {
+    React.useEffect(() => {
         document.title = "react-app-typescript"
-    }
+    })
 
-    public render() {
-        return (
-            <Provider {...this.appStore}>
-                <AppRouter />
-            </Provider>
-        )
-    }
+    return (
+        <Provider {...appStore}>
+            <AppRouter />
+        </Provider>
+    )
 }

@@ -55,8 +55,8 @@ cd react-app-typescript
 # 檢查或下載 dependencies
 yarn
 
-# 執行
-yarn start
+# 開始！
+yarn dev
 
 # or 建置 production
 yarn build
@@ -77,13 +77,9 @@ firefox http://localhost:3000/ --start-debugger-server
 
 ## 懶人包
 
-![00.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/00.png)
-
-![01.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/01.png)
-
 ![02.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/02.png)
 
-![03.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/hot.png)
+![03.png](https://raw.githubusercontent.com/lightyen/react-app-typescript/resources/images/dev.png)
 
 ## 程式碼風格
 

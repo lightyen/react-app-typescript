@@ -16,8 +16,7 @@
     "webpack-production": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.prod",
     "webpack-dll": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.dll",
     "webpack-analyzer": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.analyzer",
-    "hot": "yarn run tsc-webpack-config && webpack-dev-server --config .webpack/webpack.hot",
-    "start": "yarn run hot",
+    "dev": "yarn run tsc-webpack-config && webpack-dev-server --config .webpack/webpack.dev",
     "test": "yarn run webpack-development",
     "build": "yarn run webpack-production"
   },
@@ -74,7 +73,7 @@
     "webpack": "4.29.5",
     "webpack-bundle-analyzer": "3.0.4",
     "webpack-cli": "3.2.3",
-    "webpack-dev-server": "3.1.14",
+    "webpack-dev-server": "3.2.0",
     "webpack-merge": "4.2.1",
     "webpack-node-externals": "1.7.2",
     "webpackbar": "3.1.5"
