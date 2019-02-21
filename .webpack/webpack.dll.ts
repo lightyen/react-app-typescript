@@ -3,13 +3,14 @@
 import Webpack from "webpack"
 import path from "path"
 import CleanWebpackPlugin from "clean-webpack-plugin"
+import WebpackBar from "webpackbar"
 
 const vendorPath = path.resolve(process.cwd(), "dist")
 
-const conf: Webpack.Configuration = {
+const config: Webpack.Configuration = {
     mode: "production",
     entry: {
-        dll: ["react", "react-dom", "react-router-dom", "mobx", "mobx-react"],
+        dll: ["react", "react-dom", "react-router-dom", "mobx", "mobx-react", "axios"],
     },
     output: {
         path: vendorPath,
@@ -18,6 +19,7 @@ const conf: Webpack.Configuration = {
         publicPath: "/",
     },
     plugins: [
+        new WebpackBar({ color: "blue" }),
         new CleanWebpackPlugin(path.basename(vendorPath), {
             root: path.resolve(vendorPath, ".."),
         }),
@@ -29,4 +31,4 @@ const conf: Webpack.Configuration = {
     ],
 }
 
-export default conf
+export default config
