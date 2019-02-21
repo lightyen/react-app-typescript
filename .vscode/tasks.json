@@ -45,7 +45,7 @@
       "type": "shell",
       "group": "none",
       "command": "yarn",
-      "args": ["run", "hot"],
+      "args": ["run", "dev"],
       "problemMatcher": [],
       "presentation": {
         "clear": true
