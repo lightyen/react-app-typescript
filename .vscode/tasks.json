@@ -41,7 +41,7 @@
       }
     },
     {
-      "label": "建置 [Hot] (Development)",
+      "label": "建置 (Development)",
       "type": "shell",
       "group": "none",
       "command": "yarn",

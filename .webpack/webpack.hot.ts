@@ -1,9 +1,18 @@
 import Webpack from "webpack"
 import webpackMerge from "webpack-merge"
 import {} from "webpack-dev-server"
-import baseConfig from "./webpack.dev"
 
-export default webpackMerge(baseConfig, {
+process.env.NODE_ENV = "development"
+import { createBaseConfig } from "./webpack.common"
+
+export default webpackMerge(createBaseConfig(), {
+    mode: "development",
+    performance: {
+        hints: false,
+        assetFilter: (filename: string) => {
+            return filename.endsWith(".css") || filename.endsWith(".js")
+        },
+    },
     stats: "none",
     devtool: "eval",
     resolve: {

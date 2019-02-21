@@ -4,19 +4,34 @@ import CompressionWebpackPlugin from "compression-webpack-plugin"
 import path from "path"
 import os from "os"
 
+import CleanWebpackPlugin from "clean-webpack-plugin"
+const DelWebpackPlugin = require("del-webpack-plugin")
+
 process.env.NODE_ENV = "production"
 import { createBaseConfig } from "./webpack.common"
 
-// NOTE: 可以使用 dll 模式
-//
-// 1. 先建置 dll
-//
-// 2. 接著在編譯主程式時代入 dll 位置，詳細如下：
-//
-// const vendor = path.resolve(process.cwd(), "dist")
-// getBaseConfig({ vendor })
+const productionPath = path.resolve(process.cwd(), "dist")
+/** DLL 位置 */
+const venderPath = "" // path.resolve(process.cwd(), "dist")
 
-export default webpackMerge(createBaseConfig(), {
+const plugins: Webpack.Plugin[] = [
+    new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
+    new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 8192 }),
+    venderPath
+        ? new DelWebpackPlugin({
+              include: ["**"],
+              exclude: ["dll.js", "manifest.json"],
+              info: true,
+              keepGeneratedAssets: true,
+              allowExternal: false,
+          })
+        : new CleanWebpackPlugin([path.basename(productionPath)], {
+              root: path.resolve(productionPath, ".."),
+              verbose: true,
+          }),
+]
+
+const config: Webpack.Configuration = {
     mode: "production",
     performance: {
         hints: "warning",
@@ -33,8 +48,13 @@ export default webpackMerge(createBaseConfig(), {
     resolve: {
         alias: {},
     },
-    plugins: [
-        new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
-        new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 8192 }),
-    ],
-})
+    plugins,
+}
+
+export default webpackMerge(
+    createBaseConfig({
+        dist: productionPath,
+        vendor: venderPath,
+    }),
+    config,
+)
