@@ -6,8 +6,6 @@ interface IProps extends RouteComponentProps, IUserStore {}
 import { inject, observer } from "mobx-react"
 import { AppStore, IUserStore } from "stores"
 
-import { Button } from "antd"
-
 @inject(AppStore.User)
 @observer // Notice that this component will not render again when the user store changed.
 export class Hello extends React.Component<IProps> {
@@ -18,17 +16,17 @@ export class Hello extends React.Component<IProps> {
     public render() {
         return (
             <div>
-                <Button onClick={this.click} type="primary">
+                <button onClick={this.click} type="primary">
                     Add
-                </Button>
+                </button>
                 <MyCounter />
-                <Button
+                <button
                     onClick={() => {
                         this.props.history.push("/")
                     }}
                 >
                     Go Back
-                </Button>
+                </button>
             </div>
         )
     }

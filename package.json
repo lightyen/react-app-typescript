@@ -57,7 +57,7 @@
     "tslint": "5.12.1",
     "tslint-config-prettier": "1.18.0",
     "tslint-react": "3.6.0",
-    "typescript": "3.3.3",
+    "typescript": "3.3.3333",
     "url-loader": "1.1.2",
     "webpack": "4.29.5",
     "webpack-bundle-analyzer": "3.0.4",
@@ -73,12 +73,11 @@
     "@types/react": "16.8.4",
     "@types/react-dom": "16.8.2",
     "@types/react-router-dom": "4.3.1",
-    "antd": "3.13.5",
     "axios": "0.18.0",
     "mobx": "5.9.0",
     "mobx-react": "5.4.3",
-    "react": "16.8.2",
-    "react-dom": "16.8.2",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
     "react-router-dom": "4.3.1"
   }
 }
