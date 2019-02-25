@@ -64,16 +64,11 @@ yarn build
 
 ### Debug
 
-```shell
-# run browser in debug mode
-firefox http://localhost:3000/ --start-debugger-server
-```
-
-在 vscode 中鍵入 `F5` attach 到 browser 進行調試
+在 vscode 中按下 `F5` 後 launch browser 進行調試，或者直接在瀏覽器使用開發者工具(F12)
 
 > Firefox 需要去 **about:debugging** 勾選 **Enable debugging of add-ons** 才可以使用
 
-詳細資訊描述在：**.vscode/tasks.json**
+詳細資訊描述在：**.vscode/launch.json**
 
 ## 懶人包
 
@@ -105,7 +100,3 @@ firefox http://localhost:3000/ --start-debugger-server
 - [React With TypeScript](https://basarat.gitbooks.io/typescript/docs/jsx/react.html)
 - [React Hook](https://www.youtube.com/watch?v=wXLf18DsV-I)
 - [Awesome](https://github.com/enaqx/awesome-react)
-
-## 雜談
-
-其實我手邊沒有 macOS，所以我不太確定蘋果派能不能 work😄

@@ -43,6 +43,14 @@
       "url": "http://localhost:3000/",
       "webRoot": "${workspaceFolder}",
       "port": 9222,
+      "linux": {
+        "runtimeExecutable": "/usr/bin/google-chrome-stable",
+        "runtimeArgs": [
+          "--remote-debugging-port=9222",
+          "--no-first-run",
+          "--no-default-browser-check"
+        ]
+      },
       "pathMapping": {
         "/": "${webRoot}"
       }
