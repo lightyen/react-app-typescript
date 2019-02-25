@@ -7,8 +7,8 @@
     {
       "name": "Attach to Firefox",
       "type": "firefox",
-      "request": "attach",
-      "port": 6000,
+      "request": "launch",
+      "reAttach": true,
       "sourceMaps": "client",
       "url": "http://localhost:3000/",
       "webRoot": "${workspaceFolder}",
