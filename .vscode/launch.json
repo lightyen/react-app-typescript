@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to Firefox",
+      "name": "Launch Firefox",
       "type": "firefox",
       "request": "launch",
       "reAttach": true,
@@ -36,9 +36,9 @@
       ]
     },
     {
-      "name": "Attach to Chrome",
+      "name": "Launch Chrome",
       "type": "chrome",
-      "request": "attach",
+      "request": "launch",
       "sourceMaps": true,
       "url": "http://localhost:3000/",
       "webRoot": "${workspaceFolder}",
