@@ -4,7 +4,7 @@
 
 1. 安裝過程中需要用到的 dependencies
 
-```
+```shell
 yarn add -D babel-loader @babel/core @babel/preset-env @babel/preset-react @babel/plugin-transform-runtime
 yarn add @babel/runtime
 yarn add -D react-hot-loader @types/react-hot-loader @hot-loader/react-dom@[react-dom-version]
