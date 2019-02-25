@@ -1,11 +1,17 @@
 {
   "defaultSeverity": "error",
-  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-react-hooks",
+    "tslint-config-prettier"
+  ],
   "linterOptions": {
     "exclude": [".webpack/*.d.ts", "src/**/*.d.ts"]
   },
   "jsRules": {},
   "rules": {
+    "react-hooks-nesting": "error",
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "interface-name": false,
