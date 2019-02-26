@@ -12,12 +12,12 @@
   ],
   "scripts": {
     "tsc-webpack-config": "tsc --project .webpack",
-    "webpack-development": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.dev",
+    "webpack-development": "yarn run tsc-webpack-config && webpack-dev-server --config .webpack/webpack.dev",
     "webpack-production": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.prod",
     "webpack-dll": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.dll",
     "webpack-analyzer": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.analyzer",
-    "dev": "yarn run tsc-webpack-config && webpack-dev-server --config .webpack/webpack.dev",
-    "test": "yarn run webpack-development",
+    "dev": "yarn run webpack-development",
+    "test": "yarn run webpack-production",
     "build": "yarn run webpack-production"
   },
   "devDependencies": {
