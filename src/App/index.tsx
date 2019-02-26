@@ -1,12 +1,9 @@
 import React from "react"
 import { Provider } from "mobx-react"
 import { AppStore } from "stores"
-import { AppRouter } from "./AppRouter"
-import { hot } from "react-hot-loader/root"
+import AppRouter from "./AppRouter"
 
-export default hot(App)
-
-function App() {
+export default function App() {
     const appStore: AppStore = new AppStore()
 
     React.useEffect(() => {

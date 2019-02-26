@@ -11,6 +11,10 @@ import { createBaseConfig } from "./webpack.common"
 
 export default webpackMerge(createBaseConfig(), {
     mode: "development",
+    watch: true,
+    watchOptions: {
+        ignored: /node_modules/,
+    },
     performance: {
         hints: false,
         assetFilter: (filename: string) => {

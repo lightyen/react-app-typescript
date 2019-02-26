@@ -1,10 +1,11 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
 import { MyCounter } from "components"
-interface IProps extends RouteComponentProps, IUserStore {}
-
+import Button from "components/Button"
 import { inject, observer } from "mobx-react"
 import { AppStore, IUserStore } from "stores"
+
+interface IProps extends RouteComponentProps, IUserStore {}
 
 @inject(AppStore.User)
 @observer // Notice that this component will not render again when the user store changed.
@@ -16,17 +17,15 @@ export class Hello extends React.Component<IProps> {
     public render() {
         return (
             <div>
-                <button onClick={this.click} type="primary">
-                    Add
-                </button>
+                <Button onClick={this.click}>Add</Button>
                 <MyCounter />
-                <button
+                <Button
                     onClick={() => {
                         this.props.history.push("/")
                     }}
                 >
                     Go Back
-                </button>
+                </Button>
             </div>
         )
     }
