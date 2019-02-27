@@ -8,6 +8,8 @@ export default function App() {
 
     React.useEffect(() => {
         document.title = "react-app-typescript"
+        // from Webpack.DefinePlugin
+        console.log(process.env.NODE_ENV)
     })
 
     return (

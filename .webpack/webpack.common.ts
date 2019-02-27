@@ -50,6 +50,9 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
 
     const plugins: Webpack.Plugin[] = [
         new WebpackBarPlugin({ color: "blue", profile: true }),
+        new Webpack.DefinePlugin({
+            "process.env": JSON.stringify({ NODE_ENV: process.env.NODE_ENV }),
+        }),
         new MiniCssExtractPlugin({
             filename: "[name].[contenthash].css",
         }),
@@ -68,7 +71,6 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                     template: path.join(options.src, "template", name + ".ejs"),
                     favicon: path.join(options.src, "assets", "images", "favicon.ico"),
                     dll: options.vendor ? '<script type="text/javascript" src="/dll.js"></script>' : "",
-                    development: devMode ? '<div id="this-is-for-development-node"></div>' : "",
                 }),
             )
         }

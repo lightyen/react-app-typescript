@@ -16,7 +16,6 @@
         </style>
     </head>
     <body>
-        <%= htmlWebpackPlugin.options.development %>
         <div id="app"></div>
         <%= htmlWebpackPlugin.options.dll %> <%= htmlWebpackPlugin.files.js.map(url => `
         <script type="text/javascript" src="${url}"></script>
