@@ -20,3 +20,10 @@ interface Repository {
     type?: string
     url?: string
 }
+
+// 重新定義 process.env
+declare namespace NodeJS {
+    interface ProcessEnv {
+        NODE_ENV: "development" | "production"
+    }
+}
