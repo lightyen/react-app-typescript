@@ -51,7 +51,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
     const plugins: Webpack.Plugin[] = [
         new WebpackBarPlugin({ color: "blue", profile: true }),
         new Webpack.DefinePlugin({
-            "process.env": JSON.stringify({ NODE_ENV: process.env.NODE_ENV }),
+            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
         }),
         new MiniCssExtractPlugin({
             filename: "[name].[contenthash].css",
