@@ -4,7 +4,7 @@ import { ReactCounter } from "components"
 import { Counter, ParentComponent } from "components/ReactHooks"
 import Button from "components/Button"
 import { Hello } from "../pages/Hello"
-import path from "path"
+import url from "url"
 
 interface IProps extends RouteComponentProps {}
 
@@ -14,10 +14,10 @@ export const Main: React.FC<IProps> = props => {
         <>
             <ReactCounter />
             <Switch>
-                <Route path={path.join(matchUrl, "hello")} component={Hello} />
+                <Route path={url.resolve(matchUrl, "hello")} component={Hello} />
                 <Route // this is default for no route
                     render={p => (
-                        <Link to={path.join(matchUrl, "hello")}>
+                        <Link to={url.resolve(matchUrl, "hello")}>
                             <Button>Go to /hello</Button>
                         </Link>
                     )}
