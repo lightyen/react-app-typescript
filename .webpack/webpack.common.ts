@@ -100,7 +100,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                     exclude: /node_modules/,
                     loader: "awesome-typescript-loader",
                     options: {
-                        configFileName: "tsconfig.json",
+                        configFileName: path.join(workingDirectory, "tsconfig.json"),
                         silent: true,
                         useBabel: true,
                         babelOptions: {
@@ -233,7 +233,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
             extensions: [".ts", ".tsx", ".js", ".jsx"],
             plugins: [
                 new TsConfigPathsPlugin({
-                    configFile: "tsconfig.json",
+                    configFileName: path.join(workingDirectory, "tsconfig.json"),
                 }),
             ],
         },
