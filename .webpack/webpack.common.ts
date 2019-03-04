@@ -70,7 +70,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                     inject: false, // NOTE: 改成手動注入
                     template: path.join(options.src, "template", name + ".pug"),
                     favicon: path.join(options.src, "assets", "images", "favicon.ico"),
-                    dll: options.vendor ? '<script type="text/javascript" src="/dll.js"></script>' : null,
+                    dll: options.vendor ? "/dll.js" : null,
                 }),
             )
         }
@@ -95,6 +95,18 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
         target: "web",
         module: {
             rules: [
+                {
+                    test: /\.pug$/,
+                    include: /template/,
+                    use: [
+                        {
+                            loader: "pug-loader",
+                            options: {
+                                pretty: true,
+                            },
+                        },
+                    ],
+                },
                 {
                     test: /\.tsx?$/,
                     exclude: /node_modules/,
@@ -226,18 +238,6 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                     test: /\.s(a|c)ss$/,
                     include: /node_modules/,
                     use: [devMode ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-                },
-                {
-                    test: /\.pug$/,
-                    include: /src\/template/,
-                    use: [
-                        {
-                            loader: "pug-loader",
-                            options: {
-                                pretty: true,
-                            },
-                        },
-                    ],
                 },
             ],
         },

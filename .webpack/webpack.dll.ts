@@ -19,7 +19,7 @@ const config: Webpack.Configuration = {
         publicPath: "/",
     },
     plugins: [
-        new WebpackBar({ color: "blue" }),
+        new WebpackBar({ name: "DLL", color: "blue" }),
         new CleanWebpackPlugin(path.basename(vendorPath), {
             root: path.resolve(vendorPath, ".."),
         }),
