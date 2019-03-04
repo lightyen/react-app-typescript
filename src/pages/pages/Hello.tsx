@@ -9,7 +9,7 @@ interface IProps extends RouteComponentProps, IUserStore {}
 
 @inject(AppStore.User)
 @observer // Notice that this component will not render again when the user store changed.
-export class Hello extends React.Component<IProps> {
+export default class Hello extends React.Component<IProps> {
     private click = () => {
         this.props.user.setCounter(this.props.user.counter + 1)
     }
