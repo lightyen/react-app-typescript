@@ -2,11 +2,12 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "yarn",
+      "label": "yarn install",
       "type": "shell",
       "group": "none",
       "isBackground": true,
       "command": "yarn",
+      "args": ["install"],
       "runOptions": {
         "runOn": "folderOpen"
       },
