@@ -1,11 +1,18 @@
 {
   "extends": "./tsconfig.base",
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "preserve", // 保留 jsx 語法交給 babel 編譯
     "module": "esnext",
     "moduleResolution": "node",
     "target": "esnext",
     "lib": ["esnext", "dom"],
+    "types": [
+      "react-hot-loader",
+      "styled-components",
+      "react",
+      "react-dom",
+      "react-router-dom"
+    ],
     "baseUrl": ".",
     "paths": {
       "components": ["src/components"],
@@ -15,5 +22,6 @@
       "utils": ["src/utils"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["./node_modules/@types/react-native/*.d.ts"]
 }
