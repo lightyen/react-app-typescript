@@ -12,7 +12,7 @@ html
       }
   body
     #app
-    if htmlWebpackPlugin.options.dll
-      script(type="text/javascript", src=htmlWebpackPlugin.options.dll)
+    if htmlWebpackPlugin.options.vendor
+      script(type="text/javascript", src=htmlWebpackPlugin.options.vendor)
     each js in htmlWebpackPlugin.files.js
       script(type="text/javascript", src=js)

@@ -5,12 +5,12 @@ import path from "path"
 import CleanWebpackPlugin from "clean-webpack-plugin"
 import WebpackBar from "webpackbar"
 
-const vendorPath = path.resolve(process.cwd(), "dist")
+const vendorPath = path.resolve(process.cwd(), "dist", "vendor")
 
 const config: Webpack.Configuration = {
     mode: "production",
     entry: {
-        dll: ["react", "react-dom", "react-router-dom", "mobx", "mobx-react", "axios"],
+        dll: ["react", "react-dom", "react-router-dom", "axios"],
     },
     output: {
         path: vendorPath,

@@ -69,7 +69,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                     inject: false, // NOTE: 改成手動注入
                     template: path.join(options.src, "template", name + ".pug"),
                     favicon: path.join(options.src, "assets", "images", "favicon.ico"),
-                    dll: options.vendor ? "/dll.js" : null,
+                    vendor: options.vendor ? "/vendor/vendor.js" : null,
                 }),
             )
         }
@@ -177,6 +177,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                                 modules: true,
                                 camelCase: "only",
                                 localIdentName: "[local]-[hash:base64:6]",
+                                importLoaders: 2,
                             },
                         },
                         "postcss-loader",
@@ -202,6 +203,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                                 modules: true,
                                 camelCase: "only",
                                 localIdentName: "[local]-[hash:base64:6]",
+                                importLoaders: 2,
                             },
                         },
                         "postcss-loader",

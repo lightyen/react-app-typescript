@@ -5,27 +5,23 @@ import path from "path"
 import os from "os"
 
 import CleanWebpackPlugin from "clean-webpack-plugin"
-const DelWebpackPlugin = require("del-webpack-plugin")
 
 process.env.NODE_ENV = "production"
 import { createBaseConfig } from "./webpack.common"
 
 const productionPath = path.resolve(process.cwd(), "dist")
 /** DLL 位置 */
-const venderPath = "" // path.resolve(process.cwd(), "dist")
+const vendorPath: string = "" // path.resolve(process.cwd(), "dist", "vendor")
 
 const plugins: Webpack.Plugin[] = [
     new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
     new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 8192 }),
-    venderPath
-        ? new DelWebpackPlugin({
-              include: ["**"],
-              exclude: ["dll.js", "manifest.json"],
-              info: true,
-              keepGeneratedAssets: true,
-              allowExternal: false,
-          })
-        : new CleanWebpackPlugin({ verbose: true }),
+    new CleanWebpackPlugin({
+        verbose: true,
+        cleanOnceBeforeBuildPatterns: vendorPath
+            ? ["**/*", "!vendor", "!vendor/vendor.js", "!vendor/manifest.json"]
+            : ["**/*"],
+    }),
 ]
 
 const config: Webpack.Configuration = {
@@ -51,7 +47,7 @@ const config: Webpack.Configuration = {
 export default webpackMerge(
     createBaseConfig({
         dist: productionPath,
-        vendor: venderPath,
+        vendor: vendorPath,
     }),
     config,
 )
