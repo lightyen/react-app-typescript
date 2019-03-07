@@ -179,10 +179,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                                 localIdentName: "[local]-[hash:base64:6]",
                             },
                         },
-                        {
-                            loader: "postcss-loader",
-                            options: { config: { path: "./" } },
-                        },
+                        "postcss-loader",
                         "less-loader",
                     ],
                 },
@@ -207,10 +204,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                                 localIdentName: "[local]-[hash:base64:6]",
                             },
                         },
-                        {
-                            loader: "postcss-loader",
-                            options: { config: { path: "./" } },
-                        },
+                        "postcss-loader",
                         "sass-loader",
                     ],
                 },
@@ -220,7 +214,8 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                     include: /node_modules/,
                     use: [
                         devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-                        { loader: "css-loader" },
+                        "css-loader",
+                        "postcss-loader",
                         {
                             loader: "less-loader",
                             options: {
@@ -236,7 +231,12 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                 {
                     test: /\.s(a|c)ss$/,
                     include: /node_modules/,
-                    use: [devMode ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+                    use: [
+                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                        "css-loader",
+                        "postcss-loader",
+                        "sass-loader",
+                    ],
                 },
             ],
         },
