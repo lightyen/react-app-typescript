@@ -25,10 +25,7 @@ const plugins: Webpack.Plugin[] = [
               keepGeneratedAssets: true,
               allowExternal: false,
           })
-        : new CleanWebpackPlugin([path.basename(productionPath)], {
-              root: path.resolve(productionPath, ".."),
-              verbose: true,
-          }),
+        : new CleanWebpackPlugin({ verbose: true }),
 ]
 
 const config: Webpack.Configuration = {

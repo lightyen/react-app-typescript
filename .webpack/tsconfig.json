@@ -1,6 +1,13 @@
 {
   "extends": "../tsconfig.base",
   "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "configFile": "../tslint.json",
+        "alwaysShowRuleFailuresAsWarnings": false // tslint 警告總是顯示 error
+      }
+    ],
     "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",

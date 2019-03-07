@@ -27,21 +27,21 @@ yarn -v
 
 #### 安裝相關 Visual Studio Code 擴充元件
 
-- **Debug for Firefox**
-- **Debug for Chrome**
-- **TSLint**
-- **Awesome Typescript Problem Matcher**
-- _Prettier_
-- _Format Files_
-- _EditorConfig for VS Code_
+- [**Debug for Firefox**](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
+- [**Debug for Chrome**](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
+- [**TSLint**](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin)
+- [_Awesome Typescript Problem Matcher_](https://marketplace.visualstudio.com/items?itemName=JuanCasanova.awesometypescriptproblemmatcher)
+- [_Prettier_](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [_Format Files_](https://marketplace.visualstudio.com/items?itemName=jbockle.jbockle-format-files)
+- [_EditorConfig for VS Code_](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
-#### 其他我常用的擴充元件
+#### 其他我常用的
 
-- **GitLens**
-- Material Icon Theme
-- Markdown All in One
-- TODO Highlight
-- Fira Code (字型)
+- [**GitLens**](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+- [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
+- [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+- [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)
+- [Fira Code](https://github.com/tonsky/FiraCode) (字型)
 
 ### Build 建置
 

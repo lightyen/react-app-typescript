@@ -20,9 +20,7 @@ const config: Webpack.Configuration = {
     },
     plugins: [
         new WebpackBar({ name: "DLL", color: "blue" }),
-        new CleanWebpackPlugin(path.basename(vendorPath), {
-            root: path.resolve(vendorPath, ".."),
-        }),
+        new CleanWebpackPlugin({ verbose: true }),
         new Webpack.DllPlugin({
             path: path.join(vendorPath, "manifest.json"),
             name: "[name]",

@@ -1,17 +1,25 @@
 {
   "extends": "./tsconfig.base",
   "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-tslint-plugin",
+        "configFile": "tslint.json",
+        "alwaysShowRuleFailuresAsWarnings": false // tslint 警告總是顯示 error
+      }
+    ],
     "jsx": "preserve", // 保留 jsx 語法交給 babel 編譯
     "module": "esnext",
     "moduleResolution": "node",
     "target": "esnext",
     "lib": ["esnext", "dom"],
+    // 顯式宣告
     "types": [
-      "react-hot-loader",
-      "styled-components",
       "react",
       "react-dom",
-      "react-router-dom"
+      "react-router-dom",
+      "react-hot-loader",
+      "styled-components"
     ],
     "baseUrl": ".",
     "paths": {

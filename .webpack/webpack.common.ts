@@ -8,7 +8,6 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin"
 import WebpackBarPlugin from "webpackbar"
 import { TsConfigPathsPlugin } from "awesome-typescript-loader"
 import TsImportPlugin from "ts-import-plugin"
-const DelWebpackPlugin = require("del-webpack-plugin")
 
 // Other
 import { name as AppName } from "cwd/package.json"
