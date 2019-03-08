@@ -48,7 +48,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
     }
 
     const plugins: Webpack.Plugin[] = [
-        new WebpackBarPlugin({ color: "blue", profile: true }),
+        new WebpackBarPlugin({ color: "#41f4d0", name: "React" }),
         new Webpack.DefinePlugin({
             "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
         }),
@@ -88,8 +88,9 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
         entry,
         output: {
             path: options.dist,
-            filename: "[name].[hash].js",
+            filename: "[name].[hash:8].js",
             publicPath: "/",
+            chunkFilename: "[name].[hash:6].js",
         },
         target: "web",
         module: {

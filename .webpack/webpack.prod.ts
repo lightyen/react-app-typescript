@@ -17,7 +17,6 @@ const plugins: Webpack.Plugin[] = [
     new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
     new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 8192 }),
     new CleanWebpackPlugin({
-        verbose: true,
         cleanOnceBeforeBuildPatterns: vendorPath
             ? ["**/*", "!vendor", "!vendor/vendor.js", "!vendor/manifest.json"]
             : ["**/*"],
@@ -26,16 +25,25 @@ const plugins: Webpack.Plugin[] = [
 
 const config: Webpack.Configuration = {
     mode: "production",
+    stats: {
+        children: false,
+        modules: false,
+        entrypoints: false,
+    },
     performance: {
         hints: "warning",
+        maxEntrypointSize: 512000,
+        maxAssetSize: 512000,
         assetFilter: (filename: string) => {
-            return filename.endsWith(".css") || filename.endsWith(".js")
+            const ext = path.extname(filename)
+            return ext === "css" || ext === ".js"
         },
     },
     optimization: {
         minimize: true,
         splitChunks: {
             chunks: "all",
+            maxSize: 250000,
         },
     },
     resolve: {

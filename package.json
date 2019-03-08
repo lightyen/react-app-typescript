@@ -19,6 +19,7 @@
     "webpack-production": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.prod",
     "webpack-dll": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.dll",
     "webpack-analyzer": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.analyzer",
+    "doit": "yarn upgrade-interactive --latest",
     "dev": "yarn run webpack-development",
     "test": "yarn run webpack-production",
     "build": "yarn run webpack-production"
@@ -35,7 +36,7 @@
     "@types/react-hot-loader": "4.1.0",
     "@types/webpack": "4.4.25",
     "@types/webpack-bundle-analyzer": "2.13.1",
-    "@types/webpack-dev-server": "3.1.2",
+    "@types/webpack-dev-server": "3.1.4",
     "@types/webpack-merge": "4.1.3",
     "@types/webpackbar": "2.6.0",
     "autoprefixer": "9.4.10",

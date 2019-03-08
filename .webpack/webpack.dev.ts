@@ -15,13 +15,6 @@ export default webpackMerge(createBaseConfig(), {
     watchOptions: {
         ignored: /node_modules/,
     },
-    performance: {
-        hints: false,
-        assetFilter: (filename: string) => {
-            return filename.endsWith(".css") || filename.endsWith(".js")
-        },
-    },
-    stats: "none",
     devtool: "source-map",
     resolve: {
         alias: {
@@ -35,7 +28,8 @@ export default webpackMerge(createBaseConfig(), {
         compress: true,
         host: "localhost",
         port: 3000,
-        clientLogLevel: "none",
+        clientLogLevel: "error",
+        stats: "errors-only",
         historyApiFallback: true,
         // proxy: {
         //     "apis/": {
