@@ -10,7 +10,7 @@ import { TsConfigPathsPlugin } from "awesome-typescript-loader"
 import TsImportPlugin from "ts-import-plugin"
 
 // Other
-import { name as AppName } from "cwd/package.json"
+import { name as AppName } from "../package.json"
 
 const entry: Webpack.Entry = {
     index: "./src/index.tsx",
@@ -49,8 +49,8 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
 
     const plugins: Webpack.Plugin[] = [
         new WebpackBarPlugin({ color: "#41f4d0", name: "React" }),
-        new Webpack.DefinePlugin({
-            "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+        new Webpack.EnvironmentPlugin({
+            NODE_ENV: process.env.NODE_ENV,
         }),
         new MiniCssExtractPlugin({
             filename: "[name].[contenthash].css",
@@ -65,8 +65,9 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                 new HtmlWebpackPlugin({
                     filename: name + ".html",
                     excludeChunks: exclude,
+                    title: AppName,
                     minify: false,
-                    inject: false, // NOTE: 改成手動注入
+                    inject: false,
                     template: path.join(options.src, "template", name + ".pug"),
                     favicon: path.join(options.src, "assets", "images", "favicon.ico"),
                     vendor: options.vendor ? "/vendor/vendor.js" : null,
