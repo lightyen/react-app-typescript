@@ -1,10 +1,11 @@
 import React from "react"
 import { Switch, Route, RouteComponentProps, Link } from "react-router-dom"
 import { ReactCounter } from "components"
+import url from "url"
+import image from "assets/256x256.png"
 import { Counter, ParentComponent } from "components/ReactHooks"
 import Button from "components/Button"
-// import Hello from "../pages/Hello"
-import url from "url"
+import style from "./index.css"
 
 // 組件懶加載：https://reactjs.org/docs/code-splitting.html
 import { Suspense } from "react"
@@ -23,7 +24,9 @@ interface IProps extends RouteComponentProps {}
 const Main: React.FC<IProps> = props => {
     const matchUrl = props.match.url
     return (
-        <>
+        <div className={style.myfont}>
+            <p> == Hello React =></p>
+            <img src={image} width={64} />
             <ReactCounter />
             <Switch>
                 <Route path={url.resolve(matchUrl, "hello")} component={WaitingComponent(Hello)} />
@@ -35,7 +38,7 @@ const Main: React.FC<IProps> = props => {
                     )}
                 />
             </Switch>
-        </>
+        </div>
     )
 }
 

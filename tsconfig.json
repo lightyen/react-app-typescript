@@ -23,6 +23,7 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "assets/*": ["src/assets/*", "src/assets/fonts/*", "src/assets/images/*"],
       "components": ["src/components"],
       "components/*": ["src/components/*"],
       "stores": ["src/stores"],

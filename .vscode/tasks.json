@@ -17,7 +17,7 @@
       }
     },
     {
-      "label": "建置(Production)",
+      "label": "Build(Production)",
       "group": "build",
       "type": "shell",
       "command": "yarn",
@@ -28,7 +28,7 @@
       }
     },
     {
-      "label": "建置(DLL)",
+      "label": "Build(DLL)",
       "group": {
         "isDefault": true,
         "kind": "build"
@@ -42,7 +42,7 @@
       }
     },
     {
-      "label": "建置 (Development)",
+      "label": "Run(Development)",
       "type": "shell",
       "group": "none",
       "command": "yarn",

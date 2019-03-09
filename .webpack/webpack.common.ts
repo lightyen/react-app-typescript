@@ -69,7 +69,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                     minify: false,
                     inject: false,
                     template: path.join(options.src, "template", name + ".pug"),
-                    favicon: path.join(options.src, "assets", "images", "favicon.ico"),
+                    favicon: path.join(options.src, "assets", "favicon.ico"),
                     vendor: options.vendor ? "/vendor/vendor.js" : null,
                 }),
             )
@@ -85,7 +85,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
         )
     }
 
-    const conf: Webpack.Configuration = {
+    return {
         entry,
         output: {
             path: options.dist,
@@ -116,47 +116,49 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                         configFileName: path.join(workingDirectory, "tsconfig.json"),
                         silent: true,
                         useBabel: true,
+                        babelCore: "@babel/core",
                         babelOptions: {
                             babelrc: true,
                         },
-                        babelCore: "@babel/core",
-                        getCustomTransformers: () => ({
-                            before: [
-                                TsImportPlugin([
-                                    {
-                                        libraryName: "antd",
-                                        libraryDirectory: "lib",
-                                        style: true,
-                                    },
-                                    {
-                                        libraryName: "@material-ui/core",
-                                        libraryDirectory: "",
-                                        camel2DashComponentName: false,
-                                    },
-                                ]),
-                            ],
-                        }),
+                        // getCustomTransformers: () => ({
+                        //     before: [
+                        //         TsImportPlugin([
+                        //             {
+                        //                 libraryName: "antd",
+                        //                 libraryDirectory: "lib",
+                        //                 style: true,
+                        //             },
+                        //             {
+                        //                 libraryName: "@material-ui/core",
+                        //                 libraryDirectory: "",
+                        //                 camel2DashComponentName: false,
+                        //             },
+                        //         ]),
+                        //     ],
+                        // }),
                     },
                 },
                 {
-                    test: /\.(png|jp(e?)g|gif|svg)$/,
+                    test: /\.(png|jpe?g|gif|svg)$/,
                     use: [
                         {
-                            loader: "file-loader",
-                            options: { name: "assets/images/[name].[ext]" },
+                            loader: "url-loader", // 依賴於 file-loader，別忘記安裝。
+                            options: {
+                                name: "assets/img/[name].[ext]",
+                                limit: 8192,
+                            },
                         },
                     ],
                 },
                 {
-                    test: /\.(woff|woff2|eot|ttf|otf)(\?.*)?$/,
+                    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                     use: [
                         {
-                            loader: "file-loader",
-                            options: { name: "assets/fonts/[name].[ext]?[hash]" },
-                        },
-                        {
                             loader: "url-loader",
-                            query: { name: "assets/fonts/[name].[ext]" },
+                            options: {
+                                name: "assets/fonts/[name].[ext]?[hash:8]",
+                                limit: 100000,
+                            },
                         },
                     ],
                 },
@@ -244,6 +246,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                 },
             ],
         },
+        // NOTE: https://webpack.js.org/configuration/resolve/
         resolve: {
             extensions: [".ts", ".tsx", ".js", ".jsx"],
             plugins: [
@@ -251,9 +254,8 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                     configFileName: path.join(workingDirectory, "tsconfig.json"),
                 }),
             ],
+            alias: {},
         },
         plugins,
     }
-
-    return conf
 }

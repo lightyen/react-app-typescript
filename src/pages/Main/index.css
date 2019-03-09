@@ -1,0 +1,8 @@
+@font-face {
+    font-family: FiraCode;
+    src: url(../../assets/fonts/FiraCode-Regular.woff2); /** ※可以使用 webpck.config > resolve > alias */
+}
+
+.myfont {
+    font-family: FiraCode;
+}
