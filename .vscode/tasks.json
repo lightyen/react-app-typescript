@@ -17,7 +17,7 @@
       }
     },
     {
-      "label": "Build(Production)",
+      "label": "Build (Production)",
       "group": "build",
       "type": "shell",
       "command": "yarn",
@@ -28,7 +28,7 @@
       }
     },
     {
-      "label": "Build(DLL)",
+      "label": "Build (DLL)",
       "group": {
         "isDefault": true,
         "kind": "build"
@@ -42,7 +42,7 @@
       }
     },
     {
-      "label": "Run(Development)",
+      "label": "Run (Development)",
       "type": "shell",
       "group": "none",
       "command": "yarn",
@@ -53,7 +53,7 @@
       }
     },
     {
-      "label": "bundle-analyzer",
+      "label": "Run (bundle-analyzer)",
       "group": "test",
       "type": "shell",
       "command": "yarn",
