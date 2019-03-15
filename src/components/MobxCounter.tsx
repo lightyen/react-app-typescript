@@ -1,6 +1,6 @@
 import React from "react"
 import { inject, observer } from "mobx-react"
-import { AppStore, IUserStore } from "stores"
+import { AppStore, IUserStore } from "~stores"
 
 interface ICounterProps extends IUserStore {}
 

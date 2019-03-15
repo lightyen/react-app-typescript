@@ -1,9 +1,11 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
-import { MyCounter } from "components"
-import Button from "components/Button"
 import { inject, observer } from "mobx-react"
-import { AppStore, IUserStore } from "stores"
+import { MyCounter } from "~components/MobxCounter"
+import Button from "~components/Button"
+import TimeCounter from "~components/TimeCounter"
+
+import { AppStore, IUserStore } from "~stores"
 
 interface IProps extends RouteComponentProps, IUserStore {}
 
@@ -19,6 +21,7 @@ export default class Hello extends React.Component<IProps> {
             <div>
                 <Button onClick={this.click}>Add</Button>
                 <MyCounter />
+                <TimeCounter />
                 <Button
                     onClick={() => {
                         this.props.history.push("/")

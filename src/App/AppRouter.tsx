@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter, HashRouter, Route } from "react-router-dom"
-import Main from "../pages/Main"
+import Main from "~/views/Main"
 
 import { hot } from "react-hot-loader/root"
 

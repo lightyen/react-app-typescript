@@ -29,10 +29,7 @@
     },
     {
       "label": "Build (DLL)",
-      "group": {
-        "isDefault": true,
-        "kind": "build"
-      },
+      "group": "build",
       "type": "shell",
       "command": "yarn",
       "args": ["run", "webpack-dll"],
@@ -44,7 +41,10 @@
     {
       "label": "Run (Development)",
       "type": "shell",
-      "group": "none",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "command": "yarn",
       "args": ["run", "dev"],
       "problemMatcher": [],

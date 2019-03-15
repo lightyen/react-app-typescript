@@ -23,7 +23,7 @@
     "no-implicit-dependencies": [
       true,
       "dev",
-      ["components", "stores", "model", "utils", "cwd"]
+      ["~", "~components", "~stores", "~utils", "cwd"]
     ],
     "no-console": false,
     "no-var-requires": false,

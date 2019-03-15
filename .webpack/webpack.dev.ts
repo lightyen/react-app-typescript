@@ -31,6 +31,7 @@ export default webpackMerge(createBaseConfig(), {
         clientLogLevel: "error",
         stats: "errors-only",
         historyApiFallback: true,
+        open: true,
         // proxy: {
         //     "apis/": {
         //         target: "http://xxx.com/",

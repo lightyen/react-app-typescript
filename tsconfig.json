@@ -23,12 +23,17 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "assets/*": ["src/assets/*", "src/assets/fonts/*", "src/assets/images/*"],
-      "components": ["src/components"],
-      "components/*": ["src/components/*"],
-      "stores": ["src/stores"],
-      "model": ["src/stores/model"],
-      "utils": ["src/utils"]
+      "~/*": ["src/*"],
+      "~assets/*": [
+        "src/assets/*",
+        "src/assets/fonts/*",
+        "src/assets/images/*"
+      ],
+      "~components": ["src/components"],
+      "~components/*": ["src/components/*"],
+      "~stores": ["src/stores"],
+      "~stores/*": ["src/stores/*"],
+      "~utils": ["src/utils"]
     }
   },
   "include": ["src/**/*"]

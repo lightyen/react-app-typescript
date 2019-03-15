@@ -1,6 +1,6 @@
 import React from "react"
 import { Provider } from "mobx-react"
-import { AppStore } from "stores"
+import { AppStore } from "~stores"
 import AppRouter from "./AppRouter"
 
 export default function App() {
