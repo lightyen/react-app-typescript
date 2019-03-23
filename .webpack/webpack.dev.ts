@@ -33,10 +33,10 @@ export default webpackMerge(createBaseConfig(), {
         historyApiFallback: true,
         open: true,
         // proxy: {
-        //     "apis/": {
-        //         target: "http://xxx.com/",
-        //         headers: { 'Access-Control-Allow-Origin': '*' }
-        //     }
+        //     "/apis": {
+        //         target: "http://xxx.com:9527/",
+        //         changeOrigin: true,
+        //     },
         // },
     },
 })
