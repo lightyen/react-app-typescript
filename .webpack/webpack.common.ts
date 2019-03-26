@@ -55,6 +55,10 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
         new MiniCssExtractPlugin({
             filename: "[name].[contenthash].css",
         }),
+        new Webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+        }),
     ]
 
     for (const name in entry) {

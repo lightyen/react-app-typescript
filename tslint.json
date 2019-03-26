@@ -20,11 +20,7 @@
     "max-classes-per-file": false,
     "no-submodule-imports": false,
     "no-empty": false,
-    "no-implicit-dependencies": [
-      true,
-      "dev",
-      ["~", "~components", "~stores", "~utils", "cwd"]
-    ],
+    "no-implicit-dependencies": [true, "dev", ["~", "cwd"]],
     "no-console": false,
     "no-var-requires": false,
     "no-duplicate-imports": false,

@@ -5,6 +5,11 @@
     "*.ejs": "html",
     ".prettierrc": "json"
   },
+  "search.exclude": {
+    "**/dist": true,
+    "**/node_modules": true,
+    "**/bower_components": true
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "terminal.integrated.env.windows": {
     "PATH": "${workspaceFolder}\\node_modules\\.bin;${env:PATH}"

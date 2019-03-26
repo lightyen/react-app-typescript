@@ -8,3 +8,4 @@ dist/
 debug
 package-lock.json
 yarn.lock
+stat.json

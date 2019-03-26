@@ -2,7 +2,7 @@ import React from "react"
 import { Switch, Route, RouteComponentProps, Link } from "react-router-dom"
 import url from "url"
 import image from "~assets/256x256.png"
-import Button from "~components/Button"
+import Button from "~/components/Button"
 
 import style from "./index.css"
 

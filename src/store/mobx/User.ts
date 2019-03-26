@@ -25,7 +25,7 @@ export class User {
         return this.counter.toString()
     }
 
-    // NOTE: 使用 axios 完成異步請求 data
+    // NOTE: 使用 axios 完成異步請求
     // @action
     // public async getData() {
     //     try {

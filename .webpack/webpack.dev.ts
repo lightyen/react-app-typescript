@@ -27,16 +27,17 @@ export default webpackMerge(createBaseConfig(), {
         hot: true,
         compress: true,
         host: "localhost",
-        port: 3000,
+        port: 80,
         clientLogLevel: "error",
         stats: "errors-only",
         historyApiFallback: true,
         open: true,
-        // proxy: {
-        //     "apis/": {
-        //         target: "http://xxx.com/",
-        //         headers: { 'Access-Control-Allow-Origin': '*' }
-        //     }
-        // },
+        proxy: {
+            "/apis": {
+                target: "http://localhost:4221/",
+                secure: false,
+                changeOrigin: true,
+            },
+        },
     },
 })

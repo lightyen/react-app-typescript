@@ -1,10 +1,19 @@
 import React from "react"
-import { Provider } from "mobx-react"
-import { AppStore } from "~stores"
 import AppRouter from "./AppRouter"
 
+// Mobx
+// import { Provider as MobxProvider } from "mobx-react"
+// import { createStore } from "~/store/mobx"
+
+// Redux
+import { Provider } from "react-redux"
+import { configureStore } from "~/store/redux"
+
+import "./bootstrap"
+
 export default function App() {
-    const appStore: AppStore = new AppStore()
+    const reduxStore = configureStore()
+    //const mobxStore = createStore()
 
     React.useEffect(() => {
         document.title = "react-app-typescript"
@@ -13,8 +22,11 @@ export default function App() {
     })
 
     return (
-        <Provider {...appStore}>
+        <Provider store={reduxStore}>
             <AppRouter />
         </Provider>
+        // <MobxProvider {...mobxStore}>
+        //     <AppRouter />
+        // </MobxProvider>
     )
 }

@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 
 // NOTE: 在這裡你可以使用 axios 攔截 http 請求與回應
 
@@ -13,7 +13,8 @@ axios.interceptors.response.use(
         return response
     },
     error => {
-        // dosomthing before get error
-        return error
+        // dosomthing before get
+        const err = error as AxiosError
+        return Promise.reject(err.message)
     },
 )
