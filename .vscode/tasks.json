@@ -46,7 +46,7 @@
         "isDefault": true
       },
       "command": "yarn",
-      "args": ["run", "dev"],
+      "args": ["run", "start"],
       "problemMatcher": [],
       "presentation": {
         "clear": true

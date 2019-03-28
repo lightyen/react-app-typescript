@@ -27,7 +27,7 @@ export default webpackMerge(createBaseConfig(), {
         hot: true,
         compress: true,
         host: "localhost",
-        port: 80,
+        port: 3000,
         clientLogLevel: "error",
         stats: "errors-only",
         historyApiFallback: true,

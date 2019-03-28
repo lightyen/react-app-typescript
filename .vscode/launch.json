@@ -10,7 +10,7 @@
       "request": "launch",
       "reAttach": true,
       "sourceMaps": "client",
-      "url": "http://localhost:80/",
+      "url": "http://localhost:3000/",
       "webRoot": "${workspaceFolder}",
       "pathMappings": [
         {
@@ -40,7 +40,7 @@
       "type": "chrome",
       "request": "launch",
       "sourceMaps": true,
-      "url": "http://localhost:80/",
+      "url": "http://localhost:3000/",
       "webRoot": "${workspaceFolder}",
       "port": 9222,
       "linux": {
