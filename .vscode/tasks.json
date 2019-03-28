@@ -2,15 +2,14 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "yarn install",
+      "label": "Run (Development)",
       "type": "shell",
-      "group": "none",
-      "isBackground": true,
-      "command": "yarn",
-      "args": ["install"],
-      "runOptions": {
-        "runOn": "folderOpen"
+      "group": {
+        "kind": "build",
+        "isDefault": true
       },
+      "command": "yarn",
+      "args": ["run", "start"],
       "problemMatcher": [],
       "presentation": {
         "clear": true
@@ -33,20 +32,6 @@
       "type": "shell",
       "command": "yarn",
       "args": ["run", "webpack-dll"],
-      "problemMatcher": [],
-      "presentation": {
-        "clear": true
-      }
-    },
-    {
-      "label": "Run (Development)",
-      "type": "shell",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "command": "yarn",
-      "args": ["run", "start"],
       "problemMatcher": [],
       "presentation": {
         "clear": true
