@@ -9,11 +9,20 @@ import AppRouter from "./AppRouter"
 import { Provider } from "react-redux"
 import { configureStore } from "~/store/redux"
 
+// i18n https://docs.microsoft.com/en-us/cpp/c-runtime-library/language-strings
+import { IntlProvider, addLocaleData } from "react-intl"
+import { getLocaleByName, AppLanguage, LanguageFields } from "~/locale/utils"
+
 import "./bootstrap"
 
 export default function App() {
     const reduxStore = configureStore()
     //const mobxStore = createStore()
+
+    const lang: AppLanguage = "en-US"
+    const locale = getLocaleByName(lang)
+    console.log(locale.locale)
+    addLocaleData(locale)
 
     React.useEffect(() => {
         document.title = "react-app-typescript"
@@ -23,7 +32,9 @@ export default function App() {
 
     return (
         <Provider store={reduxStore}>
-            <AppRouter />
+            <IntlProvider locale={lang} messages={locale.fields}>
+                <AppRouter />
+            </IntlProvider>
         </Provider>
         // <MobxProvider {...mobxStore}>
         //     <AppRouter />
