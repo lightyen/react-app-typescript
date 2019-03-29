@@ -8,26 +8,23 @@ export type InjectedIntlProps = InjectedIntlProps<Glossary>
  * http://www.lingoes.net/en/translator/langcode.htm
  */
 import { AppLocale } from ".."
-const en_US = import("~/locale/languages/en-US")
-const zh_TW = import("~/locale/languages/zh-TW")
-const zh_CN = import("~/locale/languages/zh-CN")
 
 export async function getLocaleByName(lang: AppLocale): Promise<LocaleModule> {
     const l = lang.toLocaleLowerCase().split(/-/)
     switch (l[0]) {
         case "en":
-            return await en_US
+            return await import("~/locale/languages/en-US")
         case "zh":
             switch (l[1]) {
                 case "tw":
-                    return await zh_TW
+                    return await import("~/locale/languages/zh-TW")
                 case "cn":
-                    return await zh_CN
+                    return await import("~/locale/languages/zh-CN")
                 default:
-                    return await zh_TW
+                    return await import("~/locale/languages/zh-TW")
             }
         default:
-            return await en_US
+            return await import("~/locale/languages/en-US")
     }
 }
 
