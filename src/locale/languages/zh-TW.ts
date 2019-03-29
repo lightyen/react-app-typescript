@@ -1,7 +1,7 @@
 import { Locale } from "react-intl"
-import { LanguageFields } from "./utils"
+import { Glossary } from "../index"
 
-const locale: Locale<LanguageFields> = {
+const locale: Locale<Glossary> = {
     locale: "zh-TW",
     pluralRuleFunction: () => "",
     fields: {

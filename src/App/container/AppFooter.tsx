@@ -1,12 +1,12 @@
 import React from "react"
 import { FormattedMessage } from "react-intl"
 
-import { LanguageFields } from "~/locale/utils"
+import { LocaleMessage } from "~/locale/utils"
 
 export default function AppFooter() {
     return (
         <div>
-            <FormattedMessage<LanguageFields> id="text" values={{}} />
+            <LocaleMessage id="text" values={{}} />
         </div>
     )
 }
