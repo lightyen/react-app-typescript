@@ -21,7 +21,7 @@ interface IProps extends RouteComponentProps {}
 const Main: React.FC<IProps> = props => {
     const { match } = props
     return (
-        <div>
+        <div className="">
             <p> == Hello React =></p>
             <img src={image} width={64} />
             <Switch>

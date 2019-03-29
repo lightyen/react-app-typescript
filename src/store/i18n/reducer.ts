@@ -4,9 +4,7 @@ import { IntlAction, SET_LOCALE } from "./action"
 import { AppLocaleList, appLocaleList } from "~/locale"
 import { Locale } from "~/locale/languages"
 import { getLocaleByName } from "~/locale/utils"
-
 import en_US from "~/locale/languages/en-US"
-import zh_TW from "~/locale/languages/zh-TW"
 
 type IntlActionType = typeof SET_LOCALE
 
@@ -28,7 +26,7 @@ export type IntlStore = Readonly<IntlStoreType>
 
 const init: IntlStore = {
     enable: true,
-    locale: zh_TW,
+    locale: en_US,
     list: appLocaleList,
 }
 
@@ -39,7 +37,7 @@ export const intlReducer: Reducer<IntlStore, IntlAction> = (state = init, action
             if (!state.enable) {
                 return state
             }
-            return { ...state, status: SET_LOCALE, error: null, locale: getLocaleByName(action.localeName) }
+            return { ...state, status: SET_LOCALE, error: null, locale: action.locale }
 
         // default
         default:

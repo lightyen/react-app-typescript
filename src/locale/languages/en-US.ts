@@ -4,7 +4,7 @@ const locale: Locale = {
     locale: "en-US",
     pluralRuleFunction: () => "",
     fields: {
-        text: "helloworld",
+        text: "React is awesome!",
     },
 }
 

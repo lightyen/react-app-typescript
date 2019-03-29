@@ -5,10 +5,9 @@ import Button from "~/components/Button"
 import TimeCounter from "~/components/TimeCounter"
 
 import { ActionCreatorsMapObject, Dispatch } from "redux"
-import { IUserThunkAction } from "~/store/user/action"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
-import { getUser, setUser } from "~/store/user/action"
+import { IUserThunkAction, getUser, setUser } from "~/store/user/action"
 import { IUser } from "~/store/user/model"
 
 interface DispatchProps extends ActionCreatorsMapObject<IUserThunkAction> {
@@ -19,20 +18,21 @@ interface DispatchProps extends ActionCreatorsMapObject<IUserThunkAction> {
 const mapDispatchToProps = (dispatch: Dispatch) =>
     bindActionCreators<IUserThunkAction, DispatchProps>({ getUser, setUser }, dispatch)
 
+type IProps = IOwnProps & RouteComponentProps & DispatchProps
+
 interface IOwnProps {}
 
 @(connect(
     null,
     mapDispatchToProps,
 ) as any)
-export default class Hello extends React.Component<IOwnProps & RouteComponentProps & DispatchProps> {
+export default class Hello extends React.Component<IProps> {
     public render() {
         const { history, getUser, setUser } = this.props
         return (
             <div>
                 <Button onClick={() => getUser()}>Add</Button>
                 <MyCounter />
-                <TimeCounter />
                 <input
                     size={16}
                     placeholder="input..."

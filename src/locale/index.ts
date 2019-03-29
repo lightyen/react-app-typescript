@@ -6,6 +6,7 @@ export type AppLocale = keyof AppLocaleList
 
 /** 語言名稱對照表 */
 export const appLocaleList = {
-    en: "English",
+    "en-US": "English",
     "zh-TW": "正體中文",
+    "zh-CN": "简体中文",
 }

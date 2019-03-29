@@ -1,10 +1,10 @@
 import { Locale } from "."
 
 const locale: Locale = {
-    locale: "zh-TW",
+    locale: "zh-CN",
     pluralRuleFunction: () => "",
     fields: {
-        text: "React，太神啦！",
+        text: "React，贼他妈牛逼！",
     },
 }
 

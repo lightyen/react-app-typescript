@@ -5,3 +5,8 @@ export type Locale = L<Glossary>
 export interface Glossary {
     text: string
 }
+
+export interface LocaleModule {
+    __esModule?: boolean
+    default?: Locale
+}

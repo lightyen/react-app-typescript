@@ -32,8 +32,8 @@ const config: Webpack.Configuration = {
     },
     performance: {
         hints: "warning",
-        maxEntrypointSize: 512000,
-        maxAssetSize: 512000,
+        maxEntrypointSize: 614400,
+        maxAssetSize: 614400,
         assetFilter: (filename: string) => {
             const ext = path.extname(filename)
             return ext === "css" || ext === ".js"
