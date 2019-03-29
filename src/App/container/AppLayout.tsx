@@ -3,6 +3,7 @@ import { Route } from "react-router-dom"
 import styled from "styled-components"
 
 const App = styled.div`
+    font-family: "Fira Code";
     display: flex;
     flex-direction: column;
     min-height: 100vh;

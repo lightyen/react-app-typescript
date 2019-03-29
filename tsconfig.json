@@ -13,14 +13,7 @@
     "moduleResolution": "node",
     "target": "esnext",
     "lib": ["esnext", "dom"],
-    // 顯式宣告
-    "types": [
-      "react",
-      "react-dom",
-      "react-router-dom",
-      "react-hot-loader",
-      "styled-components"
-    ],
+    "types": ["react", "node"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"],

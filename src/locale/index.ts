@@ -9,8 +9,3 @@ export const appLocaleList = {
     en: "English",
     "zh-TW": "正體中文",
 }
-
-/** 字彙表 */
-export interface Glossary {
-    text: string
-}

@@ -1,7 +1,7 @@
 import { ThunkAction } from "redux-thunk"
 import axios from "axios"
 
-import { IAsyncAction } from "~/store/redux/api"
+import { IAsyncAction } from "~/store/api"
 import { IUserStore } from "./reducer"
 import { IUser } from "./model"
 

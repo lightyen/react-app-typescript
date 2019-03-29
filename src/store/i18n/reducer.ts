@@ -1,11 +1,12 @@
 import { Reducer } from "redux"
-import { Locale } from "react-intl"
 
 import { IntlAction, SET_LOCALE } from "./action"
+import { AppLocaleList, appLocaleList } from "~/locale"
+import { Locale } from "~/locale/languages"
+import { getLocaleByName } from "~/locale/utils"
+
 import en_US from "~/locale/languages/en-US"
 import zh_TW from "~/locale/languages/zh-TW"
-import { AppLocaleList, appLocaleList, Glossary } from "~/locale"
-import { getLocaleByName } from "~/locale/utils"
 
 type IntlActionType = typeof SET_LOCALE
 
@@ -13,7 +14,7 @@ interface IntlStoreType {
     /** 啟用多國語言 */
     enable: boolean
     /** 當前在地化語言 */
-    locale: Locale<Glossary>
+    locale: Locale
     /** 可提供的語言列表 */
     list: AppLocaleList
 
@@ -27,7 +28,7 @@ export type IntlStore = Readonly<IntlStoreType>
 
 const init: IntlStore = {
     enable: true,
-    locale: en_US,
+    locale: zh_TW,
     list: appLocaleList,
 }
 

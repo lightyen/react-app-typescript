@@ -1,21 +1,14 @@
 import React from "react"
 import AppRouter from "./AppRouter"
 
-// Mobx
-// import { Provider as MobxProvider } from "mobx-react"
-// import { createStore } from "~/store/mobx"
-
 // Redux
-import { configureStore } from "~/store/redux"
-// import { Provider } from "react-redux"
+import { configureStore } from "~/store"
 import { Provider } from "~/components/i18n"
 
 import "./bootstrap"
+import "./scss/style.scss"
 
 export default function App() {
-    const reduxStore = configureStore()
-    // const mobxStore = createStore()
-
     React.useEffect(() => {
         document.title = "react-app-typescript"
         // from Webpack EnvironmentPlugin
@@ -23,11 +16,8 @@ export default function App() {
     })
 
     return (
-        <Provider store={reduxStore}>
+        <Provider store={configureStore()}>
             <AppRouter />
         </Provider>
-        // <MobxProvider {...mobxStore}>
-        //     <AppRouter />
-        // </MobxProvider>
     )
 }

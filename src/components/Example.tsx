@@ -13,9 +13,10 @@ export class Example extends React.Component<Partial<IProps>> {
     }
 
     public render() {
+        const { onClick, content } = this.props
         return (
-            <button className={style.example} onClick={this.props.onClick}>
-                <span>{this.props.content}</span>
+            <button className={style.example} onClick={onClick}>
+                <span>{content}</span>
             </button>
         )
     }

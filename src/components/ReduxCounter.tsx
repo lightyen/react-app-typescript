@@ -1,7 +1,7 @@
 import React from "react"
 
-import { IAppStore } from "~/store/redux"
-import { IUserStore } from "~/store/redux/user"
+import { IAppStore } from "~/store"
+import { IUserStore } from "~/store/user"
 import { connect } from "react-redux"
 
 type IProps = IOwnProps & PickProps
