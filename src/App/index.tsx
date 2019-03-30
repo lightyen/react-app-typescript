@@ -6,6 +6,7 @@ import { configureStore } from "~/store"
 import { Provider } from "~/components/i18n"
 
 import "bootstrap"
+import "bootstrap/scss/bootstrap.scss"
 import "./scss/App.scss"
 
 export default function App() {
