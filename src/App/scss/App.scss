@@ -1,10 +1,14 @@
+/** ※可以使用 webpck.config > resolve > alias */
+
 @font-face {
-    font-family: FiraCode;
-    src: url(../../assets/fonts/FiraCode-Regular.woff2); /** ※可以使用 webpck.config > resolve > alias */
+    font-family: "My Code";
+    src: local(Microsoft JhengHei), local(Noto Sans CJK TC Regular);
+    unicode-range: U+4E00-9FFF;
 }
 
-.appfont {
-    font-family: FiraCode;
+@font-face {
+    font-family: "My Code";
+    src: url("../../assets/fonts/FiraCode-Regular.woff2");
 }
 
 @import "./styles.scss";
