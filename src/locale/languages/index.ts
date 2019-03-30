@@ -6,7 +6,4 @@ export interface Glossary {
     text: string
 }
 
-export interface LocaleModule {
-    __esModule?: boolean
-    default?: Locale
-}
+export type Module<T> = { __esModule?: boolean; default?: T }

@@ -22,19 +22,33 @@ const AppBodyContainer = styled.div`
 
 const AppSidebarContainer = styled.div`
     position: fixed;
-    width: 250px;
+    max-width: 200px;
+    width: 100%;
     z-index: 100;
     height: calc(100vh - 50px);
+    transition: margin-left 0.25s;
+    margin-left: -200px;
+    @media (min-width: 992px) {
+        margin-left: 0;
+    }
 `
 
 const AppMain = styled.div`
-    margin-left: 250px;
     width: 100%;
+    transition: margin-left 0.25s;
+    margin-left: 0;
+    @media (min-width: 992px) {
+        margin-left: 200px;
+    }
 `
 
 const AppFooterContainer = styled.footer`
-    margin-left: 250px;
     flex: 0 0 50px;
+    transition: margin-left 0.25s;
+    margin-left: 0;
+    @media (min-width: 992px) {
+        margin-left: 200px;
+    }
 `
 
 // Component

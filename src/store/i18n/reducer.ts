@@ -3,7 +3,6 @@ import { Reducer } from "redux"
 import { IntlAction, SET_LOCALE } from "./action"
 import { AppLocaleList, appLocaleList } from "~/locale"
 import { Locale } from "~/locale/languages"
-import { getLocaleByName } from "~/locale/utils"
 import en_US from "~/locale/languages/en-US"
 
 type IntlActionType = typeof SET_LOCALE

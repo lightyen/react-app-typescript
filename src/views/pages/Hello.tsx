@@ -1,6 +1,6 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
-import { MyCounter } from "~/components/ReduxCounter"
+import MyCounter from "~/components/ReduxCounter"
 import Button from "~/components/Button"
 import TimeCounter from "~/components/TimeCounter"
 
@@ -22,11 +22,7 @@ type IProps = IOwnProps & RouteComponentProps & DispatchProps
 
 interface IOwnProps {}
 
-@(connect(
-    null,
-    mapDispatchToProps,
-) as any)
-export default class Hello extends React.Component<IProps> {
+class Hello extends React.Component<IProps> {
     public render() {
         const { history, getUser, setUser } = this.props
         return (
@@ -46,6 +42,11 @@ export default class Hello extends React.Component<IProps> {
         )
     }
 }
+
+export default (connect(
+    null,
+    mapDispatchToProps,
+) as any)(Hello)
 
 const GoBackButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
     return <Button onClick={onClick}>Go Back</Button>

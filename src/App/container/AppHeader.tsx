@@ -29,6 +29,7 @@ interface IOwnProps {}
 
 function AppHeader(props: IProps) {
     const { enable, list, locale, setLocale } = props
+    const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <div className="d-flex w-100">
             <span className="flex-grow-1" />
@@ -38,13 +39,13 @@ function AppHeader(props: IProps) {
                         {list[locale.locale]}
                     </button>
                     <div className="dropdown-menu">
-                        {Object.keys(list).map(key => (
+                        {keys.map(key => (
                             <button
                                 className="dropdown-item"
                                 key={key}
                                 onClick={(e: React.MouseEvent) => {
                                     e.stopPropagation()
-                                    setLocale(key as any)
+                                    setLocale(key)
                                 }}
                             >
                                 {list[key]}

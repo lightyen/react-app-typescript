@@ -38,7 +38,7 @@ export const getUser = (): IUserThunkAction => async dispatch => {
         const user = response.data
         dispatch({ type: GET_USER.SUCCESS, user })
     } catch (error) {
-        console.log(error)
+        console.error(error)
         dispatch({ type: GET_USER.FAILURE, error })
     }
 }

@@ -11,11 +11,7 @@ interface IOwnProps {}
 type PickProps = Partial<Pick<IUserStore, "currentUser">>
 const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): PickProps => ({ currentUser: state.user.currentUser })
 
-@(connect(
-    mapStateToProps,
-    null,
-) as any)
-export class MyCounter extends React.Component<IProps> {
+class MyCounter extends React.Component<IProps> {
     constructor(props: IProps) {
         super(props)
     }
@@ -24,3 +20,5 @@ export class MyCounter extends React.Component<IProps> {
         return <div>{currentUser.name}</div>
     }
 }
+
+export default connect(mapStateToProps)(MyCounter)

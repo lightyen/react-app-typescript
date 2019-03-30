@@ -1,30 +1,33 @@
 import React from "react"
-import { FormattedMessage, InjectedIntlProps } from "react-intl"
-import { Glossary, Locale, LocaleModule } from "../languages"
-
-export type InjectedIntlProps = InjectedIntlProps<Glossary>
-
 /**
  * http://www.lingoes.net/en/translator/langcode.htm
  */
+import { FormattedMessage, InjectedIntlProps } from "react-intl"
 import { AppLocale } from ".."
+import { Glossary, Module, Locale } from "../languages"
 
-export async function getLocaleByName(lang: AppLocale): Promise<LocaleModule> {
+export type InjectedIntlProps = InjectedIntlProps<Glossary>
+
+const en_US = () => import("~/locale/languages/en-US")
+const zh_TW = () => import("~/locale/languages/zh-TW")
+const zh_CN = () => import("~/locale/languages/zh-CN")
+
+export function getLocaleByName(lang: AppLocale): Promise<Module<Locale>> {
     const l = lang.toLocaleLowerCase().split(/-/)
     switch (l[0]) {
         case "en":
-            return await import("~/locale/languages/en-US")
+            return en_US()
         case "zh":
             switch (l[1]) {
                 case "tw":
-                    return await import("~/locale/languages/zh-TW")
+                    return zh_TW()
                 case "cn":
-                    return await import("~/locale/languages/zh-CN")
+                    return zh_CN()
                 default:
-                    return await import("~/locale/languages/zh-TW")
+                    return zh_TW()
             }
         default:
-            return await import("~/locale/languages/en-US")
+            return en_US()
     }
 }
 

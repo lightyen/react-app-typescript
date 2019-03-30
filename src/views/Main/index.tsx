@@ -22,7 +22,7 @@ const Main: React.FC<IProps> = props => {
     const { match } = props
     return (
         <div className="">
-            <p> == Hello React =></p>
+            <p>{`==> Hello React <!-- Fira Code ==>`}</p>
             <img src={image} width={64} />
             <Switch>
                 <Route path={url.resolve(match.url, "hello")} component={WaitingComponent(Hello)} />

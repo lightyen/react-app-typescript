@@ -5,8 +5,8 @@ import AppRouter from "./AppRouter"
 import { configureStore } from "~/store"
 import { Provider } from "~/components/i18n"
 
-import "./bootstrap"
-import "./scss/style.scss"
+import "bootstrap"
+import "./scss/App.scss"
 
 export default function App() {
     React.useEffect(() => {

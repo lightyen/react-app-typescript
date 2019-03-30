@@ -208,7 +208,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                         {
                             loader: "css-loader",
                             options: {
-                                modules: true,
+                                modules: false,
                                 camelCase: "only",
                                 localIdentName: "[local]-[hash:base64:6]",
                                 importLoaders: 2,
