@@ -6,4 +6,7 @@ export interface Glossary {
     text: string
 }
 
-export type Module<T> = { __esModule?: boolean; default?: T }
+export interface Module<T> {
+    __esModule?: boolean
+    default?: T
+}

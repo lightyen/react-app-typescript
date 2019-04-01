@@ -4,7 +4,7 @@ import { ActionCreatorsMapObject, Dispatch } from "redux"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { IAppStore } from "~/store"
-import { IntlThunkAction, setLocale, IntlStore } from "~/store/i18n"
+import { IntlThunkAction, IntlStore, setLocale } from "~/store/i18n"
 
 interface DispatchProps extends ActionCreatorsMapObject<IntlThunkAction> {
     setLocale: typeof setLocale
@@ -28,14 +28,14 @@ type IProps = IOwnProps & DispatchProps & PickProps
 interface IOwnProps {}
 
 function AppHeader(props: IProps) {
-    const { enable, list, locale, setLocale } = props
-    const keys = Object.keys(list) as (keyof typeof list)[]
+    const { enable, list, locale } = props
+    const keys = Object.keys(list) as Array<keyof typeof list>
     return (
-        <div className="d-flex w-100">
-            <span className="flex-grow-1" />
+        <div className="row align-items-center bg-dark h-100">
+            <span className="col flex-grow-1" />
             {enable ? (
-                <span className="dropdown flex-grow-0">
-                    <button className="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                <span className="col dropdown flex-grow-0">
+                    <button className="btn text-light dropdown-toggle" data-toggle="dropdown">
                         {list[locale.locale]}
                     </button>
                     <div className="dropdown-menu">
@@ -45,7 +45,7 @@ function AppHeader(props: IProps) {
                                 key={key}
                                 onClick={(e: React.MouseEvent) => {
                                     e.stopPropagation()
-                                    setLocale(key)
+                                    props.setLocale(key)
                                 }}
                             >
                                 {list[key]}

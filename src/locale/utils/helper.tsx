@@ -8,26 +8,26 @@ import { Glossary, Module, Locale } from "../languages"
 
 export type InjectedIntlProps = InjectedIntlProps<Glossary>
 
-const en_US = () => import("~/locale/languages/en-US")
-const zh_TW = () => import("~/locale/languages/zh-TW")
-const zh_CN = () => import("~/locale/languages/zh-CN")
+const enUS = () => import("~/locale/languages/en-US")
+const zhTW = () => import("~/locale/languages/zh-TW")
+const zhCN = () => import("~/locale/languages/zh-CN")
 
 export function getLocaleByName(lang: AppLocale): Promise<Module<Locale>> {
     const l = lang.toLocaleLowerCase().split(/-/)
     switch (l[0]) {
         case "en":
-            return en_US()
+            return enUS()
         case "zh":
             switch (l[1]) {
                 case "tw":
-                    return zh_TW()
+                    return zhTW()
                 case "cn":
-                    return zh_CN()
+                    return zhCN()
                 default:
-                    return zh_TW()
+                    return zhTW()
             }
         default:
-            return en_US()
+            return enUS()
     }
 }
 

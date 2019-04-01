@@ -4,8 +4,6 @@ import styled from "styled-components"
 
 const App = styled.div`
     font-family: My Code, monospace;
-    display: flex;
-    flex-direction: column;
     min-height: 100vh;
 `
 
@@ -61,14 +59,14 @@ export default function AppLayout() {
     const loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
     return (
-        <App>
-            <AppHeaderContainer className="navbar fixed-top navbar-light bg-light">
+        <App className="d-flex flex-column">
+            <AppHeaderContainer className="fixed-top container-fluid">
                 <React.Suspense fallback={loading()}>
                     <AppHeader />
                 </React.Suspense>
             </AppHeaderContainer>
             <AppBodyContainer>
-                <AppSidebarContainer className="bg-info text-light">
+                <AppSidebarContainer>
                     <AppSidebar />
                 </AppSidebarContainer>
                 <AppMain>

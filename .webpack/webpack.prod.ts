@@ -42,7 +42,6 @@ const config: Webpack.Configuration = {
     optimization: {
         minimize: true,
         splitChunks: {
-            chunks: "all",
             maxSize: 250000,
         },
     },
