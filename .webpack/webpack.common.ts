@@ -53,7 +53,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
             NODE_ENV: process.env.NODE_ENV,
         }),
         new MiniCssExtractPlugin({
-            filename: "[name].[contenthash].css",
+            filename: "css/[name].[contenthash].css",
         }),
         new Webpack.ProvidePlugin({
             $: "jquery",
@@ -93,9 +93,9 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
         entry,
         output: {
             path: options.dist,
-            filename: "[name].[hash:8].js",
+            filename: "js/[name].[hash:12].js",
+            chunkFilename: "js/[name].[hash:8].js",
             publicPath: "/",
-            chunkFilename: "[name].[hash:6].js",
         },
         target: "web",
         module: {

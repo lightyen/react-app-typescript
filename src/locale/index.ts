@@ -10,3 +10,5 @@ export const appLocaleList = {
     "zh-TW": "正體中文",
     "zh-CN": "简体中文",
 }
+
+export const defaultLocale: AppLocale = "en-US"

@@ -3,7 +3,7 @@ import moment from "moment"
 import axios from "axios"
 
 import { IAsyncAction } from "~/store/api"
-import { AppLocale } from "~/locale"
+import { AppLocale, appLocaleList } from "~/locale"
 import { IntlStore } from "./reducer"
 import { Locale } from "~/locale/languages"
 import { getLocaleByName } from "~/locale/utils"
@@ -27,12 +27,14 @@ export type IntlAction = IntlSetLocaleAction
 
 export type IntlThunkAction = ThunkAction<Promise<void>, IntlStore, null, IntlAction>
 
-export const setLocale = (localeName: AppLocale): IntlThunkAction => async dispatch => {
+export const setLocale = (localeName: string): IntlThunkAction => async dispatch => {
     dispatch({ type: SET_LOCALE.REQUEST })
     try {
-        const m = await getLocaleByName(localeName)
+        const found = appLocaleList.hasOwnProperty(localeName)
+        const locale: AppLocale = found ? (localeName as AppLocale) : "en-US"
+        const m = await getLocaleByName(locale)
         if (m) {
-            moment.locale(localeName)
+            moment.locale(locale)
             if (m.__esModule) {
                 dispatch({ type: SET_LOCALE.SUCCESS, locale: m.default })
             } else {

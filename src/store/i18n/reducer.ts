@@ -3,7 +3,6 @@ import { Reducer } from "redux"
 import { IntlAction, SET_LOCALE } from "./action"
 import { AppLocaleList, appLocaleList } from "~/locale"
 import { Locale } from "~/locale/languages"
-import en_US from "~/locale/languages/en-US"
 
 type IntlActionType = typeof SET_LOCALE
 
@@ -25,7 +24,7 @@ export type IntlStore = Readonly<IntlStoreType>
 
 const init: IntlStore = {
     enable: true,
-    locale: en_US,
+    locale: null,
     list: appLocaleList,
 }
 
@@ -33,11 +32,7 @@ export const intlReducer: Reducer<IntlStore, IntlAction> = (state = init, action
     switch (action.type) {
         // set locale
         case SET_LOCALE.SUCCESS:
-            if (!state.enable) {
-                return state
-            }
             return { ...state, status: SET_LOCALE, error: null, locale: action.locale }
-
         // default
         default:
             return state

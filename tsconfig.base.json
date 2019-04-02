@@ -7,14 +7,14 @@
     "noImplicitThis": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noStrictGenericChecks": true,
+    "noStrictGenericChecks": false,
     "strictNullChecks": false,
     "removeComments": true,
     "noUnusedParameters": false,
     "noUnusedLocals": false,
     "resolveJsonModule": true,
     "suppressImplicitAnyIndexErrors": true,
-    "allowJs": true,
+    "allowJs": false,
     "strict": true
   }
 }
