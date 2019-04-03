@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 
 import { ActionCreatorsMapObject, Dispatch } from "redux"
 import { bindActionCreators } from "redux"
@@ -27,11 +28,15 @@ type IProps = IOwnProps & DispatchProps & PickProps
 
 interface IOwnProps {}
 
+const Header = styled.header`
+    background: #1b1b1b;
+`
+
 function AppHeader(props: IProps) {
     const { enable, list, locale } = props
     const keys = Object.keys(list) as Array<keyof typeof list>
     return (
-        <div className="row align-items-center bg-dark h-100">
+        <Header className="row align-items-center h-100">
             <span className="col flex-grow-1" />
             {enable ? (
                 <span className="col dropdown flex-grow-0">
@@ -54,7 +59,7 @@ function AppHeader(props: IProps) {
                     </div>
                 </span>
             ) : null}
-        </div>
+        </Header>
     )
 }
 

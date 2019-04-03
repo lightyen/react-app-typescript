@@ -8,7 +8,7 @@ import { ActionCreatorsMapObject, Dispatch } from "redux"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { IUserThunkAction, getUser, setUser } from "~/store/user/action"
-import { IUser } from "~/store/user/model"
+import { IUser } from "~/store/model"
 
 interface DispatchProps extends ActionCreatorsMapObject<IUserThunkAction> {
     getUser: typeof getUser

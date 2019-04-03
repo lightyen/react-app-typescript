@@ -26,17 +26,9 @@ const createAppReducer = () =>
 export function configureStore() {
     const rootReducer = createAppReducer()
     const middlewares: Middleware[] = [thunkMiddleware]
-
     const storeEnhancers = applyMiddleware(...middlewares)
-
     const composeEnhancers = composeWithDevTools({
         // Specify name here, actionsBlacklist, actionsCreators and other options if needed
     })
-
-    const store = createStore(
-        rootReducer,
-        undefined,
-        isDevelopment() ? composeEnhancers(storeEnhancers) : storeEnhancers,
-    )
-    return store
+    return createStore(rootReducer, undefined, isDevelopment() ? composeEnhancers(storeEnhancers) : storeEnhancers)
 }

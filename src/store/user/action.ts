@@ -1,9 +1,9 @@
 import { ThunkAction } from "redux-thunk"
 import axios from "axios"
 
-import { IAsyncAction } from "~/store/api"
+import { IAsyncAction } from "~/store/utils"
+import { IUser } from "~/store/model"
 import { IUserStore } from "./reducer"
-import { IUser } from "./model"
 
 export enum GET_USER {
     REQUEST = "GET_USER_REQUEST",

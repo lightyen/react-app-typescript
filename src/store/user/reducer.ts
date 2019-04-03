@@ -1,7 +1,7 @@
 import { Reducer } from "redux"
 
+import { IUser } from "~/store/model"
 import { IUserAction, GET_USER, SET_USER } from "./action"
-import { IUser } from "./model"
 
 type UserActionType = GET_USER | typeof SET_USER
 

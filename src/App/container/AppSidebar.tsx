@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 const Nav = styled.ul`
     height: 100%;
-    background: #332f2f;
+    background: #424242;
     display: flex;
     flex-direction: column;
 `

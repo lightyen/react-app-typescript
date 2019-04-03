@@ -1,8 +1,7 @@
 import { ThunkAction } from "redux-thunk"
 import moment from "moment"
-import axios from "axios"
 
-import { IAsyncAction } from "~/store/api"
+import { IAsyncAction } from "~/store/utils"
 import { AppLocale, appLocaleList } from "~/locale"
 import { IntlStore } from "./reducer"
 import { Locale } from "~/locale/languages"
@@ -31,14 +30,14 @@ export const setLocale = (localeName: string): IntlThunkAction => async dispatch
     dispatch({ type: SET_LOCALE.REQUEST })
     try {
         const found = appLocaleList.hasOwnProperty(localeName)
-        const locale: AppLocale = found ? (localeName as AppLocale) : "en-US"
-        const m = await getLocaleByName(locale)
-        if (m) {
-            moment.locale(locale)
-            if (m.__esModule) {
-                dispatch({ type: SET_LOCALE.SUCCESS, locale: m.default })
+        const name: AppLocale = found ? (localeName as AppLocale) : "en-US"
+        const modu = await getLocaleByName(name)
+        if (modu) {
+            moment.locale(name)
+            if (modu.__esModule) {
+                dispatch({ type: SET_LOCALE.SUCCESS, locale: modu.default })
             } else {
-                dispatch({ type: SET_LOCALE.SUCCESS, locale: m as Locale })
+                dispatch({ type: SET_LOCALE.SUCCESS, locale: modu as Locale })
             }
         }
     } catch (error) {

@@ -32,7 +32,6 @@ const AppSidebarContainer = styled.div`
 `
 
 const AppMain = styled.div`
-    width: 100%;
     transition: margin-left 0.25s;
     margin-left: 0;
     @media (min-width: 992px) {
@@ -41,7 +40,6 @@ const AppMain = styled.div`
 `
 
 const AppFooterContainer = styled.footer`
-    flex: 0 0 50px;
     transition: margin-left 0.25s;
     margin-left: 0;
     @media (min-width: 992px) {
@@ -75,7 +73,7 @@ export default function AppLayout() {
                     </React.Suspense>
                 </AppMain>
             </AppBodyContainer>
-            <AppFooterContainer className="navbar navbar-dark bg-dark text-light">
+            <AppFooterContainer>
                 <React.Suspense fallback={loading()}>
                     <AppFooter />
                 </React.Suspense>

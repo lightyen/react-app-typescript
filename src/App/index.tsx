@@ -11,24 +11,21 @@ import "./scss/App.scss"
 import { setLocale } from "~/store/i18n"
 
 export default function App() {
-    const [ready, setReady] = React.useState(false)
+    const [store, setStore] = React.useState(null)
     React.useEffect(() => {
         document.title = "react-app-typescript"
-        // from Webpack EnvironmentPlugin
-        // console.log(process.env.NODE_ENV)
     })
-
-    const store = configureStore()
 
     React.useEffect(() => {
         ;(async () => {
+            const appStore = configureStore()
             const locale = navigator.languages[0]
-            await setLocale(locale)(store.dispatch, null, null)
-            setReady(true)
+            await setLocale(locale)(appStore.dispatch, null, null)
+            setStore(appStore)
         })()
-    })
+    }, [])
 
-    return ready ? (
+    return store ? (
         <Provider store={store}>
             <AppRouter />
         </Provider>
