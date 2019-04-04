@@ -1,6 +1,5 @@
 import React from "react"
 
-import { LocaleMessage } from "~/locale/utils"
 import styled from "styled-components"
 
 const Footer = styled.footer`
@@ -11,7 +10,7 @@ const Footer = styled.footer`
 export default function AppFooter() {
     return (
         <Footer className="container-fluid d-flex align-items-center text-light">
-            <LocaleMessage id="text" values={{}} />
+            <a href="https://github.com/lightyen/react-app-typescript">this repo</a>
         </Footer>
     )
 }

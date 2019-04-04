@@ -7,7 +7,7 @@ import { isDevelopment } from "~/utils"
 import { IUserStore, userReducer } from "./user/reducer"
 import { IntlStore, intlReducer } from "./i18n/reducer"
 import { IRouterStore, createRouterReducer } from "./router/reducer"
-import { CALL_HISTORY_METHOD } from "./router/action"
+import { CALL_HISTORY_METHOD, IRouterUpdateLocationAction } from "./router/action"
 
 export interface IAppStore {
     user: IUserStore
@@ -19,10 +19,7 @@ const routerMiddleware: (history: History) => Middleware<IAppStore, AnyAction> =
     if (action.type !== CALL_HISTORY_METHOD) {
         return next(action)
     }
-    const {
-        payload: { method, args },
-    } = action
-
+    const { method, args } = action
     history[method](...args)
 }
 

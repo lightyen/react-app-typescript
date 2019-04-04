@@ -9,6 +9,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { IUserThunkAction, getUser, setUser } from "~/store/user/action"
 import { IUser } from "~/store/model"
+import { IRouterAction, goBack } from "~/store/router/action"
 
 interface DispatchProps extends ActionCreatorsMapObject<IUserThunkAction> {
     getUser: typeof getUser

@@ -5,6 +5,8 @@ import image from "~assets/256x256.png"
 import Button from "~/components/Button"
 import styled, { keyframes } from "styled-components"
 
+import { LocaleMessage } from "~/locale/utils"
+
 // 組件懶加載：https://reactjs.org/docs/code-splitting.html
 import { Suspense } from "react"
 const Hello = React.lazy(() => import("../pages/Hello"))
@@ -38,6 +40,7 @@ const Main: React.FC<IProps> = props => {
                     <RotateImg src={image} width={180} />
                 </div>
             </div>
+            <LocaleMessage id="text" values={{}} />
             <p>{`==> Hello React <!-- Fira Code ==>`}</p>
             <Switch>
                 <Route path={path.join(match.url, "hello")} component={WaitingComponent(Hello)} />
