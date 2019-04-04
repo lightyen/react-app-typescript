@@ -11,4 +11,4 @@ type IActionSuccess<S, T> = {
     type: S
 } & T
 
-export type IAsyncAction<R, F, S, T = {}, E = any> = IActionRequest<R> | IActionFailure<F, E> | IActionSuccess<S, T>
+export type IAsyncAction<R, F, S, T = {}, E = Error> = IActionRequest<R> | IActionFailure<F, E> | IActionSuccess<S, T>

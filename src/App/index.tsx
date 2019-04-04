@@ -1,4 +1,5 @@
 import React from "react"
+import { createHashHistory } from "history"
 import AppRouter from "./AppRouter"
 
 // Redux
@@ -9,25 +10,30 @@ import "bootstrap"
 import "bootstrap/scss/bootstrap.scss"
 import "./scss/App.scss"
 import { setLocale } from "~/store/i18n"
+import ConnectedRouter from "~/components/router/ConnectedRouter"
 
-export default function App() {
-    const [store, setStore] = React.useState(null)
+export default () => {
+    const [appStore, setAppStore] = React.useState(null)
     React.useEffect(() => {
         document.title = "react-app-typescript"
     })
 
+    const history = createHashHistory()
+
     React.useEffect(() => {
         ;(async () => {
-            const appStore = configureStore()
+            const store = configureStore(history)
             const locale = navigator.languages[0]
-            await setLocale(locale)(appStore.dispatch, null, null)
-            setStore(appStore)
+            await setLocale(locale)(store.dispatch, null, null)
+            setAppStore(store)
         })()
     }, [])
 
-    return store ? (
-        <Provider store={store}>
-            <AppRouter />
+    return appStore ? (
+        <Provider store={appStore}>
+            <ConnectedRouter history={history}>
+                <AppRouter />
+            </ConnectedRouter>
         </Provider>
     ) : null
 }

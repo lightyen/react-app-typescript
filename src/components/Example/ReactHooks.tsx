@@ -11,7 +11,7 @@ interface IData {
     text: string
 }
 
-export const Counter: React.FunctionComponent<IProps> = props => {
+const Counter: React.FunctionComponent<IProps> = props => {
     const createData = (): IData => {
         // console.log("create Data")
         return { count: 3, text: "" }
@@ -20,6 +20,12 @@ export const Counter: React.FunctionComponent<IProps> = props => {
     // createData is only called once
     const [data, setData] = React.useState<IData>(createData)
 
+    // 類似 componentDidUpdate
+    React.useEffect(() => {
+        // do something
+    })
+
+    // 類似 componentDidMount, componentWillUnmount
     React.useEffect(() => {
         // subscribe something
         return () => {
@@ -27,12 +33,21 @@ export const Counter: React.FunctionComponent<IProps> = props => {
         }
     }, [])
 
+    // 只針對 data.count 的狀態做反應
     React.useEffect(() => {
-        // console.log("data.count next = " + data.count)
+        console.log("next data.count = " + data.count)
         return () => {
-            // console.log("data.count prev = " + data.count)
+            console.log("prev data.count = " + data.count)
         }
     }, [data.count])
+
+    // 非同步的 effect
+    React.useEffect(() => {
+        const f = async () => {
+            // await ...
+        }
+        f()
+    }, [])
 
     const handleClick = () => {
         setData(prev => ({ ...prev, count: prev.count + 1 }))
@@ -45,6 +60,8 @@ export const Counter: React.FunctionComponent<IProps> = props => {
         </div>
     )
 }
+
+export default Counter
 
 interface IChildComponentProps {
     onClick: (e: React.MouseEvent) => void

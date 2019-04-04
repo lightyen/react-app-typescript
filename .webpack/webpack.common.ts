@@ -14,7 +14,6 @@ import { name as AppName } from "../package.json"
 
 const entry: Webpack.Entry = {
     index: "./src/index.tsx",
-    404: "./src/404.tsx",
 }
 
 /** 一些自定義的設定 */

@@ -15,9 +15,9 @@ interface IntlStoreType {
     list: AppLocaleList
 
     /** 請求狀態 */
-    status?: IntlActionType
+    status?: SET_LOCALE
     /** 錯誤訊息 */
-    error?: any
+    error?: Error
 }
 
 export type IntlStore = Readonly<IntlStoreType>
@@ -30,10 +30,12 @@ const init: IntlStore = {
 
 export const intlReducer: Reducer<IntlStore, IntlAction> = (state = init, action): IntlStore => {
     switch (action.type) {
-        // set locale
+        case SET_LOCALE.REQUEST:
+            return { ...state, status: SET_LOCALE.REQUEST }
         case SET_LOCALE.SUCCESS:
-            return { ...state, status: SET_LOCALE, error: null, locale: action.locale }
-        // default
+            return { ...state, status: SET_LOCALE.SUCCESS, locale: action.locale, error: null }
+        case SET_LOCALE.FAILURE:
+            return { ...state, status: SET_LOCALE.FAILURE, error: action.error }
         default:
             return state
     }

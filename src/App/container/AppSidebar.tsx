@@ -4,12 +4,17 @@ import styled from "styled-components"
 
 const Nav = styled.ul`
     height: 100%;
-    background: #424242;
+    background: #101216;
     display: flex;
     flex-direction: column;
 `
 
-const NavItem = styled.li``
+const NavItem = styled.li`
+    a:hover {
+        color: #fff;
+        background: #61dafb;
+    }
+`
 
 export default function AppSidebar() {
     return (

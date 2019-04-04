@@ -1,15 +1,17 @@
 import React from "react"
-import { BrowserRouter, HashRouter, Route } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import AppLayout from "./container/AppLayout"
 
 import { hot } from "react-hot-loader/root"
+import NotFound from "~/views/pages/NotFound"
 
-export default hot(AppRouter)
-
-function AppRouter() {
+const AppRouter: React.FC = props => {
     return (
-        <HashRouter>
+        <Switch>
+            <Route path="/404" component={NotFound} exact name={"Name"} />
             <Route path="/" component={AppLayout} />
-        </HashRouter>
+        </Switch>
     )
 }
+
+export default hot(AppRouter)

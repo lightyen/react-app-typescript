@@ -1,6 +1,6 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
-import MyCounter from "~/components/ReduxCounter"
+import MyCounter from "~/components/Example/ReduxCounter"
 import Button from "~/components/Button"
 import TimeCounter from "~/components/TimeCounter"
 
@@ -37,7 +37,7 @@ class Hello extends React.Component<IProps> {
                         setUser(user)
                     }}
                 />
-                <GoBackButton onClick={() => history.push("/")} />
+                <GoBackButton onClick={() => history.goBack()} />
             </div>
         )
     }

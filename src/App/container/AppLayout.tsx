@@ -5,6 +5,8 @@ import styled from "styled-components"
 const App = styled.div`
     font-family: My Code, monospace;
     min-height: 100vh;
+    color: #f9f9f9;
+    background: #282c34;
 `
 
 const AppHeaderContainer = styled.div`
@@ -32,6 +34,7 @@ const AppSidebarContainer = styled.div`
 `
 
 const AppMain = styled.div`
+    width: 100%;
     transition: margin-left 0.25s;
     margin-left: 0;
     @media (min-width: 992px) {

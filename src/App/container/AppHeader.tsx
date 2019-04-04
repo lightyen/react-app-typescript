@@ -29,7 +29,7 @@ type IProps = IOwnProps & DispatchProps & PickProps
 interface IOwnProps {}
 
 const Header = styled.header`
-    background: #1b1b1b;
+    background: #20232a;
 `
 
 function AppHeader(props: IProps) {

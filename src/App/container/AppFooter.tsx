@@ -4,7 +4,7 @@ import { LocaleMessage } from "~/locale/utils"
 import styled from "styled-components"
 
 const Footer = styled.footer`
-    background: #6d6d6d;
+    background: #20232a;
     height: 50px;
 `
 
