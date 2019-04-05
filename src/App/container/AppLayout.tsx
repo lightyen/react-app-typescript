@@ -10,14 +10,14 @@ const App = styled.div`
 `
 
 const AppHeaderContainer = styled.div`
-    height: 50px;
+    height: 70px;
 `
 
 const AppBodyContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-grow: 1;
-    margin-top: 50px;
+    margin-top: 70px;
 `
 
 const AppSidebarContainer = styled.div`
@@ -25,7 +25,7 @@ const AppSidebarContainer = styled.div`
     max-width: 200px;
     width: 100%;
     z-index: 100;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 70px);
     transition: margin-left 0.25s;
     margin-left: -200px;
     @media (min-width: 992px) {

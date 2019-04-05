@@ -8,9 +8,9 @@ import { Glossary } from "~/locale/languages"
 
 interface IOwnProps {}
 
-type PickProps = IntlProvider.Props<Glossary>
+type StateProps = IntlProvider.Props<Glossary>
 
-const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): PickProps => {
+const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): StateProps => {
     const { locale } = state.intl
     addLocaleData(locale)
     return {

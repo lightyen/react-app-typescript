@@ -9,7 +9,7 @@ import { LocaleMessage } from "~/locale/utils"
 
 // 組件懶加載：https://reactjs.org/docs/code-splitting.html
 import { Suspense } from "react"
-const Hello = React.lazy(() => import("../pages/Hello"))
+const Hello = React.lazy(() => import("~/views/Hello"))
 
 function WaitingComponent<P = any>(Component: React.FunctionComponent<P>) {
     return (props: P) => (
@@ -37,13 +37,13 @@ const Main: React.FC<IProps> = props => {
         <div className="container">
             <div className="row justify-content-around">
                 <div className="col-4 row justify-content-center p-2">
-                    <RotateImg src={image} width={180} />
+                    <RotateImg src={image} width={180} height={180} />
                 </div>
             </div>
             <LocaleMessage id="text" values={{}} />
             <p>{`==> Hello React <!-- Fira Code ==>`}</p>
             <Switch>
-                <Route path={path.join(match.url, "hello")} component={WaitingComponent(Hello)} />
+                <Route path={path.join(match.url, "hello")} name="Hello" component={WaitingComponent(Hello)} />
                 <Route
                     render={p => (
                         <Link to={path.resolve(match.url, "hello")}>
