@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { getRouteName } from "~/utils/routeName"
 
 const Nav = styled.ul`
     height: 100%;
@@ -26,7 +27,7 @@ export default function AppSidebar() {
             </NavItem>
             <NavItem className="nav-item text-light">
                 <Link className="nav-link" to="/hello">
-                    Hello
+                    {getRouteName("/hello")}
                 </Link>
             </NavItem>
         </Nav>

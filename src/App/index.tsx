@@ -23,7 +23,7 @@ export default () => {
     React.useEffect(() => {
         ;(async () => {
             const store = configureStore(history)
-            const locale = navigator.languages[0]
+            const locale = "en-US" || navigator.languages[0]
             await setLocale(locale)(store.dispatch, null, null)
             setAppStore(store)
         })()

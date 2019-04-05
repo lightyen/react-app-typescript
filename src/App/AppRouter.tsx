@@ -8,7 +8,7 @@ import NotFound from "~/views/pages/NotFound"
 const AppRouter: React.FC = props => {
     return (
         <Switch>
-            <Route path="/404" component={NotFound} exact name={"Name"} />
+            <Route path="/404" component={NotFound} exact />
             <Route path="/" component={AppLayout} />
         </Switch>
     )
