@@ -5,6 +5,7 @@ const locale: Locale = {
     pluralRuleFunction: () => "",
     fields: {
         text: "React，太神啦！",
+        hello: "哈囉",
     },
 }
 

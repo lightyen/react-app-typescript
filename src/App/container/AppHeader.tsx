@@ -74,7 +74,7 @@ export default connect(
 
 import { RouteComponentProps } from "react-router"
 import { Route, Link } from "react-router-dom"
-import { getRouteName } from "~/routeName"
+import { getRouteName } from "~/utils/routeName"
 
 interface BreadcrumbsProps {
     className?: string
@@ -90,7 +90,6 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ className }) => (
 )
 
 const BreadcrumbsItem = ({ match }: RouteComponentProps) => {
-    console.log(match)
     return (
         <>
             <li className={classnames("breadcrumb-item", { active: match.isExact })}>
