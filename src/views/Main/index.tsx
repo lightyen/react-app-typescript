@@ -1,5 +1,6 @@
 import React from "react"
 import { Switch, Route, RouteComponentProps, Link } from "react-router-dom"
+import path from "path"
 
 import image from "~/assets/images/256x256.png"
 import Button from "~/components/Button"
@@ -31,8 +32,7 @@ const RotateImg = styled.img`
 
 interface IProps extends RouteComponentProps {}
 
-const Main: React.FC<IProps> = props => {
-    const { match } = props
+const Main: React.FC<IProps> = ({ match }) => {
     return (
         <div className="container">
             <div className="row justify-content-around">
@@ -43,10 +43,10 @@ const Main: React.FC<IProps> = props => {
             <LocaleMessage id="text" values={{}} />
             <p>{`==> Hello React <!-- Fira Code ==>`}</p>
             <Switch>
-                <Route path={`${match.url}/hello`} component={WaitingComponent(Hello)} />
+                <Route path={path.join(match.url, "hello")} component={WaitingComponent(Hello)} />
                 <Route
-                    render={p => (
-                        <Link to={`${match.url}/hello`}>
+                    render={props => (
+                        <Link to={path.join(match.url, "hello")}>
                             <Button>Go to /hello</Button>
                         </Link>
                     )}
