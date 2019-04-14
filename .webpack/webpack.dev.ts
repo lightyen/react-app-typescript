@@ -26,15 +26,17 @@ export default webpackMerge(createBaseConfig(), {
     devServer: {
         hot: true,
         compress: true,
-        host: "localhost",
+        host: "0.0.0.0",
         port: 3000,
+        public: "http://localhost:3000",
         clientLogLevel: "error",
         stats: "errors-only",
-        historyApiFallback: true,
+        historyApiFallback: false,
         open: true,
         // proxy: {
         //     "/apis": {
         //         target: "http://xxx.com:9527/",
+        //         secure: false,
         //         changeOrigin: true,
         //     },
         // },

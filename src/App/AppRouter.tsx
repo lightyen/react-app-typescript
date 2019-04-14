@@ -1,15 +1,27 @@
 import React from "react"
-import { Route, Switch } from "react-router-dom"
+import { RouteProps, Redirect, Route, Switch } from "react-router-dom"
 import AppLayout from "./container/AppLayout"
 
 import { hot } from "react-hot-loader/root"
 import NotFound from "~/views/pages/NotFound"
 
-const AppRouter: React.FC = props => {
+const isAuthenticated = (): boolean => {
+    return true
+}
+
+const AuthenticatedRoute: React.FC<RouteProps> = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (isAuthenticated() ? <Component {...props} /> : <Redirect to="/login" />)} />
+)
+
+const NoAuthenticatedRoute: React.FC<RouteProps> = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (!isAuthenticated() ? <Component {...props} /> : <Redirect to="/" />)} />
+)
+
+const AppRouter: React.FC = () => {
     return (
         <Switch>
             <Route path="/404" component={NotFound} exact />
-            <Route path="/" component={AppLayout} />
+            <AuthenticatedRoute path="/" component={AppLayout} />
         </Switch>
     )
 }

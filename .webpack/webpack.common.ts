@@ -47,7 +47,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
     }
 
     const plugins: Webpack.Plugin[] = [
-        new WebpackBarPlugin({ color: "#41f4d0", name: "React" }),
+        new WebpackBarPlugin({ color: "blue", name: "React" }),
         new Webpack.EnvironmentPlugin({
             NODE_ENV: process.env.NODE_ENV,
         }),

@@ -1,7 +1,7 @@
 import React from "react"
 import { Switch, Route, RouteComponentProps, Link } from "react-router-dom"
-import path from "path"
-import image from "~assets/256x256.png"
+
+import image from "~/assets/images/256x256.png"
 import Button from "~/components/Button"
 import styled, { keyframes } from "styled-components"
 
@@ -43,10 +43,10 @@ const Main: React.FC<IProps> = props => {
             <LocaleMessage id="text" values={{}} />
             <p>{`==> Hello React <!-- Fira Code ==>`}</p>
             <Switch>
-                <Route path={path.join(match.url, "hello")} name="Hello" component={WaitingComponent(Hello)} />
+                <Route path={`${match.url}/hello`} component={WaitingComponent(Hello)} />
                 <Route
                     render={p => (
-                        <Link to={path.resolve(match.url, "hello")}>
+                        <Link to={`${match.url}/hello`}>
                             <Button>Go to /hello</Button>
                         </Link>
                     )}

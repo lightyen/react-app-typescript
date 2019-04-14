@@ -2,19 +2,21 @@ import React from "react"
 import styled from "styled-components"
 import classnames from "classnames"
 
-import { ActionCreatorsMapObject, Dispatch } from "redux"
+import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { IAppStore } from "~/store"
-import { IntlThunkAction, IntlStore, setLocale } from "~/store/i18n"
+import { IntlStore, setLocale } from "~/store/i18n"
 
 interface IOwnProps {}
 
-interface DispatchProps extends ActionCreatorsMapObject<IntlThunkAction> {
-    setLocale: typeof setLocale
+const dispatchProps = {
+    setLocale,
 }
-const mapDispatchToProps = (dispatch: Dispatch) =>
-    bindActionCreators<IntlThunkAction, DispatchProps>({ setLocale }, dispatch)
+
+type DispatchProps = typeof dispatchProps
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(dispatchProps, dispatch)
 
 type StateProps = Partial<Pick<IntlStore, "enable" | "list" | "locale">>
 const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): StateProps => {
@@ -72,8 +74,7 @@ export default connect(
     mapDispatchToProps,
 )(AppHeader)
 
-import { RouteComponentProps } from "react-router"
-import { Route, Link } from "react-router-dom"
+import { Route, Link, RouteComponentProps } from "react-router-dom"
 import { getRouteName } from "~/utils/routeName"
 
 interface BreadcrumbsProps {

@@ -1,26 +1,17 @@
 import { combineReducers, applyMiddleware, createStore, Middleware, AnyAction } from "redux"
 import thunkMiddleware from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
-import { History, Action } from "history"
+import { History } from "history"
 
 import { isDevelopment } from "~/utils"
 import { IUserStore, userReducer } from "./user/reducer"
 import { IntlStore, intlReducer } from "./i18n/reducer"
-import { IRouterStore, createRouterReducer } from "./router/reducer"
-import { CALL_HISTORY_METHOD, IRouterUpdateLocationAction } from "./router/action"
+import { RouterState, routerMiddleware, connectRouter } from "connected-react-router"
 
 export interface IAppStore {
+    router: RouterState
     user: IUserStore
     intl: IntlStore
-    router: IRouterStore
-}
-
-const routerMiddleware: (history: History) => Middleware<IAppStore, AnyAction> = history => store => next => action => {
-    if (action.type !== CALL_HISTORY_METHOD) {
-        return next(action)
-    }
-    const { method, args } = action
-    history[method](...args)
 }
 
 const myMiddleware: Middleware<{}, IAppStore> = ({ dispatch, getState }) => next => action => {
@@ -33,7 +24,7 @@ const createAppReducer = (history: History) =>
     combineReducers<IAppStore>({
         user: userReducer,
         intl: intlReducer,
-        router: createRouterReducer(history),
+        router: connectRouter(history),
     })
 
 export function configureStore(history: History) {

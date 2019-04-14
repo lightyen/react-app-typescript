@@ -8,7 +8,7 @@
         "alwaysShowRuleFailuresAsWarnings": false // tslint 警告總是顯示 error
       }
     ],
-    "jsx": "preserve", // 保留 jsx 語法交給 babel 編譯
+    "jsx": "preserve",
     "module": "esnext",
     "moduleResolution": "node",
     "target": "esnext",

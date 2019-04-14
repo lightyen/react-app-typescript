@@ -4,20 +4,20 @@ import MyCounter from "~/components/Example/ReduxCounter"
 import Button from "~/components/Button"
 import TimeCounter from "~/components/TimeCounter"
 
-import { ActionCreatorsMapObject, Dispatch } from "redux"
+import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
-import { IUserThunkAction, getUser, setUser } from "~/store/user/action"
+import { getUser, setUser } from "~/store/user/action"
 import { IUser } from "~/store/model"
-import { IRouterAction, goBack } from "~/store/router/action"
 
-interface DispatchProps extends ActionCreatorsMapObject<IUserThunkAction> {
-    getUser: typeof getUser
-    setUser: typeof setUser
+const dispatchProps = {
+    getUser,
+    setUser,
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) =>
-    bindActionCreators<IUserThunkAction, DispatchProps>({ getUser, setUser }, dispatch)
+type DispatchProps = typeof dispatchProps
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ getUser, setUser }, dispatch)
 
 type IProps = IOwnProps & RouteComponentProps & DispatchProps
 

@@ -2,6 +2,8 @@ import React from "react"
 import { Route } from "react-router-dom"
 import styled from "styled-components"
 
+import { loading } from "~/components/Loading"
+
 const App = styled.div`
     font-family: My Code, monospace;
     min-height: 100vh;
@@ -57,8 +59,6 @@ const AppFooter = React.lazy(() => import("./AppFooter"))
 const Main = React.lazy(() => import("~/views/Main"))
 
 export default function AppLayout() {
-    const loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
-
     return (
         <App className="d-flex flex-column">
             <AppHeaderContainer className="fixed-top container-fluid">
