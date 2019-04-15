@@ -12,7 +12,7 @@ const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): StateProps => (
 type IProps = IOwnProps & StateProps
 
 class MyCounter extends React.Component<IProps> {
-    constructor(props: IProps) {
+    public constructor(props: IProps) {
         super(props)
     }
     public render() {

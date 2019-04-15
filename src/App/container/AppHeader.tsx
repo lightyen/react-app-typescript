@@ -36,7 +36,7 @@ const Header = styled.header`
 
 function AppHeader(props: IProps) {
     const { enable, list, locale } = props
-    const keys = Object.keys(list) as Array<keyof typeof list>
+    const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <Header className="row align-items-center h-100">
             <div className="col flex-grow-1">
@@ -81,15 +81,6 @@ interface BreadcrumbsProps {
     className?: string
 }
 
-const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ className }) => (
-    <ol className={classnames("breadcrumb", className)}>
-        <li className={"breadcrumb-item"}>
-            <Link to="/">{getRouteName("/")}</Link>
-        </li>
-        <Route path="/:path" component={BreadcrumbsItem} />
-    </ol>
-)
-
 const BreadcrumbsItem = ({ match }: RouteComponentProps) => {
     return (
         <>
@@ -104,3 +95,12 @@ const BreadcrumbsItem = ({ match }: RouteComponentProps) => {
         </>
     )
 }
+
+const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ className }) => (
+    <ol className={classnames("breadcrumb", className)}>
+        <li className={"breadcrumb-item"}>
+            <Link to="/">{getRouteName("/")}</Link>
+        </li>
+        <Route path="/:path" component={BreadcrumbsItem} />
+    </ol>
+)

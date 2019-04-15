@@ -8,7 +8,7 @@ interface IState {
 }
 
 export class ReactCounter extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
+    public constructor(props: IProps) {
         super(props)
         this.state = { count: 1 }
     }

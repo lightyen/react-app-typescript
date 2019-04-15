@@ -199,7 +199,7 @@ declare namespace ReactIntl {
     }
 
     class IntlProvider<T> extends React.Component<IntlProvider.Props<T>> {
-        getChildContext(): {
+        public getChildContext(): {
             intl: InjectedIntl<T>
         }
     }
