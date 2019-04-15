@@ -12,7 +12,7 @@ import { LocaleMessage } from "~/locale/utils"
 import { Suspense } from "react"
 const Hello = React.lazy(() => import("~/views/Hello"))
 
-function WaitingComponent<P = any>(Component: React.FunctionComponent<P>) {
+function WaitingComponent<P>(Component: React.FunctionComponent<P>) {
     return (props: P) => (
         <Suspense fallback={<div>Loading...</div>}>
             <Component {...props} />
@@ -30,7 +30,7 @@ const RotateImg = styled.img`
     animation-timing-function: linear;
 `
 
-interface IProps extends RouteComponentProps {}
+type IProps = RouteComponentProps
 
 const Main: React.FC<IProps> = ({ match }) => {
     return (

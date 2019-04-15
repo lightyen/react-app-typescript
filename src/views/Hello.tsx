@@ -19,13 +19,12 @@ type DispatchProps = typeof dispatchProps
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ getUser, setUser }, dispatch)
 
-type IProps = IOwnProps & RouteComponentProps & DispatchProps
-
-interface IOwnProps {}
+type IProps = RouteComponentProps & DispatchProps
 
 class Hello extends React.Component<IProps> {
     public render() {
         const { history, getUser, setUser } = this.props
+
         return (
             <div>
                 <Button onClick={() => getUser()}>Add</Button>
@@ -44,10 +43,10 @@ class Hello extends React.Component<IProps> {
     }
 }
 
-export default (connect(
+export default connect(
     null,
     mapDispatchToProps,
-) as any)(Hello)
+)(Hello)
 
 const GoBackButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
     return <Button onClick={onClick}>Go Back</Button>

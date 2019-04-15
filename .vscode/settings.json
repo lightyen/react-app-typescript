@@ -3,7 +3,8 @@
   "formatFiles.excludePattern": "node_modules,dist,src/assets,.webpack/*.js,.gitignore,.editorconfig,yarn.lock",
   "files.associations": {
     "*.ejs": "html",
-    ".prettierrc": "json"
+    ".prettierrc": "json",
+    ".eslintrc": "json"
   },
   "search.exclude": {
     "**/dist": true,
@@ -13,7 +14,10 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "npm.autoDetect": "off",
   "typescript.tsc.autoDetect": "off",
-  "favorites.resources": [
-    "src"
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
   ]
 }
