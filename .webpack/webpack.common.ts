@@ -181,7 +181,8 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                         {
                             loader: "css-loader",
                             options: {
-                                modules: true,
+                                // NOTE: bootstrap 4
+                                modules: false,
                                 camelCase: "only",
                                 localIdentName: "[local]-[hash:base64:6]",
                                 importLoaders: 2,
@@ -207,6 +208,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                         {
                             loader: "css-loader",
                             options: {
+                                // NOTE: bootstrap 4
                                 modules: false,
                                 camelCase: "only",
                                 localIdentName: "[local]-[hash:base64:6]",
