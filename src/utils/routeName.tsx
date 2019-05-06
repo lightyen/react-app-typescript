@@ -1,6 +1,6 @@
 import React from "react"
 import path from "path"
-import { LocaleMessage } from "~/locale/utils"
+import LocaleMessage from "~/components/LocaleMessage"
 
 interface Names {
     [key: string]: React.ReactNode

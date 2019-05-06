@@ -1,8 +1,8 @@
 import { Reducer } from "redux"
 
 import { IntlAction, SET_LOCALE } from "./action"
-import { AppLocaleList, appLocaleList } from "~/locale"
-import { Locale } from "~/locale/languages"
+import { appLocaleList } from "~/utils/i18n"
+import { CustomLocale, AppLocaleList } from "~/typings/i18n"
 
 type IntlActionType = typeof SET_LOCALE
 
@@ -10,7 +10,7 @@ interface IntlStoreType {
     /** 啟用多國語言 */
     enable: boolean
     /** 當前在地化語言 */
-    locale: Locale
+    locale: CustomLocale
     /** 可提供的語言列表 */
     list: AppLocaleList
 

@@ -2,10 +2,9 @@ import { ThunkAction } from "redux-thunk"
 import moment from "moment"
 
 import { IAsyncAction } from "~/store/utils"
-import { AppLocale, appLocaleList } from "~/locale"
 import { IntlStore } from "./reducer"
-import { Locale } from "~/locale/languages"
-import { getLocaleByName } from "~/locale/utils"
+import { AppLocale, CustomLocale } from "~/typings/i18n"
+import { getLocaleByName, appLocaleList } from "~/utils/i18n"
 
 export enum SET_LOCALE {
     REQUEST = "SET_LOCALE_REQUEST",
@@ -18,7 +17,7 @@ type IntlSetLocaleAction = IAsyncAction<
     SET_LOCALE.FAILURE,
     SET_LOCALE.SUCCESS,
     {
-        locale: Locale
+        locale: CustomLocale
     }
 >
 
@@ -37,7 +36,7 @@ export const setLocale = (localeName: string): IntlThunkAction => async dispatch
             if (modu.__esModule) {
                 dispatch({ type: SET_LOCALE.SUCCESS, locale: modu.default })
             } else {
-                dispatch({ type: SET_LOCALE.SUCCESS, locale: modu as Locale })
+                dispatch({ type: SET_LOCALE.SUCCESS, locale: modu as CustomLocale })
             }
         }
     } catch (error) {

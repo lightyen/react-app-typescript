@@ -3,8 +3,7 @@ import { IntlProvider, addLocaleData } from "react-intl"
 import { connect } from "react-redux"
 
 import { IAppStore } from "~/store"
-import { defaultLocale } from "~/locale"
-import { Glossary } from "~/locale/languages"
+import { Glossary } from "~/typings/i18n"
 
 interface IOwnProps {}
 
@@ -15,7 +14,7 @@ const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): StateProps => {
     addLocaleData(locale)
     return {
         key: locale.locale,
-        locale: locale ? locale.locale : defaultLocale,
+        locale: locale ? locale.locale : "en-US",
         messages: locale ? locale.fields : null,
     }
 }

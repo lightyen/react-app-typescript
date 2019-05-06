@@ -1,6 +1,6 @@
-import { Locale } from "."
+import { CustomLocale } from "~/typings/i18n"
 
-const locale: Locale = {
+const locale: CustomLocale = {
     locale: "en-US",
     pluralRuleFunction: () => "",
     fields: {

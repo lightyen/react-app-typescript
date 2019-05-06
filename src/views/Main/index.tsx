@@ -1,12 +1,11 @@
 import React from "react"
 import { Switch, Route, RouteComponentProps, Link } from "react-router-dom"
 import path from "path"
+import LocaleMessage from "~/components/LocaleMessage"
 
 import image from "~/assets/images/256x256.png"
 import Button from "~/components/Button"
 import styled, { keyframes } from "styled-components"
-
-import { LocaleMessage } from "~/locale/utils"
 
 // 組件懶加載：https://reactjs.org/docs/code-splitting.html
 import { Suspense } from "react"
