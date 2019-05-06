@@ -186,6 +186,7 @@ declare namespace ReactIntl {
 
     namespace IntlProvider {
         interface Props<T> {
+            key?: string
             locale?: string
             timeZone?: string
             formats?: any

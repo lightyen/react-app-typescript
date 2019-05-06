@@ -14,6 +14,7 @@ const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): StateProps => {
     const { locale } = state.intl
     addLocaleData(locale)
     return {
+        key: locale.locale,
         locale: locale ? locale.locale : defaultLocale,
         messages: locale ? locale.fields : null,
     }
