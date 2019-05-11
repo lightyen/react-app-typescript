@@ -11,7 +11,8 @@ const Nav = styled.ul`
 `
 
 const NavItem = styled.li`
-    a:hover {
+    transition: background 0.2s, color 0.2s;
+    &:hover {
         color: #fff;
         background: #61dafb;
     }
