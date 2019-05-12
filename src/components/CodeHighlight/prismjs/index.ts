@@ -5,10 +5,6 @@ import "./themes/vscode-like.css"
 import "prismjs/plugins/line-numbers/prism-line-numbers.css"
 import "prismjs/plugins/toolbar/prism-toolbar.css"
 
-// prismjs
-import Prism from "prismjs"
-window["Prism"] = Prism
-
 // grammars
 import "prismjs/components/prism-go"
 import "prismjs/components/prism-javascript"

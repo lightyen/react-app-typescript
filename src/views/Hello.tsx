@@ -28,7 +28,7 @@ const input = `const CodeHighlight: React.FC<OwnProps> = ({ code, language }) =>
         Prism.highlightElement(ref.current, false, () => {
             console.log("change")
         })
-    }, [code, language])
+    })
 
     return (
         <pre data-language={tags[language]} className={classnames(\`language-\${language}\`, "line-numbers")}>
