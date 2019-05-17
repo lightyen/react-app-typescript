@@ -12,7 +12,8 @@
       "args": ["run", "start"],
       "problemMatcher": [],
       "presentation": {
-        "clear": true
+        "clear": true,
+        "revealProblems": "onProblem"
       }
     },
     {
@@ -23,7 +24,8 @@
       "args": ["build"],
       "problemMatcher": [],
       "presentation": {
-        "clear": true
+        "clear": true,
+        "revealProblems": "onProblem"
       }
     },
     {
