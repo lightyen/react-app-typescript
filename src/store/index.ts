@@ -2,11 +2,13 @@ import { combineReducers, applyMiddleware, createStore, Middleware, AnyAction } 
 import thunkMiddleware from "redux-thunk"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { History } from "history"
+import createSagaMiddleware from "redux-saga"
 
 import { isDevelopment } from "~/utils"
 import { IUserStore, userReducer } from "./user/reducer"
 import { IntlStore, intlReducer } from "./i18n/reducer"
 import { RouterState, routerMiddleware, connectRouter } from "connected-react-router"
+import rootSaga from "~/store/saga"
 
 export interface IAppStore {
     router: RouterState
@@ -29,10 +31,17 @@ const createAppReducer = (history: History) =>
 
 export function configureStore(history: History) {
     const rootReducer = createAppReducer(history)
-    const middlewares: Middleware[] = [routerMiddleware(history), thunkMiddleware]
+    const sagaMiddleware = createSagaMiddleware()
+    const middlewares: Middleware[] = [routerMiddleware(history), sagaMiddleware]
     const storeEnhancers = applyMiddleware(...middlewares)
     const composeEnhancers = composeWithDevTools({
         // Specify name here, actionsBlacklist, actionsCreators and other options if needed
     })
-    return createStore(rootReducer, undefined, isDevelopment() ? composeEnhancers(storeEnhancers) : storeEnhancers)
+    const store = createStore(
+        rootReducer,
+        undefined,
+        isDevelopment() ? composeEnhancers(storeEnhancers) : storeEnhancers,
+    )
+    sagaMiddleware.run(rootSaga)
+    return store
 }

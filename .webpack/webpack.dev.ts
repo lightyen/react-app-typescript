@@ -33,12 +33,12 @@ export default webpackMerge(createBaseConfig(), {
         stats: "errors-only",
         historyApiFallback: false,
         open: true,
-        // proxy: {
-        //     "/apis": {
-        //         target: "http://xxx.com:9527/",
-        //         secure: false,
-        //         changeOrigin: true,
-        //     },
-        // },
+        proxy: {
+            "/apis": {
+                target: "http://localhost:8888/",
+                secure: false,
+                changeOrigin: true,
+            },
+        },
     },
 })

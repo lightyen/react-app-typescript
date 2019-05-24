@@ -11,14 +11,17 @@ import { connect } from "react-redux"
 import { getUser, setUser } from "~/store/user/action"
 import { IUser } from "~/store/model"
 
+import { getHello } from "~/store/hello/action"
+
 const dispatchProps = {
-    getUser,
-    setUser,
+    getHello,
 }
 
 type DispatchProps = typeof dispatchProps
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ getUser, setUser }, dispatch)
+interface OwnProps {}
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(dispatchProps, dispatch)
 
 type IProps = RouteComponentProps & DispatchProps
 
@@ -40,11 +43,10 @@ const input = `const CodeHighlight: React.FC<OwnProps> = ({ code, language }) =>
 
 class Hello extends React.Component<IProps> {
     public render() {
-        const { history, getUser, setUser } = this.props
-
+        const { history, getHello } = this.props
         return (
             <div>
-                <Button onClick={() => getUser()}>Add</Button>
+                <Button onClick={() => getHello()}>Hello API</Button>
                 <MyCounter />
                 <input
                     size={16}
