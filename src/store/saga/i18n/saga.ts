@@ -7,10 +7,10 @@ import { getLocaleByName, appLocaleList } from "~/utils/i18n"
 
 type IntlSetLocaleAction = { type: SET_LOCALE.FAILURE; error: any } | { type: SET_LOCALE.SUCCESS; locale: CustomLocale }
 
-export function* setLocale(localeName: string): SagaIterator {
+export function* setLocale(action: SagaAction): SagaIterator {
     try {
-        const found = appLocaleList.hasOwnProperty(localeName)
-        const name: AppLocale = found ? (localeName as AppLocale) : "en-US"
+        const found = appLocaleList.hasOwnProperty(action.localeName)
+        const name: AppLocale = found ? (action.localeName as AppLocale) : "en-US"
         console.log("call getLocaleByName")
         const modu = yield call(getLocaleByName, name)
         console.log("get getLocaleByName")
@@ -29,8 +29,8 @@ export function* setLocale(localeName: string): SagaIterator {
 
 function* watcher() {
     while (true) {
-        const action: SagaAction = yield take(SET_LOCALE.REQUEST)
-        yield call(setLocale, action.localeName)
+        const action = yield take(SET_LOCALE.REQUEST)
+        yield call(setLocale, action)
     }
 }
 
