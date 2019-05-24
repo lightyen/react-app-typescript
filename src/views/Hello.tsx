@@ -8,10 +8,11 @@ import CodeHighlight from "~/components/CodeHighlight"
 import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
+import { getHello } from "~/store/saga/hello/action"
 import { getUser, setUser } from "~/store/user/action"
 import { IUser } from "~/store/model"
-
-import { getHello } from "~/store/hello/action"
+import { HelloStore } from "~/store/saga/hello/reducer"
+import { IAppStore } from "~/store"
 
 const dispatchProps = {
     getHello,
@@ -23,7 +24,13 @@ interface OwnProps {}
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(dispatchProps, dispatch)
 
-type IProps = RouteComponentProps & DispatchProps
+type PickProps = Partial<Pick<HelloStore, "status">>
+const mapStateToProps = (state: IAppStore, ownProps: OwnProps): PickProps => {
+    const { status } = state.hello
+    return { status }
+}
+
+type Props = RouteComponentProps & DispatchProps & PickProps & OwnProps
 
 const input = `const CodeHighlight: React.FC<OwnProps> = ({ code, language }) => {
     const ref = React.useRef(null)
@@ -41,12 +48,14 @@ const input = `const CodeHighlight: React.FC<OwnProps> = ({ code, language }) =>
 }
 `
 
-class Hello extends React.Component<IProps> {
+class Hello extends React.Component<Props> {
     public render() {
-        const { history, getHello } = this.props
+        const { history, status } = this.props
+        const { getHello } = this.props
         return (
             <div>
                 <Button onClick={() => getHello()}>Hello API</Button>
+                <span>"{status}"</span>
                 <MyCounter />
                 <input
                     size={16}
@@ -66,7 +75,7 @@ class Hello extends React.Component<IProps> {
 }
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
 )(Hello)
 

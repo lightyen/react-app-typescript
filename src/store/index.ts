@@ -4,16 +4,18 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import { History } from "history"
 import createSagaMiddleware from "redux-saga"
 
+import { RouterState, routerMiddleware, connectRouter } from "connected-react-router"
 import { isDevelopment } from "~/utils"
 import { IUserStore, userReducer } from "./user/reducer"
 import { IntlStore, intlReducer } from "./i18n/reducer"
-import { RouterState, routerMiddleware, connectRouter } from "connected-react-router"
+import { HelloStore, helloReducer } from "./saga/hello/reducer"
 import rootSaga from "~/store/saga"
 
 export interface IAppStore {
     router: RouterState
     user: IUserStore
     intl: IntlStore
+    hello: HelloStore
 }
 
 const myMiddleware: Middleware<{}, IAppStore> = ({ dispatch, getState }) => next => action => {
@@ -27,6 +29,7 @@ const createAppReducer = (history: History) =>
         user: userReducer,
         intl: intlReducer,
         router: connectRouter(history),
+        hello: helloReducer,
     })
 
 export function configureStore(history: History) {
