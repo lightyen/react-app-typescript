@@ -1,13 +1,10 @@
 {
   "extends": "./tsconfig.base",
   "compilerOptions": {
-    "resolveJsonModule": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "esnext",
     "lib": ["esnext", "dom"],
-    "types": ["react", "node"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]

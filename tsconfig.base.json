@@ -15,6 +15,7 @@
     "resolveJsonModule": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowJs": false,
+    "esModuleInterop": true,
     "strict": true
   }
 }

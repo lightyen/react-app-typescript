@@ -10,7 +10,7 @@ import { TsConfigPathsPlugin } from "awesome-typescript-loader"
 import TsImportPlugin from "ts-import-plugin"
 
 // Other
-import { name as AppName } from "../package.json"
+import packageJSON from "../package.json"
 
 const entry: Webpack.Entry = {
     index: "./src/index.tsx",
@@ -68,7 +68,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                 new HtmlWebpackPlugin({
                     filename: name + ".html",
                     excludeChunks: exclude,
-                    title: AppName,
+                    title: packageJSON.name,
                     minify: false,
                     inject: false,
                     template: path.join(options.src, "template", name + ".pug"),
@@ -113,7 +113,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                 },
                 {
                     test: /\.tsx?$/,
-                    exclude: /node_modules/,
+                    exclude: /node_modules|\.test.tsx?$/,
                     loader: "awesome-typescript-loader",
                     options: {
                         configFileName: path.join(workingDirectory, "tsconfig.json"),
