@@ -1,6 +1,6 @@
 # react app typescript &middot; ![](https://travis-ci.com/lightyen/react-app-typescript.svg?branch=master)![](https://img.shields.io/github/license/lightyen/react-app-typescript.svg)
 
-這是一個我學習 typescript & react 用的開發環境範本，使用自訂義的 [webpack](https://webpack.js.org/) 設定，結合 redux, react-router, Sass 等相關技術鏈，開箱即用且跨平台。（不定期更新）
+這是一個我學習 typescript & react 用的開發環境範本，使用自訂義的 [webpack](https://webpack.js.org/) 設定，結合 redux, react-router, sass, jest 等相關技術鏈。（不定期更新）
 
 ## 安裝以下開發環境
 
@@ -60,6 +60,9 @@ yarn dev
 
 # or 建置 production
 yarn build
+
+# 測試
+yarn test
 ```
 
 ### Debug
