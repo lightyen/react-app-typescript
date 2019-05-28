@@ -1,7 +1,6 @@
 import React from "react"
-import jest from "jest"
+import Jest from "jest"
 import { shallow } from "enzyme"
-import "~/test/setupEnzyme"
 
 // Component
 import { Example } from "../Example"
