@@ -3,7 +3,6 @@
   "compilerOptions": {
     "jsx": "react",
     "module": "esnext",
-    "moduleResolution": "node",
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "paths": {

@@ -3,10 +3,17 @@ const { pathsToModuleNameMapper } = require("ts-jest/utils")
 const path = require("path")
 const tsconfig = require("./tsconfig.test.json")
 
-// NOTE: require nodejs v12.x.x
-const mapper = Object.fromEntries(
-  Object.entries(pathsToModuleNameMapper(tsconfig.compilerOptions.paths)).map(e => [e[0], path.resolve(e[1])]),
-)
+function getMapper() {
+  const arr = Object.entries(pathsToModuleNameMapper(tsconfig.compilerOptions.paths)).map(e => [
+    e[0],
+    path.resolve(e[1]),
+  ])
+  const mapper = {}
+  for (let i = 0; i < arr.length; i++) {
+    mapper[arr[i][0]] = arr[i][1]
+  }
+  return mapper
+}
 
 module.exports = {
   preset: "ts-jest",
@@ -16,8 +23,8 @@ module.exports = {
     ...tsjPreset.transform,
   },
   moduleNameMapper: {
-    "\\.(css|scss)$": path.resolve("src/__mocks__/styleMock.js"),
-    ...mapper,
+    "\\.(css|scss)$": "<rootDir>/src/__mocks__/styleMock.js",
+    ...getMapper(),
   },
   globals: {
     "ts-jest": {
