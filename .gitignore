@@ -1,5 +1,7 @@
-node_modules/
-dist/
+node_modules
+dist
+test
+
 .webpack/*.js
 .webserver/.webserver
 .webserver/.webserver.exe
