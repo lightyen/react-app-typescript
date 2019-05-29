@@ -27,10 +27,9 @@ yarn -v
 
 #### 安裝相關 Visual Studio Code 擴充元件
 
+- [**ESLint**](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [**Debug for Firefox**](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)
 - [**Debug for Chrome**](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome)
-- [**TSLint**](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin)
-- [_Awesome Typescript Problem Matcher_](https://marketplace.visualstudio.com/items?itemName=JuanCasanova.awesometypescriptproblemmatcher)
 - [_Prettier_](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [_Format Files_](https://marketplace.visualstudio.com/items?itemName=jbockle.jbockle-format-files)
 - [_EditorConfig for VS Code_](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
@@ -55,8 +54,8 @@ cd react-app-typescript
 # 檢查或下載 dependencies
 yarn
 
-# 開始！
-yarn dev
+# 執行
+yarn start
 
 # or 建置 production
 yarn build
