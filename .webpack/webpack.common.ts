@@ -119,6 +119,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
                         configFileName: path.join(workingDirectory, "tsconfig.json"),
                         silent: true,
                         useBabel: true,
+                        useCache: true,
                         babelCore: "@babel/core",
                         babelOptions: {
                             babelrc: true,

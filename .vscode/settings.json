@@ -19,5 +19,12 @@
     "javascriptreact",
     { "language": "typescript", "autoFix": true },
     { "language": "typescriptreact", "autoFix": true }
-  ]
+  ],
+  "files.exclude": {
+    "**/.awcache": true,
+    "**/node_modules": true
+  },
+  "files.watcherExclude": {
+    "**/.awcache/**": true
+  }
 }

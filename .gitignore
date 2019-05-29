@@ -5,9 +5,9 @@ test
 jest.config.js
 
 .webpack/*.js
-.webserver/.webserver
-.webserver/.webserver.exe
+.DS_Store
 .directory
+.awcache
 *.log
 debug
 package-lock.json
