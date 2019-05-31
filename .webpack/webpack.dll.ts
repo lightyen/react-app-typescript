@@ -2,7 +2,7 @@
 
 import Webpack from "webpack"
 import path from "path"
-import CleanWebpackPlugin from "clean-webpack-plugin"
+import { CleanWebpackPlugin } from "clean-webpack-plugin"
 import WebpackBar from "webpackbar"
 
 const vendorPath = path.resolve(process.cwd(), "dist", "vendor")

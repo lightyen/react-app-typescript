@@ -4,7 +4,7 @@ import CompressionWebpackPlugin from "compression-webpack-plugin"
 import path from "path"
 import os from "os"
 
-import CleanWebpackPlugin from "clean-webpack-plugin"
+import { CleanWebpackPlugin } from "clean-webpack-plugin"
 
 process.env.NODE_ENV = "production"
 import { createBaseConfig } from "./webpack.common"
