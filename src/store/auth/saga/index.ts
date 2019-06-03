@@ -13,7 +13,7 @@ interface Response {
     message: string
 }
 
-function* login(action: ReturnType<typeof actions.login>): SagaIterator {
+export function* login(action: ReturnType<typeof actions.login>): SagaIterator {
     try {
         const { user } = action
         const result: AxiosResponse<Response> = yield call(o => axios.post("/login", o), user)
@@ -24,7 +24,7 @@ function* login(action: ReturnType<typeof actions.login>): SagaIterator {
     }
 }
 
-function* logout(action: ReturnType<typeof actions.logout>): SagaIterator {
+export function* logout(action: ReturnType<typeof actions.logout>): SagaIterator {
     try {
         const result: AxiosResponse<Response> = yield call(() => axios.get("/logout"))
         clearAuthToken()
@@ -48,8 +48,6 @@ function* watcherLogout() {
     }
 }
 
-function* watcher() {
+export default function* watcher() {
     yield all([fork(watcherLogin), fork(watcherLogout)])
 }
-
-export default watcher()

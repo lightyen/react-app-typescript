@@ -28,11 +28,9 @@ function* setLocale(action: ReturnType<typeof actions.setLocale>): SagaIterator 
     }
 }
 
-function* watcher() {
+export default function* watcher() {
     while (true) {
         const action = yield take(SET_LOCALE.REQUEST)
         yield call(setLocale, action)
     }
 }
-
-export default watcher()

@@ -33,6 +33,7 @@
     "@babel/preset-react": "7.0.0",
     "@babel/runtime": "7.4.5",
     "@hot-loader/react-dom": "16.8.6",
+    "@redux-saga/testing-utils": "^1.0.2",
     "@types/classnames": "2.2.8",
     "@types/compression-webpack-plugin": "2.0.0",
     "@types/enzyme": "^3.9.3",
