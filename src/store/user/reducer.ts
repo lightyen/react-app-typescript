@@ -1,7 +1,5 @@
 import { Reducer } from "redux"
 
-import { IUser } from "~/store/model"
-
 import { LOGIN, LOGOUT } from "~/store/auth"
 import { ReduxAction } from "~/store/auth/saga/reduxAction"
 import { isLogin } from "~/utils/auth"
