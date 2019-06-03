@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, AxiosError } from "axios"
 import { isDevelopment } from "."
+import { clearAuthToken } from "./auth"
 
 const APITimeout = 5000
 
@@ -54,6 +55,8 @@ axios.interceptors.response.use(
                 case 400:
                     break
                 case 401:
+                    clearAuthToken()
+                    window.location.replace("/#/")
                     break
                 default:
                     break

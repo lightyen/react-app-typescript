@@ -1,27 +1,30 @@
 import { take, put, call, fork, all, takeEvery, takeLatest, AllEffect } from "redux-saga/effects"
 import { SagaIterator } from "redux-saga"
-import { SagaAction, SET_LOCALE } from "./action"
 import moment from "moment"
+
+import { SET_LOCALE } from "../actionTypes"
+import * as actions from "./action"
+import { SetLocaleAction } from "./reduxAction"
+
 import { AppLocale, CustomLocale } from "~/typings/i18n"
 import { getLocaleByName, appLocaleList } from "~/utils/i18n"
 
-type IntlSetLocaleAction = { type: SET_LOCALE.FAILURE; error: any } | { type: SET_LOCALE.SUCCESS; locale: CustomLocale }
-
-export function* setLocale(action: SagaAction): SagaIterator {
+function* setLocale(action: ReturnType<typeof actions.setLocale>): SagaIterator {
     try {
         const found = appLocaleList.hasOwnProperty(action.localeName)
         const name: AppLocale = found ? (action.localeName as AppLocale) : "en-US"
+        yield put<SetLocaleAction>({ type: SET_LOCALE.REQUEST })
         const modu = yield call(getLocaleByName, name)
         if (modu) {
             moment.locale(name)
             if (modu.__esModule) {
-                yield put<IntlSetLocaleAction>({ type: SET_LOCALE.SUCCESS, locale: modu.default })
+                yield put<SetLocaleAction>({ type: SET_LOCALE.SUCCESS, locale: modu.default })
             } else {
-                yield put<IntlSetLocaleAction>({ type: SET_LOCALE.SUCCESS, locale: modu as CustomLocale })
+                yield put<SetLocaleAction>({ type: SET_LOCALE.SUCCESS, locale: modu as CustomLocale })
             }
         }
     } catch (error) {
-        yield put<IntlSetLocaleAction>({ type: SET_LOCALE.FAILURE, error })
+        yield put<SetLocaleAction>({ type: SET_LOCALE.FAILURE, error })
     }
 }
 

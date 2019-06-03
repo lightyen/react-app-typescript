@@ -12,7 +12,7 @@ import { configureStore } from "~/store"
 import { Provider } from "~/components/i18n"
 
 // locale
-import { setLocale } from "~/store/i18n"
+import { SET_LOCALE, setLocale } from "~/store/i18n"
 
 export default function App() {
     React.useEffect(() => {
@@ -25,9 +25,13 @@ export default function App() {
 
     React.useEffect(() => {
         const locale = "en-US" || navigator.languages[0]
-        setLocale(locale)(store.dispatch, null, null).then(() => {
-            setReady(true)
+        store.subscribe(() => {
+            const state = store.getState()
+            if (state.intl.status === SET_LOCALE.SUCCESS) {
+                setReady(true)
+            }
         })
+        store.dispatch(setLocale(locale))
     }, [])
 
     return (

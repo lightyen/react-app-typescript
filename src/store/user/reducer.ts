@@ -1,42 +1,44 @@
 import { Reducer } from "redux"
 
 import { IUser } from "~/store/model"
-import { IUserAction, GET_USER, SET_USER } from "./action"
 
-type UserActionType = GET_USER | typeof SET_USER
+import { LOGIN, LOGOUT } from "~/store/auth"
+import { ReduxAction } from "~/store/auth/saga/reduxAction"
+import { isLogin } from "~/utils/auth"
+
+type UserActionType = ReduxAction
 
 interface UserStoreType {
-    /** 當前使用者資訊 */
-    currentUser: IUser
+    logined: boolean
     /** 請求狀態 */
-    status?: UserActionType
+    status?: string
     /** 錯誤訊息 */
     error?: any
 }
 
-export type IUserStore = Readonly<UserStoreType>
+export type UserStore = Readonly<UserStoreType>
 
-const init: IUserStore = {
-    currentUser: { name: "", age: 0 },
+const init: UserStore = {
+    logined: isLogin(),
+    status: "",
+    error: null,
 }
 
-export const userReducer: Reducer<IUserStore, IUserAction> = (state = init, action): IUserStore => {
+export const userReducer: Reducer<UserStore, UserActionType> = (state = init, action): UserStore => {
     switch (action.type) {
-        // case LOGOUT:
-        // return {...state, init }
+        case LOGIN.REQUEST:
+            return { ...state, status: LOGIN.REQUEST }
+        case LOGIN.SUCCESS:
+            return { ...state, status: LOGIN.SUCCESS, logined: true }
+        case LOGIN.FAILURE:
+            return { ...state, status: LOGIN.FAILURE, error: action.error }
 
-        // get user
-        case GET_USER.REQUEST:
-            return { ...state, status: GET_USER.REQUEST, error: null }
-        case GET_USER.SUCCESS:
-            return { ...state, status: GET_USER.SUCCESS, error: null, currentUser: action.user }
-        case GET_USER.FAILURE:
-            return { ...state, status: GET_USER.FAILURE, error: action.error }
-
-        // set user
-        case SET_USER:
-            return { ...state, status: SET_USER, error: null, currentUser: action.user }
-
+        case LOGOUT.REQUEST:
+            return { ...state, status: LOGOUT.REQUEST }
+        case LOGOUT.SUCCESS:
+            return { ...state, ...init, status: LOGOUT.SUCCESS, logined: false }
+        case LOGOUT.FAILURE:
+            return { ...state, status: LOGOUT.FAILURE, error: action.error }
         // default
         default:
             return state

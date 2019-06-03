@@ -6,10 +6,9 @@ import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { IAppStore } from "~/store"
-import { IntlStore } from "~/store/i18n"
-import { setLocale } from "~/store/saga/i18n/action"
+import { IntlStore, setLocale } from "~/store/i18n"
 
-interface IOwnProps {}
+interface OwnProps {}
 
 const dispatchProps = {
     setLocale,
@@ -20,7 +19,7 @@ type DispatchProps = typeof dispatchProps
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(dispatchProps, dispatch)
 
 type StateProps = Partial<Pick<IntlStore, "enable" | "list" | "locale">>
-const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): StateProps => {
+const mapStateToProps = (state: IAppStore, ownProps: OwnProps): StateProps => {
     const { enable, list, locale } = state.intl
     return {
         enable,
@@ -29,7 +28,7 @@ const mapStateToProps = (state: IAppStore, ownProps: IOwnProps): StateProps => {
     }
 }
 
-type IProps = IOwnProps & DispatchProps & StateProps
+type IProps = OwnProps & DispatchProps & StateProps
 
 const Header = styled.header`
     background: #20232a;
@@ -82,7 +81,7 @@ interface BreadcrumbsProps {
     className?: string
 }
 
-const BreadcrumbsItem = ({ match }: RouteComponentProps) => {
+const BreadcrumbsItem: React.FC<RouteComponentProps> = ({ match }) => {
     return (
         <>
             <li className={classnames("breadcrumb-item", { active: match.isExact })}>
