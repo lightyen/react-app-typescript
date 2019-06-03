@@ -34,7 +34,7 @@ export type IUserThunkAction = ThunkAction<Promise<void>, IUserStore, null, IUse
 export const getUser = (): IUserThunkAction => async dispatch => {
     dispatch({ type: GET_USER.REQUEST })
     try {
-        const response = await axios.get<IUser>("/apis/v1/hello")
+        const response = await axios.get<IUser>("/apis/hello")
         const user = response.data
         dispatch({ type: GET_USER.SUCCESS, user })
     } catch (error) {

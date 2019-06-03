@@ -6,7 +6,8 @@ import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import { IAppStore } from "~/store"
-import { IntlStore, setLocale } from "~/store/i18n"
+import { IntlStore } from "~/store/i18n"
+import { setLocale } from "~/store/saga/i18n/action"
 
 interface IOwnProps {}
 

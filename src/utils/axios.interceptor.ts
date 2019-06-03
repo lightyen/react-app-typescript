@@ -1,20 +1,64 @@
-import axios, { AxiosError } from "axios"
+import axios, { AxiosResponse, AxiosError } from "axios"
+import { isDevelopment } from "."
 
-// NOTE: 在這裡你可以使用 axios 攔截 http 請求與回應
+const APITimeout = 5000
 
+// NOTE: 在這裡你可以使用 axios 攔截 http
 axios.interceptors.request.use(config => {
-    // dosomthing before request
+    if (isDevelopment()) {
+        if (config.data) {
+            console.log(
+                `%c${config.method.toUpperCase()} %c${config.url}`,
+                "color: green; font-size:12px;",
+                "color: blue; font-size:12px;",
+                config.data,
+            )
+        } else {
+            console.log(
+                `%c${config.method.toUpperCase()} %c${config.url}`,
+                "color: green; font-size:12px;",
+                "color: blue; font-size:12px;",
+            )
+        }
+    }
+    config.timeout = APITimeout
     return config
 })
 
 axios.interceptors.response.use(
-    response => {
-        // dosomthing before get response
-        return response
+    resp => {
+        if (isDevelopment()) {
+            if (resp.data) {
+                console.warn(resp.data)
+            } else {
+                console.warn(resp)
+            }
+        }
+        return resp
     },
-    error => {
-        // dosomthing before get
-        const err = error as AxiosError
-        return Promise.reject(err.message)
+    (error: AxiosError) => {
+        if (error.code === "ECONNABORTED") {
+            return Promise.reject(error)
+        }
+        if (error.response) {
+            const resp = error.response as AxiosResponse
+            if (isDevelopment()) {
+                if (resp.data) {
+                    console.error(resp.status, resp.data)
+                } else {
+                    console.error(resp)
+                }
+            }
+
+            switch (resp.status) {
+                case 400:
+                    break
+                case 401:
+                    break
+                default:
+                    break
+            }
+        }
+        return Promise.reject(error)
     },
 )

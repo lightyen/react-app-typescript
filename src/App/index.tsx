@@ -15,26 +15,28 @@ import { Provider } from "~/components/i18n"
 import { setLocale } from "~/store/i18n"
 
 export default function App() {
-    const [store, setStore] = React.useState(null)
     React.useEffect(() => {
         document.title = "react-app-typescript"
-    })
+    }, [])
 
-    const history = createHashHistory()
+    const [history] = React.useState(() => createHashHistory())
+    const [ready, setReady] = React.useState(false)
+    const [store] = React.useState(() => configureStore(history))
 
     React.useEffect(() => {
-        const store = configureStore(history)
         const locale = "en-US" || navigator.languages[0]
         setLocale(locale)(store.dispatch, null, null).then(() => {
-            setStore(store)
+            setReady(true)
         })
     }, [])
 
-    return store ? (
-        <Provider store={store}>
-            <ConnectedRouter history={history}>
-                <AppRouter />
-            </ConnectedRouter>
-        </Provider>
-    ) : null
+    return (
+        ready && (
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <AppRouter />
+                </ConnectedRouter>
+            </Provider>
+        )
+    )
 }
