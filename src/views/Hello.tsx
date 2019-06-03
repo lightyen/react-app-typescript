@@ -3,7 +3,6 @@ import { RouteComponentProps } from "react-router-dom"
 import MyCounter from "~/components/Example/ReduxCounter"
 import Button from "~/components/Button"
 import TimeCounter from "~/components/TimeCounter"
-import CodeHighlight from "~/components/CodeHighlight"
 
 import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
@@ -32,22 +31,6 @@ const mapStateToProps = (state: IAppStore, ownProps: OwnProps): PickProps => {
 
 type Props = RouteComponentProps & DispatchProps & PickProps & OwnProps
 
-const input = `const CodeHighlight: React.FC<OwnProps> = ({ code, language }) => {
-    const ref = React.useRef(null)
-    React.useEffect(() => {
-        Prism.highlightElement(ref.current, false, () => {
-            console.log("change")
-        })
-    })
-
-    return (
-        <pre data-language={tags[language]} className={classnames(\`language-\${language}\`, "line-numbers")}>
-            <code ref={ref}>{code}</code>
-        </pre>
-    )
-}
-`
-
 class Hello extends React.Component<Props> {
     public render() {
         const { history, status } = this.props
@@ -65,9 +48,6 @@ class Hello extends React.Component<Props> {
                         setUser(user)
                     }}
                 />
-                <div className="fade show">
-                    <CodeHighlight code={input} language="tsx" />
-                </div>
                 <GoBackButton onClick={() => history.goBack()} />
             </div>
         )

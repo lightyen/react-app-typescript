@@ -76,7 +76,7 @@ export default connect(
 )(AppHeader)
 
 import { Route, Link, RouteComponentProps } from "react-router-dom"
-import { getRouteName } from "~/utils/routeName"
+import { getRouteName } from "~/routes"
 
 interface BreadcrumbsProps {
     className?: string

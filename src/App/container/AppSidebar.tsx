@@ -1,36 +1,55 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { RouteComponentProps, NavLink } from "react-router-dom"
 import styled from "styled-components"
-import { getRouteName } from "~/utils/routeName"
+import LocaleMessage from "~/components/LocaleMessage"
 
-const Nav = styled.ul`
+const Nav = styled.ul.attrs({ className: "nav" })`
     height: 100%;
     background: #101216;
     display: flex;
     flex-direction: column;
 `
 
-const NavItem = styled.li`
+const NavItem = styled.li.attrs({ className: "nav-item" })``
+
+const AppNavLink = styled(NavLink).attrs({ className: "nav-link" })`
+    outline: none;
+    color: #b1a9cc;
     transition: background 0.2s, color 0.2s;
     &:hover {
-        color: #fff;
+        color: #0066ff;
         background: #61dafb;
+    }
+    &.active {
+        background: #20262d;
     }
 `
 
-export default function AppSidebar() {
+export interface NavConfigItem {
+    path?: string
+    /** 標籤名稱 */
+    name?: React.ReactNode
+    exact?: boolean
+}
+
+const navConfig: NavConfigItem[] = [
+    { path: "/", name: <span>Home</span>, exact: true },
+    { path: "/hello", name: <LocaleMessage id="hello" /> },
+    { path: "/highlight", name: <span>Highlight</span> },
+]
+
+const AppSidebar: React.FC<RouteComponentProps> = () => {
     return (
-        <Nav className="nav text-light">
-            <NavItem className="nav-item text-light active">
-                <Link className="nav-link" to="/">
-                    Home
-                </Link>
-            </NavItem>
-            <NavItem className="nav-item text-light">
-                <Link className="nav-link" to="/hello">
-                    {getRouteName("/hello")}
-                </Link>
-            </NavItem>
+        <Nav>
+            {navConfig.map((c, index) => (
+                <NavItem key={index}>
+                    <AppNavLink to={c.path} exact={c.exact} activeClassName="active">
+                        {c.name}
+                    </AppNavLink>
+                </NavItem>
+            ))}
         </Nav>
     )
 }
+
+export default AppSidebar

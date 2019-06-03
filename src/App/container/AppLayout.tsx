@@ -1,6 +1,7 @@
 import React from "react"
-import { Route } from "react-router-dom"
+import { RouteComponentProps, Route, Switch, Redirect } from "react-router-dom"
 import styled from "styled-components"
+import routes from "~/routes"
 
 import { loading } from "~/components/Loading"
 
@@ -58,7 +59,7 @@ const AppHeader = React.lazy(() => import("./AppHeader"))
 const AppFooter = React.lazy(() => import("./AppFooter"))
 const Main = React.lazy(() => import("~/views/Main"))
 
-export default function AppLayout() {
+const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
     return (
         <App className="d-flex flex-column">
             <AppHeaderContainer className="fixed-top container-fluid">
@@ -68,11 +69,26 @@ export default function AppLayout() {
             </AppHeaderContainer>
             <AppBodyContainer>
                 <AppSidebarContainer>
-                    <AppSidebar />
+                    <AppSidebar {...rest} />
                 </AppSidebarContainer>
                 <AppMain>
                     <React.Suspense fallback={loading()}>
-                        <Route path="/" component={Main} />
+                        <Switch>
+                            {routes.map((route, index) => {
+                                return (
+                                    !!route.component && (
+                                        <Route
+                                            key={index}
+                                            path={route.path}
+                                            exact={route.exact}
+                                            render={props => <route.component {...props} />}
+                                        />
+                                    )
+                                )
+                            })}
+                            {/* <Redirect from="/" to="/dashboard" exact /> */}
+                            <Redirect to="/404" />
+                        </Switch>
                     </React.Suspense>
                 </AppMain>
             </AppBodyContainer>
@@ -84,3 +100,5 @@ export default function AppLayout() {
         </App>
     )
 }
+
+export default AppLayout

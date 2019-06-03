@@ -11,9 +11,7 @@ export function* setLocale(action: SagaAction): SagaIterator {
     try {
         const found = appLocaleList.hasOwnProperty(action.localeName)
         const name: AppLocale = found ? (action.localeName as AppLocale) : "en-US"
-        console.log("call getLocaleByName")
         const modu = yield call(getLocaleByName, name)
-        console.log("get getLocaleByName")
         if (modu) {
             moment.locale(name)
             if (modu.__esModule) {

@@ -1,5 +1,5 @@
 import React from "react"
-import { Example } from "~/components/Example/Example"
+import { ExampleFC } from "~/components/Example/Example"
 import { RouteComponentProps } from "react-router-dom"
 import styled from "styled-components"
 
@@ -18,7 +18,7 @@ class NotFound extends React.Component<RouteComponentProps> {
     public render() {
         return (
             <Div>
-                <Example content="找不到你要的資源呢!" onClick={this.backHome} />
+                <ExampleFC content="找不到你要的資源呢!" onClick={this.backHome} />
             </Div>
         )
     }
