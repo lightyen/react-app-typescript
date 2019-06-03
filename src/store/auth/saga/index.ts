@@ -1,4 +1,4 @@
-import { take, put, call, all, fork } from "redux-saga/effects"
+import { take, put, call, all, fork, takeLeading } from "redux-saga/effects"
 import { SagaIterator } from "redux-saga"
 import axios, { AxiosResponse } from "axios"
 
@@ -35,17 +35,11 @@ export function* logout(action: ReturnType<typeof actions.logout>): SagaIterator
 }
 
 function* watcherLogin() {
-    while (true) {
-        const action = yield take(LOGIN.REQUEST)
-        yield call(login, action)
-    }
+    yield takeLeading(LOGIN.REQUEST, login)
 }
 
 function* watcherLogout() {
-    while (true) {
-        const action = yield take(LOGOUT.REQUEST)
-        yield call(logout, action)
-    }
+    yield takeLeading(LOGOUT.REQUEST, logout)
 }
 
 export default function* watcher() {

@@ -17,8 +17,5 @@ function* getHello(action: ReturnType<typeof actions.getHello>): SagaIterator {
 }
 
 export default function* watcher() {
-    while (true) {
-        const action = yield take(GET_HELLO.REQUEST)
-        yield call(getHello, action)
-    }
+    yield takeEvery(GET_HELLO.REQUEST, getHello)
 }
