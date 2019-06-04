@@ -14,15 +14,15 @@ import { Provider } from "~/components/i18n"
 // locale
 import { SET_LOCALE, setLocale } from "~/store/i18n"
 
+const history = createHashHistory()
+export const store = configureStore(history)
+
 export default function App() {
     React.useEffect(() => {
         document.title = "react-app-typescript"
     }, [])
 
-    const [history] = React.useState(() => createHashHistory())
     const [ready, setReady] = React.useState(false)
-    const [store] = React.useState(() => configureStore(history))
-
     React.useEffect(() => {
         const locale = "en-US" || navigator.languages[0]
         store.subscribe(() => {

@@ -9,3 +9,5 @@ export enum LOGOUT {
     SUCCESS = "LOGOUT_SUCCESS",
     FAILURE = "LOGOUT_FAILURE",
 }
+
+export const AUTH_FAILED = "AUTH_FAILED"

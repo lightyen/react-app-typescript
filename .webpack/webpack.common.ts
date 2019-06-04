@@ -12,6 +12,9 @@ import TsImportPlugin from "ts-import-plugin"
 // Other
 import packageJSON from "../package.json"
 
+// NOTE: 關閉 webpack 要求 donate 訊息
+process.env.DISABLE_OPENCOLLECTIVE = "true"
+
 const entry: Webpack.Entry = {
     index: "./src/index.tsx",
 }

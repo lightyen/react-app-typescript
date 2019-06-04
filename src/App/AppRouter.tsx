@@ -6,7 +6,7 @@ import { hot } from "react-hot-loader/root"
 import NotFound from "~/views/pages/NotFound"
 
 const isAuthenticated = (): boolean => {
-    return true
+    return true // get localstorage token
 }
 
 const AuthenticatedRoute: React.FC<RouteProps> = ({ component: Component, ...rest }) => (

@@ -1,6 +1,8 @@
 import axios, { AxiosResponse, AxiosError } from "axios"
 import { isDevelopment } from "."
 import { clearAuthToken } from "./auth"
+import { store } from "~/App"
+import { AUTH_FAILED } from "~/store/auth"
 
 const APITimeout = 5000
 
@@ -55,6 +57,7 @@ axios.interceptors.response.use(
                 case 400:
                     break
                 case 401:
+                    store.dispatch({ type: AUTH_FAILED })
                     clearAuthToken()
                     window.location.replace("/#/")
                     break

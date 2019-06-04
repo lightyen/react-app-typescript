@@ -1,4 +1,4 @@
-import { combineReducers, applyMiddleware, createStore, Middleware, AnyAction } from "redux"
+import { createStore, applyMiddleware, combineReducers, Middleware, AnyAction } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { History } from "history"
 import createSagaMiddleware from "redux-saga"
@@ -17,10 +17,17 @@ export interface IAppStore {
     hello: HelloStore
 }
 
-const myMiddleware: Middleware<{}, IAppStore> = ({ dispatch, getState }) => next => action => {
-    console.log(getState())
+const myMiddleware: Middleware<{}, IAppStore> = store => next => (action: AnyAction) => {
+    const { type } = action
+    if (typeof type === "string") {
+        if (type.startsWith("@@router")) {
+        }
+    }
+
+    if (!action["@@redux-saga/SAGA_ACTION"]) {
+        console.log("action", action)
+    }
     next(action)
-    console.log(getState())
 }
 
 const createAppReducer = (history: History) =>
@@ -34,7 +41,7 @@ const createAppReducer = (history: History) =>
 export function configureStore(history: History) {
     const rootReducer = createAppReducer(history)
     const sagaMiddleware = createSagaMiddleware()
-    const middlewares: Middleware[] = [routerMiddleware(history), sagaMiddleware]
+    const middlewares: Middleware[] = [routerMiddleware(history), myMiddleware, sagaMiddleware]
     const storeEnhancers = applyMiddleware(...middlewares)
     const composeEnhancers = composeWithDevTools({
         // Specify name here, actionsBlacklist, actionsCreators and other options if needed
