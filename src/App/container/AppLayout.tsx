@@ -3,7 +3,7 @@ import { RouteComponentProps, Route, Switch, Redirect } from "react-router-dom"
 import styled from "styled-components"
 import routes from "~/routes"
 
-import { loading } from "~/components/Loading"
+import { Loading } from "~/components/Spinner"
 
 const App = styled.div`
     font-family: My Code, monospace;
@@ -57,13 +57,12 @@ const AppFooterContainer = styled.footer`
 import AppSidebar from "./AppSidebar"
 const AppHeader = React.lazy(() => import("./AppHeader"))
 const AppFooter = React.lazy(() => import("./AppFooter"))
-const Main = React.lazy(() => import("~/views/Main"))
 
 const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
     return (
         <App className="d-flex flex-column">
             <AppHeaderContainer className="fixed-top container-fluid">
-                <React.Suspense fallback={loading()}>
+                <React.Suspense fallback={<span>Loading...</span>}>
                     <AppHeader />
                 </React.Suspense>
             </AppHeaderContainer>
@@ -72,7 +71,7 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                     <AppSidebar {...rest} />
                 </AppSidebarContainer>
                 <AppMain>
-                    <React.Suspense fallback={loading()}>
+                    <React.Suspense fallback={Loading}>
                         <Switch>
                             {routes.map((route, index) => {
                                 return (
@@ -93,7 +92,7 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                 </AppMain>
             </AppBodyContainer>
             <AppFooterContainer>
-                <React.Suspense fallback={loading()}>
+                <React.Suspense fallback={<span>Loading...</span>}>
                     <AppFooter />
                 </React.Suspense>
             </AppFooterContainer>
