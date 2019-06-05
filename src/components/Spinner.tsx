@@ -43,7 +43,7 @@ function Spinner() {
 }
 
 export const Loading = (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center align-items-center vh-100" style={{ background: "#282c34" }}>
         <Spinner />
     </div>
 )

@@ -25,7 +25,7 @@ const myMiddleware: Middleware<{}, IAppStore> = store => next => (action: AnyAct
     }
 
     if (!action["@@redux-saga/SAGA_ACTION"]) {
-        console.log("action", action)
+        // console.log("action", action)
     }
     next(action)
 }
