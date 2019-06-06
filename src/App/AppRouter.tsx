@@ -24,7 +24,13 @@ function AsyncComponent(C: React.LazyExoticComponent<React.ComponentType<any>>) 
     )
 }
 
-const AppLayout = AsyncComponent(React.lazy(() => import("~/App/container/AppLayout")))
+// const AppLayout = AsyncComponent(React.lazy(() => import("~/App/container/AppLayout")))
+
+import Loadable from "react-loadable"
+const AppLayout = Loadable({
+    loader: () => import("~/App/container/AppLayout"),
+    loading: () => Loading,
+})
 
 const AppRouter: React.FC = () => {
     return (

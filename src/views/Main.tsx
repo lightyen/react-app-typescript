@@ -5,7 +5,7 @@ import LocaleMessage from "~/components/LocaleMessage"
 
 import image from "~/assets/images/256x256.png"
 import Button from "~/components/Button"
-import Spinner from "~/components/Spinner"
+import { Spinner } from "~/components/Spinner"
 import styled, { keyframes } from "styled-components"
 
 export const myKeyFrames = keyframes`
@@ -27,9 +27,7 @@ const Main: React.FC<RouteComponentProps> = ({ match }) => {
                 </div>
             </div>
             <LocaleMessage id="text" values={{}} />
-            <div className="d-flex justify-content-center">
-                <Spinner />
-            </div>
+            <div className="d-flex justify-content-center">{Spinner}</div>
             <p>{`==> Hello React <!-- Fira Code ==>`}</p>
             <Link to={path.join(match.url, "hello")}>
                 <Button>Go to /hello</Button>

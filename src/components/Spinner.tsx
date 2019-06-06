@@ -32,20 +32,20 @@ const CircleBorder = styled.div`
     animation: ${spin} 0.8s linear 0s infinite;
 `
 
-function Spinner() {
-    return (
+export const Spinner = (
+    <CircleBorder>
+        <Circle>
+            <span className="sr-only">Loading</span>
+        </Circle>
+    </CircleBorder>
+)
+
+export const Loading = (
+    <div className="d-flex justify-content-center align-items-center vh-100" style={{ background: "#282c34" }}>
         <CircleBorder>
             <Circle>
                 <span className="sr-only">Loading</span>
             </Circle>
         </CircleBorder>
-    )
-}
-
-export const Loading = (
-    <div className="d-flex justify-content-center align-items-center vh-100" style={{ background: "#282c34" }}>
-        <Spinner />
     </div>
 )
-
-export default Spinner
