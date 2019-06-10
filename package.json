@@ -15,11 +15,10 @@
     "scss"
   ],
   "scripts": {
-    "tsc-webpack-config": "tsc --project .webpack",
-    "webpack-development": "yarn run tsc-webpack-config && webpack-dev-server --config .webpack/webpack.dev",
-    "webpack-production": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.prod",
-    "webpack-dll": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.dll",
-    "webpack-analyzer": "yarn run tsc-webpack-config && webpack --config .webpack/webpack.analyzer",
+    "webpack-development": "webpack-dev-server --config .webpack/webpack.dev",
+    "webpack-production": "webpack --config .webpack/webpack.prod",
+    "webpack-dll": "webpack --config .webpack/webpack.dll",
+    "analyze": "webpack --config .webpack/webpack.analyzer",
     "doit": "yarn && yarn upgrade-interactive --latest",
     "start": "yarn && yarn run webpack-development",
     "build": "yarn && yarn run webpack-production",

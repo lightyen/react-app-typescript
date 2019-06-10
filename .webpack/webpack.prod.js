@@ -1,20 +1,24 @@
-import webpackMerge from "webpack-merge"
-import Webpack from "webpack"
-import CompressionWebpackPlugin from "compression-webpack-plugin"
-import path from "path"
-import os from "os"
+// @ts-check
+const webpackMerge = require("webpack-merge")
+const { ContextReplacementPlugin } = require("webpack")
+const CompressionWebpackPlugin = require("compression-webpack-plugin")
+const path = require("path")
+const os = require("os")
 
-import { CleanWebpackPlugin } from "clean-webpack-plugin"
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 process.env.NODE_ENV = "production"
-import { createBaseConfig } from "./webpack.common"
+const createBaseConfig = require("./webpack.common")
 
 const productionPath = path.resolve(process.cwd(), "dist")
 /** DLL 位置 */
-const vendorPath: string = "" // path.resolve(process.cwd(), "dist", "vendor")
+const vendorPath = "" // path.resolve(process.cwd(), "dist", "vendor")
 
-const plugins: Webpack.Plugin[] = [
-    new Webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
+/**
+ * @type {import("webpack").Plugin[]}
+ */
+const plugins = [
+    new ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
     new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 8192 }),
     new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: vendorPath
@@ -23,7 +27,10 @@ const plugins: Webpack.Plugin[] = [
     }),
 ]
 
-const config: Webpack.Configuration = {
+/**
+ * @type { import("webpack").Configuration }
+ */
+const config = {
     mode: "production",
     stats: {
         children: false,
@@ -34,7 +41,7 @@ const config: Webpack.Configuration = {
         hints: "warning",
         maxEntrypointSize: 614400,
         maxAssetSize: 614400,
-        assetFilter: (filename: string) => {
+        assetFilter: filename => {
             const ext = path.extname(filename)
             return ext === "css" || ext === ".js"
         },
@@ -51,7 +58,7 @@ const config: Webpack.Configuration = {
     plugins,
 }
 
-export default webpackMerge(
+module.exports = webpackMerge(
     createBaseConfig({
         dist: productionPath,
         vendor: vendorPath,

@@ -2,7 +2,6 @@ node_modules
 dist
 test
 
-.webpack/*.js
 .DS_Store
 .directory
 .awcache

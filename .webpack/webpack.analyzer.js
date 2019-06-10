@@ -1,8 +1,10 @@
-import webpackMerge from "webpack-merge"
-import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer"
-import baseConfig from "./webpack.prod"
+// @ts-check
 
-export default webpackMerge(baseConfig, {
+const webpackMerge = require("webpack-merge")
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
+const baseConfig = require("./webpack.prod")
+
+module.exports = webpackMerge(baseConfig, {
     plugins: [
         new BundleAnalyzerPlugin({
             analyzerMode: "server",

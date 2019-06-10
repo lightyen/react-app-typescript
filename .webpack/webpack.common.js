@@ -1,35 +1,39 @@
-// Base
-import Webpack from "webpack"
-import path from "path"
+// @ts-ignore
+const packageJSON = require("../package.json")
+
+// @ts-check
+const { EnvironmentPlugin, ProvidePlugin, DllReferencePlugin } = require("webpack")
+const path = require("path")
 
 // Plugins
-import HtmlWebpackPlugin from "html-webpack-plugin"
-import MiniCssExtractPlugin from "mini-css-extract-plugin"
-import WebpackBarPlugin from "webpackbar"
-import { TsConfigPathsPlugin } from "awesome-typescript-loader"
-import TsImportPlugin from "ts-import-plugin"
-
-// Other
-import packageJSON from "../package.json"
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const WebpackBarPlugin = require("webpackbar")
+const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
+const TsImportPlugin = require("ts-import-plugin")
 
 // NOTE: 關閉 webpack 要求 donate 訊息
 process.env.DISABLE_OPENCOLLECTIVE = "true"
 
-const entry: Webpack.Entry = {
+/**
+ * @type { import("webpack").Entry }
+ */
+const entry = {
     index: "./src/index.tsx",
 }
 
-/** 一些自定義的設定 */
-interface IOptions {
-    /** 輸出位置，預設：${workspaceFolder}/dist */
-    dist?: string
-    /** 程式進入點位置，預設：${workspaceFolder}/src */
-    src?: string
-    /** 第三方程式庫位置 */
-    vendor?: string
-}
+/** @typedef {{
+ *    dist?: string
+ *    src?: string
+ *    vendor?: string
+ * }} Options */
 
-export function createBaseConfig(options?: IOptions): Webpack.Configuration {
+/**
+ * @param {?Options} options
+ *
+ * @returns { import("webpack").Configuration }
+ */
+module.exports = function(options) {
     const workingDirectory = process.cwd()
     const distDefaultPath = path.resolve(workingDirectory, "dist")
     const srcDefaultPath = path.resolve(workingDirectory, "src")
@@ -49,15 +53,18 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
         }
     }
 
-    const plugins: Webpack.Plugin[] = [
+    /**
+     * @type {import("webpack").Plugin[]}
+     */
+    const plugins = [
         new WebpackBarPlugin({ color: "blue", name: "React" }),
-        new Webpack.EnvironmentPlugin({
+        new EnvironmentPlugin({
             NODE_ENV: process.env.NODE_ENV,
         }),
         new MiniCssExtractPlugin({
             filename: "css/[name].[contenthash].css",
         }),
-        new Webpack.ProvidePlugin({
+        new ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
         }),
@@ -84,7 +91,7 @@ export function createBaseConfig(options?: IOptions): Webpack.Configuration {
 
     if (options.vendor) {
         plugins.push(
-            new Webpack.DllReferencePlugin({
+            new DllReferencePlugin({
                 context: options.vendor,
                 manifest: require(path.join(options.vendor, "manifest.json")),
             }),
