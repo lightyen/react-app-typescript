@@ -23,7 +23,7 @@
     "doit": "yarn && yarn upgrade-interactive --latest",
     "start": "yarn && yarn run webpack-development",
     "build": "yarn && yarn run webpack-production",
-    "test": "tsc --types jest,node --resolveJsonModule -m CommonJS -t ESNext jest.config.ts && jest"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
