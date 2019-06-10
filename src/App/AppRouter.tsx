@@ -1,5 +1,6 @@
 import React from "react"
 import { RouteProps, Redirect, Route, Switch, RouteComponentProps } from "react-router-dom"
+import Loadable from "react-loadable"
 import { Loading } from "~/components/Spinner"
 import NotFound from "~/views/pages/NotFound"
 import { hot } from "react-hot-loader/root"
@@ -25,8 +26,6 @@ function AsyncComponent(C: React.LazyExoticComponent<React.ComponentType<any>>) 
 }
 
 // const AppLayout = AsyncComponent(React.lazy(() => import("~/App/container/AppLayout")))
-
-import Loadable from "react-loadable"
 const AppLayout = Loadable({
     loader: () => import("~/App/container/AppLayout"),
     loading: () => Loading,
