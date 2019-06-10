@@ -1,7 +1,6 @@
 // @ts-check
 const { NamedModulesPlugin, HotModuleReplacementPlugin } = require("webpack")
 const webpackMerge = require("webpack-merge")
-const webpackDevServer = require("webpack-dev-server")
 
 process.env.NODE_ENV = "development"
 const createBaseConfig = require("./webpack.common")
