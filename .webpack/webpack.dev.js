@@ -10,7 +10,7 @@ const createBaseConfig = require("./webpack.common")
 // const distPath = path.resolve(os.homedir(), "Documents", "react-app-typescript", "dist")
 // getBaseConfig({dist: distPath})
 
-module.exports = webpackMerge(createBaseConfig({}), {
+module.exports = webpackMerge(createBaseConfig(), {
     mode: "development",
     watch: true,
     watchOptions: {

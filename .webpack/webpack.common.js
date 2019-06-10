@@ -29,7 +29,7 @@ const entry = {
  * }} Options */
 
 /**
- * @param {?Options} options
+ * @param {?Options} [options]
  *
  * @returns { import("webpack").Configuration }
  */
