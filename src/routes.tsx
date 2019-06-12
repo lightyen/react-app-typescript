@@ -7,6 +7,7 @@ import LocaleMessage from "~/components/LocaleMessage"
 const Main = React.lazy(() => import("~/views/Main"))
 const Hello = React.lazy(() => import("~/views/Hello"))
 const Highlight = React.lazy(() => import("~/views/Highlight"))
+const Popper = React.lazy(() => import("~/views/Popper"))
 
 function WaitingComponent<P>(Component: React.FunctionComponent<P>) {
     return (props: P) => (
@@ -24,6 +25,7 @@ const routes: RouteItem[] = [
     { path: "/", name: <span>Home</span>, exact: true, component: Main },
     { path: "/hello", name: <LocaleMessage id="hello" />, component: Hello },
     { path: "/highlight", name: <span>Highlight</span>, component: Highlight },
+    { path: "/popper", name: <span>Popper</span>, component: Popper },
 ]
 
 export default routes

@@ -36,6 +36,7 @@ const navConfig: NavConfigItem[] = [
     { path: "/", name: <span>Home</span>, exact: true },
     { path: "/hello", name: <LocaleMessage id="hello" /> },
     { path: "/highlight", name: <span>Highlight</span> },
+    { path: "/popper", name: <span>Popper</span> },
 ]
 
 const AppSidebar: React.FC<RouteComponentProps> = () => {
