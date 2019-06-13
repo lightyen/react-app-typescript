@@ -16,7 +16,7 @@ interface Response {
 export function* login(action: ReturnType<typeof actions.login>): SagaIterator {
     try {
         const { user } = action
-        const result: AxiosResponse<Response> = yield call(o => axios.post("/login", o), user)
+        const result: AxiosResponse<Response> = yield call(o => axios.post("/apis/login", o), user)
         setAuthToken('{ "message": "helloworld" }')
         yield put<LoginAction>({ type: LOGIN.SUCCESS })
     } catch (err) {
@@ -26,7 +26,7 @@ export function* login(action: ReturnType<typeof actions.login>): SagaIterator {
 
 export function* logout(action: ReturnType<typeof actions.logout>): SagaIterator {
     try {
-        const result: AxiosResponse<Response> = yield call(() => axios.get("/logout"))
+        const result: AxiosResponse<Response> = yield call(() => axios.get("/apis/logout"))
         clearAuthToken()
         yield put<LogoutAction>({ type: LOGOUT.SUCCESS })
     } catch (err) {

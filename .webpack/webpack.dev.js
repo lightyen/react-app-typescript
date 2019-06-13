@@ -36,7 +36,7 @@ module.exports = webpackMerge(createBaseConfig(), {
         open: true,
         proxy: [
             {
-                context: ["/apis", "/login", "/logout"],
+                context: ["/apis"],
                 target: "http://localhost:8888/",
                 secure: false,
                 changeOrigin: true,

@@ -51,6 +51,7 @@ const Hello: React.FC<OwnProps> = ({ history, status, logined, login, logout, ge
                     <>
                         <form
                             onSubmit={e => {
+                                e.preventDefault()
                                 login({ username, password })
                             }}
                         >

@@ -59,7 +59,8 @@ axios.interceptors.response.use(
                 case 401:
                     store.dispatch({ type: AUTH_FAILED })
                     clearAuthToken()
-                    window.location.replace("/#/")
+                    // NOTE: createBrowserHistory
+                    window.location.replace("/")
                     break
                 default:
                     break
