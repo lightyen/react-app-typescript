@@ -31,7 +31,8 @@ module.exports = webpackMerge(createBaseConfig(), {
         public: "http://localhost:3000",
         clientLogLevel: "error",
         stats: "errors-only",
-        historyApiFallback: false,
+        // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
+        historyApiFallback: true,
         open: true,
         proxy: [
             {

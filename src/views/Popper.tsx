@@ -22,7 +22,7 @@ interface PopperWrapperProps {
 const PopperWrapper = styled.div<PopperWrapperProps>`
   z-index: 999;
   & [x-inner] {
-    filter: drop-shadow(0px 0px 5px #000);
+    filter: drop-shadow(0px 0px 5px #ccc);
   }
   &[x-placement^="top"] [x-arrow] {
     ${arrowStyle}
@@ -54,6 +54,9 @@ interface PopperProps {
     placement?: PopperJS.Placement
 }
 
+/**
+ * Popper 結合 popper.js and anime.js
+ */
 const Popper: React.FC<PopperProps> = ({ placement }) => {
     const reference = React.useRef()
     const arrow = React.useRef()
@@ -76,17 +79,21 @@ const Popper: React.FC<PopperProps> = ({ placement }) => {
         if (inner.current) {
             animation.current = AnimeJS({
                 targets: inner.current,
-                autoplay: false,
                 duration: 300,
-                opacity: [0, 1],
-                translateX: [30, 0],
-                translateY: [50, 0],
+                autoplay: false,
                 loop: true,
-                easing: "easeInOutCirc",
-                direction: "alternate",
-                loopComplete: (anime: AnimeJS.AnimeInstance) => {
-                    anime.pause()
+                loopComplete: (a: AnimeJS.AnimeInstance) => {
+                    a.pause()
+                    if (a.reversed) {
+                        setVisiable(false)
+                    }
                 },
+                opacity: [0, 1],
+                translateX: [-40, 0],
+                translateY: [-40, 0],
+                scale: [0.2, 1],
+                easing: "easeInOutQuart",
+                direction: "alternate",
             })
         }
         return () => {
@@ -168,16 +175,18 @@ const PopperButton = React.forwardRef<HTMLButtonElement, PopperButtonProps>(({ o
     )
 })
 
+const color = "primary"
+
 const PopperContent = React.forwardRef<HTMLDivElement>((props, ref) => (
-    <div ref={ref} {...props} className="card border-0 bg-primary text-light">
-        <div className="card-header bg-primary">Header</div>
+    <div ref={ref} {...props} className={classnames("card border-0 text-light", `bg-${color}`)}>
+        <strong className={classnames("card-header", `bg-${color}`, "text-center")}>Header</strong>
         <div className="card-body rounded-bottom bg-light text-dark">This is my body.</div>
     </div>
 ))
 
 const Test: React.FC = () => {
     return (
-        <div style={{ padding: "30px 50px" }}>
+        <div style={{ padding: "20px 30px" }}>
             <Popper placement="bottom-start" />
         </div>
     )

@@ -85,7 +85,6 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                                     )
                                 )
                             })}
-                            {/* <Redirect from="/" to="/dashboard" exact /> */}
                             <Redirect to="/404" />
                         </Switch>
                     </React.Suspense>

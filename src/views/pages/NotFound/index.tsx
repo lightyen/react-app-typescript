@@ -12,13 +12,11 @@ class NotFound extends React.Component<RouteComponentProps> {
     private backHome = () => {
         this.props.history.replace("/")
     }
-    public componentDidMount() {
-        document.title = "404 Not Found"
-    }
+    public componentDidMount() {}
     public render() {
         return (
             <Div>
-                <ExampleFC content="找不到你要的資源呢!" onClick={this.backHome} />
+                <ExampleFC className="btn btn-primary" content="找不到你要的資源呢!" onClick={this.backHome} />
             </Div>
         )
     }

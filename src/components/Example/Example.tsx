@@ -4,6 +4,7 @@ import style from "./Example.css"
 
 interface OwnProps {
     content?: string
+    className?: string
     onClick?: React.MouseEventHandler
 }
 
@@ -22,8 +23,8 @@ export class Example extends React.Component<OwnProps> {
     }
 }
 
-export const ExampleFC: React.FC<OwnProps> = ({ content, onClick }) => (
-    <button className={style.example} onClick={onClick}>
+export const ExampleFC: React.FC<OwnProps> = ({ content, className, onClick }) => (
+    <button className={className} onClick={onClick}>
         <span>{content}</span>
     </button>
 )

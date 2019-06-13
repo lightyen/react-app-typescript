@@ -1,5 +1,5 @@
 import React from "react"
-import { createHashHistory } from "history"
+import { createBrowserHistory } from "history"
 import { ConnectedRouter } from "connected-react-router"
 
 import "./scss/style.scss"
@@ -14,7 +14,7 @@ import { Provider } from "~/components/i18n"
 // locale
 import { SET_LOCALE, setLocale } from "~/store/i18n"
 
-const history = createHashHistory()
+const history = createBrowserHistory()
 export const store = configureStore(history)
 
 export default function App() {

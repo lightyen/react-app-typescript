@@ -15,9 +15,6 @@ const TsImportPlugin = require("ts-import-plugin")
 // NOTE: 關閉 webpack 要求 donate 訊息
 process.env.DISABLE_OPENCOLLECTIVE = "true"
 
-/**
- * @type { import("webpack").Entry }
- */
 const entry = {
     index: "./src/index.tsx",
 }
@@ -29,7 +26,7 @@ const entry = {
  * }} Options */
 
 /**
- * @param {?Options} [options]
+ * @param {Options} [options]
  *
  * @returns { import("webpack").Configuration }
  */

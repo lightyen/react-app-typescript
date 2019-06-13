@@ -1,21 +1,14 @@
-import React, { Suspense } from "react"
+import React from "react"
 import path from "path"
 import { RouteProps } from "react-router-dom"
 import LocaleMessage from "~/components/LocaleMessage"
+import Loadable from "react-loadable"
 
 // 懶加載：https://reactjs.org/docs/code-splitting.html
 const Main = React.lazy(() => import("~/views/Main"))
 const Hello = React.lazy(() => import("~/views/Hello"))
 const Highlight = React.lazy(() => import("~/views/Highlight"))
 const Popper = React.lazy(() => import("~/views/Popper"))
-
-function WaitingComponent<P>(Component: React.FunctionComponent<P>) {
-    return (props: P) => (
-        <Suspense fallback={<div>Loading...</div>}>
-            <Component {...props} />
-        </Suspense>
-    )
-}
 
 interface RouteItem extends RouteProps {
     name: React.ReactNode

@@ -34,7 +34,7 @@ const AppLayout = Loadable({
 const AppRouter: React.FC = () => {
     return (
         <Switch>
-            <Route path="/404" component={NotFound} exact />
+            <Route path="/404" component={NotFound} />
             <AuthenticatedRoute path="/" component={AppLayout} />
         </Switch>
     )
