@@ -13,7 +13,7 @@ yarn add -D webpack @types/webpack webpack-cli
 2. 撰寫自己的 webpack.config，例如︰
 
 ```js
-export default {
+module.exports = {
   output: {
     /** ... */
   },
