@@ -11,7 +11,7 @@ interface UserStoreType {
     /** 請求狀態 */
     status?: string
     /** 錯誤訊息 */
-    error?: any
+    error?: unknown
 }
 
 export type UserStore = Readonly<UserStoreType>

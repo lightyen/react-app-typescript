@@ -13,7 +13,7 @@ export const getAuthToken = () => {
     return jsonParseSafety(localStorage.getItem(token))
 }
 
-export const setAuthToken = (o: any) => {
+export const setAuthToken = (o: unknown) => {
     localStorage.setItem(token, JSON.stringify(o))
 }
 
