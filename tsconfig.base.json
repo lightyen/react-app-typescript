@@ -16,6 +16,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "allowJs": false,
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "incremental": true
   }
 }
