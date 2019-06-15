@@ -55,16 +55,14 @@ const AppFooterContainer = styled.footer`
 
 // Component
 import AppSidebar from "./AppSidebar"
-const AppHeader = React.lazy(() => import("./AppHeader"))
-const AppFooter = React.lazy(() => import("./AppFooter"))
+import AppHeader from "./AppHeader"
+import AppFooter from "./AppFooter"
 
 const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
     return (
         <App className="d-flex flex-column">
             <AppHeaderContainer className="fixed-top container-fluid">
-                <React.Suspense fallback={<span>Loading...</span>}>
-                    <AppHeader />
-                </React.Suspense>
+                <AppHeader />
             </AppHeaderContainer>
             <AppBodyContainer>
                 <AppSidebarContainer>
@@ -91,9 +89,7 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                 </AppMain>
             </AppBodyContainer>
             <AppFooterContainer>
-                <React.Suspense fallback={<span>Loading...</span>}>
-                    <AppFooter />
-                </React.Suspense>
+                <AppFooter />
             </AppFooterContainer>
         </App>
     )

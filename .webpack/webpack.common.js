@@ -20,13 +20,14 @@ const entry = {
 }
 
 /** @typedef {{
+ *    mode: "development" | "production" | "none"
  *    dist?: string
  *    src?: string
  *    vendor?: string
  * }} Options */
 
 /**
- * @param {Options} [options]
+ * @param {Options} options
  *
  * @returns { import("webpack").Configuration }
  */
@@ -34,20 +35,11 @@ module.exports = function(options) {
     const workingDirectory = process.cwd()
     const distDefaultPath = path.resolve(workingDirectory, "dist")
     const srcDefaultPath = path.resolve(workingDirectory, "src")
-    const devMode = process.env.NODE_ENV !== "production"
-    if (!options) {
-        options = {
-            dist: distDefaultPath,
-            src: srcDefaultPath,
-            vendor: "",
-        }
-    } else {
-        if (!options.dist) {
-            options.dist = distDefaultPath
-        }
-        if (!options.src) {
-            options.src = srcDefaultPath
-        }
+    if (!options.dist) {
+        options.dist = distDefaultPath
+    }
+    if (!options.src) {
+        options.src = srcDefaultPath
     }
 
     /**
@@ -56,7 +48,7 @@ module.exports = function(options) {
     const plugins = [
         new WebpackBarPlugin({ color: "blue", name: "React" }),
         new EnvironmentPlugin({
-            NODE_ENV: process.env.NODE_ENV,
+            NODE_ENV: options.mode,
         }),
         new MiniCssExtractPlugin({
             filename: "css/[name].[contenthash].css",
@@ -80,7 +72,7 @@ module.exports = function(options) {
                     inject: false,
                     template: path.join(options.src, "template", name + ".pug"),
                     favicon: path.join(options.src, "assets", "favicon.ico"),
-                    vendor: options.vendor ? "/vendor/vendor.js" : null,
+                    vendor: options.vendor ? "/vendor/vendor.js" : undefined,
                 }),
             )
         }
@@ -93,6 +85,41 @@ module.exports = function(options) {
                 manifest: require(path.join(options.vendor, "manifest.json")),
             }),
         )
+    }
+
+    /**
+     * @type {import("webpack").Loader}
+     * See [style-loader]{@link https://github.com/webpack-contrib/style-loader} and [mini-css-extract-plugin]{@link https://github.com/webpack-contrib/mini-css-extract-plugin}.
+     */
+    const styleLoader = {
+        loader: options.mode !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
+    }
+
+    /**
+     * @type {import("webpack").Loader}
+     * See [url-loader]{@link https://github.com/webpack-contrib/url-loader} and [file-loader]{@link https://github.com/webpack-contrib/file-loader}.
+     */
+    const imageLoader = {
+        // NOTE: A loader for webpack which transforms files into base64 URIs.
+        loader: "url-loader",
+        options: {
+            // NOTE: output path
+            name: "assets/images/[name].[ext]",
+            limit: 8192,
+            fallback: "file-loader",
+        },
+    }
+
+    /**
+     * @type {import("webpack").Loader}
+     */
+    const fontLoader = {
+        loader: "url-loader",
+        options: {
+            name: "assets/fonts/[name].[ext]?[hash:8]",
+            limit: 8192,
+            ack: "file-loader",
+        },
     }
 
     return {
@@ -150,39 +177,24 @@ module.exports = function(options) {
                     },
                 },
                 {
-                    test: /\.(png|jpe?g|gif|svg)$/,
-                    use: [
-                        {
-                            loader: "url-loader", // 依賴於 file-loader，別忘記安裝。
-                            options: {
-                                name: "assets/img/[name].[ext]",
-                                limit: 8192,
-                            },
-                        },
-                    ],
+                    test: /\.(png|jpe?g|gif|svg)$/i,
+                    use: imageLoader,
                 },
                 {
-                    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-                    use: [
-                        {
-                            loader: "url-loader",
-                            options: {
-                                name: "assets/fonts/[name].[ext]?[hash:8]",
-                                limit: 100000,
-                            },
-                        },
-                    ],
+                    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+                    use: fontLoader,
                 },
+                // For user space:
                 {
+                    exclude: /node_modules/,
                     test: /\.css$/,
-                    exclude: /node_modules/,
-                    use: [devMode ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+                    use: [styleLoader, "css-loader", "postcss-loader"],
                 },
                 {
-                    test: /\.less$/,
                     exclude: /node_modules/,
+                    test: /\.less$/,
                     use: [
-                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                        styleLoader,
                         {
                             loader: "dts-css-modules-loader",
                             options: {
@@ -205,14 +217,14 @@ module.exports = function(options) {
                     ],
                 },
                 {
-                    test: /\.s(a|c)ss$/,
                     exclude: /node_modules/,
+                    test: /\.s(a|c)ss$/,
                     use: [
-                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                        styleLoader,
                         {
                             loader: "css-loader",
                             options: {
-                                // NOTE: bootstrap 4
+                                // NOTE: Disabled css modules in node_modules
                                 modules: false,
                             },
                         },
@@ -220,12 +232,17 @@ module.exports = function(options) {
                         "sass-loader",
                     ],
                 },
-                // 對屬於 node_modules 的樣式，modules = false：
+                // For node_modules:
                 {
-                    test: /\.(le|c)ss$/,
                     include: /node_modules/,
+                    test: /.css$/,
+                    use: [styleLoader, "css-loader", "postcss-loader"],
+                },
+                {
+                    include: /node_modules/,
+                    test: /\.less$/,
                     use: [
-                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                        styleLoader,
                         "css-loader",
                         "postcss-loader",
                         {
@@ -241,20 +258,15 @@ module.exports = function(options) {
                     ],
                 },
                 {
-                    test: /\.s(a|c)ss$/,
                     include: /node_modules/,
-                    use: [
-                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-                        "css-loader",
-                        "postcss-loader",
-                        "sass-loader",
-                    ],
+                    test: /\.s(a|c)ss$/,
+                    use: [styleLoader, "css-loader", "postcss-loader", "sass-loader"],
                 },
             ],
         },
         // NOTE: https://webpack.js.org/configuration/resolve/
         resolve: {
-            extensions: [".ts", ".tsx", ".js", ".jsx"],
+            extensions: [".ts", ".tsx", ".js"],
             plugins: [
                 new TsConfigPathsPlugin({
                     configFileName: path.join(workingDirectory, "tsconfig.json"),

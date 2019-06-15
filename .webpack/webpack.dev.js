@@ -1,15 +1,12 @@
 // @ts-check
 const { NamedModulesPlugin, HotModuleReplacementPlugin } = require("webpack")
 const webpackMerge = require("webpack-merge")
-
-process.env.NODE_ENV = "development"
 const createBaseConfig = require("./webpack.common")
 
-// NOTE: 可以選擇你要的 dist 位置，例如︰
-// const distPath = path.resolve(os.homedir(), "Documents", "react-app-typescript", "dist")
-// getBaseConfig({dist: distPath})
-
-module.exports = webpackMerge(createBaseConfig(), {
+/**
+ * @type { import("webpack").Configuration }
+ */
+const config = {
     mode: "development",
     watch: true,
     watchOptions: {
@@ -28,19 +25,32 @@ module.exports = webpackMerge(createBaseConfig(), {
         compress: true,
         host: "0.0.0.0",
         port: 3000,
-        public: "http://localhost:3000",
-        clientLogLevel: "error",
-        stats: "errors-only",
+        open: true,
+        public: "localhost:3000",
+        publicPath: "/",
+        clientLogLevel: "warning",
+        stats: {
+            colors: true,
+            all: false,
+            assets: false,
+            builtAt: true,
+            cached: true,
+            cachedAssets: true,
+            children: false,
+            chunks: false,
+        },
         // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
         historyApiFallback: true,
-        open: true,
         proxy: [
             {
                 context: ["/apis"],
                 target: "http://localhost:8888/",
                 secure: false,
                 changeOrigin: true,
+                logLevel: "warn",
             },
         ],
     },
-})
+}
+
+module.exports = webpackMerge(createBaseConfig({ mode: config.mode }), config)

@@ -2,15 +2,10 @@
 const webpackMerge = require("webpack-merge")
 const { ContextReplacementPlugin } = require("webpack")
 const CompressionWebpackPlugin = require("compression-webpack-plugin")
-const path = require("path")
-const os = require("os")
-
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-
-process.env.NODE_ENV = "production"
+const path = require("path")
 const createBaseConfig = require("./webpack.common")
 
-const productionPath = path.resolve(process.cwd(), "dist")
 /** DLL 位置 */
 const vendorPath = "" // path.resolve(process.cwd(), "dist", "vendor")
 
@@ -60,7 +55,7 @@ const config = {
 
 module.exports = webpackMerge(
     createBaseConfig({
-        dist: productionPath,
+        mode: config.mode,
         vendor: vendorPath,
     }),
     config,
