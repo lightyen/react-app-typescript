@@ -20,9 +20,10 @@ function useActions() {
 }
 
 function useSelectors() {
-    const logined = useSelector((state: AppStore) => state.user.logined)
-    const status = useSelector((state: AppStore) => state.hello.status)
-    return { logined, status }
+    return {
+        logined: useSelector((state: AppStore) => state.user.logined),
+        status: useSelector((state: AppStore) => state.hello.status),
+    }
 }
 
 type OwnProps = RouteComponentProps
