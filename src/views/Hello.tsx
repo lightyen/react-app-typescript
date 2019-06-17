@@ -9,10 +9,20 @@ import { AppStore } from "~/store"
 import { login, logout } from "~/store/auth"
 import { getHello } from "~/store/hello"
 
-const actionCreators = {
-    login,
-    logout,
-    getHello,
+function useActions() {
+    const actionCreators = {
+        login,
+        logout,
+        getHello,
+    }
+    const dispatch = useDispatch()
+    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
+}
+
+function useSelectors() {
+    const logined = useSelector((state: AppStore) => state.user.logined)
+    const status = useSelector((state: AppStore) => state.hello.status)
+    return { logined, status }
 }
 
 type OwnProps = RouteComponentProps
@@ -21,10 +31,8 @@ const Hello: React.FC<OwnProps> = ({ history }) => {
     const [username, setUsername] = React.useState("")
     const [password, setPassword] = React.useState("")
 
-    const dispatch = useDispatch()
-    const { login, logout, getHello } = React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
-    const logined = useSelector((state: AppStore) => state.user.logined)
-    const status = useSelector((state: AppStore) => state.hello.status)
+    const { login, logout, getHello } = useActions()
+    const { logined, status } = useSelectors()
 
     return (
         <div className="card bg-transparent">
