@@ -60,7 +60,9 @@ axios.interceptors.response.use(
                     store.dispatch({ type: AUTH_FAILED })
                     clearAuthToken()
                     // NOTE: createBrowserHistory
-                    window.location.replace("/")
+                    if (!window.location.pathname.startsWith("/hello")) {
+                        window.location.replace("/")
+                    }
                     break
                 default:
                     break

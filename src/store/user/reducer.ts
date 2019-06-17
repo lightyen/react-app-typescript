@@ -19,7 +19,7 @@ export type UserStore = Readonly<UserStoreType>
 const init: UserStore = {
     logined: isLogin(),
     status: "",
-    error: null,
+    error: undefined,
 }
 
 export const userReducer: Reducer<UserStore, UserActionType> = (state = init, action): UserStore => {
@@ -27,14 +27,14 @@ export const userReducer: Reducer<UserStore, UserActionType> = (state = init, ac
         case LOGIN.REQUEST:
             return { ...state, status: LOGIN.REQUEST }
         case LOGIN.SUCCESS:
-            return { ...state, status: LOGIN.SUCCESS, logined: true }
+            return { ...state, status: LOGIN.SUCCESS, logined: true, error: null }
         case LOGIN.FAILURE:
             return { ...state, status: LOGIN.FAILURE, error: action.error }
 
         case LOGOUT.REQUEST:
             return { ...state, status: LOGOUT.REQUEST }
         case LOGOUT.SUCCESS:
-            return { ...state, ...init, status: LOGOUT.SUCCESS, logined: false }
+            return { ...state, ...init, status: LOGOUT.SUCCESS }
         case LOGOUT.FAILURE:
             return { ...state, status: LOGOUT.FAILURE, error: action.error }
 

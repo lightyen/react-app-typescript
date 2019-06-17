@@ -29,6 +29,7 @@ function useSelectors() {
     return {
         logined: useSelector((state: AppStore) => state.user.logined),
         status: useSelector((state: AppStore) => state.hello.status),
+        error: useSelector((state: AppStore) => state.user.error),
     }
 }
 
@@ -39,7 +40,7 @@ const Hello: React.FC<OwnProps> = ({ history }) => {
     const [password, setPassword] = React.useState("")
 
     const { login, logout, getHello } = useActions()
-    const { logined, status } = useSelectors()
+    const { logined, status, error } = useSelectors()
 
     return (
         <div className="card bg-transparent">
@@ -81,6 +82,7 @@ const Hello: React.FC<OwnProps> = ({ history }) => {
                                         setPassword(e.target.value)
                                     }}
                                 />
+                                {error && <div>{error["message"]}</div>}
                                 <button className="btn btn-primary">Submit</button>
                             </div>
                         </form>
