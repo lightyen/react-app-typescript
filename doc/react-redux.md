@@ -69,7 +69,6 @@ import { bindActionCreators } from "redux"
 import { AppStore } from "~/store"
 import { doSomething1, doSomething2, doSomething3 } from "~/store/my/actions"
 
-
 function useActions() {
     const dispatch = useDispatch()
     return React.useMemo(
