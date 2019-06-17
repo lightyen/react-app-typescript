@@ -1,12 +1,12 @@
 import { Provider as ReduxProvider } from "react-redux"
 import React from "react"
 
-import { IAppStore } from "~/store"
+import { AppStore } from "~/store"
 import IntlProvider from "./IntlProvider"
 import { Store, AnyAction } from "redux"
 
 interface IProps {
-    store: Store<IAppStore, AnyAction>
+    store: Store<AppStore, AnyAction>
 }
 
 /** 提供 i18n 功能的 Redux Provider */

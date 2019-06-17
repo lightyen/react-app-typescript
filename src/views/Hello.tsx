@@ -1,40 +1,30 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
 import Button from "~/components/Button"
-import TimeCounter from "~/components/TimeCounter"
 import { isLogin } from "~/utils/auth"
 
-import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
-import { connect } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
+import { AppStore } from "~/store"
 import { login, logout } from "~/store/auth"
-import { UserStore } from "~/store/user"
-import { HelloStore, getHello } from "~/store/hello"
-import { User } from "~/store/model"
-import { IAppStore } from "~/store"
+import { getHello } from "~/store/hello"
 
-const dispatchProps = {
+const actionCreators = {
     login,
     logout,
     getHello,
 }
 
-type DispatchProps = typeof dispatchProps
+type OwnProps = RouteComponentProps
 
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(dispatchProps, dispatch)
-
-type PickProps = Pick<UserStore, "logined"> & Pick<HelloStore, "status">
-const mapStateToProps = (state: IAppStore, ownProps: OwnProps): PickProps => {
-    const { logined } = state.user
-    const { status } = state.hello
-    return { logined, status }
-}
-
-type OwnProps = RouteComponentProps & DispatchProps & PickProps
-
-const Hello: React.FC<OwnProps> = ({ history, status, logined, login, logout, getHello }) => {
+const Hello: React.FC<OwnProps> = ({ history }) => {
     const [username, setUsername] = React.useState("")
     const [password, setPassword] = React.useState("")
+
+    const dispatch = useDispatch()
+    const { login, logout, getHello } = React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
+    const logined = useSelector((state: AppStore) => state.user.logined)
+    const status = useSelector((state: AppStore) => state.hello.status)
 
     return (
         <div className="card bg-transparent">
@@ -87,10 +77,7 @@ const Hello: React.FC<OwnProps> = ({ history, status, logined, login, logout, ge
     )
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Hello)
+export default Hello
 
 const GoBackButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
     return (

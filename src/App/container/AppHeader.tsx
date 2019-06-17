@@ -5,7 +5,7 @@ import classnames from "classnames"
 import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
-import { IAppStore } from "~/store"
+import { AppStore } from "~/store"
 import { IntlStore, setLocale } from "~/store/i18n"
 
 interface OwnProps {}
@@ -19,7 +19,7 @@ type DispatchProps = typeof dispatchProps
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(dispatchProps, dispatch)
 
 type StateProps = Partial<Pick<IntlStore, "enable" | "list" | "locale">>
-const mapStateToProps = (state: IAppStore, ownProps: OwnProps): StateProps => {
+const mapStateToProps = (state: AppStore, ownProps: OwnProps): StateProps => {
     const { enable, list, locale } = state.intl
     return {
         enable,

@@ -10,14 +10,14 @@ import { IntlStore, intlReducer } from "./i18n"
 import { HelloStore, helloReducer } from "./hello"
 import rootSaga from "~/store/saga"
 
-export interface IAppStore {
+export interface AppStore {
     router: RouterState
     intl: IntlStore
     user: UserStore
     hello: HelloStore
 }
 
-const myMiddleware: Middleware<{}, IAppStore> = store => next => (action: AnyAction) => {
+const myMiddleware: Middleware<{}, AppStore> = store => next => (action: AnyAction) => {
     const { type } = action
     if (typeof type === "string") {
         if (type.startsWith("@@router")) {
@@ -31,7 +31,7 @@ const myMiddleware: Middleware<{}, IAppStore> = store => next => (action: AnyAct
 }
 
 const createAppReducer = (history: History) =>
-    combineReducers<IAppStore>({
+    combineReducers<AppStore>({
         user: userReducer,
         intl: intlReducer,
         router: connectRouter(history),
