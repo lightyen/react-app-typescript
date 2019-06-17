@@ -121,3 +121,7 @@ pre[class*="language-"] {
 .token.entity {
     cursor: help;
 }
+
+div.code-toolbar > .toolbar {
+    margin: 0 10px;
+}

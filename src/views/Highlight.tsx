@@ -12,7 +12,10 @@ const input = `const CodeHighlight: React.FC<OwnProps> = ({ code, language }) =>
     })
 
     return (
-        <pre data-language={tags[language]} className={classnames(\`language-\${language}\`, "line-numbers")}>
+        <pre
+            data-language={tags[language]}
+            className={classnames(\`language-\${language}\`, "line-numbers")}
+        >
             <code ref={ref}>{code}</code>
         </pre>
     )

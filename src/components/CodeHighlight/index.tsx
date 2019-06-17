@@ -1,4 +1,5 @@
 import React from "react"
+import classnames from "classnames"
 import Prism from "prismjs"
 
 import { tags, Language } from "./prismjs"
@@ -15,9 +16,11 @@ const CodeHighlight: React.FC<OwnProps> = ({ code, language }) => {
     })
 
     return (
-        <pre data-language={tags[language]} className={`language-${language} line-numbers`}>
-            <code ref={ref}>{code}</code>
-        </pre>
+        <div className="p-3">
+            <pre className={classnames(`language-${language}`, "line-numbers")} data-language={tags[language]}>
+                <code ref={ref}>{code}</code>
+            </pre>
+        </div>
     )
 }
 
