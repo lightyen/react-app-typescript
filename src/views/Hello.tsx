@@ -16,7 +16,7 @@ function useActions() {
         getHello,
     }
     const dispatch = useDispatch()
-    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
+    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [actionCreators, dispatch])
 }
 
 function useSelectors() {
