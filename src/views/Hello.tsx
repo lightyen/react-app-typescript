@@ -10,13 +10,19 @@ import { login, logout } from "~/store/auth"
 import { getHello } from "~/store/hello"
 
 function useActions() {
-    const actionCreators = {
-        login,
-        logout,
-        getHello,
-    }
     const dispatch = useDispatch()
-    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [actionCreators, dispatch])
+    return React.useMemo(
+        () =>
+            bindActionCreators(
+                {
+                    login,
+                    logout,
+                    getHello,
+                },
+                dispatch,
+            ),
+        [dispatch],
+    )
 }
 
 function useSelectors() {
