@@ -17,7 +17,7 @@ const NoAuthenticatedRoute: React.FC<RouteProps> = ({ component: Component, ...r
     <Route {...rest} render={props => (!isAuthenticated() ? <Component {...props} /> : <Redirect to="/" />)} />
 )
 
-function AsyncComponent(C: React.LazyExoticComponent<React.ComponentType<any>>) {
+function AsyncComponent(C: React.LazyExoticComponent<React.ComponentType<RouteComponentProps>>) {
     return (props: RouteComponentProps) => (
         <React.Suspense fallback={Loading}>
             <C {...props} />

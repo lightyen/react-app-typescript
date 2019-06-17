@@ -2,40 +2,31 @@ import React from "react"
 import styled from "styled-components"
 import classnames from "classnames"
 
-import { Dispatch } from "redux"
 import { bindActionCreators } from "redux"
-import { connect } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AppStore } from "~/store"
-import { IntlStore, setLocale } from "~/store/i18n"
+import { setLocale } from "~/store/i18n"
 
-interface OwnProps {}
-
-const dispatchProps = {
-    setLocale,
+function useActions() {
+    const dispatch = useDispatch()
+    return React.useMemo(() => bindActionCreators({ setLocale }, dispatch), [dispatch])
 }
 
-type DispatchProps = typeof dispatchProps
-
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(dispatchProps, dispatch)
-
-type StateProps = Partial<Pick<IntlStore, "enable" | "list" | "locale">>
-const mapStateToProps = (state: AppStore, ownProps: OwnProps): StateProps => {
-    const { enable, list, locale } = state.intl
+function useSelectors() {
     return {
-        enable,
-        list,
-        locale,
+        enable: useSelector((state: AppStore) => state.intl.enable),
+        list: useSelector((state: AppStore) => state.intl.list),
+        locale: useSelector((state: AppStore) => state.intl.locale),
     }
 }
-
-type IProps = OwnProps & DispatchProps & StateProps
 
 const Header = styled.header`
     background: #20232a;
 `
 
-function AppHeader(props: IProps) {
-    const { enable, list, locale } = props
+function AppHeader() {
+    const { setLocale } = useActions()
+    const { enable, list, locale } = useSelectors()
     const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <Header className="row align-items-center h-100">
@@ -56,7 +47,7 @@ function AppHeader(props: IProps) {
                                 key={key}
                                 onClick={(e: React.MouseEvent) => {
                                     e.stopPropagation()
-                                    props.setLocale(key)
+                                    setLocale(key)
                                 }}
                             >
                                 {list[key]}
@@ -69,10 +60,7 @@ function AppHeader(props: IProps) {
     )
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(AppHeader)
+export default AppHeader
 
 import { Route, Link, RouteComponentProps } from "react-router-dom"
 import { getRouteName } from "~/routes"
