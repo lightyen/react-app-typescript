@@ -43,15 +43,11 @@ const AppRouter: React.FC = () => {
 
 // FIXME: fix react-hot-loader with react-redux
 setConfig({
-    onComponentRegister: (type, name, file) => {
-        if (
-            String(type).indexOf("useDispatch") > 0 ||
+    onComponentCreate: (type, name) =>
+        (String(type).indexOf("useDispatch") > 0 ||
             String(type).indexOf("useSelector") > 0 ||
-            String(type).indexOf("useStore") > 0
-        ) {
-            cold(type)
-        }
-    },
+            String(type).indexOf("useStore") > 0) &&
+        cold(type),
 })
 
 export default hot(AppRouter)
