@@ -4,6 +4,7 @@ import Loadable from "react-loadable"
 import { Loading } from "~/components/Spinner"
 import NotFound from "~/views/pages/NotFound"
 import { hot } from "react-hot-loader/root"
+import { setConfig, cold } from "react-hot-loader"
 
 const isAuthenticated = (): boolean => {
     return true // get localstorage token
@@ -39,5 +40,18 @@ const AppRouter: React.FC = () => {
         </Switch>
     )
 }
+
+// FIXME: fix react-hot-loader with react-redux
+setConfig({
+    onComponentRegister: (type, name, file) => {
+        if (
+            String(type).indexOf("useDispatch") > 0 ||
+            String(type).indexOf("useSelector") > 0 ||
+            String(type).indexOf("useStore") > 0
+        ) {
+            cold(type)
+        }
+    },
+})
 
 export default hot(AppRouter)
