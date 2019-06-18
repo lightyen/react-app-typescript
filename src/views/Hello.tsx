@@ -3,47 +3,78 @@ import { RouteComponentProps } from "react-router-dom"
 import Button from "~/components/Button"
 import { isLogin } from "~/utils/auth"
 
-import { bindActionCreators } from "redux"
-import { useSelector, useDispatch } from "react-redux"
+import { bindActionCreators, Dispatch } from "redux"
+import { connect, useDispatch, useSelector } from "react-redux"
 import { AppStore } from "~/store"
+import { UserStore } from "~/store/user"
+import { HelloStore } from "~/store/hello"
 import { login, logout } from "~/store/auth"
 import { getHello } from "~/store/hello"
 
+const GoBackButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
+    return (
+        <Button className="d-block" onClick={onClick}>
+            Go Back
+        </Button>
+    )
+}
+
+const actionCreators = { login, logout, getHello }
+type DispatchProps = typeof actionCreators
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch)
+
+type StateProps = Pick<UserStore, "logined" | "error"> & Pick<HelloStore, "status">
+const mapStateToProps = (state: AppStore) => {
+    return {
+        logined: state.user.logined,
+        error: state.user.error,
+        status: state.hello.status,
+    }
+}
+
 function useActions() {
     const dispatch = useDispatch()
-    return React.useMemo(
-        () =>
-            bindActionCreators(
-                {
-                    login,
-                    logout,
-                    getHello,
-                },
-                dispatch,
-            ),
-        [dispatch],
-    )
+    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
 function useSelectors() {
     return {
         logined: useSelector((state: AppStore) => state.user.logined),
-        status: useSelector((state: AppStore) => state.hello.status),
         error: useSelector((state: AppStore) => state.user.error),
+        status: useSelector((state: AppStore) => state.hello.status),
     }
 }
 
 type OwnProps = RouteComponentProps
 
-const Hello: React.FC<OwnProps> = ({ history }) => {
+type Props = OwnProps & DispatchProps & StateProps
+
+function CustomHooks() {
+    const [count, setCount] = React.useState(2)
+    return { count, setCount }
+}
+
+const Hello: React.FC<Props> = ({ history, ...rest }) => {
     const [username, setUsername] = React.useState("")
     const [password, setPassword] = React.useState("")
 
-    const { login, logout, getHello } = useActions()
-    const { logined, status, error } = useSelectors()
+    const { login, logout, getHello } = rest
+    const { logined, status, error } = rest
+
+    const { count, setCount } = CustomHooks()
+    // const { login, logout, getHello } = useActions()
+    // const { logined, status, error } = useSelectors()
+
+    React.useEffect(() => {
+        console.log("mount")
+        return () => {
+            console.log("unmount")
+        }
+    }, [])
 
     return (
         <div className="card bg-transparent">
+            <div onClick={() => setCount(count + 1)}>{count} Add Count</div>
             <div className="card-body">
                 {logined ? (
                     <>
@@ -94,12 +125,7 @@ const Hello: React.FC<OwnProps> = ({ history }) => {
     )
 }
 
-export default Hello
-
-const GoBackButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
-    return (
-        <Button className="d-block" onClick={onClick}>
-            Go Back
-        </Button>
-    )
-}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Hello)

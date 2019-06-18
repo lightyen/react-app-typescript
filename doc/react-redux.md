@@ -107,6 +107,7 @@ with react-hot-loader:
 ```tsx
 import { setConfig, cold } from "react-hot-loader"
 setConfig({
+    pureSFC: true,
     onComponentCreate: (type, name) =>
         (String(type).indexOf("useDispatch") > 0 ||
             String(type).indexOf("useSelector") > 0 ||
@@ -115,3 +116,9 @@ setConfig({
 })
 
 ```
+
+## tracking issue
+
+- 使用 hook 時在 react-hot-reloader 會有 remount 現象發生。
+- https://github.com/gaearon/react-hot-loader/issues/1088#issuecomment-433537974
+- https://github.com/gaearon/react-hot-loader/issues/1207
