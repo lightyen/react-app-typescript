@@ -101,3 +101,17 @@ const MyComponent: React.FC = () => {
 
 export default MyComponent
 ```
+
+with react-hot-loader:
+
+```tsx
+import { setConfig, cold } from "react-hot-loader"
+setConfig({
+    onComponentCreate: (type, name) =>
+        (String(type).indexOf("useDispatch") > 0 ||
+            String(type).indexOf("useSelector") > 0 ||
+            String(type).indexOf("useStore") > 0) &&
+        cold(type),
+})
+
+```
