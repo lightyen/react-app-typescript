@@ -4,11 +4,11 @@
 
 ```tsx
 import React from "react"
-import { connect, Dispatch } from "react-redux"
-import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import { bindActionCreators, Dispatch } from "redux"
+import { doSomething1, doSomething2, doSomething3 } from "~/store/my/actions"
 import { AppStore } from "~/store"
 import { MyStore } from "~/store/my"
-import { doSomething1, doSomething2, doSomething3 } from "~/store/my/actions"
 
 const actionCreators = {
     doSomething1,
@@ -38,8 +38,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(MyComponent)
 
 ```tsx
 import React from "react"
-import { connect, Dispatch } from "react-redux"
-import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import { bindActionCreators, Dispatch } from "redux"
 import { doSomething1, doSomething2, doSomething3 } from "~/store/my/actions"
 
 const actionCreators = {
@@ -66,8 +66,8 @@ export default connect(null, mapDispatchToProps)(MyComponent)
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { bindActionCreators } from "redux"
-import { AppStore } from "~/store"
 import { doSomething1, doSomething2, doSomething3 } from "~/store/my/actions"
+import { AppStore } from "~/store"
 
 function useActions() {
     const dispatch = useDispatch()
