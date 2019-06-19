@@ -71,20 +71,16 @@ import { bindActionCreators } from "redux"
 import { doSomething1, doSomething2, doSomething3 } from "~/store/my/actions"
 import { AppStore } from "~/store"
 
-function useActions() {
+const actionCreators = {
+    doSomething1,
+    doSomething2,
+    doSomething3,
+    // ...
+}
+
+function useActions(): DispatchProps<typeof actionCreators> {
     const dispatch = useDispatch()
-    return React.useMemo(
-        () =>
-            bindActionCreators(
-                {
-                    doSomething1,
-                    doSomething2,
-                    doSomething3,
-                },
-                dispatch,
-            ),
-        [dispatch],
-    )
+    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
 function useSelectors() {

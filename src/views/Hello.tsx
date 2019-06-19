@@ -32,7 +32,7 @@ const mapStateToProps = (state: AppStore) => {
     }
 }
 
-// function useActions() {
+// function useActions(): DispatchProps<typeof actionCreators> {
 //     const dispatch = useDispatch()
 //     return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 // }
