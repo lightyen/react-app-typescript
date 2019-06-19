@@ -9,6 +9,7 @@ import { bindActionCreators, Dispatch } from "redux"
 import { doSomething1, doSomething2, doSomething3 } from "~/store/my/actions"
 import { AppStore } from "~/store"
 import { MyStore } from "~/store/my"
+import { DispatchProps } from "~/typings"
 
 const actionCreators = {
     doSomething1,
@@ -16,7 +17,7 @@ const actionCreators = {
     doSomething3,
     // ...
 }
-type DispatchProps = typeof actionCreators
+
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch)
 
 type StateProps = Pick<MyStore, "state1" | "state2" | "state3">
@@ -25,7 +26,7 @@ const mapStateToProps = (state: AppStore, ownProps: OwnProps): StateProps => {
     return  { state1, state2, state3 }
 }
 
-type Props = DispatchProps & StateProps
+type Props = DispatchProps<typeof actionCreators> & StateProps
 
 const MyComponent: React.FC<Props> = ({ state1, state2, state3, doSomething1, doSomething2, doSomething3 }) => {
     // ...
@@ -41,6 +42,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { bindActionCreators, Dispatch } from "redux"
 import { doSomething1, doSomething2, doSomething3 } from "~/store/my/actions"
+import { DispatchProps } from "~/typings"
 
 const actionCreators = {
     doSomething1,
@@ -48,10 +50,10 @@ const actionCreators = {
     doSomething3,
     // ...
 }
-type DispatchProps = typeof actionCreators
+
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch)
 
-type Props = DispatchProps
+type Props = DispatchProps<typeof actionCreators>
 
 const MyComponent: React.FC<Props> = ({ doSomething1, doSomething2, doSomething3 }) => {
     // ...

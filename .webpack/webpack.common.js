@@ -51,7 +51,8 @@ module.exports = function(options) {
             NODE_ENV: options.mode,
         }),
         new MiniCssExtractPlugin({
-            filename: "css/[name].[contenthash].css",
+            filename: "css/[name].[contenthash:8].css",
+            chunkFilename: "css/[id].[contenthash:8].css",
         }),
         new ProvidePlugin({
             $: "jquery",

@@ -3,6 +3,8 @@ const webpackMerge = require("webpack-merge")
 const { ContextReplacementPlugin } = require("webpack")
 const CompressionWebpackPlugin = require("compression-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const TerserJSPlugin = require("terser-webpack-plugin")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const path = require("path")
 const createBaseConfig = require("./webpack.common")
 
@@ -43,6 +45,7 @@ const config = {
     },
     optimization: {
         minimize: true,
+        minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
         splitChunks: {
             maxSize: 250000,
         },

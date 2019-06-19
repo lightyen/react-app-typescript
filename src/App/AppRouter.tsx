@@ -43,12 +43,11 @@ const AppRouter: React.FC = () => {
 
 // FIXME: fix react-hot-loader with react-redux
 setConfig({
-    disableHotRenderer: true,
-    // onComponentCreate: (type, name) =>
-    //     (String(type).indexOf("useDispatch") > 0 ||
-    //         String(type).indexOf("useSelector") > 0 ||
-    //         String(type).indexOf("useStore") > 0) &&
-    //     cold(type),
+    onComponentCreate: (type, name) =>
+        (String(type).indexOf("useDispatch") > 0 ||
+            String(type).indexOf("useSelector") > 0 ||
+            String(type).indexOf("useStore") > 0) &&
+        cold(type),
 })
 
 export default process.env.NODE_ENV === "development" ? hot(AppRouter) : AppRouter

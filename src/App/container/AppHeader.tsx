@@ -1,32 +1,47 @@
 import React from "react"
 import styled from "styled-components"
 import classnames from "classnames"
+import { DispatchProps } from "~/typings"
 
-import { bindActionCreators } from "redux"
-import { useDispatch, useSelector } from "react-redux"
+import { bindActionCreators, Dispatch } from "redux"
+import { connect } from "react-redux"
 import { AppStore } from "~/store"
-import { setLocale } from "~/store/i18n"
+import { setLocale, IntlStore } from "~/store/i18n"
 
-function useActions() {
-    const dispatch = useDispatch()
-    return React.useMemo(() => bindActionCreators({ setLocale }, dispatch), [dispatch])
+// function useActions() {
+//     const dispatch = useDispatch()
+//     return React.useMemo(() => bindActionCreators({ setLocale }, dispatch), [dispatch])
+// }
+
+// function useSelectors() {
+//     return {
+//         enable: useSelector((state: AppStore) => state.intl.enable),
+//         list: useSelector((state: AppStore) => state.intl.list),
+//         locale: useSelector((state: AppStore) => state.intl.locale),
+//     }
+// }
+
+const actionCreators = {
+    setLocale,
+}
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch)
+
+type StateProps = Pick<IntlStore, "enable" | "list" | "locale">
+const mapStateToProps = (state: AppStore): StateProps => {
+    const { enable, list, locale } = state.intl
+    return { enable, list, locale }
 }
 
-function useSelectors() {
-    return {
-        enable: useSelector((state: AppStore) => state.intl.enable),
-        list: useSelector((state: AppStore) => state.intl.list),
-        locale: useSelector((state: AppStore) => state.intl.locale),
-    }
-}
+type Props = DispatchProps<typeof actionCreators> & StateProps
 
 const Header = styled.header`
     background: #20232a;
 `
 
-function AppHeader() {
-    const { setLocale } = useActions()
-    const { enable, list, locale } = useSelectors()
+const AppHeader: React.FC<Props> = ({ setLocale, enable, list, locale }) => {
+    // const { setLocale } = useActions()
+    // const { enable, list, locale } = useSelectors()
+
     const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <Header className="row align-items-center h-100">
@@ -60,7 +75,10 @@ function AppHeader() {
     )
 }
 
-export default AppHeader
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(AppHeader)
 
 import { Route, Link, RouteComponentProps } from "react-router-dom"
 import { getRouteName } from "~/routes"
