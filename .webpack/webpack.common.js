@@ -15,6 +15,7 @@ const TsImportPlugin = require("ts-import-plugin")
 // NOTE: 關閉 webpack 要求 donate 訊息
 process.env.DISABLE_OPENCOLLECTIVE = "true"
 
+/** @type { import("webpack").Entry } */
 const entry = {
     index: "./src/index",
 }
@@ -49,6 +50,7 @@ module.exports = function(options) {
         new WebpackBarPlugin({ color: "blue", name: "React" }),
         new EnvironmentPlugin({
             NODE_ENV: options.mode,
+            PUBLIC_URL: "/",
         }),
         new MiniCssExtractPlugin({
             filename: "css/[name].[contenthash:8].css",
@@ -133,6 +135,7 @@ module.exports = function(options) {
             publicPath: "/",
         },
         target: "web",
+        resolveLoader: {},
         module: {
             rules: [
                 {
@@ -213,7 +216,13 @@ module.exports = function(options) {
                 {
                     exclude: /node_modules/,
                     test: /\.s(a|c)ss$/,
-                    use: [styleLoader, "css-loader", "postcss-loader", "sass-loader"],
+                    use: [
+                        styleLoader,
+                        // path.join(__dirname, "./custom-loader"),
+                        "css-loader",
+                        "postcss-loader",
+                        "sass-loader",
+                    ],
                 },
                 // For node_modules:
                 {
