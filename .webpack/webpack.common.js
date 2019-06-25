@@ -10,6 +10,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const WebpackBarPlugin = require("webpackbar")
 const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
+const WorkboxPlugin = require("workbox-webpack-plugin")
 const TsImportPlugin = require("ts-import-plugin")
 
 // NOTE: 關閉 webpack 要求 donate 訊息
@@ -50,7 +51,7 @@ module.exports = function(options) {
         new WebpackBarPlugin({ color: "blue", name: "React" }),
         new EnvironmentPlugin({
             NODE_ENV: options.mode,
-            PUBLIC_URL: "/",
+            PUBLIC_URL: "",
         }),
         new MiniCssExtractPlugin({
             filename: "css/[name].[contenthash:8].css",
@@ -60,6 +61,7 @@ module.exports = function(options) {
             $: "jquery",
             jQuery: "jquery",
         }),
+        new WorkboxPlugin.GenerateSW(),
     ]
 
     for (const name in entry) {
