@@ -61,6 +61,7 @@ module.exports = function(options) {
             $: "jquery",
             jQuery: "jquery",
         }),
+        // https://developers.google.com/web/tools/workbox/guides/codelabs/webpack
         new WorkboxPlugin.GenerateSW(),
     ]
 
@@ -137,7 +138,6 @@ module.exports = function(options) {
             publicPath: "/",
         },
         target: "web",
-        resolveLoader: {},
         module: {
             rules: [
                 {
