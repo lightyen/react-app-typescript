@@ -1,5 +1,5 @@
 import React from "react"
-import PopperJS, { PopperOptions, Data } from "popper.js"
+import PopperJS, { PopperOptions } from "popper.js"
 import classnames from "classnames"
 import styled, { css } from "styled-components"
 import AnimeJS from "animejs"

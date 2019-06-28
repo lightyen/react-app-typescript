@@ -18,7 +18,7 @@ const RotateImg = styled.img`
     animation-timing-function: linear;
 `
 
-const Main: React.FC<RouteComponentProps> = ({ match }) => {
+const Home: React.FC<RouteComponentProps> = ({ match }) => {
     return (
         <div className="container">
             <div className="row justify-content-around">
@@ -36,4 +36,4 @@ const Main: React.FC<RouteComponentProps> = ({ match }) => {
     )
 }
 
-export default Main
+export default Home

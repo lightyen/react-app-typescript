@@ -14,7 +14,7 @@ const NavItem = styled.li.attrs({ className: "nav-item" })``
 
 const AppNavLink = styled(NavLink).attrs({ className: "nav-link" })`
     outline: none;
-    color: #b1a9cc;
+    color: #f9f9f9;
     transition: background 0.2s, color 0.2s;
     &:hover {
         color: #0066ff;

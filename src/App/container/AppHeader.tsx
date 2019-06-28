@@ -8,19 +8,6 @@ import { connect } from "react-redux"
 import { AppStore } from "~/store"
 import { setLocale, IntlStore } from "~/store/i18n"
 
-// function useActions() {
-//     const dispatch = useDispatch()
-//     return React.useMemo(() => bindActionCreators({ setLocale }, dispatch), [dispatch])
-// }
-
-// function useSelectors() {
-//     return {
-//         enable: useSelector((state: AppStore) => state.intl.enable),
-//         list: useSelector((state: AppStore) => state.intl.list),
-//         locale: useSelector((state: AppStore) => state.intl.locale),
-//     }
-// }
-
 const actionCreators = {
     setLocale,
 }
@@ -39,9 +26,6 @@ const Header = styled.header`
 `
 
 const AppHeader: React.FC<Props> = ({ setLocale, enable, list, locale }) => {
-    // const { setLocale } = useActions()
-    // const { enable, list, locale } = useSelectors()
-
     const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <Header className="row align-items-center h-100">

@@ -57,11 +57,10 @@ function CustomHooks() {
 const Hello: React.FC<Props> = ({ history, ...rest }) => {
     const [username, setUsername] = React.useState("")
     const [password, setPassword] = React.useState("")
+    const { count, setCount } = CustomHooks()
 
     const { login, logout, getHello } = rest
     const { logined, status, error } = rest
-
-    const { count, setCount } = CustomHooks()
     // const { login, logout, getHello } = useActions()
     // const { logined, status, error } = useSelectors()
 
