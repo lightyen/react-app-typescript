@@ -1,14 +1,13 @@
 import axios, { AxiosResponse, AxiosError } from "axios"
-import { isDevelopment } from "."
 import { clearAuthToken } from "./auth"
 import { store } from "~/App"
 import { AUTH_FAILED } from "~/store/auth"
 
-const APITimeout = 5000
+const APITimeout = 0
 
-// NOTE: 在這裡你可以使用 axios 攔截 http
+// NOTE: 在這裡你可以使用 axios interceptors 攔截 http
 axios.interceptors.request.use(config => {
-    if (isDevelopment()) {
+    if (process.env.NODE_ENV === "development") {
         if (config.data) {
             console.log(
                 `%c${config.method.toUpperCase()} %c${config.url}`,
@@ -30,7 +29,7 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(
     resp => {
-        if (isDevelopment()) {
+        if (process.env.NODE_ENV === "development") {
             if (resp.data) {
                 console.warn(resp.data)
             } else {
@@ -45,7 +44,7 @@ axios.interceptors.response.use(
         }
         if (error.response) {
             const resp = error.response as AxiosResponse
-            if (isDevelopment()) {
+            if (process.env.NODE_ENV === "development") {
                 if (resp.data) {
                     console.error(resp.status, resp.data)
                 } else {

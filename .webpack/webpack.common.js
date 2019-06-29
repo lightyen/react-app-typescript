@@ -69,7 +69,6 @@ module.exports = function(options) {
         if (entry.hasOwnProperty(name)) {
             const exclude = Object.keys(entry).slice()
             exclude.splice(Object.keys(entry).indexOf(name), 1)
-            console.log(exclude)
             plugins.push(
                 new HtmlWebpackPlugin({
                     filename: name + ".html",

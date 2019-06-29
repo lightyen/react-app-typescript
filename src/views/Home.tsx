@@ -14,7 +14,7 @@ export const myKeyFrames = keyframes`
 `
 
 const RotateImg = styled.img`
-    animation: ${myKeyFrames} 5s infinite;
+    animation: ${myKeyFrames} 60s infinite;
     animation-timing-function: linear;
 `
 

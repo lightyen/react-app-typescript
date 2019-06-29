@@ -4,7 +4,6 @@ import { History } from "history"
 import createSagaMiddleware from "redux-saga"
 
 import { RouterState, routerMiddleware, connectRouter } from "connected-react-router"
-import { isDevelopment } from "~/utils"
 import { UserStore, userReducer } from "./user"
 import { IntlStore, intlReducer } from "./i18n"
 import { HelloStore, helloReducer } from "./hello"
@@ -45,11 +44,12 @@ export function configureStore(history: History) {
     const storeEnhancers = applyMiddleware(...middlewares)
     const composeEnhancers = composeWithDevTools({
         // Specify name here, actionsBlacklist, actionsCreators and other options if needed
+        name: "react is awesome",
     })
     const store = createStore(
         rootReducer,
         undefined,
-        isDevelopment() ? composeEnhancers(storeEnhancers) : storeEnhancers,
+        process.env.NODE_ENV === "development" ? composeEnhancers(storeEnhancers) : storeEnhancers,
     )
     sagaMiddleware.run(rootSaga)
     return store
