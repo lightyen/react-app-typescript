@@ -36,6 +36,7 @@ const config = {
             errors: true,
             cached: true,
             cachedAssets: true,
+            warnings: true,
         },
         // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
         historyApiFallback: true,

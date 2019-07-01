@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": false,
     "isolatedModules": false,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -15,7 +16,6 @@
     "resolveJsonModule": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowJs": false,
-    "esModuleInterop": true,
     "strict": true,
     "incremental": true
   }

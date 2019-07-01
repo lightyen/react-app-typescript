@@ -2,13 +2,11 @@ import React from "react"
 import { RouteComponentProps } from "react-router-dom"
 import Button from "~/components/Button"
 import { DispatchProps } from "~/typings"
-import { isLogin } from "~/utils/auth"
+import { bindActionCreators } from "redux"
 
-import { bindActionCreators, Dispatch } from "redux"
-import { connect, useDispatch, useSelector } from "react-redux"
+import * as ReactRedux from "react-redux"
+
 import { AppStore } from "~/store"
-import { UserStore } from "~/store/user"
-import { HelloStore } from "~/store/hello"
 import { login, logout } from "~/store/auth"
 import { getHello } from "~/store/hello"
 
@@ -21,33 +19,23 @@ const GoBackButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 }
 
 const actionCreators = { login, logout, getHello }
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch)
 
-type StateProps = Pick<UserStore, "logined" | "error"> & Pick<HelloStore, "status">
-const mapStateToProps = (state: AppStore) => {
+function useActions(): DispatchProps<typeof actionCreators> {
+    const dispatch = ReactRedux.useDispatch()
+    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
+}
+
+function useSelectors() {
     return {
-        logined: state.user.logined,
-        error: state.user.error,
-        status: state.hello.status,
+        logined: ReactRedux.useSelector((state: AppStore) => state.user.logined),
+        error: ReactRedux.useSelector((state: AppStore) => state.user.error),
+        status: ReactRedux.useSelector((state: AppStore) => state.hello.status),
     }
 }
 
-// function useActions(): DispatchProps<typeof actionCreators> {
-//     const dispatch = useDispatch()
-//     return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
-// }
-
-// function useSelectors() {
-//     return {
-//         logined: useSelector((state: AppStore) => state.user.logined),
-//         error: useSelector((state: AppStore) => state.user.error),
-//         status: useSelector((state: AppStore) => state.hello.status),
-//     }
-// }
-
 type OwnProps = RouteComponentProps
 
-type Props = OwnProps & DispatchProps<typeof actionCreators> & StateProps
+type Props = OwnProps
 
 function CustomHooks() {
     const [count, setCount] = React.useState(2)
@@ -59,10 +47,8 @@ const Hello: React.FC<Props> = ({ history, ...rest }) => {
     const [password, setPassword] = React.useState("")
     const { count, setCount } = CustomHooks()
 
-    const { login, logout, getHello } = rest
-    const { logined, status, error } = rest
-    // const { login, logout, getHello } = useActions()
-    // const { logined, status, error } = useSelectors()
+    const { login, logout, getHello } = useActions()
+    const { logined, status, error } = useSelectors()
 
     React.useEffect(() => {
         console.log("mount")
@@ -124,7 +110,4 @@ const Hello: React.FC<Props> = ({ history, ...rest }) => {
     )
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Hello)
+export default Hello
