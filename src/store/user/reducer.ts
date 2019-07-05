@@ -1,10 +1,8 @@
 import { Reducer } from "redux"
 
 import { LOGIN, LOGOUT, AUTH_FAILED } from "~/store/auth"
-import { ReduxAction } from "~/store/auth/saga/reduxAction"
+import Action from "~/store/auth/action"
 import { isLogin } from "~/utils/auth"
-
-type UserActionType = ReduxAction | { type: typeof AUTH_FAILED }
 
 interface UserStoreType {
     logined: boolean
@@ -22,7 +20,7 @@ const init: UserStore = {
     error: undefined,
 }
 
-export const userReducer: Reducer<UserStore, UserActionType> = (state = init, action): UserStore => {
+export const userReducer: Reducer<UserStore, Action> = (state = init, action): UserStore => {
     switch (action.type) {
         case LOGIN.REQUEST:
             return { ...state, status: LOGIN.REQUEST }

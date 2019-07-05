@@ -1,7 +1,7 @@
 import Jest from "jest"
 import { cloneableGenerator } from "@redux-saga/testing-utils"
 
-import { login } from "../index"
+import { login } from "../saga"
 import { login as ActionCreator } from "../action"
 
 test("Saga Test Login", () => {

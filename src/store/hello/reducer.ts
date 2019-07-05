@@ -1,6 +1,6 @@
 import { Reducer } from "redux"
-import { GET_HELLO } from "./actionTypes"
-import { ReduxAction } from "./saga/reduxAction"
+import { GET_HELLO } from "./action"
+import Action from "./action"
 
 export interface HelloStore {
     status: string
@@ -10,7 +10,7 @@ const init: HelloStore = {
     status: "",
 }
 
-export const helloReducer: Reducer<HelloStore, ReduxAction> = (state = init, action): HelloStore => {
+export const helloReducer: Reducer<HelloStore, Action> = (state = init, action): HelloStore => {
     switch (action.type) {
         case GET_HELLO.REQUEST:
             return { ...state, status: GET_HELLO.REQUEST }

@@ -2,9 +2,7 @@ import { take, put, call, all, fork, takeLeading } from "redux-saga/effects"
 import { SagaIterator } from "redux-saga"
 import axios, { AxiosResponse } from "axios"
 
-import { LOGIN, LOGOUT } from "../actionTypes"
-import * as actions from "./action"
-import { LoginAction, LogoutAction } from "./reduxAction"
+import * as action from "./action"
 
 import { setAuthToken, clearAuthToken } from "~/utils/auth"
 
@@ -13,33 +11,33 @@ interface Response {
     message: string
 }
 
-export function* login(action: ReturnType<typeof actions.login>): SagaIterator {
+export function* login(act: action.LoginAction): SagaIterator {
     try {
-        const { user } = action
+        const { user } = act
         const result: AxiosResponse<Response> = yield call(o => axios.post("/apis/login", o), user)
         setAuthToken('{ "message": "helloworld" }')
-        yield put<LoginAction>({ type: LOGIN.SUCCESS })
+        yield put<action.SagaLoginAction>({ type: action.LOGIN.SUCCESS })
     } catch (err) {
-        yield put<LoginAction>({ type: LOGIN.FAILURE, error: err })
+        yield put<action.SagaLoginAction>({ type: action.LOGIN.FAILURE, error: err })
     }
 }
 
-export function* logout(action: ReturnType<typeof actions.logout>): SagaIterator {
+export function* logout(act: action.LogoutAction): SagaIterator {
     try {
         const result: AxiosResponse<Response> = yield call(() => axios.get("/apis/logout"))
         clearAuthToken()
-        yield put<LogoutAction>({ type: LOGOUT.SUCCESS })
+        yield put<action.SagaLogoutAction>({ type: action.LOGOUT.SUCCESS })
     } catch (err) {
-        yield put<LogoutAction>({ type: LOGOUT.FAILURE, error: err })
+        yield put<action.SagaLogoutAction>({ type: action.LOGOUT.FAILURE, error: err })
     }
 }
 
 function* watcherLogin() {
-    yield takeLeading(LOGIN.REQUEST, login)
+    yield takeLeading(action.LOGIN.REQUEST, login)
 }
 
 function* watcherLogout() {
-    yield takeLeading(LOGOUT.REQUEST, logout)
+    yield takeLeading(action.LOGOUT.REQUEST, logout)
 }
 
 export default function* watcher() {

@@ -1,9 +1,8 @@
 import { Reducer } from "redux"
 
-import { SET_LOCALE } from "./actionTypes"
 import { appLocaleList } from "~/utils/i18n"
 import { CustomLocale, AppLocaleList } from "~/typings/i18n"
-import { ReduxAction } from "./saga/reduxAction"
+import Action, { SET_LOCALE } from "./action"
 
 interface IntlStoreType {
     /** 啟用多國語言 */
@@ -16,7 +15,7 @@ interface IntlStoreType {
     /** 請求狀態 */
     status?: SET_LOCALE
     /** 錯誤訊息 */
-    error?: Error
+    error?: unknown
 }
 
 export type IntlStore = Readonly<IntlStoreType>
@@ -27,7 +26,7 @@ const init: IntlStore = {
     list: appLocaleList,
 }
 
-export const intlReducer: Reducer<IntlStore, ReduxAction> = (state = init, action): IntlStore => {
+export const intlReducer: Reducer<IntlStore, Action> = (state = init, action): IntlStore => {
     switch (action.type) {
         case SET_LOCALE.REQUEST:
             return { ...state, status: SET_LOCALE.REQUEST }
