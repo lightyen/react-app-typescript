@@ -17,7 +17,7 @@
     "start": "yarn && yarn run webpack-development",
     "build": "yarn && yarn run webpack-production",
     "analyze": "yarn && yarn run webpack-analyzer",
-    "test": "yarn run build"
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "7.5.0",

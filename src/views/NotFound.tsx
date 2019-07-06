@@ -1,5 +1,4 @@
 import React from "react"
-import { ExampleFC } from "~/components/Example/Example"
 import { RouteComponentProps } from "react-router-dom"
 import styled from "styled-components"
 
