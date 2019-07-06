@@ -5,7 +5,6 @@ const createBaseConfig = require("./webpack.common")
 const url = require("url")
 
 const defaultPort = 3000
-console.log(process.env.PUBLIC_PATH || "" + "index.html")
 
 /**
  * @type { import("webpack").Configuration }

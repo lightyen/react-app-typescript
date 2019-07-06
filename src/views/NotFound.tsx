@@ -1,5 +1,4 @@
 import React from "react"
-import { RouteComponentProps } from "react-router-dom"
 import styled from "styled-components"
 
 const Div = styled.div`
@@ -15,7 +14,7 @@ class NotFound extends React.Component {
         return (
             <Div>
                 <button className="btn btn-primary m-3" onClick={this.backHome}>
-                    幹麻呢！
+                    你幹嘛呢！
                 </button>
             </Div>
         )

@@ -1,7 +1,4 @@
 import React from "react"
 import { render } from "react-dom"
-import "./utils/axios.interceptor"
-import App from "./views/NotFound"
-import { unregister } from "./serviceWorker"
+import App from "~/App/404"
 render(<App />, document.getElementById("root"))
-unregister()

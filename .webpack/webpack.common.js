@@ -71,16 +71,23 @@ module.exports = function(options) {
         if (entry.hasOwnProperty(name)) {
             const exclude = Object.keys(entry).slice()
             exclude.splice(Object.keys(entry).indexOf(name), 1)
-            console.log(exclude)
             plugins.push(
                 new HtmlWebpackPlugin({
                     inject: true,
                     filename: name + ".html",
-                    // excludeChunks: exclude,
+                    meta: {
+                        viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
+                        "X-UA-Compatible": {
+                            "http-equiv": "X-UA-Compatible",
+                            content: "ie=edge",
+                        },
+                        description: packageJSON.description,
+                        author: packageJSON.author,
+                    },
+                    minify: false,
                     excludeAssets: exclude.map(e => new RegExp(`${e}.*.js`)),
                     title: packageJSON.name,
-                    minify: false,
-                    template: path.join(options.src, "template", name + ".pug"),
+                    template: path.resolve(__dirname, "public", "index.pug"),
                     favicon: path.join(options.src, "assets", "favicon.ico"),
                     vendor: options.vendor ? "/vendor/vendor.js" : undefined,
                 }),
@@ -164,7 +171,6 @@ module.exports = function(options) {
             rules: [
                 {
                     test: /\.pug$/,
-                    include: /template/,
                     use: [
                         {
                             loader: "pug-loader",

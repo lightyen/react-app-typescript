@@ -47,12 +47,8 @@ const config = {
         minimize: true,
         minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
         splitChunks: {
-            maxSize: 100000,
-            minChunks: 1,
+            chunks: "async",
         },
-    },
-    resolve: {
-        alias: {},
     },
     plugins,
 }

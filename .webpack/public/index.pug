@@ -1,0 +1,6 @@
+doctype html
+html(lang="en")
+  body
+    #root
+    if htmlWebpackPlugin.options.vendor
+      script(type="text/javascript", src=htmlWebpackPlugin.options.vendor)

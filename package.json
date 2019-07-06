@@ -1,7 +1,7 @@
 {
   "name": "react-app-typescript",
-  "version": "3.0.0",
-  "description": "react-app-typescript",
+  "version": "3.0.1",
+  "description": "This is a real practice for react with typescript",
   "author": "lightyen",
   "repository": {
     "type": "git",
