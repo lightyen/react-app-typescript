@@ -51,7 +51,7 @@ module.exports = function(options) {
         new WebpackBarPlugin({ color: "blue", name: "React" }),
         new EnvironmentPlugin({
             NODE_ENV: options.mode,
-            PUBLIC_URL: "",
+            PUBLIC_URL: process.env.PUBLIC_URL || "",
         }),
         new MiniCssExtractPlugin({
             filename: "css/[name].[contenthash:8].css",
@@ -134,7 +134,7 @@ module.exports = function(options) {
             path: options.dist,
             filename: "js/[name].[hash:12].js",
             chunkFilename: "js/[name].[hash:8].js",
-            publicPath: "/",
+            publicPath: process.env.PUBLIC_PATH || "/",
         },
         target: "web",
         module: {
