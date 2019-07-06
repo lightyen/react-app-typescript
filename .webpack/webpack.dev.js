@@ -5,6 +5,7 @@ const createBaseConfig = require("./webpack.common")
 const url = require("url")
 
 const defaultPort = 3000
+console.log(process.env.PUBLIC_PATH || "" + "index.html")
 
 /**
  * @type { import("webpack").Configuration }
@@ -43,7 +44,7 @@ const config = {
         },
         // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
         historyApiFallback: {
-            rewrites: [{ from: /.*/g, to: process.env.PUBLIC_PATH + "index.html" }],
+            rewrites: [{ from: /.*/g, to: process.env.PUBLIC_PATH || "/" + "index.html" }],
         },
         proxy: [
             {

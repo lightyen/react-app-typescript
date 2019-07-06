@@ -3,6 +3,7 @@ import { RouteProps, Redirect, Route, Switch, RouteComponentProps } from "react-
 import Loadable from "react-loadable"
 import { Loading } from "~/components/Spinner"
 import NotFound from "~/views/NotFound"
+
 import { hot } from "react-hot-loader/root"
 
 const isAuthenticated = (): boolean => {
@@ -25,11 +26,13 @@ function AsyncComponent(C: React.LazyExoticComponent<React.ComponentType<RouteCo
     )
 }
 
-// const AppLayout = AsyncComponent(React.lazy(() => import("~/App/container/AppLayout")))
-const AppLayout = Loadable({
-    loader: () => import("~/App/container/AppLayout"),
-    loading: () => Loading,
-})
+// const AppLayout = hot(AsyncComponent(React.lazy(() => import("~/App/container/AppLayout"))))
+const AppLayout = hot(
+    Loadable({
+        loader: () => import("~/App/container/AppLayout"),
+        loading: () => Loading,
+    }),
+)
 
 const AppRouter: React.FC = () => {
     return (
@@ -40,4 +43,4 @@ const AppRouter: React.FC = () => {
     )
 }
 
-export default process.env.NODE_ENV === "development" ? hot(AppRouter) : AppRouter
+export default hot(AppRouter)

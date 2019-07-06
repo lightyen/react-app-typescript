@@ -7,11 +7,10 @@ const Div = styled.div`
     min-height: 100vh;
 `
 
-class NotFound extends React.Component<RouteComponentProps> {
+class NotFound extends React.Component {
     private backHome = () => {
-        this.props.history.goBack()
+        window.history.back()
     }
-    public componentDidMount() {}
     public render() {
         return (
             <Div>

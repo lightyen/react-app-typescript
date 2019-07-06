@@ -3,7 +3,6 @@
   "plugins": [
     "@babel/plugin-transform-runtime",
     "@babel/plugin-syntax-dynamic-import",
-    "babel-plugin-styled-components",
-    "react-hot-loader/babel"
+    "babel-plugin-styled-components"
   ]
 }

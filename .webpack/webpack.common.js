@@ -7,11 +7,11 @@ const path = require("path")
 
 // Plugins
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const ExcludeAssetsPlugin = require("html-webpack-exclude-assets-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const WebpackBarPlugin = require("webpackbar")
 const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
 const WorkboxPlugin = require("workbox-webpack-plugin")
-const TsImportPlugin = require("ts-import-plugin")
 
 // NOTE: 關閉 webpack 要求 donate 訊息
 process.env.DISABLE_OPENCOLLECTIVE = "true"
@@ -19,6 +19,7 @@ process.env.DISABLE_OPENCOLLECTIVE = "true"
 /** @type { import("webpack").Entry } */
 const entry = {
     index: "./src/index",
+    404: "./src/404",
 }
 
 /** @typedef {{
@@ -70,13 +71,15 @@ module.exports = function(options) {
         if (entry.hasOwnProperty(name)) {
             const exclude = Object.keys(entry).slice()
             exclude.splice(Object.keys(entry).indexOf(name), 1)
+            console.log(exclude)
             plugins.push(
                 new HtmlWebpackPlugin({
+                    inject: true,
                     filename: name + ".html",
-                    excludeChunks: exclude,
+                    // excludeChunks: exclude,
+                    excludeAssets: exclude.map(e => new RegExp(`${e}.*.js`)),
                     title: packageJSON.name,
                     minify: false,
-                    inject: false,
                     template: path.join(options.src, "template", name + ".pug"),
                     favicon: path.join(options.src, "assets", "favicon.ico"),
                     vendor: options.vendor ? "/vendor/vendor.js" : undefined,
@@ -84,6 +87,8 @@ module.exports = function(options) {
             )
         }
     }
+
+    plugins.push(new ExcludeAssetsPlugin())
 
     if (options.vendor) {
         plugins.push(
@@ -129,6 +134,23 @@ module.exports = function(options) {
         },
     }
 
+    /**
+     * @type {import("webpack").Loader}
+     */
+    const tsxLoader = {
+        loader: "awesome-typescript-loader",
+        options: {
+            configFileName: path.join(workingDirectory, "tsconfig.json"),
+            silent: true,
+            useBabel: true,
+            useCache: true,
+            babelCore: "@babel/core",
+            babelOptions: {
+                babelrc: true,
+            },
+        },
+    }
+
     return {
         entry,
         output: {
@@ -155,33 +177,7 @@ module.exports = function(options) {
                 {
                     test: /\.tsx?$/,
                     exclude: /node_modules|\.test.tsx?$/,
-                    loader: "awesome-typescript-loader",
-                    options: {
-                        configFileName: path.join(workingDirectory, "tsconfig.json"),
-                        silent: true,
-                        useBabel: true,
-                        useCache: true,
-                        babelCore: "@babel/core",
-                        babelOptions: {
-                            babelrc: true,
-                        },
-                        // getCustomTransformers: () => ({
-                        //     before: [
-                        //         TsImportPlugin([
-                        //             {
-                        //                 libraryName: "antd",
-                        //                 libraryDirectory: "lib",
-                        //                 style: true,
-                        //             },
-                        //             {
-                        //                 libraryName: "@material-ui/core",
-                        //                 libraryDirectory: "",
-                        //                 camel2DashComponentName: false,
-                        //             },
-                        //         ]),
-                        //     ],
-                        // }),
-                    },
+                    use: ["react-hot-loader/webpack", tsxLoader],
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg)$/i,

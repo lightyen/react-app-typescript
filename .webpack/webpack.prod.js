@@ -1,6 +1,6 @@
 // @ts-check
 const webpackMerge = require("webpack-merge")
-const { ContextReplacementPlugin } = require("webpack")
+const { ContextReplacementPlugin, optimize } = require("webpack")
 const CompressionWebpackPlugin = require("compression-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const TerserJSPlugin = require("terser-webpack-plugin")
@@ -47,7 +47,8 @@ const config = {
         minimize: true,
         minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
         splitChunks: {
-            maxSize: 250000,
+            maxSize: 100000,
+            minChunks: 1,
         },
     },
     resolve: {
