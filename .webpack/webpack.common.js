@@ -135,7 +135,7 @@ module.exports = function(options) {
             path: options.dist,
             filename: "js/[name].[hash:12].js",
             chunkFilename: "js/[name].[hash:8].js",
-            publicPath: process.env.PUBLIC_PATH || "" + "/",
+            publicPath: process.env.PUBLIC_PATH || "/",
         },
         target: "web",
         module: {
@@ -266,7 +266,9 @@ module.exports = function(options) {
                     configFileName: path.join(workingDirectory, "tsconfig.json"),
                 }),
             ],
-            alias: {},
+            alias: {
+                // "~": path.resolve(__dirname, "../src"),
+            },
         },
         plugins,
     }

@@ -2,6 +2,9 @@
 const { NamedModulesPlugin, HotModuleReplacementPlugin } = require("webpack")
 const webpackMerge = require("webpack-merge")
 const createBaseConfig = require("./webpack.common")
+const url = require("url")
+
+const defaultPort = 3000
 
 /**
  * @type { import("webpack").Configuration }
@@ -24,9 +27,9 @@ const config = {
         hot: true,
         compress: true,
         host: "0.0.0.0",
-        port: 3000,
+        port: defaultPort,
         open: true,
-        public: "localhost:3000",
+        public: url.resolve(`http://localhost:${defaultPort}/`, process.env.PUBLIC_PATH || "").replace(/\/?$/, ""),
         publicPath: process.env.PUBLIC_PATH || "",
         clientLogLevel: "warning",
         stats: {
@@ -39,7 +42,9 @@ const config = {
             warnings: true,
         },
         // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
-        historyApiFallback: true,
+        historyApiFallback: {
+            rewrites: [{ from: /.*/g, to: process.env.PUBLIC_PATH + "index.html" }],
+        },
         proxy: [
             {
                 context: ["/apis"],
