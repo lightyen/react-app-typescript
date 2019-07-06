@@ -9,7 +9,7 @@ const Div = styled.div`
 
 class NotFound extends React.Component {
     private backHome = () => {
-        window.history.back()
+        window.location.replace(process.env.PUBLIC_PATH || "/")
     }
     public render() {
         return (
