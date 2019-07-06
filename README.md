@@ -92,6 +92,10 @@ yarn test
 
 > 不喜歡我風格的朋友可以自行修改 **.editorconfig**, **.prettierrc**, **tslint.json**
 
+## Demo
+
+https://lightyen.github.io/react-app-typescript/
+
 ## 其他知識參考
 
 - https://reactjs.org/
