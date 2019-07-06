@@ -14,7 +14,7 @@ import { Provider } from "~/components/i18n"
 // locale
 import { SET_LOCALE, setLocale } from "~/store/i18n"
 
-const history = createBrowserHistory()
+const history = createBrowserHistory({ basename: process.env.PUBLIC_PATH })
 export const store = configureStore(history)
 
 export default function App() {

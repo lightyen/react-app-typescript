@@ -4,7 +4,6 @@ import Loadable from "react-loadable"
 import { Loading } from "~/components/Spinner"
 import NotFound from "~/views/NotFound"
 import { hot } from "react-hot-loader/root"
-import { setConfig, cold } from "react-hot-loader"
 
 const isAuthenticated = (): boolean => {
     return true // get localstorage token

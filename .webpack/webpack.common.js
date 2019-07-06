@@ -52,6 +52,7 @@ module.exports = function(options) {
         new EnvironmentPlugin({
             NODE_ENV: options.mode,
             PUBLIC_URL: process.env.PUBLIC_URL || "",
+            PUBLIC_PATH: process.env.PUBLIC_PATH || "",
         }),
         new MiniCssExtractPlugin({
             filename: "css/[name].[contenthash:8].css",
@@ -134,7 +135,7 @@ module.exports = function(options) {
             path: options.dist,
             filename: "js/[name].[hash:12].js",
             chunkFilename: "js/[name].[hash:8].js",
-            publicPath: process.env.PUBLIC_PATH || "/",
+            publicPath: process.env.PUBLIC_PATH || "" + "/",
         },
         target: "web",
         module: {

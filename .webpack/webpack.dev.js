@@ -27,7 +27,7 @@ const config = {
         port: 3000,
         open: true,
         public: "localhost:3000",
-        publicPath: "/",
+        publicPath: process.env.PUBLIC_PATH || "",
         clientLogLevel: "warning",
         stats: {
             all: false,
