@@ -15,7 +15,7 @@ class NotFound extends React.Component {
         return (
             <Div>
                 <button className="btn btn-primary m-3" onClick={this.backHome}>
-                    找不到你要的資源呢!
+                    幹麻呢！
                 </button>
             </Div>
         )
