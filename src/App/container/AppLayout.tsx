@@ -2,8 +2,33 @@ import React from "react"
 import { RouteComponentProps, Route, Switch, Redirect } from "react-router-dom"
 import styled from "styled-components"
 import routes from "~/routes"
+import { DispatchProps } from "~/typings"
 
+// Component
+import AppSidebar from "./AppSidebar"
+import AppHeader from "./AppHeader"
+import AppFooter from "./AppFooter"
 import { Loading } from "~/components/Spinner"
+
+// Store
+import { bindActionCreators } from "redux"
+import * as ReactRedux from "react-redux"
+import { RootStore } from "~/store"
+import { setCollapsed } from "~/store/app"
+
+const actionCreators = {
+    setCollapsed,
+}
+
+function useActions(): DispatchProps<typeof actionCreators> {
+    const dispatch = ReactRedux.useDispatch()
+    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
+}
+function useSelectors() {
+    return {
+        collapsed: ReactRedux.useSelector((state: RootStore) => state.app.collapsed),
+    }
+}
 
 const App = styled.div`
     font-family: My Code, monospace;
@@ -12,78 +37,95 @@ const App = styled.div`
     background: #282c34;
 `
 
-const AppHeaderContainer = styled.div`
-    height: 70px;
+interface AppHeaderProps {
+    height: number
+}
+
+const AppHeaderContainer = styled.div.attrs({ className: "fixed-top container-fluid" })<AppHeaderProps>`
+    height: ${props => props.height}px;
 `
 
-const AppBodyContainer = styled.div`
+interface AppMainContainerProps {
+    headerHeight: number
+}
+
+const AppMainContainer = styled.div<AppMainContainerProps>`
     display: flex;
     flex-direction: row;
     flex-grow: 1;
-    margin-top: 70px;
+    margin-top: ${props => props.headerHeight}px;
 `
 
-const AppSidebarContainer = styled.div`
+interface AppSidebarContainerProps {
+    collapsed: boolean
+    width: number
+    headerHeight: number
+}
+
+const AppSidebarContainer = styled.div<AppSidebarContainerProps>`
     position: fixed;
-    max-width: 200px;
+    max-width: ${props => props.width}px;
     width: 100%;
     z-index: 100;
-    height: calc(100vh - 70px);
+    height: calc(100vh - ${props => props.headerHeight}px);
     transition: margin-left 0.25s;
-    margin-left: -200px;
-    @media (min-width: 992px) {
-        margin-left: 0;
-    }
+    margin-left: -${props => props.width}px;
+    margin-left: ${props => (props.collapsed ? -props.width : 0)}px;
 `
 
-const AppMain = styled.div`
+interface AppBodyProps {
+    collapsed: boolean
+    sidebarWidth: number
+}
+
+const AppBody = styled.div<AppBodyProps>`
     width: 100%;
     transition: margin-left 0.25s;
     margin-left: 0;
-    @media (min-width: 992px) {
-        margin-left: 200px;
-    }
+    margin-left: ${props => (props.collapsed ? 0 : props.sidebarWidth)}px;
 `
 
-const AppFooterContainer = styled.footer`
+interface AppFooterContainerProps {
+    collapsed: boolean
+    sidebarWidth: number
+}
+
+const AppFooterContainer = styled.footer<AppFooterContainerProps>`
     transition: margin-left 0.25s;
-    margin-left: 0;
-    @media (min-width: 992px) {
-        margin-left: 200px;
-    }
+    margin-left: ${props => (props.collapsed ? 0 : props.sidebarWidth)}px;
 `
-
-// Component
-import AppSidebar from "./AppSidebar"
-import AppHeader from "./AppHeader"
-import AppFooter from "./AppFooter"
 
 const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
+    const headerHeight = 70
+    const sidebarWidth = 200
+    const { collapsed } = useSelectors()
+    const { setCollapsed } = useActions()
+
     React.useEffect(() => {
         const mql = window.matchMedia("(min-width: 992px)")
         const cb = (e: MediaQueryListEvent) => {
             if (e.matches) {
-                console.log("not collapsed")
+                setCollapsed(false)
             } else {
-                console.log("collapsed")
+                setCollapsed(true)
             }
         }
         mql.addListener(cb)
         return () => {
             mql.removeListener(cb)
         }
-    }, [])
+    }, [setCollapsed])
 
     return (
         <App className="d-flex flex-column">
-            <AppHeaderContainer className="fixed-top container-fluid">
+            <AppHeaderContainer height={headerHeight}>
                 <AppHeader />
             </AppHeaderContainer>
-            <AppBodyContainer>
-                <AppSidebarContainer>
+            <AppMainContainer headerHeight={headerHeight}>
+                <AppSidebarContainer width={sidebarWidth} headerHeight={headerHeight} collapsed={collapsed}>
                     <AppSidebar {...rest} />
                 </AppSidebarContainer>
-                <AppMain>
+                <AppBody sidebarWidth={sidebarWidth} collapsed={collapsed}>
                     <React.Suspense fallback={Loading}>
                         <Switch>
                             {routes.map((route, index) => {
@@ -101,9 +143,9 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                             <Redirect to="/404" />
                         </Switch>
                     </React.Suspense>
-                </AppMain>
-            </AppBodyContainer>
-            <AppFooterContainer>
+                </AppBody>
+            </AppMainContainer>
+            <AppFooterContainer sidebarWidth={sidebarWidth} collapsed={collapsed}>
                 <AppFooter />
             </AppFooterContainer>
         </App>

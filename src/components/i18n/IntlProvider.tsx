@@ -2,14 +2,14 @@ import React from "react"
 import { IntlProvider, addLocaleData } from "react-intl"
 import { connect } from "react-redux"
 
-import { AppStore } from "~/store"
+import { RootStore } from "~/store"
 import { Glossary } from "~/typings/i18n"
 
 interface IOwnProps {}
 
 type StateProps = IntlProvider.Props<Glossary>
 
-const mapStateToProps = (state: AppStore, ownProps: IOwnProps): StateProps => {
+const mapStateToProps = (state: RootStore, ownProps: IOwnProps): StateProps => {
     const { locale } = state.intl
     addLocaleData(locale)
     return {

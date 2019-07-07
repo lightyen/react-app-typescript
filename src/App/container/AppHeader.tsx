@@ -9,11 +9,13 @@ import { faBars } from "@fortawesome/free-solid-svg-icons"
 // Store
 import { bindActionCreators } from "redux"
 import * as ReactRedux from "react-redux"
-import { AppStore } from "~/store"
+import { RootStore } from "~/store"
 import { setLocale } from "~/store/i18n"
+import { setCollapsed } from "~/store/app"
 
 const actionCreators = {
     setLocale,
+    setCollapsed,
 }
 
 function useActions(): DispatchProps<typeof actionCreators> {
@@ -23,9 +25,10 @@ function useActions(): DispatchProps<typeof actionCreators> {
 
 function useSelectors() {
     return {
-        enable: ReactRedux.useSelector((state: AppStore) => state.intl.enable),
-        list: ReactRedux.useSelector((state: AppStore) => state.intl.list),
-        locale: ReactRedux.useSelector((state: AppStore) => state.intl.locale),
+        collapsed: ReactRedux.useSelector((state: RootStore) => state.app.collapsed),
+        enable: ReactRedux.useSelector((state: RootStore) => state.intl.enable),
+        list: ReactRedux.useSelector((state: RootStore) => state.intl.list),
+        locale: ReactRedux.useSelector((state: RootStore) => state.intl.locale),
     }
 }
 
@@ -34,15 +37,21 @@ const Header = styled.header`
 `
 
 const AppHeader: React.FC = () => {
-    const { setLocale } = useActions()
-    const { enable, list, locale } = useSelectors()
+    const { setLocale, setCollapsed } = useActions()
+    const { collapsed, enable, list, locale } = useSelectors()
 
     const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <Header className="row align-items-center h-100">
             <div className="col flex-grow-1">
                 <div className="d-flex flex-row align-items-center">
-                    <button className="btn btn-muted">
+                    <button
+                        className="btn btn-muted"
+                        onClick={e => {
+                            e.stopPropagation()
+                            setCollapsed(!collapsed)
+                        }}
+                    >
                         <FontAwesomeIcon className="text-light" icon={faBars} />
                     </button>
                     <Breadcrumbs className="mb-auto bg-transparent" />

@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux"
 
 import * as ReactRedux from "react-redux"
 
-import { AppStore } from "~/store"
+import { RootStore } from "~/store"
 import { login, logout } from "~/store/auth"
 import { getHello } from "~/store/hello"
 
@@ -27,9 +27,9 @@ function useActions(): DispatchProps<typeof actionCreators> {
 
 function useSelectors() {
     return {
-        logined: ReactRedux.useSelector((state: AppStore) => state.user.logined),
-        error: ReactRedux.useSelector((state: AppStore) => state.user.error),
-        status: ReactRedux.useSelector((state: AppStore) => state.hello.status),
+        logined: ReactRedux.useSelector((state: RootStore) => state.user.logined),
+        error: ReactRedux.useSelector((state: RootStore) => state.user.error),
+        status: ReactRedux.useSelector((state: RootStore) => state.hello.status),
     }
 }
 
