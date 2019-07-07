@@ -59,6 +59,21 @@ import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
 
 const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
+    React.useEffect(() => {
+        const mql = window.matchMedia("(min-width: 992px)")
+        const cb = (e: MediaQueryListEvent) => {
+            if (e.matches) {
+                console.log("not collapsed")
+            } else {
+                console.log("collapsed")
+            }
+        }
+        mql.addListener(cb)
+        return () => {
+            mql.removeListener(cb)
+        }
+    }, [])
+
     return (
         <App className="d-flex flex-column">
             <AppHeaderContainer className="fixed-top container-fluid">

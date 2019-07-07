@@ -3,34 +3,48 @@ import styled from "styled-components"
 import classnames from "classnames"
 import { DispatchProps } from "~/typings"
 
-import { bindActionCreators, Dispatch } from "redux"
-import { connect } from "react-redux"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBars } from "@fortawesome/free-solid-svg-icons"
+
+// Store
+import { bindActionCreators } from "redux"
+import * as ReactRedux from "react-redux"
 import { AppStore } from "~/store"
-import { setLocale, IntlStore } from "~/store/i18n"
+import { setLocale } from "~/store/i18n"
 
 const actionCreators = {
     setLocale,
 }
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(actionCreators, dispatch)
 
-type StateProps = Pick<IntlStore, "enable" | "list" | "locale">
-const mapStateToProps = (state: AppStore): StateProps => {
-    const { enable, list, locale } = state.intl
-    return { enable, list, locale }
+function useActions(): DispatchProps<typeof actionCreators> {
+    const dispatch = ReactRedux.useDispatch()
+    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
-type Props = DispatchProps<typeof actionCreators> & StateProps
+function useSelectors() {
+    return {
+        enable: ReactRedux.useSelector((state: AppStore) => state.intl.enable),
+        list: ReactRedux.useSelector((state: AppStore) => state.intl.list),
+        locale: ReactRedux.useSelector((state: AppStore) => state.intl.locale),
+    }
+}
 
 const Header = styled.header`
     background: #20232a;
 `
 
-const AppHeader: React.FC<Props> = ({ setLocale, enable, list, locale }) => {
+const AppHeader: React.FC = () => {
+    const { setLocale } = useActions()
+    const { enable, list, locale } = useSelectors()
+
     const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <Header className="row align-items-center h-100">
             <div className="col flex-grow-1">
-                <div className="row ">
+                <div className="d-flex flex-row align-items-center">
+                    <button className="btn btn-muted">
+                        <FontAwesomeIcon className="text-light" icon={faBars} />
+                    </button>
                     <Breadcrumbs className="mb-auto bg-transparent" />
                 </div>
             </div>
@@ -59,10 +73,7 @@ const AppHeader: React.FC<Props> = ({ setLocale, enable, list, locale }) => {
     )
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(AppHeader)
+export default AppHeader
 
 import { Route, Link, RouteComponentProps } from "react-router-dom"
 import { getRouteName } from "~/routes"
