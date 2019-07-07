@@ -1,4 +1,7 @@
+import { BreakPoint } from "./type"
+
 const SET_COLLAPSED = "APP_SET_COLLAPSED"
+const SET_BREAKPOINT = "APP_SET_BREAKPOINT"
 
 export interface SetCollapsedAction {
     type: typeof SET_COLLAPSED
@@ -9,5 +12,10 @@ export const setCollapsed = (collapsed: boolean): SetCollapsedAction => {
     return { type: SET_COLLAPSED, collapsed }
 }
 
-type Action = SetCollapsedAction
+export interface SetBreakpointAction {
+    type: typeof SET_BREAKPOINT
+    breakpoint: BreakPoint
+}
+
+type Action = SetCollapsedAction | SetBreakpointAction
 export default Action

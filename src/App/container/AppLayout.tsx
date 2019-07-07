@@ -14,16 +14,7 @@ import { Loading } from "~/components/Spinner"
 import { bindActionCreators } from "redux"
 import * as ReactRedux from "react-redux"
 import { RootStore } from "~/store"
-import { setCollapsed } from "~/store/app"
 
-const actionCreators = {
-    setCollapsed,
-}
-
-function useActions(): DispatchProps<typeof actionCreators> {
-    const dispatch = ReactRedux.useDispatch()
-    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
-}
 function useSelectors() {
     return {
         collapsed: ReactRedux.useSelector((state: RootStore) => state.app.collapsed),
@@ -99,22 +90,6 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
     const headerHeight = 70
     const sidebarWidth = 200
     const { collapsed } = useSelectors()
-    const { setCollapsed } = useActions()
-
-    React.useEffect(() => {
-        const mql = window.matchMedia("(min-width: 992px)")
-        const cb = (e: MediaQueryListEvent) => {
-            if (e.matches) {
-                setCollapsed(false)
-            } else {
-                setCollapsed(true)
-            }
-        }
-        mql.addListener(cb)
-        return () => {
-            mql.removeListener(cb)
-        }
-    }, [setCollapsed])
 
     return (
         <App className="d-flex flex-column">
