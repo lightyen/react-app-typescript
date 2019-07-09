@@ -1,4 +1,4 @@
-import { User } from "~/store/model/User"
+import { User } from "./model/User"
 
 export enum LOGIN {
     REQUEST = "LOGIN_REQUEST",

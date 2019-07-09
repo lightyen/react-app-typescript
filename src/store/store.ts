@@ -32,7 +32,7 @@ const myMiddleware: Middleware<{}, RootStore> = store => next => (action: AnyAct
 }
 
 const createRootReducer = (history: History) =>
-    combineReducers<RootStore>({
+    combineReducers({
         user: userReducer,
         app: appReducer,
         intl: intlReducer,
