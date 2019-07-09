@@ -20,7 +20,7 @@ const RotateImg = styled.img`
 
 const Home: React.FC<RouteComponentProps> = ({ match }) => {
     return (
-        <div className="container">
+        <div className="container-fluid">
             <div className="row justify-content-around">
                 <div className="col-4 row justify-content-center p-2">
                     <RotateImg src={image} width={180} height={180} />
