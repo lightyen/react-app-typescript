@@ -33,7 +33,7 @@ const NoAuthenticatedRoute: React.FC<RouteProps> = ({ render, ...rest }) => (
 )
 
 const NotFound = Async(import("~/views/NotFound"))
-const AppLayout = Async(import("~/App/container/AppLayout"), 3000)
+const AppLayout = Async(import("~/App/container/AppLayout"))
 
 const AppRouter: React.FC = () => {
     return (

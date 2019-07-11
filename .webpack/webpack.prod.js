@@ -1,6 +1,6 @@
 // @ts-check
 const webpackMerge = require("webpack-merge")
-const { ContextReplacementPlugin, optimize } = require("webpack")
+const { ContextReplacementPlugin } = require("webpack")
 const CompressionWebpackPlugin = require("compression-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const TerserJSPlugin = require("terser-webpack-plugin")
@@ -15,7 +15,7 @@ const vendorPath = "" // path.resolve(process.cwd(), "dist", "vendor")
  * @type {import("webpack").Plugin[]}
  */
 const plugins = [
-    new ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
+    new ContextReplacementPlugin(/moment[/\\]locale$/, /^es$|zh/),
     new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 10240 }),
     new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: vendorPath
@@ -47,9 +47,35 @@ const config = {
         minimize: true,
         minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
         splitChunks: {
+            maxInitialRequests: 6,
             cacheGroups: {
+                bootstrap: {
+                    name: "bootstrap",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]bootstrap/,
+                },
+                moment: {
+                    name: "moment",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]moment/,
+                },
+                reactdom: {
+                    name: "react-dom",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]react-dom/,
+                },
+                jquery: {
+                    name: "jquery",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]jquery/,
+                },
+                fontAwesome: {
+                    name: "fa",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]@fortawesome/,
+                },
                 App: {
-                    name: "App", // NOTE: core ui 或 bootstrap 等樣式
+                    name: "App",
                     chunks: "all",
                     test: /style\.scss$/,
                 },
