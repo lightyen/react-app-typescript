@@ -12,25 +12,21 @@ const AuthenticatedRoute: React.FC<RouteProps> = ({ render, ...rest }) => (
     <Route {...rest} render={props => (isAuthenticated() ? render(props) : <Redirect to="/login" />)} />
 )
 
-interface ReactModule<T> {
-    default: React.ComponentType<T>
-}
+const NoAuthenticatedRoute: React.FC<RouteProps> = ({ render, ...rest }) => (
+    <Route {...rest} render={props => (!isAuthenticated() ? render(props) : <Redirect to="/" />)} />
+)
 
-function Async<T>(module: Promise<ReactModule<T>>, delay?: number) {
+function Async<T>(module: Promise<{ default: React.ComponentType<T> }>, delay?: number) {
     if (delay > 0) {
         return React.lazy(
             () =>
-                new Promise<ReactModule<T>>(resolve => {
+                new Promise<{ default: React.ComponentType<T> }>(resolve => {
                     window.setTimeout(() => resolve(module), delay)
                 }),
         )
     }
     return React.lazy(() => module)
 }
-
-const NoAuthenticatedRoute: React.FC<RouteProps> = ({ render, ...rest }) => (
-    <Route {...rest} render={props => (!isAuthenticated() ? render(props) : <Redirect to="/" />)} />
-)
 
 const NotFound = Async(import("~/views/NotFound"))
 const AppLayout = Async(import("~/App/container/AppLayout"))
