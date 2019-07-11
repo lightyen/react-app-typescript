@@ -81,11 +81,12 @@ module.exports = function(options) {
                             "http-equiv": "X-UA-Compatible",
                             content: "ie=edge",
                         },
+                        charset: "utf-8",
                         description: packageJSON.description,
                         author: packageJSON.author,
                     },
                     minify: false,
-                    excludeAssets: exclude.map(e => new RegExp(`${e}.*.js`)),
+                    excludeAssets: exclude.map(name => new RegExp(`${name}.*\\.js`)),
                     title: packageJSON.name,
                     template: path.resolve(__dirname, "public", "index.pug"),
                     favicon: path.join(options.src, "assets", "favicon.ico"),
@@ -162,8 +163,8 @@ module.exports = function(options) {
         entry,
         output: {
             path: options.dist,
-            filename: "js/[name].[hash:12].js",
-            chunkFilename: "js/[name].[hash:8].js",
+            filename: "js/[name].[hash:8].js",
+            chunkFilename: "js/[name].[hash:6].js",
             publicPath: process.env.PUBLIC_PATH || "/",
         },
         target: "web",
@@ -183,7 +184,7 @@ module.exports = function(options) {
                 {
                     test: /\.tsx?$/,
                     exclude: /node_modules|\.test.tsx?$/,
-                    use: ["react-hot-loader/webpack", tsxLoader],
+                    use: tsxLoader,
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg)$/i,

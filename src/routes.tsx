@@ -14,10 +14,10 @@ interface RouteItem extends RouteProps {
 }
 
 const routes: RouteItem[] = [
-    { path: "/", name: <span>Home</span>, exact: true, component: Home },
-    { path: "/hello", name: <LocaleMessage id="hello" />, component: Hello },
-    { path: "/highlight", name: <span>Highlight</span>, component: Highlight },
-    { path: "/popper", name: <span>Popper</span>, component: Popper },
+    { path: "/", exact: true, name: <span>Home</span>, component: Home },
+    { path: "/hello", exact: true, name: <LocaleMessage id="hello" />, component: Hello },
+    { path: "/highlight", exact: true, name: <span>Highlight</span>, component: Highlight },
+    { path: "/popper", exact: true, name: <span>Popper</span>, component: Popper },
 ]
 
 export default routes

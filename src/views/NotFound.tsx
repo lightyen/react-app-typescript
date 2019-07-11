@@ -1,25 +1,14 @@
 import React from "react"
-import styled from "styled-components"
+import { Link, RouteComponentProps } from "react-router-dom"
 
-const Div = styled.div`
-    font-family: My Code, monospace;
-    min-height: 100vh;
-`
-
-class NotFound extends React.Component {
-    private backHome = () => {
-        window.location.replace(process.env.PUBLIC_PATH || "/")
-    }
+class NotFound extends React.Component<RouteComponentProps> {
     public render() {
         return (
-            <Div>
-                <button className="btn btn-primary m-3" onClick={this.backHome}>
-                    你幹嘛呢！
-                </button>
-            </Div>
+            <Link className="btn btn-primary m-3" to="/">
+                你幹嘛呢！
+            </Link>
         )
     }
 }
 
-import { hot } from "react-hot-loader/root"
-export default process.env.NODE_ENV === "development" ? hot(NotFound) : NotFound
+export default NotFound

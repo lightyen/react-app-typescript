@@ -2,7 +2,6 @@ import React from "react"
 import { RouteComponentProps, Route, Switch, Redirect } from "react-router-dom"
 import styled from "styled-components"
 import routes from "~/routes"
-import { DispatchProps } from "~/typings"
 
 // Component
 import AppSidebar from "./AppSidebar"
@@ -11,7 +10,6 @@ import AppFooter from "./AppFooter"
 import { Loading } from "~/components/Spinner"
 
 // Store
-import { bindActionCreators } from "redux"
 import * as ReactRedux from "react-redux"
 import { RootStore } from "~/store"
 

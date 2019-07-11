@@ -16,7 +16,7 @@ const vendorPath = "" // path.resolve(process.cwd(), "dist", "vendor")
  */
 const plugins = [
     new ContextReplacementPlugin(/moment[/\\]locale$/, /es|zh/),
-    new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 8192 }),
+    new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 10240 }),
     new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: vendorPath
             ? ["**/*", "!vendor", "!vendor/vendor.js", "!vendor/manifest.json"]
@@ -47,8 +47,17 @@ const config = {
         minimize: true,
         minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
         splitChunks: {
-            chunks: "async",
+            cacheGroups: {
+                App: {
+                    name: "App", // NOTE: core ui 或 bootstrap 等樣式
+                    chunks: "all",
+                    test: /style\.scss$/,
+                },
+            },
         },
+    },
+    resolve: {
+        alias: {},
     },
     plugins,
 }
