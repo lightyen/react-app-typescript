@@ -1,7 +1,7 @@
 import React from "react"
 import { RouteComponentProps, NavLink } from "react-router-dom"
 import styled from "styled-components"
-import LocaleMessage from "~/components/LocaleMessage"
+import { navConfig } from "~/nav"
 
 const Nav = styled.ul.attrs({ className: "nav" })`
     height: 100%;
@@ -24,20 +24,6 @@ const AppNavLink = styled(NavLink).attrs({ className: "nav-link" })`
         background: #20262d;
     }
 `
-
-export interface NavConfigItem {
-    path?: string
-    /** 標籤名稱 */
-    name?: React.ReactNode
-    exact?: boolean
-}
-
-const navConfig: NavConfigItem[] = [
-    { path: "/", name: <span>Home</span>, exact: true },
-    { path: "/hello", name: <LocaleMessage id="hello" /> },
-    { path: "/highlight", name: <span>Highlight</span> },
-    { path: "/popper", name: <span>Popper</span> },
-]
 
 const AppSidebar: React.FC<RouteComponentProps> = () => {
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import PopperJS, { PopperOptions } from "popper.js"
 import classnames from "classnames"
 import styled, { css } from "styled-components"
@@ -74,7 +74,7 @@ const Popper: React.FC<PopperProps> = ({ placement }) => {
 
     const animation = React.useRef<AnimeJS.AnimeInstance>()
 
-    React.useEffect(() => {
+    useEffect(() => {
         // https://animejs.com/documentation/
         animation.current = AnimeJS({
             targets: inner.current,
@@ -102,7 +102,7 @@ const Popper: React.FC<PopperProps> = ({ placement }) => {
         }
     }, [])
 
-    React.useEffect(() => {
+    useEffect(() => {
         const options: PopperOptions = {
             placement,
             modifiers: {
@@ -145,7 +145,7 @@ const Popper: React.FC<PopperProps> = ({ placement }) => {
     }
 
     return (
-        <div>
+        <div className="my-3">
             <PopperButton ref={reference} onClick={handleClick} open={open} />
             <PopperWrapper ref={popper} style={{ display: visiable ? "initial" : "none" }} arrowBackground={background}>
                 <div ref={inner} x-inner="">
@@ -184,7 +184,7 @@ const PopperContent = React.forwardRef<HTMLDivElement>((props, ref) => (
 
 const Test: React.FC = () => {
     return (
-        <div style={{ padding: "20px 30px" }}>
+        <div className="fade show container-fluid">
             <Popper placement="bottom-start" />
         </div>
     )

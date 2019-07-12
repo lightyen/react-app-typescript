@@ -50,7 +50,7 @@ const config = {
             maxInitialRequests: 6,
             cacheGroups: {
                 bootstrap: {
-                    name: "bootstrap",
+                    name: "bs",
                     chunks: "all",
                     test: /[\\/]node_modules[\\/]bootstrap/,
                 },
@@ -73,6 +73,11 @@ const config = {
                     name: "fa",
                     chunks: "all",
                     test: /[\\/]node_modules[\\/]@fortawesome/,
+                },
+                three: {
+                    name: "three",
+                    chunks: "all",
+                    test: /[\\/]node_modules[\\/]three/,
                 },
                 App: {
                     name: "App",

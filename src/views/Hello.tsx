@@ -12,7 +12,7 @@ import { getHello } from "~/store/hello"
 
 const GoBackButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
     return (
-        <Button className="d-block" onClick={onClick}>
+        <Button className="" onClick={onClick}>
             Go Back
         </Button>
     )
@@ -33,16 +33,14 @@ function useSelectors() {
     }
 }
 
-type OwnProps = RouteComponentProps
-
-type Props = OwnProps
+type Props = RouteComponentProps
 
 function CustomHooks() {
     const [count, setCount] = useState(2)
     return { count, setCount }
 }
 
-const Hello: React.FC<Props> = ({ history, ...rest }) => {
+const Hello: React.FC<Props> = ({ history }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const { count, setCount } = CustomHooks()
@@ -51,15 +49,17 @@ const Hello: React.FC<Props> = ({ history, ...rest }) => {
     const { logined, status, error } = useSelectors()
 
     useEffect(() => {
-        console.log("mount")
+        console.log("mount hello")
         return () => {
-            console.log("unmount")
+            console.log("unmount hello")
         }
     }, [])
 
     return (
         <div className="card bg-transparent">
-            <div onClick={() => setCount(count + 1)}>{count} Add Count</div>
+            <div className="btn btn-primary m-3" onClick={() => setCount(count + 1)}>
+                Count {count}
+            </div>
             <div className="card-body">
                 {logined ? (
                     <>

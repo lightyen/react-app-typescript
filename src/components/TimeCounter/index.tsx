@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 function useTimeCounter(init: number) {
     const [count, setCount] = useState(init)
@@ -6,7 +6,7 @@ function useTimeCounter(init: number) {
     function doCount() {
         setCount(count + 1)
     }
-    React.useEffect(() => {
+    useEffect(() => {
         ref.current = self.setInterval(() => doCount(), 1000)
         return () => clearInterval(ref.current)
     })
