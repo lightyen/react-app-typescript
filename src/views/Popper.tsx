@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import PopperJS, { PopperOptions } from "popper.js"
 import classnames from "classnames"
 import styled, { css } from "styled-components"
@@ -67,35 +67,33 @@ const Popper: React.FC<PopperProps> = ({ placement }) => {
     const arrowHeight = 16
     const arrowWidth = 16
 
-    const [open, setOpen] = React.useState(false)
-    const [visiable, setVisiable] = React.useState(false)
+    const [open, setOpen] = useState(false)
+    const [visiable, setVisiable] = useState(false)
 
-    const [background, setBackground] = React.useState("#fff")
+    const [background, setBackground] = useState("#fff")
 
     const animation = React.useRef<AnimeJS.AnimeInstance>()
 
     React.useEffect(() => {
         // https://animejs.com/documentation/
-        if (inner.current) {
-            animation.current = AnimeJS({
-                targets: inner.current,
-                duration: 300,
-                autoplay: false,
-                loop: true,
-                loopComplete: (a: AnimeJS.AnimeInstance) => {
-                    a.pause()
-                    if (a.reversed) {
-                        setVisiable(false)
-                    }
-                },
-                opacity: [0, 1],
-                translateX: [-40, 0],
-                translateY: [-40, 0],
-                scale: [0.2, 1],
-                easing: "easeInOutQuart",
-                direction: "alternate",
-            })
-        }
+        animation.current = AnimeJS({
+            targets: inner.current,
+            duration: 300,
+            autoplay: false,
+            loop: true,
+            loopComplete: (a: AnimeJS.AnimeInstance) => {
+                a.pause()
+                if (a.reversed) {
+                    setVisiable(false)
+                }
+            },
+            opacity: [0, 1],
+            translateX: [-40, 0],
+            translateY: [-40, 0],
+            scale: [0.2, 1],
+            easing: "easeInOutQuart",
+            direction: "alternate",
+        })
         return () => {
             if (animation.current) {
                 AnimeJS.remove(inner.current)

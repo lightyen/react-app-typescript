@@ -5,11 +5,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "target": "esnext",
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "dom.iterable"],
     "types": ["react"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
     }
-  }
+  },
+  "include": ["src"]
 }

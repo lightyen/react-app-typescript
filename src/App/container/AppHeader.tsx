@@ -3,12 +3,9 @@ import styled from "styled-components"
 import classnames from "classnames"
 import { DispatchProps } from "~/typings"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBars } from "@fortawesome/free-solid-svg-icons"
-
 // Store
 import { bindActionCreators } from "redux"
-import * as ReactRedux from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { RootStore } from "~/store"
 import { setLocale } from "~/store/i18n"
 import { setCollapsed } from "~/store/app"
@@ -19,16 +16,16 @@ const actionCreators = {
 }
 
 function useActions(): DispatchProps<typeof actionCreators> {
-    const dispatch = ReactRedux.useDispatch()
+    const dispatch = useDispatch()
     return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
 function useSelectors() {
     return {
-        collapsed: ReactRedux.useSelector((state: RootStore) => state.app.collapsed),
-        enable: ReactRedux.useSelector((state: RootStore) => state.intl.enable),
-        list: ReactRedux.useSelector((state: RootStore) => state.intl.list),
-        locale: ReactRedux.useSelector((state: RootStore) => state.intl.locale),
+        collapsed: useSelector((state: RootStore) => state.app.collapsed),
+        enable: useSelector((state: RootStore) => state.intl.enable),
+        list: useSelector((state: RootStore) => state.intl.list),
+        locale: useSelector((state: RootStore) => state.intl.locale),
     }
 }
 
@@ -52,7 +49,7 @@ const AppHeader: React.FC = () => {
                             setCollapsed(!collapsed)
                         }}
                     >
-                        <FontAwesomeIcon className="text-light" icon={faBars} />
+                        <i className="text-light fa fa-bars" />
                     </button>
                     <Breadcrumbs className="mb-auto bg-transparent" />
                 </div>

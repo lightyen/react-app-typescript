@@ -10,12 +10,12 @@ import AppFooter from "./AppFooter"
 import { Loading } from "~/components/Spinner"
 
 // Store
-import * as ReactRedux from "react-redux"
+import { useSelector } from "react-redux"
 import { RootStore } from "~/store"
 
 function useSelectors() {
     return {
-        collapsed: ReactRedux.useSelector((state: RootStore) => state.app.collapsed),
+        collapsed: useSelector((state: RootStore) => state.app.collapsed),
     }
 }
 

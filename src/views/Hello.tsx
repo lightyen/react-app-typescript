@@ -1,10 +1,10 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { RouteComponentProps } from "react-router-dom"
 import Button from "~/components/Button"
 import { DispatchProps } from "~/typings"
 import { bindActionCreators } from "redux"
 
-import * as ReactRedux from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import { RootStore } from "~/store"
 import { login, logout } from "~/store/auth"
@@ -21,15 +21,15 @@ const GoBackButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
 const actionCreators = { login, logout, getHello }
 
 function useActions(): DispatchProps<typeof actionCreators> {
-    const dispatch = ReactRedux.useDispatch()
+    const dispatch = useDispatch()
     return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
 function useSelectors() {
     return {
-        logined: ReactRedux.useSelector((state: RootStore) => state.user.logined),
-        error: ReactRedux.useSelector((state: RootStore) => state.user.error),
-        status: ReactRedux.useSelector((state: RootStore) => state.hello.status),
+        logined: useSelector((state: RootStore) => state.user.logined),
+        error: useSelector((state: RootStore) => state.user.error),
+        status: useSelector((state: RootStore) => state.hello.status),
     }
 }
 
@@ -38,19 +38,19 @@ type OwnProps = RouteComponentProps
 type Props = OwnProps
 
 function CustomHooks() {
-    const [count, setCount] = React.useState(2)
+    const [count, setCount] = useState(2)
     return { count, setCount }
 }
 
 const Hello: React.FC<Props> = ({ history, ...rest }) => {
-    const [username, setUsername] = React.useState("")
-    const [password, setPassword] = React.useState("")
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     const { count, setCount } = CustomHooks()
 
     const { login, logout, getHello } = useActions()
     const { logined, status, error } = useSelectors()
 
-    React.useEffect(() => {
+    useEffect(() => {
         console.log("mount")
         return () => {
             console.log("unmount")

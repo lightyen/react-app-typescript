@@ -3,7 +3,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": false,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
@@ -12,10 +12,12 @@
     "strictNullChecks": false,
     "removeComments": true,
     "noUnusedParameters": false,
+    "noEmit": true,
     "noUnusedLocals": false,
     "resolveJsonModule": true,
     "suppressImplicitAnyIndexErrors": true,
     "allowJs": false,
+    "skipLibCheck": true,
     "strict": true,
     "incremental": true
   }

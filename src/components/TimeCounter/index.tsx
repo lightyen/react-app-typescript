@@ -1,7 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 
 function useTimeCounter(init: number) {
-    const [count, setCount] = React.useState(init)
+    const [count, setCount] = useState(init)
     const ref = React.useRef(null)
     function doCount() {
         setCount(count + 1)

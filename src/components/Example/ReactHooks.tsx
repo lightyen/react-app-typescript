@@ -1,7 +1,7 @@
 // Hooks FAQ
 // https://reactjs.org/docs/hooks-faq.html
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Example } from "./Example"
 
 interface IProps {}
@@ -18,15 +18,15 @@ const Counter: React.FunctionComponent<IProps> = props => {
     }
 
     // createData is only called once
-    const [data, setData] = React.useState<IData>(createData)
+    const [data, setData] = useState<IData>(createData)
 
     // 類似 componentDidUpdate
-    React.useEffect(() => {
+    useEffect(() => {
         // do something
     })
 
     // 類似 componentDidMount, componentWillUnmount
-    React.useEffect(() => {
+    useEffect(() => {
         // subscribe something
         return () => {
             // unsubscribe something
@@ -34,7 +34,7 @@ const Counter: React.FunctionComponent<IProps> = props => {
     }, [])
 
     // 只針對 data.count 的狀態做反應
-    React.useEffect(() => {
+    useEffect(() => {
         console.log("next data.count = " + data.count)
         return () => {
             console.log("prev data.count = " + data.count)
@@ -42,7 +42,7 @@ const Counter: React.FunctionComponent<IProps> = props => {
     }, [data.count])
 
     // 非同步的 effect
-    React.useEffect(() => {
+    useEffect(() => {
         const f = async () => {
             // await ...
         }
@@ -77,7 +77,7 @@ const ChildComponentMemo = React.memo((props: React.PropsWithChildren<IChildComp
 ))
 
 export const ParentComponent: React.FC = () => {
-    const [state, setState] = React.useState({ children: [1, 2, 3] })
+    const [state, setState] = useState({ children: [1, 2, 3] })
     const { children } = state
 
     function doSomething() {
