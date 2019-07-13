@@ -10,9 +10,8 @@ WebFontLoader.load({
     custom: {
         families: ["RootFont"],
         urls: [
-            process.env.PUBLIC_URL + process.env.NODE_ENV === "production"
-                ? "/css/fonts.css"
-                : "/assets/fonts/fonts.css",
+            process.env.PUBLIC_URL +
+                (process.env.NODE_ENV === "production" ? "/css/fonts.css" : "/assets/fonts/fonts.css"),
         ],
         testStrings: {
             RootFont: "Text 預載文字字型",
