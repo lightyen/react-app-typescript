@@ -2,13 +2,14 @@ import React from "react"
 import path from "path"
 import { RouteProps } from "react-router-dom"
 import LocaleMessage from "~/components/LocaleMessage"
+import AsyncCompoent from "~/utils/async"
 
 // https://reactjs.org/docs/code-splitting.html
-const Home = React.lazy(() => import("~/views/Home"))
-const Hello = React.lazy(() => import("~/views/Hello"))
-const Highlight = React.lazy(() => import("~/views/Highlight"))
-const Popper = React.lazy(() => import("~/views/Popper"))
-const ThreeDemo = React.lazy(() => import("~/views/ThreeDemo"))
+const Home = AsyncCompoent(import("~/views/home"))
+const Hello = AsyncCompoent(import("~/views/Hello"))
+const Highlight = AsyncCompoent(import("~/views/Highlight"))
+const Popper = AsyncCompoent(import("~/views/Popper"))
+const ThreeDemo = AsyncCompoent(import("~/views/ThreeDemo"))
 
 interface RouteItem extends RouteProps {
     name: React.ReactNode

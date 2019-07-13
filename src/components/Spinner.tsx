@@ -41,7 +41,7 @@ export const Spinner = (
 )
 
 export const Loading = (
-    <div className="d-flex justify-content-center align-items-center vh-100" style={{ background: "#282c34" }}>
+    <div className="d-flex justify-content-center align-items-center h-100" style={{ background: "#282c34" }}>
         <CircleBorder>
             <Circle>
                 <span className="sr-only">Loading</span>
