@@ -5,11 +5,7 @@ import AppRouter from "./AppRouter"
 
 // styles
 import "bootstrap"
-import "@fortawesome/fontawesome-free/js/fontawesome"
-import { library } from "@fortawesome/fontawesome-svg-core"
-// import { fas } from "@fortawesome/free-solid-svg-icons"
-import { faBars } from "@fortawesome/free-solid-svg-icons/faBars"
-library.add(faBars)
+import "./icons"
 import "./scss/style.scss"
 
 // store
@@ -29,14 +25,13 @@ export default function App() {
 
     const [ready, setReady] = useState(false)
     useEffect(() => {
-        const locale = "en-US" || navigator.languages[0]
         store.subscribe(() => {
             const state = store.getState()
             if (state.intl.status === SET_LOCALE.SUCCESS) {
                 setReady(true)
             }
         })
-        store.dispatch(setLocale(locale))
+        store.dispatch(setLocale(navigator.languages[0] || "en-US"))
     }, [])
 
     return (

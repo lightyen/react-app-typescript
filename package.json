@@ -28,6 +28,8 @@
     "@babel/runtime": "7.4.5",
     "@fortawesome/fontawesome-free": "^5.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-brands-svg-icons": "^5.9.0",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "@hot-loader/react-dom": "16.8.6",
     "@redux-saga/testing-utils": "1.0.5",

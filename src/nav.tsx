@@ -9,9 +9,8 @@ interface NavConfigItem {
 }
 
 export const navConfig: NavConfigItem[] = [
-    { path: "/", name: <span>Home</span>, exact: true },
     { path: "/hello", name: <LocaleMessage id="hello" /> },
-    { path: "/highlight", name: <span>Highlight</span> },
+    { path: "/highlight", name: <span>代碼高亮</span> },
     { path: "/popper", name: <span>Popper</span> },
     { path: "/threejs", name: <span>three.js</span> },
 ]

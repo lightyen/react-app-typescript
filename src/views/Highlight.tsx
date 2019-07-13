@@ -27,6 +27,9 @@ interface OwnProps extends RouteComponentProps {}
 const Highlight: React.FC<OwnProps> = ({ history }) => {
     return (
         <div className="fadeIn">
+            <div className="p-0 p-md-3">
+                <h2>高亮代碼</h2>
+            </div>
             <CodeHighlight className="mb-3" code={input} language="tsx" />
             <Button onClick={() => history.push("/")}>Go Home</Button>
         </div>

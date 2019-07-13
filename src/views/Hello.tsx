@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { RouteComponentProps } from "react-router-dom"
 import Button from "~/components/Button"
 import { DispatchProps } from "~/typings"
@@ -33,78 +33,62 @@ function useSelectors() {
     }
 }
 
-type Props = RouteComponentProps
-
-function CustomHooks() {
-    const [count, setCount] = useState(2)
-    return { count, setCount }
-}
-
-const Hello: React.FC<Props> = ({ history }) => {
+const Hello: React.FC<RouteComponentProps> = ({ history }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const { count, setCount } = CustomHooks()
-
     const { login, logout, getHello } = useActions()
     const { logined, status, error } = useSelectors()
 
-    useEffect(() => {
-        console.log("mount hello")
-        return () => {
-            console.log("unmount hello")
-        }
-    }, [])
-
     return (
-        <div className="fadeIn card" style={{ background: "#3b414f" }}>
-            <div className="btn btn-primary m-3" onClick={() => setCount(count + 1)}>
-                Count {count}
-            </div>
-            <div className="card-body">
-                {logined ? (
-                    <>
-                        <Button onClick={() => getHello()}>Hello API</Button>
-                        <span>"{status}"</span>
-                        <button className="d-block btn btn-info" onClick={() => logout()}>
-                            Logout
-                        </button>
-                    </>
-                ) : (
-                    <>
-                        <form
-                            onSubmit={e => {
-                                e.preventDefault()
-                                login({ username, password })
-                            }}
-                        >
-                            <div className="form-group">
-                                <label>Username</label>
-                                <input
-                                    type="text"
-                                    className="form-control mb-3"
-                                    size={16}
-                                    placeholder="username: root"
-                                    onChange={e => {
-                                        setUsername(e.target.value)
-                                    }}
-                                />
-                                <label>Password</label>
-                                <input
-                                    type="password"
-                                    className="form-control mb-3"
-                                    size={16}
-                                    placeholder="password: helloworld"
-                                    onChange={e => {
-                                        setPassword(e.target.value)
-                                    }}
-                                />
-                                {error && <div>{error["message"]}</div>}
-                                <button className="btn btn-primary">Submit</button>
-                            </div>
-                        </form>
-                        <GoBackButton onClick={() => history.goBack()} />
-                    </>
-                )}
+        <div className="fadeIn">
+            <h2 className="p-0 p-md-3">表單輸入</h2>
+            <div className="card" style={{ background: "#3b414f" }}>
+                <div className="card-body">
+                    {logined ? (
+                        <>
+                            <Button onClick={() => getHello()}>Hello API</Button>
+                            <span>"{status}"</span>
+                            <button className="d-block btn btn-info" onClick={() => logout()}>
+                                Logout
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <form
+                                onSubmit={e => {
+                                    e.preventDefault()
+                                    login({ username, password })
+                                }}
+                            >
+                                <div className="form-group">
+                                    <label>Username</label>
+                                    <input
+                                        type="text"
+                                        className="form-control mb-3"
+                                        size={16}
+                                        placeholder="username: root"
+                                        onChange={e => {
+                                            setUsername(e.target.value)
+                                        }}
+                                    />
+                                    <label>Password</label>
+                                    <input
+                                        type="password"
+                                        className="form-control mb-3"
+                                        size={16}
+                                        placeholder="password: helloworld"
+                                        onChange={e => {
+                                            setPassword(e.target.value)
+                                        }}
+                                    />
+                                    {error && <div>{error["message"]}</div>}
+                                    <button className="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                            <GoBackButton onClick={() => history.goBack()} />
+                        </>
+                    )}
+                </div>
             </div>
         </div>
     )
