@@ -102,18 +102,21 @@ const Sashbar: React.FC<{ left: number }> = ({ left }) => {
 
     const active = React.useRef<boolean>(false)
 
-    const width = 6
+    const width = 10
     const ref = React.useRef<HTMLDivElement>()
 
     function handleMouseDown(e: React.MouseEvent) {
+        e.preventDefault()
         active.current = true
     }
 
     React.useEffect(() => {
-        const onup = () => {
+        const onup = (e: MouseEvent) => {
+            e.preventDefault()
             active.current = false
         }
         const onmove = (e: MouseEvent) => {
+            e.preventDefault()
             if (!active.current) {
                 return
             }

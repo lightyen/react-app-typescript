@@ -42,14 +42,14 @@ const Home: React.FC<RouteComponentProps> = ({ match }) => {
                     <br />
                     <br />
                     然而我並非視覺設計出身的，所以目前主要使用的樣式 (style) 仍以 Bootstrap
-                    為主，主要著重的地方在於各種場景下使用 React 做實踐。
+                    為主，著重的地方在於各種場景下使用 React 做實踐。
                     <br />
                     <br />
-                    不要和我討論 Angular 和 Vue，我認為 React 是目前世界上最有邏輯也最好用的
+                    不要與我討論 Angular 和 Vue，我認為 React 是目前世界上最有邏輯也最好用的
                     library，所以我還沒有想要有深入了解其他部門的打算。
                     <br />
                     <br />
-                    2018 年 11 月，我開始學習了 HTML。
+                    2018 年 11 月，我 停止了 C# 轉而開始了 JavaScript。
                     <br />
                     <br />
                     我愛 TypeScript。
