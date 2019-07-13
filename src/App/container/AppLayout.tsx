@@ -136,7 +136,6 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
     const { collapsed, sashLeft } = useSelectors()
     return (
         <App className="fadeIn">
-            <div style={{ fontFamily: "RootFont", visibility: "hidden", position: "absolute" }}>Text 文字</div>
             <Header>
                 <AppHeader />
             </Header>

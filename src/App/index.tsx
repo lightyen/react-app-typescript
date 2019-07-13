@@ -43,6 +43,7 @@ export default function App() {
         ready && (
             <Provider store={store}>
                 <ConnectedRouter history={history}>
+                    <div style={{ fontFamily: "RootFont", visibility: "hidden", position: "absolute" }}>Text 文字</div>
                     <AppRouter />
                 </ConnectedRouter>
             </Provider>
