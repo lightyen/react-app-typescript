@@ -9,7 +9,7 @@ const Home = AsyncCompoent(import("~/views/Home"))
 const Hello = AsyncCompoent(import("~/views/Hello"))
 const Highlight = AsyncCompoent(import("~/views/Highlight"))
 const Popper = AsyncCompoent(import("~/views/Popper"))
-const ThreeDemo = AsyncCompoent(import("~/views/ThreeDemo"))
+const ThreeDemo = AsyncCompoent(import("~/views/ThreeDemo"), 1000)
 
 interface RouteItem extends RouteProps {
     name: React.ReactNode
