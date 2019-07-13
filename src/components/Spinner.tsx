@@ -40,7 +40,7 @@ export const Spinner = (
     </CircleBorder>
 )
 
-export const Loading = (
+export const Loading: React.FC = () => (
     <div className="d-flex justify-content-center align-items-center h-100" style={{ background: "#282c34" }}>
         <CircleBorder>
             <Circle>

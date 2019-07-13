@@ -124,7 +124,7 @@ module.exports = function(options) {
         loader: "url-loader",
         options: {
             // NOTE: output path
-            name: "assets/images/[name].[ext]",
+            name: "assets/images/[name].[ext]?[hash:8]",
             limit: 8192,
             fallback: "file-loader",
         },
