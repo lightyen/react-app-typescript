@@ -5,7 +5,7 @@ import LocaleMessage from "~/components/LocaleMessage"
 import AsyncCompoent from "~/utils/async"
 
 // https://reactjs.org/docs/code-splitting.html
-const Home = AsyncCompoent(import("~/views/home"))
+const Home = AsyncCompoent(import("~/views/Home"))
 const Hello = AsyncCompoent(import("~/views/Hello"))
 const Highlight = AsyncCompoent(import("~/views/Highlight"))
 const Popper = AsyncCompoent(import("~/views/Popper"))
