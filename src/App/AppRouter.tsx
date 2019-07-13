@@ -22,7 +22,7 @@ const AppLayout = AsyncComponent(import("~/App/container/AppLayout"))
 
 const AppRouter: React.FC = () => {
     return (
-        <React.Suspense fallback={<Loading />}>
+        <React.Suspense fallback={Loading}>
             <Switch>
                 <Route path="/404" render={props => <NotFound {...props} />} />
                 <AuthenticatedRoute path="/" render={props => <AppLayout {...props} />} />

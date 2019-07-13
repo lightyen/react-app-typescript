@@ -19,7 +19,7 @@ WebFontLoader.load({
             RootFont: "Text 預載文字字型",
         },
     },
-    loading: () => render(<Loading />, document.getElementById("root")),
+    loading: () => render(Loading, document.getElementById("root")),
     active: () => render(<App />, document.getElementById("root")),
 })
 
