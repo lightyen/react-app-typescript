@@ -36,7 +36,7 @@ const AppHeader: React.FC = () => {
     const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <div className="h-100 row align-items-center flex-nowrap" style={{ background: "#20232a" }}>
-            <div className="col flex-grow-1">
+            <div className="flex-grow-1">
                 <div className="d-flex flex-row align-items-center">
                     <button
                         className="btn btn-muted"
@@ -51,7 +51,7 @@ const AppHeader: React.FC = () => {
                 </div>
             </div>
             {enable ? (
-                <span className="col dropdown flex-grow-0">
+                <span className="dropdown flex-grow-0">
                     <button className="btn text-light dropdown-toggle" data-toggle="dropdown" data-boundary="window">
                         {list[locale.locale]}
                     </button>

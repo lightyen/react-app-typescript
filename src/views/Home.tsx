@@ -21,8 +21,8 @@ const Home: React.FC<RouteComponentProps> = ({ match }) => {
     return (
         <div className="fadeIn">
             <div className="row justify-content-around">
-                <div className="col-4 row justify-content-center p-2">
-                    <RotateImg src={image} width={180} height={180} />
+                <div className="col-12 col-md-4 row justify-content-center p-2">
+                    <RotateImg src={image} width="180px" height="180px" />
                 </div>
             </div>
             <LocaleMessage id="text" values={{}} />

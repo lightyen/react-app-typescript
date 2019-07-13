@@ -60,7 +60,7 @@ const Sidebar = styled.aside.attrs<SidebarProps>(({ width, collapsed }) => ({
     display: flex;
     flex-grow: 0;
     position: relative;
-    transition: margin-left 0.25s;
+    transition: margin-left 0.25s ease;
     width: 100%;
 `
 

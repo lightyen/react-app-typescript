@@ -10,7 +10,7 @@ const ThreeCanvas: React.FC = () => {
         let currentWidth = wrapperRef.current.clientWidth
         let currentHeight = wrapperRef.current.clientHeight
 
-        let camera = new Three.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 10)
+        let camera = new Three.PerspectiveCamera(70, currentWidth / currentHeight, 0.01, 10)
         camera.position.z = 1
 
         const scene = new Three.Scene()
@@ -30,7 +30,7 @@ const ThreeCanvas: React.FC = () => {
             }
             camera = new Three.PerspectiveCamera(70, width / height, 0.01, 10)
             camera.position.z = 1
-            renderer.setSize(width, height, true)
+            renderer.setSize(width, height)
             currentWidth = width
             currentHeight = height
         }
