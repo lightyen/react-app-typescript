@@ -145,7 +145,7 @@ const Popper: React.FC<PopperProps> = ({ placement }) => {
     }
 
     return (
-        <div className="my-3">
+        <div>
             <PopperButton ref={reference} onClick={handleClick} open={open} />
             <PopperWrapper ref={popper} style={{ display: visiable ? "initial" : "none" }} arrowBackground={background}>
                 <div ref={inner} x-inner="">
@@ -184,7 +184,7 @@ const PopperContent = React.forwardRef<HTMLDivElement>((props, ref) => (
 
 const Test: React.FC = () => {
     return (
-        <div className="fade show container-fluid">
+        <div className="fadeIn">
             <Popper placement="bottom-start" />
         </div>
     )

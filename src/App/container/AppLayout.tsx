@@ -10,117 +10,164 @@ import AppFooter from "./AppFooter"
 import { Loading } from "~/components/Spinner"
 
 // Store
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { bindActionCreators } from "redux"
 import { RootStore } from "~/store"
+import { setSashLeft } from "~/store/app"
+import { DispatchProps } from "~/typings"
+
+const actionCreators = { setSashLeft }
+
+function useActions(): DispatchProps<typeof actionCreators> {
+    const dispatch = useDispatch()
+    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
+}
 
 function useSelectors() {
     return {
         collapsed: useSelector((state: RootStore) => state.app.collapsed),
+        sashLeft: useSelector((state: RootStore) => state.app.sashLeft),
     }
 }
 
-const App = styled.div`
-    font-family: My Code, monospace;
-    min-height: 100vh;
-    color: #f9f9f9;
-    background: #282c34;
+const App = styled.article`
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 `
 
-interface AppHeaderProps {
-    height: number
-}
-
-const AppHeaderContainer = styled.div.attrs({ className: "fixed-top container-fluid" })<AppHeaderProps>`
-    height: ${props => props.height}px;
+const Header = styled.header.attrs(props => ({ className: "container-fluid" }))`
+    flex-grow: 0;
 `
 
-interface AppMainContainerProps {
-    headerHeight: number
-}
-
-const AppMainContainer = styled.div<AppMainContainerProps>`
+const Content = styled.section`
+    flex-grow: 1;
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
-    margin-top: ${props => props.headerHeight}px;
 `
 
-interface AppSidebarContainerProps {
+interface SidebarProps {
     collapsed: boolean
     width: number
-    headerHeight: number
 }
 
-const AppSidebarContainer = styled.div<AppSidebarContainerProps>`
-    position: fixed;
-    max-width: ${props => props.width}px;
+const Sidebar = styled.aside.attrs<SidebarProps>(({ width, collapsed }) => ({
+    style: {
+        maxWidth: `${width}px`,
+        marginLeft: `${collapsed ? -width : 0}px`,
+    },
+}))<SidebarProps>`
+    display: flex;
+    flex-grow: 0;
+    position: relative;
+    transition: margin-left 0.25s;
     width: 100%;
-    z-index: 100;
-    height: calc(100vh - ${props => props.headerHeight}px);
-    transition: margin-left 0.25s;
-    margin-left: -${props => props.width}px;
-    margin-left: ${props => (props.collapsed ? -props.width : 0)}px;
 `
 
-interface AppBodyProps {
-    collapsed: boolean
-    sidebarWidth: number
-}
-
-const AppBody = styled.div<AppBodyProps>`
+const Body = styled.section`
     width: 100%;
-    transition: margin-left 0.25s;
-    margin-left: 0;
-    margin-left: ${props => (props.collapsed ? 0 : props.sidebarWidth)}px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 `
 
-interface AppFooterContainerProps {
-    collapsed: boolean
-    sidebarWidth: number
+const Main = styled.main`
+    flex-grow: 1;
+`
+
+const Footer = styled.footer`
+    flex-grow: 0;
+`
+
+interface SashProps {
+    width: number
+    left: number
 }
 
-const AppFooterContainer = styled.footer<AppFooterContainerProps>`
-    transition: margin-left 0.25s;
-    margin-left: ${props => (props.collapsed ? 0 : props.sidebarWidth)}px;
+const Sash = styled.div.attrs<SashProps>(({ width, left }) => ({
+    style: {
+        width: `${width}px`,
+        left: `${left}px`,
+    },
+}))<SashProps>`
+    height: 100%;
+    display: flex;
+    position: absolute;
+    cursor: ew-resize;
+    z-index: 50;
 `
+
+const Sashbar: React.FC<{ left: number }> = ({ left }) => {
+    const { setSashLeft } = useActions()
+
+    const active = React.useRef<boolean>(false)
+
+    const width = 6
+    const ref = React.useRef<HTMLDivElement>()
+
+    function handleMouseDown(e: React.MouseEvent) {
+        active.current = true
+    }
+
+    React.useEffect(() => {
+        const onup = () => {
+            active.current = false
+        }
+        const onmove = (e: MouseEvent) => {
+            if (!active.current) {
+                return
+            }
+            if (e.clientX >= 150 && e.clientX < 400) {
+                setSashLeft(e.clientX)
+            }
+        }
+        document.addEventListener("mousemove", onmove)
+        document.addEventListener("mouseup", onup)
+        return () => {
+            document.removeEventListener("mousemove", onmove)
+            document.removeEventListener("mouseup", onup)
+        }
+    }, [setSashLeft])
+
+    return <Sash ref={ref} width={width} left={left - width / 2} onMouseDown={handleMouseDown} />
+}
 
 const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
-    const headerHeight = 70
-    const sidebarWidth = 200
-    const { collapsed } = useSelectors()
-
+    const { collapsed, sashLeft } = useSelectors()
     return (
-        <App className="d-flex flex-column">
-            <AppHeaderContainer height={headerHeight}>
+        <App className="fadeIn">
+            <Header>
                 <AppHeader />
-            </AppHeaderContainer>
-            <AppMainContainer headerHeight={headerHeight}>
-                <AppSidebarContainer width={sidebarWidth} headerHeight={headerHeight} collapsed={collapsed}>
+            </Header>
+            <Content>
+                <Sidebar width={sashLeft} collapsed={collapsed}>
+                    <Sashbar left={sashLeft} />
                     <AppSidebar {...rest} />
-                </AppSidebarContainer>
-                <AppBody sidebarWidth={sidebarWidth} collapsed={collapsed}>
-                    <React.Suspense fallback={Loading}>
-                        <Switch>
-                            {routes.map((route, index) => {
-                                return (
-                                    !!route.component && (
-                                        <Route
-                                            key={index}
-                                            path={route.path}
-                                            exact={route.exact}
-                                            render={props => <route.component {...props} />}
-                                        />
-                                    )
-                                )
-                            })}
-                            <Redirect to="/404" />
-                        </Switch>
-                    </React.Suspense>
-                </AppBody>
-            </AppMainContainer>
-            <AppFooterContainer sidebarWidth={sidebarWidth} collapsed={collapsed}>
-                <AppFooter />
-            </AppFooterContainer>
+                </Sidebar>
+                <Body>
+                    <Main className="container-fluid py-3">
+                        <React.Suspense fallback={Loading}>
+                            <Switch>
+                                {routes.map(
+                                    (route, index) =>
+                                        !!route.component && (
+                                            <Route
+                                                key={index}
+                                                path={route.path}
+                                                exact={route.exact}
+                                                render={props => <route.component {...props} />}
+                                            />
+                                        ),
+                                )}
+                                <Redirect to="/404" />
+                            </Switch>
+                        </React.Suspense>
+                    </Main>
+                    <Footer>
+                        <AppFooter />
+                    </Footer>
+                </Body>
+            </Content>
         </App>
     )
 }

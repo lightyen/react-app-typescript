@@ -3,16 +3,19 @@ import { RouteComponentProps, NavLink } from "react-router-dom"
 import styled from "styled-components"
 import { navConfig } from "~/nav"
 
-const Nav = styled.ul.attrs({ className: "nav" })`
+const Nav = styled.ul.attrs(props => ({ className: "nav" }))`
+    width: 100%;
     height: 100%;
     background: #101216;
     display: flex;
     flex-direction: column;
 `
 
-const NavItem = styled.li.attrs({ className: "nav-item" })``
+const NavItem = styled.li.attrs(props => ({ className: "nav-item" }))`
+    user-select: none;
+`
 
-const AppNavLink = styled(NavLink).attrs({ className: "nav-link" })`
+const AppNavLink = styled(NavLink).attrs(props => ({ className: "nav-link" }))`
     outline: none;
     color: #f9f9f9;
     transition: background 0.2s, color 0.2s;
@@ -28,10 +31,10 @@ const AppNavLink = styled(NavLink).attrs({ className: "nav-link" })`
 const AppSidebar: React.FC<RouteComponentProps> = () => {
     return (
         <Nav>
-            {navConfig.map((c, index) => (
+            {navConfig.map((item, index) => (
                 <NavItem key={index}>
-                    <AppNavLink to={c.path} exact={c.exact} activeClassName="active">
-                        {c.name}
+                    <AppNavLink to={item.path} exact={item.exact} activeClassName="active">
+                        {item.name}
                     </AppNavLink>
                 </NavItem>
             ))}

@@ -1,6 +1,7 @@
 import { eventChannel } from "redux-saga"
 import { all, call, take, put } from "redux-saga/effects"
 import { SetBreakpointAction } from "./action"
+import { SET_SASH_LEFT } from "./action"
 import { BreakPoint } from "./type"
 
 const chan_xs = eventChannel<BreakPoint>(emit => {

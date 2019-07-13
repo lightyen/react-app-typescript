@@ -56,7 +56,7 @@ const Hello: React.FC<Props> = ({ history }) => {
     }, [])
 
     return (
-        <div className="card bg-transparent">
+        <div className="fadeIn card" style={{ background: "#3b414f" }}>
             <div className="btn btn-primary m-3" onClick={() => setCount(count + 1)}>
                 Count {count}
             </div>

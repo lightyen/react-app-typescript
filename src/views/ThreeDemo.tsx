@@ -60,10 +60,8 @@ const ThreeCanvas: React.FC = () => {
 
 const ThreeDemo: React.FC = () => {
     return (
-        <div className="fade show container-fluid h-100">
-            <div className="py-3 h-100">
-                <ThreeCanvas />
-            </div>
+        <div className="fadeIn h-100">
+            <ThreeCanvas />
         </div>
     )
 }

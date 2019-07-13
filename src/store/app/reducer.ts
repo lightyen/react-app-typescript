@@ -5,6 +5,7 @@ import { BreakPoint } from "./type"
 export interface AppStore {
     breakpoint: BreakPoint
     collapsed: boolean
+    sashLeft: number
 }
 
 function getBreakPoint(): BreakPoint {
@@ -23,10 +24,13 @@ function getBreakPoint(): BreakPoint {
 const init: AppStore = {
     breakpoint: getBreakPoint(),
     collapsed: !window.matchMedia("(min-width: 992px)").matches,
+    sashLeft: 200,
 }
 
 export const appReducer: Reducer<AppStore, Action> = (state = init, action): AppStore => {
     switch (action.type) {
+        case "APP_SET_SASH_LEFT":
+            return { ...state, sashLeft: action.left }
         case "APP_SET_BREAKPOINT":
             const collapsed =
                 action.breakpoint === "xs" || action.breakpoint === "sm" || action.breakpoint === "md" ? true : false

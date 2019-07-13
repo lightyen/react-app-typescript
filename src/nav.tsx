@@ -13,5 +13,5 @@ export const navConfig: NavConfigItem[] = [
     { path: "/hello", name: <LocaleMessage id="hello" /> },
     { path: "/highlight", name: <span>Highlight</span> },
     { path: "/popper", name: <span>Popper</span> },
-    { path: "/threejs", name: <span>Three</span> },
+    { path: "/threejs", name: <span>three.js</span> },
 ]

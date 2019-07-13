@@ -29,17 +29,13 @@ function useSelectors() {
     }
 }
 
-const Header = styled.header`
-    background: #20232a;
-`
-
 const AppHeader: React.FC = () => {
     const { setLocale, setCollapsed } = useActions()
     const { collapsed, enable, list, locale } = useSelectors()
 
     const keys = Object.keys(list) as (keyof typeof list)[]
     return (
-        <Header className="row align-items-center h-100">
+        <div className="h-100 row align-items-center flex-nowrap" style={{ background: "#20232a" }}>
             <div className="col flex-grow-1">
                 <div className="d-flex flex-row align-items-center">
                     <button
@@ -51,12 +47,12 @@ const AppHeader: React.FC = () => {
                     >
                         <i className="text-light fa fa-bars" />
                     </button>
-                    <Breadcrumbs className="mb-auto bg-transparent" />
+                    <Breadcrumbs className="mb-auto flex-nowrap text-nowrap bg-transparent" />
                 </div>
             </div>
             {enable ? (
                 <span className="col dropdown flex-grow-0">
-                    <button className="btn text-light dropdown-toggle" data-toggle="dropdown">
+                    <button className="btn text-light dropdown-toggle" data-toggle="dropdown" data-boundary="window">
                         {list[locale.locale]}
                     </button>
                     <div className="dropdown-menu">
@@ -75,7 +71,7 @@ const AppHeader: React.FC = () => {
                     </div>
                 </span>
             ) : null}
-        </Header>
+        </div>
     )
 }
 
