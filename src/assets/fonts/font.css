@@ -1,0 +1,11 @@
+@font-face {
+    font-family: RootFont;
+    src: url(./YaHei-Consolas.ttf);
+    unicode-range: U+4E00-9FFF;
+}
+
+@font-face {
+    font-family: RootFont;
+    src: url(./FiraCode-Regular.woff2);
+    unicode-range: U+0000-00FF;
+}

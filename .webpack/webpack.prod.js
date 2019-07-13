@@ -84,6 +84,11 @@ const config = {
                     chunks: "all",
                     test: /style\.scss$/,
                 },
+                font: {
+                    name: "font",
+                    chunks: "all",
+                    test: /font.css$/,
+                },
             },
         },
     },

@@ -1,17 +1,5 @@
 /** ※可以使用 webpck.config > resolve > alias */
 
-@font-face {
-    font-family: RootFont;
-    src: url(../../assets/fonts/YaHei-Consolas.ttf);
-    unicode-range: U+4E00-9FFF;
-}
-
-@font-face {
-    font-family: RootFont;
-    src: url(../../assets/fonts/FiraCode-Regular.woff2);
-    unicode-range: U+0000-00FF;
-}
-
 html,
 body {
     margin: 0;

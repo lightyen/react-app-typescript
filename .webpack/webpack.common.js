@@ -9,6 +9,7 @@ const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ExcludeAssetsPlugin = require("html-webpack-exclude-assets-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const ExtractCssChunksPlugin = require("extract-css-chunks-webpack-plugin")
 const WebpackBarPlugin = require("webpackbar")
 const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
 const WorkboxPlugin = require("workbox-webpack-plugin")
@@ -55,10 +56,14 @@ module.exports = function(options) {
             PUBLIC_URL: process.env.PUBLIC_URL || "",
             PUBLIC_PATH: process.env.PUBLIC_PATH || "",
         }),
-        new MiniCssExtractPlugin({
-            filename: "css/[name].[contenthash:8].css",
+        new ExtractCssChunksPlugin({
+            filename: "css/[name].css",
             chunkFilename: "css/[id].[contenthash:8].css",
         }),
+        // new MiniCssExtractPlugin({
+        //     filename: "css/[name].css",
+        //     chunkFilename: "css/[id].[contenthash:8].css",
+        // }),
         new ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
@@ -112,7 +117,10 @@ module.exports = function(options) {
      * See [style-loader]{@link https://github.com/webpack-contrib/style-loader} and [mini-css-extract-plugin]{@link https://github.com/webpack-contrib/mini-css-extract-plugin}.
      */
     const styleLoader = {
-        loader: options.mode !== "production" ? "style-loader" : MiniCssExtractPlugin.loader,
+        loader: ExtractCssChunksPlugin.loader,
+        options: {
+            hot: true,
+        },
     }
 
     /**
