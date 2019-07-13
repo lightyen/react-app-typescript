@@ -2,6 +2,8 @@ doctype html
 html(lang="en")
   body
     noscript You need to enable JavaScript to run this app.
+    if htmlWebpackPlugin.options.fontcss
+      link(rel="stylesheet", href=htmlWebpackPlugin.options.fontcss)
     #root
     if htmlWebpackPlugin.options.vendor
       script(type="text/javascript", src=htmlWebpackPlugin.options.vendor)

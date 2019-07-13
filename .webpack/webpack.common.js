@@ -19,6 +19,7 @@ process.env.DISABLE_OPENCOLLECTIVE = "true"
 
 /** @type { import("webpack").Entry } */
 const entry = {
+    fonts: "./src/assets/fonts/fonts.css",
     index: "./src/index",
     404: "./src/404",
 }
@@ -46,6 +47,9 @@ module.exports = function(options) {
         options.src = srcDefaultPath
     }
 
+    process.env.PUBLIC_URL = process.env.PUBLIC_URL || ""
+    process.env.PUBLIC_PATH = process.env.PUBLIC_PATH || ""
+
     /**
      * @type {import("webpack").Plugin[]}
      */
@@ -53,17 +57,13 @@ module.exports = function(options) {
         new WebpackBarPlugin({ color: "blue", name: "React" }),
         new EnvironmentPlugin({
             NODE_ENV: options.mode,
-            PUBLIC_URL: process.env.PUBLIC_URL || "",
-            PUBLIC_PATH: process.env.PUBLIC_PATH || "",
+            PUBLIC_URL: process.env.PUBLIC_URL,
+            PUBLIC_PATH: process.env.PUBLIC_PATH,
         }),
         new ExtractCssChunksPlugin({
             filename: "css/[name].css",
             chunkFilename: "css/[id].[contenthash:8].css",
         }),
-        // new MiniCssExtractPlugin({
-        //     filename: "css/[name].css",
-        //     chunkFilename: "css/[id].[contenthash:8].css",
-        // }),
         new ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
@@ -74,6 +74,9 @@ module.exports = function(options) {
 
     for (const name in entry) {
         if (entry.hasOwnProperty(name)) {
+            if (name === "fonts") {
+                continue
+            }
             const exclude = Object.keys(entry).slice()
             exclude.splice(Object.keys(entry).indexOf(name), 1)
             plugins.push(
@@ -96,6 +99,7 @@ module.exports = function(options) {
                     template: path.resolve(__dirname, "public", "index.pug"),
                     favicon: path.join(options.src, "assets", "favicon.ico"),
                     vendor: options.vendor ? "/vendor/vendor.js" : undefined,
+                    // fontcss: process.env.PUBLIC_URL + "/css/fonts.css",
                 }),
             )
         }

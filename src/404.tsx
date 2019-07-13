@@ -5,13 +5,11 @@ import App from "~/App"
 import WebFontLoader from "webfontloader"
 import { Loading } from "./components/Spinner"
 
-import "~/assets/fonts/font.css"
-
 WebFontLoader.load({
     classes: false,
     custom: {
         families: ["RootFont"],
-        urls: [process.env.PUBLIC_URL + "/css/404.css"],
+        urls: [process.env.PUBLIC_URL + "/css/fonts.css"],
         testStrings: {
             RootFont: "Text 預載文字字型",
         },
