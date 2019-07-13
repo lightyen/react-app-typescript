@@ -32,20 +32,60 @@ const CircleBorder = styled.div`
     animation: ${spin} 0.8s linear 0s infinite;
 `
 
-export const Spinner = (
-    <CircleBorder>
-        <Circle>
-            <span className="sr-only">Loading</span>
-        </Circle>
-    </CircleBorder>
-)
+const loading0 = keyframes`
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 2.5em 0 -1rem;
+    }
+    40% {
+        box-shadow: 0 2.5em 0 0;
+    }
+`
+
+const Loading0 = styled.div`
+    &,
+    &::after,
+    &::before {
+        border-radius: 50%;
+        width: 2.5em;
+        height: 2.5em;
+        animation-fill-mode: both;
+        animation: ${loading0} 1.2s infinite ease-in-out;
+    }
+
+    color: #ffffff;
+    font-size: 10px;
+    margin: 80px auto;
+    position: relative;
+    text-indent: -9999em;
+    transform: translateZ(0);
+    animation-delay: -0.16s;
+
+    &::after,
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+    }
+
+    &::before {
+        left: -3rem;
+        animation-delay: -0.16s;
+    }
+    &::after {
+        left: 3rem;
+        animation-delay: 0.16s;
+    }
+`
 
 export const Loading = (
     <div className="d-flex justify-content-center align-items-center h-100" style={{ background: "#282c34" }}>
-        <CircleBorder>
+        <Loading0 />
+        {/* <CircleBorder>
             <Circle>
                 <span className="sr-only">Loading</span>
             </Circle>
-        </CircleBorder>
+        </CircleBorder> */}
     </div>
 )
