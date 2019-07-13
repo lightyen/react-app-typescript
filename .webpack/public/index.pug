@@ -2,6 +2,7 @@ doctype html
 html(lang="en")
   body
     noscript You need to enable JavaScript to run this app.
+    div(style="font-family: RootFont; visibility: hidden; position: absolute") Text 預載文字字型
     #root
     if htmlWebpackPlugin.options.vendor
       script(type="text/javascript", src=htmlWebpackPlugin.options.vendor)
