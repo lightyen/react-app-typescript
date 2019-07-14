@@ -11,20 +11,22 @@ const Nav = styled.ul.attrs(props => ({ className: "nav" }))`
     flex-direction: column;
 `
 
-const NavItem = styled.li.attrs(props => ({ className: "nav-item" }))`
-    user-select: none;
-`
+const NavItem = styled.li.attrs(props => ({ className: "nav-item" }))``
 
 const AppNavLink = styled(NavLink).attrs(props => ({ className: "nav-link" }))`
     outline: none;
     color: #f9f9f9;
     transition: background 0.2s, color 0.2s;
     &:hover {
-        color: #0066ff;
-        background: #61dafb;
+        color: #ffffff;
+        background: #51bedb;
     }
     &.active {
-        background: #20262d;
+        background: #262c33;
+    }
+    &.active:hover {
+        color: #cfcfcf;
+        background: #51bedb;
     }
 `
 

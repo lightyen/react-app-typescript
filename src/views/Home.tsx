@@ -28,32 +28,13 @@ const Home: React.FC<RouteComponentProps> = ({ match }) => {
     const { collapsed } = useSelectors()
     return (
         <div className="fadeIn">
-            <div className={classnames("row", collapsed ? "justify-content-center" : "justify-content-start")}>
+            <div className="row" style={{ justifyContent: "center", maxWidth: collapsed ? "100%" : "80ch" }}>
                 <div className="p-2">
                     <RotateImg src={image} width="180px" height="180px" />
                 </div>
             </div>
             <div className="p-0 p-md-3" style={{ maxWidth: "80ch", margin: collapsed ? "auto" : "0" }}>
-                <h1>簡介</h1>
-                <p>
-                    這是一個使用 React 寫 Web
-                    Application，也是一個程式範例。主要目的是為了能讓我練習寫代碼而生的，閒暇之餘或許也可以分享一些關於
-                    React 的生態鏈。
-                    <br />
-                    <br />
-                    然而我並非視覺設計出身的，所以目前主要使用的樣式 (style) 仍以 Bootstrap
-                    為主，著重的地方在於各種場景下使用 React 做實踐。
-                    <br />
-                    <br />
-                    不要與我討論 Angular 和 Vue，我認為 React 是目前世界上最有邏輯也最好用的
-                    library，所以我還沒有想要有深入了解其他部門的打算。
-                    <br />
-                    <br />
-                    2018 年 11 月，我 停止了 C# 轉而開始了 JavaScript。
-                    <br />
-                    <br />
-                    我愛 TypeScript。
-                </p>
+                <h1>Hello React!</h1>
             </div>
         </div>
     )

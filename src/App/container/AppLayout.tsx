@@ -31,7 +31,8 @@ function useSelectors() {
 }
 
 const App = styled.article`
-    min-height: 100%;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
 `
@@ -40,7 +41,7 @@ const Header = styled.header.attrs(props => ({ className: "container-fluid" }))`
     flex-grow: 0;
 `
 
-const Content = styled.section`
+const AppBody = styled.section`
     flex-grow: 1;
     display: flex;
     flex-direction: row;
@@ -57,21 +58,30 @@ const Sidebar = styled.aside.attrs<SidebarProps>(({ width, collapsed }) => ({
         marginLeft: `${collapsed ? -width : 0}px`,
     },
 }))<SidebarProps>`
-    display: flex;
     flex-grow: 0;
     position: relative;
-    transition: margin-left 0.25s ease;
     width: 100%;
+    transition: margin-left 0.25s ease;
 `
 
-const Body = styled.section`
-    width: 100%;
+const Content = styled.section`
+    flex-grow: 1;
+    position: relative;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    overflow-y: auto;
 `
 
 const Main = styled.main`
+    position: absolute;
+    height: 100%;
+    min-width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+`
+
+const AppContent = styled.div.attrs(props => ({ className: "container-fluid py-3" }))`
     flex-grow: 1;
 `
 
@@ -116,11 +126,11 @@ const Sashbar: React.FC<{ left: number }> = ({ left }) => {
             active.current = false
         }
         const onmove = (e: MouseEvent) => {
-            e.preventDefault()
             if (!active.current) {
                 return
             }
-            if (e.clientX >= 150 && e.clientX < 400) {
+            e.preventDefault()
+            if (e.clientX >= 150 && e.clientX < 600) {
                 setSashLeft(e.clientX)
             }
         }
@@ -142,35 +152,37 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
             <Header>
                 <AppHeader />
             </Header>
-            <Content>
+            <AppBody>
                 <Sidebar width={sashLeft} collapsed={collapsed}>
                     <Sashbar left={sashLeft} />
                     <AppSidebar {...rest} />
                 </Sidebar>
-                <Body>
-                    <Main className="container-fluid py-3">
-                        <React.Suspense fallback={Loading}>
-                            <Switch>
-                                {routes.map(
-                                    (route, index) =>
-                                        !!route.component && (
-                                            <Route
-                                                key={index}
-                                                path={route.path}
-                                                exact={route.exact}
-                                                render={props => <route.component {...props} />}
-                                            />
-                                        ),
-                                )}
-                                <Redirect to="/404" />
-                            </Switch>
-                        </React.Suspense>
+                <Content>
+                    <Main>
+                        <AppContent>
+                            <React.Suspense fallback={Loading}>
+                                <Switch>
+                                    {routes.map(
+                                        (route, index) =>
+                                            !!route.component && (
+                                                <Route
+                                                    key={index}
+                                                    path={route.path}
+                                                    exact={route.exact}
+                                                    render={props => <route.component {...props} />}
+                                                />
+                                            ),
+                                    )}
+                                    <Redirect to="/404" />
+                                </Switch>
+                            </React.Suspense>
+                        </AppContent>
+                        <Footer>
+                            <AppFooter />
+                        </Footer>
                     </Main>
-                    <Footer>
-                        <AppFooter />
-                    </Footer>
-                </Body>
-            </Content>
+                </Content>
+            </AppBody>
         </App>
     )
 }

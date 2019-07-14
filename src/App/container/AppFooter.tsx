@@ -23,7 +23,7 @@ export default function AppFooter() {
             <a href="https://github.com/lightyen/react-app-typescript" target="_blank">
                 <Github />
             </a>
-            <span>Made by lightyen</span>
+            <span className="text-muted">made by lightyen</span>
         </Footer>
     )
 }

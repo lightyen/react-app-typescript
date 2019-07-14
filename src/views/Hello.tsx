@@ -85,7 +85,7 @@ const Hello: React.FC<RouteComponentProps> = ({ history }) => {
                                     <button className="btn btn-primary">Submit</button>
                                 </div>
                             </form>
-                            <GoBackButton onClick={() => history.goBack()} />
+                            {/* <GoBackButton onClick={() => history.goBack()} /> */}
                         </>
                     )}
                 </div>

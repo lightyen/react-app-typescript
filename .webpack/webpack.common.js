@@ -8,7 +8,6 @@ const path = require("path")
 // Plugins
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ExcludeAssetsPlugin = require("html-webpack-exclude-assets-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ExtractCssChunksPlugin = require("extract-css-chunks-webpack-plugin")
 const WebpackBarPlugin = require("webpackbar")
 const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
@@ -57,6 +56,7 @@ module.exports = function(options) {
         new WebpackBarPlugin({ color: "blue", name: "React" }),
         new EnvironmentPlugin({
             NODE_ENV: options.mode,
+            APP_NAME: packageJSON.name,
             PUBLIC_URL: process.env.PUBLIC_URL,
             PUBLIC_PATH: process.env.PUBLIC_PATH,
         }),
@@ -99,7 +99,6 @@ module.exports = function(options) {
                     template: path.resolve(__dirname, "public", "index.pug"),
                     favicon: path.join(options.src, "assets", "favicon.ico"),
                     vendor: options.vendor ? "/vendor/vendor.js" : undefined,
-                    // fontcss: process.env.PUBLIC_URL + "/css/fonts.css",
                 }),
             )
         }

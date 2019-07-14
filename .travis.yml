@@ -15,16 +15,15 @@ script:
 
 notifications:
   email: false
-
-deploy:
-  provider: pages
-  local_dir: dist
-  skip_cleanup: true
-  target_branch: gh-pages
-  verbose: true
-  github_token: $GITHUB_TOKEN
-  email: $GITHUB_EMAIL
-  name: $GITHUB_USERNAME
-  keep_history: true
-  on:
-    branch: master
+# deploy:
+#   provider: pages
+#   local_dir: dist
+#   skip_cleanup: true
+#   target_branch: gh-pages
+#   verbose: true
+#   github_token: $GITHUB_TOKEN
+#   email: $GITHUB_EMAIL
+#   name: $GITHUB_USERNAME
+#   keep_history: true
+#   on:
+#     branch: master

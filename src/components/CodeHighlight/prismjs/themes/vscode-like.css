@@ -1,5 +1,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
+    max-width: 100%;
+    width: 100%;
     color: #f8f8f2;
     background: none;
     text-shadow: 0 1px rgba(0, 0, 0, 0.3);
@@ -9,7 +11,7 @@ pre[class*="language-"] {
     white-space: pre-wrap;
     word-spacing: normal;
     word-break: normal;
-    word-wrap: normal;
+    word-wrap: break-word;
     line-height: 1.5;
 
     tab-size: 4;
@@ -18,9 +20,9 @@ pre[class*="language-"] {
 
 /* Code blocks */
 pre[class*="language-"] {
-    padding: 1em;
-    overflow: auto;
-    border-radius: 0.3em;
+    padding: 0.5rem 0;
+    overflow: hidden;
+    border-radius: 0.3rem;
 }
 
 :not(pre) > code[class*="language-"],
@@ -116,5 +118,5 @@ pre[class*="language-"] {
 }
 
 div.code-toolbar > .toolbar {
-    margin: 0 10px;
+    margin: 0 0;
 }
