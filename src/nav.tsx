@@ -22,9 +22,19 @@ export interface NavConfigDividerItemProps {
     type: "divider"
 }
 
-export type NavConfigItemProps = NavConfigNormalItemProps | NavConfigDropdownItemProps | NavConfigDividerItemProps
+export interface NavConfigTitleItemProps {
+    type: "title"
+    name: React.ReactNode
+}
+
+export type NavConfigItemProps =
+    | NavConfigNormalItemProps
+    | NavConfigDropdownItemProps
+    | NavConfigDividerItemProps
+    | NavConfigTitleItemProps
 
 export const navConfig: NavConfigItemProps[] = [
+    { type: "title", name: <span>Title</span> },
     { type: "normal", path: "/hello", name: <LocaleMessage id="hello" />, icon: "fas fa-th-large" },
     { type: "normal", path: "/highlight", name: <span>代碼高亮</span>, icon: "fas fa-hashtag" },
     {
