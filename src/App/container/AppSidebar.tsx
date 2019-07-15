@@ -27,8 +27,8 @@ const NavDropdown = styled.ul.attrs<{ open: boolean }>(({ open }) => ({
     flex-direction: column;
     flex-wrap: nowrap;
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, background 0.3s ease-in;
     position: relative;
+    transition: max-height 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.4s ease;
 `
 
 const NavItem = styled.li.attrs(props => ({ className: "nav-item" }))``
