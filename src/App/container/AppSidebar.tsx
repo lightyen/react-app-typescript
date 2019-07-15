@@ -50,41 +50,22 @@ const AppNavLink = styled(NavLink).attrs(props => ({ className: classnames("nav-
     }
 `
 
-const NavDropdownItem: React.FC<{ name: React.ReactNode; items: NavConfigItem[]; className?: string }> = ({
-    name,
-    items,
-    className,
-}) => {
-    const [open, setOpen] = useState(false)
-    return (
-        <li className="nav-item">
-            <NavDropdownItemLink onClick={() => setOpen(!open)} className={className}>
-                {name}
-                <NavDropdownCaret open={open}>
-                    <i className="fas fa-caret-down" />
-                </NavDropdownCaret>
-            </NavDropdownItemLink>
-            <NavDropdown open={open}>
-                {items.map((item, i) => {
-                    switch (item.type) {
-                        case "normal":
-                            return (
-                                <NavItem key={i} style={{ position: "relative", paddingLeft: "0.75rem" }}>
-                                    <AppNavLink to={item.path} exact={item.exact} activeClassName="active">
-                                        {item.name}
-                                    </AppNavLink>
-                                </NavItem>
-                            )
-                        case "dropdown":
-                            return <NavDropdownItem key={i} name={item.name} items={item.items} />
-                        case "divider":
-                            return <NavDividerItem key={i} />
-                    }
-                })}
-            </NavDropdown>
-        </li>
-    )
-}
+const AppNavNoLink = styled.a.attrs(props => ({ className: classnames("nav-link", props.className) }))`
+    outline: none;
+    color: #f9f9f9;
+    transition: background 0.2s, color 0.2s;
+    &:hover {
+        color: #2b3445;
+        background: #51bedb;
+    }
+    &.active {
+        background: #262c33;
+    }
+    &.active:hover {
+        color: #2b3445;
+        background: #51bedb;
+    }
+`
 
 const NavDropdownItemLink = styled.a.attrs(props => ({ className: classnames("nav-link", props.className) }))`
     outline: none;
@@ -105,6 +86,63 @@ const NavDropdownItemLink = styled.a.attrs(props => ({ className: classnames("na
     align-items: center;
     justify-content: space-between;
 `
+
+const NavDropdownItem: React.FC<{ name: React.ReactNode; items: NavConfigItem[]; className?: string }> = ({
+    name,
+    items,
+    className,
+}) => {
+    const [open, setOpen] = useState(false)
+    return (
+        <NavItem>
+            <NavDropdownItemLink
+                className={className}
+                href=""
+                onClick={e => {
+                    e.preventDefault()
+                    setOpen(!open)
+                }}
+            >
+                {name}
+                <NavDropdownCaret open={open}>
+                    <i className="fas fa-caret-down" />
+                </NavDropdownCaret>
+            </NavDropdownItemLink>
+            <NavDropdown open={open}>
+                {items.map((item, i) => {
+                    switch (item.type) {
+                        case "normal":
+                            return (
+                                <NavItem key={i} style={{ position: "relative", paddingLeft: "0.75rem" }}>
+                                    {item.path ? (
+                                        <AppNavLink to={item.path} exact={item.exact} activeClassName="active">
+                                            {item.icon && item.icon.startsWith("fa") && (
+                                                <i className={classnames(item.icon, "mr-3")} />
+                                            )}
+                                            {item.name}
+                                        </AppNavLink>
+                                    ) : (
+                                        <AppNavNoLink
+                                            href=""
+                                            onClick={e => {
+                                                e.preventDefault()
+                                            }}
+                                        >
+                                            {item.name}
+                                        </AppNavNoLink>
+                                    )}
+                                </NavItem>
+                            )
+                        case "dropdown":
+                            return <NavDropdownItem key={i} name={item.name} items={item.items} />
+                        case "divider":
+                            return <NavDividerItem key={i} />
+                    }
+                })}
+            </NavDropdown>
+        </NavItem>
+    )
+}
 
 const NavDropdownCaret = styled.div.attrs<{ open: boolean }>(({ open }) => ({
     style: {
@@ -128,9 +166,26 @@ const AppSidebar: React.FC<RouteComponentProps> = () => {
                     case "normal":
                         return (
                             <NavItem key={i}>
-                                <AppNavLink to={item.path} exact={item.exact} activeClassName="active">
-                                    {item.name}
-                                </AppNavLink>
+                                {item.path ? (
+                                    <AppNavLink to={item.path} exact={item.exact} activeClassName="active">
+                                        {item.icon && item.icon.startsWith("fa") && (
+                                            <i className={classnames(item.icon, "mr-3")} />
+                                        )}
+                                        {item.name}
+                                    </AppNavLink>
+                                ) : (
+                                    <AppNavNoLink
+                                        href=""
+                                        onClick={e => {
+                                            e.preventDefault()
+                                        }}
+                                    >
+                                        {item.icon && item.icon.startsWith("fa") && (
+                                            <i className={classnames(item.icon, "mr-3")} />
+                                        )}
+                                        {item.name}
+                                    </AppNavNoLink>
+                                )}
                             </NavItem>
                         )
                     case "dropdown":

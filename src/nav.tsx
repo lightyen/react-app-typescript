@@ -4,14 +4,16 @@ import LocaleMessage from "~/components/LocaleMessage"
 interface NavNormalItem {
     type: "normal"
     name: React.ReactNode
-    path: string
+    path?: string
     exact?: boolean
+    icon?: string
 }
 
 interface NavDropdownItem {
     type: "dropdown"
     name: React.ReactNode
     items: NavConfigItem[]
+    icon?: string
 }
 
 interface NavDividerItem {
@@ -21,18 +23,18 @@ interface NavDividerItem {
 export type NavConfigItem = NavNormalItem | NavDropdownItem | NavDividerItem
 
 export const navConfig: NavConfigItem[] = [
-    { type: "normal", path: "/hello", name: <LocaleMessage id="hello" /> },
-    { type: "normal", path: "/highlight", name: <span>代碼高亮</span> },
+    { type: "normal", path: "/hello", name: <LocaleMessage id="hello" />, icon: "fas fa-th-large" },
+    { type: "normal", path: "/highlight", name: <span>代碼高亮</span>, icon: "fas fa-hashtag" },
     {
         type: "dropdown",
         name: <span>Dropdown</span>,
         items: [
-            { type: "normal", path: "/dropdown/1", name: "hello1", exact: true },
-            { type: "normal", path: "/dropdown/2", name: "hello2", exact: true },
-            { type: "normal", path: "/dropdown/3", name: "hello3", exact: true },
-            { type: "normal", path: "/dropdown/4", name: "hello4", exact: true },
-            { type: "normal", path: "/dropdown/5", name: "hello5", exact: true },
-            { type: "normal", path: "/dropdown/6", name: "hello6", exact: true },
+            { type: "normal", name: "hello1" },
+            { type: "normal", name: "hello2" },
+            { type: "normal", name: "hello3" },
+            { type: "normal", name: "hello4" },
+            { type: "normal", name: "hello5" },
+            { type: "normal", name: "hello6" },
             { type: "divider" },
         ],
     },

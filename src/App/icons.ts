@@ -5,9 +5,9 @@ import { library } from "@fortawesome/fontawesome-svg-core"
 
 // solid
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars"
-import { faCaretLeft } from "@fortawesome/free-solid-svg-icons/faCaretLeft"
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons/faCaretDown"
-import { faCaretUp } from "@fortawesome/free-solid-svg-icons/faCaretUp"
+import { faHashtag } from "@fortawesome/free-solid-svg-icons/faHashtag"
+import { faThLarge } from "@fortawesome/free-solid-svg-icons/faThLarge"
 
 // brands
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub"
@@ -15,7 +15,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub"
 // regular
 
 library.add(faBars)
-library.add(faCaretLeft)
 library.add(faCaretDown)
-library.add(faCaretUp)
+library.add(faHashtag)
+library.add(faThLarge)
 library.add(faGithub)
