@@ -1,5 +1,4 @@
-import React from "react"
-import styled from "styled-components"
+import React, { useMemo } from "react"
 import classnames from "classnames"
 import { DispatchProps } from "~/typings"
 
@@ -17,7 +16,7 @@ const actionCreators = {
 
 function useActions(): DispatchProps<typeof actionCreators> {
     const dispatch = useDispatch()
-    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
+    return useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
 function useSelectors() {

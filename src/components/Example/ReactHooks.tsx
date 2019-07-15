@@ -85,7 +85,8 @@ export const ParentComponent: React.FC = () => {
     }
 
     const callback = React.useCallback(doSomething, [children])
-    // const memo = React.useMemo(() => doSomething, [children])
+    // NOTE: 如果 fn 需要傳參數，useMemo 也許是個好選擇。
+    // const memo = React.useMemo(() => doSomething, [doSomething, children])
 
     return (
         <div>

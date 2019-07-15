@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react"
+import React, { useRef, useState, useEffect } from "react"
 
 function useTimeCounter(init: number) {
     const [count, setCount] = useState(init)
-    const ref = React.useRef(null)
+    const ref = useRef(null)
     function doCount() {
         setCount(count + 1)
     }
     useEffect(() => {
-        ref.current = self.setInterval(() => doCount(), 1000)
-        return () => clearInterval(ref.current)
+        ref.current = window.setInterval(() => doCount(), 1000)
+        return () => window.clearInterval(ref.current)
     })
 
     return [count]

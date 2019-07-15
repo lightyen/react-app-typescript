@@ -3,6 +3,7 @@ import PopperJS, { PopperOptions } from "popper.js"
 import classnames from "classnames"
 import styled, { css } from "styled-components"
 import AnimeJS from "animejs"
+import Switch from "~/components/bootstrap/Switch"
 
 const arrowStyle = css`
     position: absolute;
@@ -76,8 +77,9 @@ const Popper: React.FC<PopperProps> = ({ placement }) => {
 
     useEffect(() => {
         // https://animejs.com/documentation/
+        const target = inner.current
         animation.current = AnimeJS({
-            targets: inner.current,
+            targets: target,
             duration: 300,
             autoplay: false,
             loop: true,
@@ -96,7 +98,7 @@ const Popper: React.FC<PopperProps> = ({ placement }) => {
         })
         return () => {
             if (animation.current) {
-                AnimeJS.remove(inner.current)
+                AnimeJS.remove(target)
                 animation.current = null
             }
         }
@@ -165,13 +167,18 @@ interface PopperButtonProps {
     open: boolean
     onClick: (e: React.MouseEvent) => void
 }
-const PopperButton = React.forwardRef<HTMLButtonElement, PopperButtonProps>(({ open, onClick, ...rest }, ref) => {
+
+const PopperButtonForwardingComponent: React.RefForwardingComponent<HTMLButtonElement, PopperButtonProps> = (
+    { open, onClick, ...rest },
+    ref,
+) => {
     return (
         <button ref={ref} className="btn btn-primary" onClick={onClick} {...rest}>
             {open ? "Hide" : "Show"}
         </button>
     )
-})
+}
+const PopperButton = React.forwardRef<HTMLButtonElement, PopperButtonProps>(PopperButtonForwardingComponent)
 
 const color = "primary"
 

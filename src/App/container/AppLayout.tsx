@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { RouteComponentProps, Route, Switch, Redirect } from "react-router-dom"
 import styled from "styled-components"
 import routes from "~/routes"
@@ -20,7 +20,7 @@ const actionCreators = { setSashLeft }
 
 function useActions(): DispatchProps<typeof actionCreators> {
     const dispatch = useDispatch()
-    return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
+    return useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
 function useSelectors() {
