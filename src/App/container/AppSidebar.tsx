@@ -12,7 +12,13 @@ const Nav = styled.ul.attrs(props => ({ className: "nav" }))`
     flex-direction: column;
 `
 
-const NavDropdown = styled.ul.attrs<{ open: boolean }>(props => ({ className: "nav", open: props.open }))<{
+const NavDropdown = styled.ul.attrs<{ open: boolean }>(({ open }) => ({
+    className: "nav",
+    style: {
+        maxHeight: `${open ? "1500" : "0"}px`,
+        opacity: `${open ? "1.0" : "0.6"}`,
+    },
+}))<{
     open: boolean
 }>`
     width: 100%;
@@ -21,8 +27,7 @@ const NavDropdown = styled.ul.attrs<{ open: boolean }>(props => ({ className: "n
     flex-direction: column;
     flex-wrap: nowrap;
     overflow: hidden;
-    ${props => (props.open ? "max-height: 1500px; opacity: 1.0;" : "max-height: 0; opacity: 0;")}
-    transition: max-height 0.3s ease-in-out, opacity 0.5s ease-in-out;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, background 0.3s ease-in;
     position: relative;
 `
 
@@ -101,9 +106,12 @@ const NavDropdownItemLink = styled.a.attrs(props => ({ className: classnames("na
     justify-content: space-between;
 `
 
-const NavDropdownCaret = styled.div<{ open: boolean }>`
+const NavDropdownCaret = styled.div.attrs<{ open: boolean }>(({ open }) => ({
+    style: {
+        transform: open ? "rotate(0deg)" : "rotate(90deg)",
+    },
+}))<{ open: boolean }>`
     transition: transform 0.2s;
-    ${props => (props.open ? "" : "transform: rotate(90deg);")}
 `
 
 const NavDividerItem = styled.li`

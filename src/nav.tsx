@@ -30,21 +30,10 @@ export const navConfig: NavConfigItem[] = [
             { type: "normal", path: "/dropdown/1", name: "hello1", exact: true },
             { type: "normal", path: "/dropdown/2", name: "hello2", exact: true },
             { type: "normal", path: "/dropdown/3", name: "hello3", exact: true },
-            {
-                type: "dropdown",
-                name: "d2",
-                items: [
-                    {
-                        type: "normal",
-                        name: "world",
-                        path: "/d2",
-                    },
-                ],
-            },
             { type: "normal", path: "/dropdown/4", name: "hello4", exact: true },
-            { type: "divider" },
             { type: "normal", path: "/dropdown/5", name: "hello5", exact: true },
             { type: "normal", path: "/dropdown/6", name: "hello6", exact: true },
+            { type: "divider" },
         ],
     },
     { type: "normal", path: "/popper", name: <span>Popper</span> },
