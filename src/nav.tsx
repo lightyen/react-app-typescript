@@ -1,33 +1,36 @@
 import React from "react"
 import LocaleMessage from "~/components/LocaleMessage"
 
-interface NavNormalItem {
+type IconType = string
+
+export interface NavConfigNormalItemProps {
     type: "normal"
     name: React.ReactNode
     path?: string
     exact?: boolean
-    icon?: string
+    icon?: IconType
 }
 
-interface NavDropdownItem {
+export interface NavConfigDropdownItemProps {
     type: "dropdown"
     name: React.ReactNode
-    items: NavConfigItem[]
-    icon?: string
+    items: NavConfigItemProps[]
+    icon?: IconType
 }
 
-interface NavDividerItem {
+export interface NavConfigDividerItemProps {
     type: "divider"
 }
 
-export type NavConfigItem = NavNormalItem | NavDropdownItem | NavDividerItem
+export type NavConfigItemProps = NavConfigNormalItemProps | NavConfigDropdownItemProps | NavConfigDividerItemProps
 
-export const navConfig: NavConfigItem[] = [
+export const navConfig: NavConfigItemProps[] = [
     { type: "normal", path: "/hello", name: <LocaleMessage id="hello" />, icon: "fas fa-th-large" },
     { type: "normal", path: "/highlight", name: <span>代碼高亮</span>, icon: "fas fa-hashtag" },
     {
         type: "dropdown",
         name: <span>Dropdown</span>,
+        icon: "fas fa-th-large",
         items: [
             { type: "normal", name: "hello1" },
             { type: "normal", name: "hello2" },
