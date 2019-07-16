@@ -12,6 +12,7 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons/faCircle"
 
 // brands
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub"
+import { faReact } from "@fortawesome/free-brands-svg-icons/faReact"
 
 // regular
 
@@ -21,3 +22,4 @@ library.add(faHashtag)
 library.add(faThLarge)
 library.add(faCircle)
 library.add(faGithub)
+library.add(faReact)

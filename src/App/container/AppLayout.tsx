@@ -168,16 +168,17 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                         <AppContent>
                             <React.Suspense fallback={Loading}>
                                 <Switch>
-                                    {routes.map(
-                                        (route, index) =>
-                                            !!route.component && (
-                                                <Route
-                                                    key={index}
-                                                    path={route.path}
-                                                    exact={route.exact}
-                                                    render={props => <route.component {...props} />}
-                                                />
-                                            ),
+                                    {routes.map((route, index) =>
+                                        !!route.component ? (
+                                            <Route
+                                                key={index}
+                                                path={route.path}
+                                                exact={route.exact}
+                                                render={props => <route.component {...props} />}
+                                            />
+                                        ) : (
+                                            route.render && <Route key={index} {...route} />
+                                        ),
                                     )}
                                     <Redirect to="/404" />
                                 </Switch>

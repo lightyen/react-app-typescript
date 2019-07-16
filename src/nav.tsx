@@ -4,8 +4,9 @@ import { BootstrapColors } from "~/components/bootstrap/types"
 
 /** Custom Icon */
 export interface Icon {
-    fa: string
-    className?: string
+    fa?: string
+    hover?: string
+    render?: React.FunctionComponent<unknown>
 }
 
 /** Bootstrap badge */
@@ -13,8 +14,7 @@ export interface Badge {
     name: React.ReactNode
     color?: BootstrapColors
     pill?: boolean
-    link?: boolean
-    className?: string
+    render?: React.FunctionComponent<{ className: string }>
 }
 
 export interface NavConfigNormalItemProps {
