@@ -52,12 +52,7 @@ const AppBody = styled.section`
     overflow: hidden;
 `
 
-interface SidebarProps {
-    collapsed: boolean
-    width: number
-}
-
-const Sidebar = styled.nav.attrs<SidebarProps>(() => ({}))`
+const Sidebar = styled.nav`
     flex-grow: 1;
 `
 
@@ -101,7 +96,7 @@ const Sash = styled.div.attrs<SashProps>(({ width, left }) => ({
     display: flex;
     position: absolute;
     cursor: ew-resize;
-    z-index: 50;
+    z-index: 500;
 `
 
 const Sashbar: React.FC<{ left: number }> = ({ left }) => {
@@ -157,10 +152,7 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                 <Scrollbars
                     renderView={props => <div {...props} className="d-flex flex-column" />}
                     style={{
-                        height: "100%",
                         flexGrow: 0,
-                        position: "relative",
-                        width: "100%",
                         maxWidth: sashLeft,
                         marginLeft: `${collapsed ? -sashLeft : 0}px`,
                         transition: "margin-left 0.25s ease",

@@ -32,7 +32,7 @@ const init: AppStore = {
 export const appReducer: Reducer<AppStore, Action> = (state = init, action): AppStore => {
     switch (action.type) {
         case "APP_SET_SASH_LEFT":
-            if (action.left >= defaultLeft - 30 && action.left < defaultLeft + 400) {
+            if (action.left >= defaultLeft && action.left < defaultLeft + 400) {
                 return { ...state, sashLeft: action.left }
             }
             return state
