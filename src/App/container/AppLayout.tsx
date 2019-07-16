@@ -3,6 +3,8 @@ import { RouteComponentProps, Route, Switch, Redirect } from "react-router-dom"
 import styled from "styled-components"
 import routes from "~/routes"
 
+import Scrollbars from "react-custom-scrollbars"
+
 // Component
 import AppSidebar from "./AppSidebar"
 import AppHeader from "./AppHeader"
@@ -45,6 +47,9 @@ const AppBody = styled.section`
     flex-grow: 1;
     display: flex;
     flex-direction: row;
+
+    max-height: 100%;
+    overflow: hidden;
 `
 
 interface SidebarProps {
@@ -52,16 +57,8 @@ interface SidebarProps {
     width: number
 }
 
-const Sidebar = styled.aside.attrs<SidebarProps>(({ width, collapsed }) => ({
-    style: {
-        maxWidth: `${width}px`,
-        marginLeft: `${collapsed ? -width : 0}px`,
-    },
-}))<SidebarProps>`
-    flex-grow: 0;
-    position: relative;
-    width: 100%;
-    transition: margin-left 0.25s ease;
+const Sidebar = styled.nav.attrs<SidebarProps>(() => ({}))`
+    flex-grow: 1;
 `
 
 const Content = styled.section`
@@ -112,7 +109,7 @@ const Sashbar: React.FC<{ left: number }> = ({ left }) => {
 
     const active = React.useRef<boolean>(false)
 
-    const width = 10
+    const width = 6
     const ref = React.useRef<HTMLDivElement>()
 
     function handleMouseDown(e: React.MouseEvent) {
@@ -121,6 +118,11 @@ const Sashbar: React.FC<{ left: number }> = ({ left }) => {
     }
 
     React.useEffect(() => {
+        let handle = 0
+        function update(width: number) {
+            handle = window.requestAnimationFrame(update)
+            setSashLeft(width)
+        }
         const onup = (e: MouseEvent) => {
             e.preventDefault()
             active.current = false
@@ -130,13 +132,14 @@ const Sashbar: React.FC<{ left: number }> = ({ left }) => {
                 return
             }
             e.preventDefault()
-            setSashLeft(e.clientX)
+            update(e.clientX)
         }
         document.addEventListener("mousemove", onmove)
         document.addEventListener("mouseup", onup)
         return () => {
             document.removeEventListener("mousemove", onmove)
             document.removeEventListener("mouseup", onup)
+            window.cancelAnimationFrame(handle)
         }
     }, [setSashLeft])
 
@@ -151,10 +154,23 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                 <AppHeader />
             </Header>
             <AppBody>
-                <Sidebar width={sashLeft} collapsed={collapsed}>
+                <Scrollbars
+                    renderView={props => <div {...props} className="d-flex flex-column" />}
+                    style={{
+                        height: "100%",
+                        flexGrow: 0,
+                        position: "relative",
+                        width: "100%",
+                        maxWidth: sashLeft,
+                        marginLeft: `${collapsed ? -sashLeft : 0}px`,
+                        transition: "margin-left 0.25s ease",
+                    }}
+                >
                     <Sashbar left={sashLeft} />
-                    <AppSidebar {...rest} />
-                </Sidebar>
+                    <Sidebar>
+                        <AppSidebar {...rest} />
+                    </Sidebar>
+                </Scrollbars>
                 <Content>
                     <Main>
                         <AppContent>

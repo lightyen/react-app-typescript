@@ -20,6 +20,7 @@ WebFontLoader.load({
         },
     },
     loading: () => render(Loading, document.getElementById("root")),
+    timeout: 30000,
     active: () => render(<App />, document.getElementById("root")),
 })
 

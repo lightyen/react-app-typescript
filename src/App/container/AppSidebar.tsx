@@ -9,6 +9,8 @@ import {
     NavConfigDropdownItemProps,
     NavConfigTitleItemProps,
     NavConfigDividerItemProps,
+    Badge,
+    Icon,
 } from "~/nav"
 
 interface NavItemProps {
@@ -17,7 +19,7 @@ interface NavItemProps {
 }
 
 const NaviItem = styled.ul.attrs<NavItemProps>(({ dropdown, open }) => ({
-    className: "nav",
+    className: "nav flex-nowrap",
     style: dropdown
         ? {
               flexWrap: "nowrap",
@@ -47,20 +49,23 @@ const NavDropdownCaret = styled.div.attrs<{ open: boolean }>(({ open }) => ({
     transition: transform 0.2s;
 `
 
-const NavLink = styled(RrNavLink).attrs(props => ({ className: classnames("nav-link", props.className) }))`
+const NavLink = styled(RrNavLink).attrs(({ className }) => ({
+    className: classnames("nav-link", className),
+}))`
+    color: #f8f9fa;
     outline: none;
-    color: #f9f9f9;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     transition: background 0.2s, color 0.2s;
+    &.active {
+        background: #262c33;
+    }
     &:hover {
         color: #2b3445;
         background: #51bedb;
-    }
-    &.active {
-        background: #262c33;
     }
     &.active:hover {
         color: #2b3445;
@@ -82,16 +87,35 @@ const NavDivider = styled.li.attrs({ className: "nav-item" })`
     background: #242e40;
 `
 
+const BootstrapBadge: React.FC<Badge> = ({ className, link, pill, name, color }) => {
+    const c = color || "secondary"
+    return link ? (
+        <a href="" className={classnames("badge", pill && "badge-pill", "badge-" + c, className)}>
+            {name}
+        </a>
+    ) : (
+        <span className={classnames("badge", pill && "badge-pill", "badge-" + c, className)}>{name}</span>
+    )
+}
+
+const IconItem: React.FC<Icon> = ({ fa, className }) => {
+    if (fa) {
+        return <i className={classnames("mr-3", fa, className)} />
+    } else {
+        return <i className={classnames("mr-3", className)} />
+    }
+}
+
 const NavTitleItem: React.FC<NavConfigTitleItemProps> = ({ name }) => {
     return <NavTitle>{name}</NavTitle>
 }
 
-const NavNormalItem: React.FC<NavConfigNormalItemProps> = ({ name, path, exact, icon, badge }) => {
+const NavNormalItem: React.FC<NavConfigNormalItemProps> = ({ name, path, exact, icon, badge, custom: noHover }) => {
     const content = (
         <>
-            {icon && icon.startsWith("fa") && <i className={classnames(icon, "mr-3")} />}
+            {icon && <IconItem {...icon} />}
             <div className="flex-grow-1 d-flex justify-content-start">{name}</div>
-            {badge && <span className={classnames("badge", "badge-" + badge.color)}>{badge.name}</span>}
+            {badge && <BootstrapBadge {...badge} />}
         </>
     )
 
@@ -101,6 +125,8 @@ const NavNormalItem: React.FC<NavConfigNormalItemProps> = ({ name, path, exact, 
                 <NavLink to={path} exact={exact} activeClassName="active">
                     {content}
                 </NavLink>
+            ) : noHover ? (
+                name
             ) : (
                 <NavLink
                     to=""
@@ -143,9 +169,9 @@ const NavDropdownItem: React.FC<NavConfigDropdownItemProps> = ({ name, items, ic
                     setOpen(!open)
                 }}
             >
-                {icon && icon.startsWith("fa") && <i className={classnames(icon, "mr-3")} />}
+                {icon && <IconItem {...icon} />}
                 <div className="flex-grow-1 d-flex justify-content-start">{name}</div>
-                {badge && <span className={classnames("mr-3 badge", "badge-" + badge.color)}>{badge.name}</span>}
+                {badge && <BootstrapBadge {...badge} className={"mr-3 " + badge.className} />}
                 <div className="flex-grow-0 d-flex justify-content-end">
                     <NavDropdownCaret open={open}>
                         <i className="fas fa-caret-down" />
