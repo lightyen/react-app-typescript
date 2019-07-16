@@ -1,9 +1,7 @@
 import React, { useState } from "react"
 import classnames from "classnames"
 import { v4 } from "uuid"
-
-/** Bootstrap Style */
-type BootstrapColors = "primary" | "secondary" | "success" | "danger" | "warning" | "info" | "light" | "dark"
+import { BootstrapColors } from "./types"
 
 interface SwitchProps {
     color?: BootstrapColors

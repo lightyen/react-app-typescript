@@ -1,7 +1,13 @@
 import React from "react"
 import LocaleMessage from "~/components/LocaleMessage"
+import { BootstrapColors } from "~/components/bootstrap/types"
 
 type IconType = string
+
+interface Badage {
+    name: React.ReactNode
+    color: BootstrapColors
+}
 
 export interface NavConfigNormalItemProps {
     type: "normal"
@@ -9,13 +15,15 @@ export interface NavConfigNormalItemProps {
     path?: string
     exact?: boolean
     icon?: IconType
+    badge?: Badage
 }
 
 export interface NavConfigDropdownItemProps {
     type: "dropdown"
     name: React.ReactNode
-    items: NavConfigItemProps[]
+    items: NavConfigItem[]
     icon?: IconType
+    badge?: Badage
 }
 
 export interface NavConfigDividerItemProps {
@@ -27,22 +35,45 @@ export interface NavConfigTitleItemProps {
     name: React.ReactNode
 }
 
-export type NavConfigItemProps =
+export type NavConfigItem =
     | NavConfigNormalItemProps
     | NavConfigDropdownItemProps
     | NavConfigDividerItemProps
     | NavConfigTitleItemProps
 
-export const navConfig: NavConfigItemProps[] = [
-    { type: "title", name: <span>Title</span> },
+type NavConfig = NavConfigItem | NavConfigItem[]
+
+/** 全域管理 navigation */
+export const navConfig: NavConfig = [
+    { type: "title", name: <span>Test</span> },
     { type: "normal", path: "/hello", name: <LocaleMessage id="hello" />, icon: "fas fa-th-large" },
-    { type: "normal", path: "/highlight", name: <span>代碼高亮</span>, icon: "fas fa-hashtag" },
+    {
+        type: "normal",
+        path: "/highlight",
+        name: <span>代碼高亮</span>,
+        icon: "fas fa-hashtag",
+        badge: {
+            name: "HOT",
+            color: "danger",
+        },
+    },
     {
         type: "dropdown",
         name: <span>Dropdown</span>,
         icon: "fas fa-th-large",
+        badge: {
+            name: "HOT",
+            color: "danger",
+        },
         items: [
-            { type: "normal", name: "hello1" },
+            {
+                type: "normal",
+                name: "hello1",
+                badge: {
+                    name: "COLD",
+                    color: "primary",
+                },
+            },
             { type: "normal", name: "hello2" },
             { type: "normal", name: "hello3" },
             { type: "normal", name: "hello4" },

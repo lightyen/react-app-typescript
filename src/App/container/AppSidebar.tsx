@@ -1,93 +1,42 @@
 import React, { useState } from "react"
-import { RouteComponentProps, NavLink } from "react-router-dom"
+import { RouteComponentProps, NavLink as RrNavLink } from "react-router-dom"
 import styled from "styled-components"
 import classnames from "classnames"
 import {
     navConfig,
-    NavConfigItemProps,
+    NavConfigItem,
     NavConfigNormalItemProps,
     NavConfigDropdownItemProps,
     NavConfigTitleItemProps,
+    NavConfigDividerItemProps,
 } from "~/nav"
 
-interface NavigationProps {
+interface NavItemProps {
     dropdown?: boolean
     open?: boolean
 }
 
-const Navigation = styled.ul.attrs<NavigationProps>(({ dropdown, open }) => ({
+const NaviItem = styled.ul.attrs<NavItemProps>(({ dropdown, open }) => ({
     className: "nav",
     style: dropdown
         ? {
               flexWrap: "nowrap",
               overflow: "hidden",
               position: "relative",
-              transition: "max-height 0.3s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.4s ease",
+              transition: "max-height 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 0.4s ease",
               maxHeight: open ? "1500px" : "0px",
-              opacity: open ? 1.0 : 0.6,
+              opacity: open ? 1.0 : 0.7,
           }
         : {
               height: "100%",
           },
-}))<NavigationProps>`
+}))<NavItemProps>`
     width: 100%;
     background: #101216;
     display: flex;
     flex-direction: column;
-`
-
-const AppNavLink = styled(NavLink).attrs(props => ({ className: classnames("nav-link", props.className) }))`
-    outline: none;
-    color: #f9f9f9;
-    transition: background 0.2s, color 0.2s;
-    &:hover {
-        color: #2b3445;
-        background: #51bedb;
-    }
-    &.active {
-        background: #262c33;
-    }
-    &.active:hover {
-        color: #2b3445;
-        background: #51bedb;
-    }
-`
-
-const AppNavNoLink = styled.a.attrs(props => ({ className: classnames("nav-link", props.className) }))`
-    outline: none;
-    color: #f9f9f9;
-    transition: background 0.2s, color 0.2s;
-    &:hover {
-        color: #2b3445;
-        background: #51bedb;
-    }
-    &.active {
-        background: #262c33;
-    }
-    &.active:hover {
-        color: #2b3445;
-        background: #51bedb;
-    }
-`
-
-const NavDropdownLink = styled.a.attrs(props => ({ className: classnames("nav-link", props.className) }))`
-    outline: none;
-    color: #f9f9f9;
-    transition: background 0.2s, color 0.2s;
-    &:hover {
-        color: #2b3445;
-        background: #51bedb;
-    }
-    &.active {
-        background: #262c33;
-    }
-    &.active:hover {
-        color: #2b3445;
-        background: #51bedb;
-    }
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 `
 
 const NavDropdownCaret = styled.div.attrs<{ open: boolean }>(({ open }) => ({
@@ -98,37 +47,79 @@ const NavDropdownCaret = styled.div.attrs<{ open: boolean }>(({ open }) => ({
     transition: transform 0.2s;
 `
 
-const NavTitleItem: React.FC<NavConfigTitleItemProps> = ({ name }) => <li className="nav-item px-2 py-1">{name}</li>
+const NavLink = styled(RrNavLink).attrs(props => ({ className: classnames("nav-link", props.className) }))`
+    outline: none;
+    color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    transition: background 0.2s, color 0.2s;
+    &:hover {
+        color: #2b3445;
+        background: #51bedb;
+    }
+    &.active {
+        background: #262c33;
+    }
+    &.active:hover {
+        color: #2b3445;
+        background: #51bedb;
+    }
+`
 
-const NavNormalItem: React.FC<NavConfigNormalItemProps> = ({ name, path, exact, icon }) => {
-    return (
-        <li className="nav-item">
-            {path ? (
-                <AppNavLink to={path} exact={exact} activeClassName="active">
-                    {icon && icon.startsWith("fa") && <i className={classnames(icon, "mr-3")} />}
-                    {name}
-                </AppNavLink>
-            ) : (
-                <AppNavNoLink
-                    href=""
-                    onClick={e => {
-                        e.preventDefault()
-                    }}
-                >
-                    {name}
-                </AppNavNoLink>
-            )}
-        </li>
-    )
-}
+const NavTitle = styled.li.attrs(props => ({ className: "nav-item" }))`
+    font-size: 1rem;
+    padding: 0.75rem 0.5rem;
+    text-transform: uppercase;
+`
 
-const NavDividerItem = styled.li`
+const NavNormal = styled.li.attrs(props => ({ className: "nav-item" }))``
+
+const NavDivider = styled.li.attrs({ className: "nav-item" })`
     width: 100%;
     height: 0.5rem;
     background: #242e40;
 `
 
-const NavItem: React.FC<{ item: NavConfigItemProps }> = ({ item }) => {
+const NavTitleItem: React.FC<NavConfigTitleItemProps> = ({ name }) => {
+    return <NavTitle>{name}</NavTitle>
+}
+
+const NavNormalItem: React.FC<NavConfigNormalItemProps> = ({ name, path, exact, icon, badge }) => {
+    const content = (
+        <>
+            {icon && icon.startsWith("fa") && <i className={classnames(icon, "mr-3")} />}
+            <div className="flex-grow-1 d-flex justify-content-start">{name}</div>
+            {badge && <span className={classnames("badge", "badge-" + badge.color)}>{badge.name}</span>}
+        </>
+    )
+
+    return (
+        <NavNormal>
+            {path ? (
+                <NavLink to={path} exact={exact} activeClassName="active">
+                    {content}
+                </NavLink>
+            ) : (
+                <NavLink
+                    to=""
+                    onClick={e => {
+                        e.preventDefault()
+                    }}
+                >
+                    {content}
+                </NavLink>
+            )}
+        </NavNormal>
+    )
+}
+
+const NavDividerItem: React.FC<NavConfigDividerItemProps> = () => {
+    return <NavDivider />
+}
+
+const NavIntermediateItem: React.FC<{ item: NavConfigItem }> = ({ item }) => {
     switch (item.type) {
         case "title":
             return <NavTitleItem {...item} />
@@ -137,47 +128,48 @@ const NavItem: React.FC<{ item: NavConfigItemProps }> = ({ item }) => {
         case "dropdown":
             return <NavDropdownItem {...item} />
         case "divider":
-            return <NavDividerItem />
+            return <NavDividerItem {...item} />
     }
 }
 
-const NavDropdownItem: React.FC<NavConfigDropdownItemProps> = ({ name, items, icon }) => {
+const NavDropdownItem: React.FC<NavConfigDropdownItemProps> = ({ name, items, icon, badge }) => {
     const [open, setOpen] = useState(false)
     return (
         <li className="nav-item">
-            <NavDropdownLink
-                href=""
+            <NavLink
+                to=""
                 onClick={e => {
                     e.preventDefault()
                     setOpen(!open)
                 }}
             >
                 {icon && icon.startsWith("fa") && <i className={classnames(icon, "mr-3")} />}
-                {name}
-                <div className="flex-grow-1 d-flex justify-content-end">
+                <div className="flex-grow-1 d-flex justify-content-start">{name}</div>
+                {badge && <span className={classnames("mr-3 badge", "badge-" + badge.color)}>{badge.name}</span>}
+                <div className="flex-grow-0 d-flex justify-content-end">
                     <NavDropdownCaret open={open}>
                         <i className="fas fa-caret-down" />
                     </NavDropdownCaret>
                 </div>
-            </NavDropdownLink>
-            <Navigation dropdown open={open}>
+            </NavLink>
+            <NaviItem dropdown open={open}>
                 {items.map((item, i) => (
-                    <NavItem key={i} item={item} />
+                    <NavIntermediateItem key={i} item={item} />
                 ))}
-            </Navigation>
+            </NaviItem>
         </li>
     )
 }
 
-const AppNavigation: React.FC<{ items: NavConfigItemProps | NavConfigItemProps[] }> = ({ items }) => {
+const AppNavigation: React.FC<{ items: NavConfigItem | NavConfigItem[] }> = ({ items }) => {
     return Array.isArray(items) ? (
-        <Navigation>
+        <NaviItem>
             {items.map((item, i) => (
-                <NavItem key={i} item={item} />
+                <NavIntermediateItem key={i} item={item} />
             ))}
-        </Navigation>
+        </NaviItem>
     ) : (
-        <NavItem item={items} />
+        <NavIntermediateItem item={items} />
     )
 }
 

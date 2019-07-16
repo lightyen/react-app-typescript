@@ -130,9 +130,7 @@ const Sashbar: React.FC<{ left: number }> = ({ left }) => {
                 return
             }
             e.preventDefault()
-            if (e.clientX >= 200 && e.clientX < 600) {
-                setSashLeft(e.clientX)
-            }
+            setSashLeft(e.clientX)
         }
         document.addEventListener("mousemove", onmove)
         document.addEventListener("mouseup", onup)
