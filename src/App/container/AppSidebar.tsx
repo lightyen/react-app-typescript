@@ -18,7 +18,7 @@ interface NavItemProps {
     open?: boolean
 }
 
-const NaviItem = styled.ul.attrs<NavItemProps>(({ dropdown, open }) => ({
+const NavItem = styled.ul.attrs<NavItemProps>(({ dropdown, open }) => ({
     className: "nav flex-nowrap",
     style: dropdown
         ? {
@@ -28,13 +28,14 @@ const NaviItem = styled.ul.attrs<NavItemProps>(({ dropdown, open }) => ({
               transition: "max-height 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 0.4s ease",
               maxHeight: open ? "1500px" : "0px",
               opacity: open ? 1.0 : 0.7,
+              backgroundColor: "#161a20",
           }
         : {
               height: "100%",
+              background: "#101216",
           },
 }))<NavItemProps>`
     width: 100%;
-    background: #101216;
     display: flex;
     flex-direction: column;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
@@ -183,22 +184,22 @@ const NavDropdownItem: React.FC<NavConfigDropdownItemProps> = ({ name, items, ic
                     </NavDropdownCaret>
                 </div>
             </NavLink>
-            <NaviItem dropdown open={open}>
+            <NavItem dropdown open={open}>
                 {items.map((item, i) => (
                     <NavIntermediateItem key={i} item={item} />
                 ))}
-            </NaviItem>
+            </NavItem>
         </li>
     )
 }
 
 const AppNavigation: React.FC<{ items: NavConfigItem | NavConfigItem[] }> = ({ items }) => {
     return Array.isArray(items) ? (
-        <NaviItem>
+        <NavItem>
             {items.map((item, i) => (
                 <NavIntermediateItem key={i} item={item} />
             ))}
-        </NaviItem>
+        </NavItem>
     ) : (
         <NavIntermediateItem item={items} />
     )
