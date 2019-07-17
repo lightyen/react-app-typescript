@@ -3,10 +3,12 @@ const webpackMerge = require("webpack-merge")
 const { ContextReplacementPlugin } = require("webpack")
 const CompressionWebpackPlugin = require("compression-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const TerserJSPlugin = require("terser-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin")
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const path = require("path")
 const createBaseConfig = require("./webpack.common")
+const fs = require("fs")
+process.env.NODE_ENV = "production"
 
 /** DLL 位置 */
 const vendorPath = "" // path.resolve(process.cwd(), "dist", "vendor")
@@ -22,6 +24,16 @@ const plugins = [
             ? ["**/*", "!vendor", "!vendor/vendor.js", "!vendor/manifest.json"]
             : ["**/*"],
     }),
+    {
+        apply: compiler => {
+            // hook name
+            compiler.hooks.afterEmit.tap("AfterEmitPlugin", compilation => {
+                const src = path.resolve(__dirname, "public", "manifest.json")
+                const des = path.resolve(process.cwd(), "dist", "manifest.json")
+                fs.createReadStream(src).pipe(fs.createWriteStream(des))
+            })
+        },
+    },
 ]
 
 /**
@@ -45,7 +57,7 @@ const config = {
     },
     optimization: {
         minimize: true,
-        minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin()],
+        minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
         splitChunks: {
             maxInitialRequests: 6,
             cacheGroups: {
@@ -100,7 +112,6 @@ const config = {
 
 module.exports = webpackMerge(
     createBaseConfig({
-        mode: config.mode,
         vendor: vendorPath,
     }),
     config,

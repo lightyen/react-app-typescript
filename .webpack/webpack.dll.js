@@ -28,7 +28,7 @@ module.exports = {
         new WebpackBar({ name: "DLL", color: "blue" }),
         new CleanWebpackPlugin({ verbose: true }),
         new DllPlugin({
-            path: path.join(vendorPath, "manifest.json"),
+            path: path.join(vendorPath, "vendor.json"),
             name: "[name]",
             context: vendorPath,
         }),

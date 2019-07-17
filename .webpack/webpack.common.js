@@ -6,12 +6,12 @@ const { EnvironmentPlugin, ProvidePlugin, DllReferencePlugin } = require("webpac
 const path = require("path")
 
 // Plugins
+const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ExcludeAssetsPlugin = require("html-webpack-exclude-assets-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const ExtractCssChunksPlugin = require("extract-css-chunks-webpack-plugin")
 const WebpackBarPlugin = require("webpackbar")
-const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
+const ManifestPlugin = require("webpack-manifest-plugin")
 const WorkboxPlugin = require("workbox-webpack-plugin")
 
 // NOTE: 關閉 webpack 要求 donate 訊息
@@ -21,11 +21,10 @@ process.env.DISABLE_OPENCOLLECTIVE = "true"
 const entry = {
     fonts: "./src/assets/fonts/fonts.css",
     index: "./src/index",
-    404: "./src/404",
+    404: "./src/index",
 }
 
 /** @typedef {{
- *    mode: "development" | "production" | "none"
  *    dist?: string
  *    src?: string
  *    vendor?: string
@@ -38,41 +37,46 @@ const entry = {
  */
 module.exports = function(options) {
     const workingDirectory = process.cwd()
-    const distDefaultPath = path.resolve(workingDirectory, "dist")
-    const srcDefaultPath = path.resolve(workingDirectory, "src")
-    if (!options.dist) {
-        options.dist = distDefaultPath
-    }
-    if (!options.src) {
-        options.src = srcDefaultPath
-    }
+    const dist = (options && options.dist) || path.resolve(workingDirectory, "dist")
+    const src = (options && options.src) || path.resolve(workingDirectory, "src")
+    const vendor = (options && options.vendor) || ""
+    const isDevelopment = process.env.NODE_ENV === "development"
 
     process.env.PUBLIC_URL = process.env.PUBLIC_URL || ""
 
     /**
      * @type {import("webpack").Plugin[]}
      */
-    const plugins = [
+    let plugins = [
         new WebpackBarPlugin({ color: "blue", name: "React" }),
         new EnvironmentPlugin({
-            NODE_ENV: options.mode,
-            APP_NAME: packageJSON.name,
+            NODE_ENV: process.env.NODE_ENV,
             PUBLIC_URL: process.env.PUBLIC_URL,
+            APP_NAME: packageJSON.name,
         }),
         new MiniCssExtractPlugin({
-            filename: "css/[name].[hash:8].css",
-            chunkFilename: "css/[id].[chunkhash:8].css",
+            filename: "static/css/[name].[contenthash:8].css",
+            chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
         }),
-        // new ExtractCssChunksPlugin({
-        //     filename: "css/[name].css",
-        //     chunkFilename: "css/[id].[contenthash:8].css",
-        // }),
         new ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
         }),
+        new ManifestPlugin({ fileName: "asset-manifest.json" }),
         // https://developers.google.com/web/tools/workbox/guides/codelabs/webpack
-        new WorkboxPlugin.GenerateSW(),
+        !isDevelopment &&
+            new WorkboxPlugin.GenerateSW({
+                clientsClaim: true,
+                exclude: [/\.map$/, /asset-manifest\.json$/],
+                navigateFallback: process.env.PUBLIC_URL + "/index.html",
+                navigateFallbackBlacklist: [
+                    // Exclude URLs starting with /_, as they're likely an API call
+                    new RegExp("^/_"),
+                    // Exclude URLs containing a dot, as they're likely a resource in
+                    // public/ and not a SPA route
+                    new RegExp("/[^/]+\\.[^/]+$"),
+                ],
+            }),
     ]
 
     for (const name in entry) {
@@ -96,34 +100,49 @@ module.exports = function(options) {
                         description: packageJSON.description,
                         author: packageJSON.author,
                     },
-                    minify: false,
+                    minify: isDevelopment
+                        ? false
+                        : {
+                              removeComments: true,
+                              collapseWhitespace: true,
+                              removeRedundantAttributes: true,
+                              useShortDoctype: true,
+                              removeEmptyAttributes: true,
+                              removeStyleLinkTypeAttributes: true,
+                              keepClosingSlash: true,
+                              minifyJS: true,
+                              minifyCSS: true,
+                              minifyURLs: true,
+                          },
                     excludeAssets: exclude.map(name => new RegExp(`${name}.*\\.js`)),
                     title: packageJSON.name,
                     template: path.resolve(__dirname, "public", "index.pug"),
-                    favicon: path.join(options.src, "assets", "favicon.ico"),
-                    vendor: options.vendor ? "/vendor/vendor.js" : undefined,
+                    favicon: path.join(src, "assets", "favicon.ico"),
+                    manifest: process.env.PUBLIC_URL + "/manifest.json",
+                    vendor: vendor ? "/vendor/vendor.js" : undefined,
                 }),
             )
         }
     }
-
     plugins.push(new ExcludeAssetsPlugin())
 
-    if (options.vendor) {
+    if (vendor) {
         plugins.push(
             new DllReferencePlugin({
-                context: options.vendor,
-                manifest: require(path.join(options.vendor, "manifest.json")),
+                context: vendor,
+                manifest: require(path.join(vendor, "vendor.json")),
             }),
         )
     }
+
+    plugins = plugins.filter(p => !!p)
 
     /**
      * @type {import("webpack").Loader}
      * See [style-loader]{@link https://github.com/webpack-contrib/style-loader} and [mini-css-extract-plugin]{@link https://github.com/webpack-contrib/mini-css-extract-plugin}.
      */
     const styleLoader = {
-        loader: process.env.NODE_ENV === "development" ? "style-loader" : MiniCssExtractPlugin.loader,
+        loader: isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
     }
 
     /**
@@ -135,7 +154,7 @@ module.exports = function(options) {
         loader: "url-loader",
         options: {
             // NOTE: output path
-            name: "assets/images/[name].[ext]?[hash:8]",
+            name: "static/assets/images/[name].[ext]?[hash:8]",
             limit: 8192,
             fallback: "file-loader",
         },
@@ -147,7 +166,7 @@ module.exports = function(options) {
     const fontLoader = {
         loader: "url-loader",
         options: {
-            name: "assets/fonts/[name].[ext]?[hash:8]",
+            name: "static/assets/fonts/[name].[ext]?[hash:8]",
             limit: 8192,
             ack: "file-loader",
         },
@@ -173,9 +192,9 @@ module.exports = function(options) {
     return {
         entry,
         output: {
-            path: options.dist,
-            filename: "js/[name].[hash:8].js",
-            chunkFilename: "js/[name].[hash:6].js",
+            path: dist,
+            filename: isDevelopment ? "static/js/[name].bundle.js" : "static/js/[name].[contenthash:8].js",
+            chunkFilename: isDevelopment ? "static/js/[name].chunk.js" : "static/js/[name].[contenthash:8].chunk.js",
             publicPath: process.env.PUBLIC_URL + "/",
         },
         target: "web",

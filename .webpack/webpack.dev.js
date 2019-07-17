@@ -3,15 +3,18 @@ const { NamedModulesPlugin, HotModuleReplacementPlugin } = require("webpack")
 const webpackMerge = require("webpack-merge")
 const createBaseConfig = require("./webpack.common")
 const url = require("url")
+const path = require("path")
 
 const defaultPort = 3000
-process.env.PUBLIC_URL = process.env.PUBLIC_URL || ""
+process.env.NODE_ENV = "development"
+process.env.PUBLIC_URL = ""
 
 /**
  * @type { import("webpack").Configuration }
  */
 const config = {
     mode: "development",
+    performance: false,
     watch: true,
     watchOptions: {
         ignored: /node_modules/,
@@ -30,8 +33,9 @@ const config = {
         host: "0.0.0.0",
         port: defaultPort,
         open: true,
-        public: url.resolve(`http://localhost:${defaultPort}`, process.env.PUBLIC_URL + "/").replace(/\/?$/, ""),
-        publicPath: process.env.PUBLIC_URL + "/",
+        https: false,
+        public: `http://localhost:${defaultPort}`,
+        publicPath: "/",
         clientLogLevel: "warning",
         stats: {
             all: false,
@@ -44,8 +48,15 @@ const config = {
         },
         // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
         historyApiFallback: {
-            rewrites: [{ from: /.*/g, to: process.env.PUBLIC_URL + "/index.html" }],
+            rewrites: [
+                {
+                    from: /\/css/g,
+                    to: context => process.env.PUBLIC_URL + "/fonts/" + path.basename(context.parsedUrl.pathname),
+                },
+                { from: /.*/g, to: process.env.PUBLIC_URL + "/index.html" },
+            ],
         },
+        contentBase: path.join(process.cwd(), "src", "assets"),
         proxy: [
             {
                 context: ["/apis"],
@@ -58,4 +69,4 @@ const config = {
     },
 }
 
-module.exports = webpackMerge(createBaseConfig({ mode: config.mode }), config)
+module.exports = webpackMerge(createBaseConfig({}), config)

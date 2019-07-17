@@ -57,12 +57,14 @@ const anime01 = keyframes`
 
 const NavLink = styled(RrNavLink).attrs(({ className }) => ({
     className: classnames("nav-link", className),
+    style: {
+        display: "flex",
+        flexDirection: "row",
+        padding: "0.75rem 1rem",
+    },
 }))`
     color: #f8f9fa;
     outline: none;
-    padding: 0.75rem 1rem;
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     transition: background 0.2s, color 0.2s;
@@ -102,13 +104,13 @@ const BootstrapBadge: React.FC<Badge & { dropdown?: boolean }> = ({ pill, name, 
     return render ? render({ children: name, className: classes }) : defaultItem({ children: name })
 }
 
-const IconItem: React.FC<Icon> = ({ fa, material: MIcon, render }) => {
-    const defaultItem: React.FC = ({ children }) => <span className="mr-3">{children}</span>
+const IconItem: React.FC<Icon> = ({ fa, material: MaterialIcon, render }) => {
+    const defaultItem: React.FC = ({ children }) => <div className="mr-3">{children}</div>
     const r = render || defaultItem
     if (fa) {
         return r({ children: <i className={fa} /> })
-    } else if (MIcon) {
-        return r({ children: <MIcon /> })
+    } else if (MaterialIcon) {
+        return r({ children: <MaterialIcon /> })
     } else {
         return r({ children: null })
     }

@@ -79,7 +79,6 @@
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-react": "7.14.2",
     "eslint-plugin-react-hooks": "1.6.1",
-    "extract-css-chunks-webpack-plugin": "^4.5.6",
     "file-loader": "4.0.0",
     "history": "4.9.0",
     "html-webpack-exclude-assets-plugin": "0.0.7",
@@ -122,6 +121,7 @@
     "webpack-bundle-analyzer": "3.3.2",
     "webpack-cli": "3.3.5",
     "webpack-dev-server": "3.7.2",
+    "webpack-manifest-plugin": "2.0.4",
     "webpack-merge": "4.2.1",
     "webpackbar": "3.2.0",
     "workbox-webpack-plugin": "4.3.1"
