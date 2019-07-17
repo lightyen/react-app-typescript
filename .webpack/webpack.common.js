@@ -55,7 +55,7 @@ module.exports = function(options) {
             APP_NAME: packageJSON.name,
         }),
         new MiniCssExtractPlugin({
-            filename: "static/css/[name].[contenthash:8].css",
+            filename: "static/css/[name].css",
             chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
         }),
         new ProvidePlugin({
