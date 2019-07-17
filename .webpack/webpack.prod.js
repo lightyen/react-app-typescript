@@ -11,7 +11,7 @@ const fs = require("fs")
 process.env.NODE_ENV = "production"
 
 /** DLL 位置 */
-const vendorPath = "" // path.resolve(process.cwd(), "dist", "vendor")
+const vendorPath = "" // path.resolve(process.cwd(), "build", "vendor")
 
 /**
  * @type {import("webpack").Plugin[]}
@@ -26,10 +26,10 @@ const plugins = [
     }),
     {
         apply: compiler => {
-            // hook name
+            const workingDirectory = process.cwd()
             compiler.hooks.afterEmit.tap("AfterEmitPlugin", compilation => {
-                const src = path.resolve(__dirname, "public", "manifest.json")
-                const des = path.resolve(process.cwd(), "dist", "manifest.json")
+                const src = path.resolve(workingDirectory, "public", "manifest.json")
+                const des = path.resolve(workingDirectory, "build", "manifest.json")
                 fs.createReadStream(src).pipe(fs.createWriteStream(des))
             })
         },

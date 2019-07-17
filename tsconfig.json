@@ -9,7 +9,8 @@
     "types": ["react"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["src/*"],
+      "$/*": ["public/*"]
     }
   },
   "include": ["src"]

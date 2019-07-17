@@ -2,7 +2,7 @@ import React from "react"
 import { RouteComponentProps } from "react-router-dom"
 import classnames from "classnames"
 import LocaleMessage from "~/components/LocaleMessage"
-import image from "~/assets/images/256x256.png"
+import image from "$/assets/images/256x256.png"
 import styled, { keyframes } from "styled-components"
 
 import { useSelector } from "react-redux"

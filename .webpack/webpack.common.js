@@ -19,7 +19,7 @@ process.env.DISABLE_OPENCOLLECTIVE = "true"
 
 /** @type { import("webpack").Entry } */
 const entry = {
-    fonts: "./src/assets/fonts/fonts.css",
+    fonts: "./public/assets/fonts/index.css",
     index: "./src/index",
     404: "./src/index",
 }
@@ -37,7 +37,7 @@ const entry = {
  */
 module.exports = function(options) {
     const workingDirectory = process.cwd()
-    const dist = (options && options.dist) || path.resolve(workingDirectory, "dist")
+    const dist = (options && options.dist) || path.resolve(workingDirectory, "build")
     const src = (options && options.src) || path.resolve(workingDirectory, "src")
     const vendor = (options && options.vendor) || ""
     const isDevelopment = process.env.NODE_ENV === "development"
@@ -55,7 +55,7 @@ module.exports = function(options) {
             APP_NAME: packageJSON.name,
         }),
         new MiniCssExtractPlugin({
-            filename: "static/css/[name].css",
+            filename: "static/css/[name].[contenthash:8].css",
             chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
         }),
         new ProvidePlugin({
@@ -116,8 +116,8 @@ module.exports = function(options) {
                           },
                     excludeAssets: exclude.map(name => new RegExp(`${name}.*\\.js`)),
                     title: packageJSON.name,
-                    template: path.resolve(__dirname, "public", "index.pug"),
-                    favicon: path.join(src, "assets", "favicon.ico"),
+                    template: path.resolve(workingDirectory, "public", "index.pug"),
+                    favicon: path.resolve(workingDirectory, "public", "assets", "favicon.ico"),
                     manifest: process.env.PUBLIC_URL + "/manifest.json",
                     vendor: vendor ? "/vendor/vendor.js" : undefined,
                 }),

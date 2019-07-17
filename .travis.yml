@@ -17,7 +17,7 @@ notifications:
   email: false
 # deploy:
 #   provider: pages
-#   local_dir: dist
+#   local_dir: build
 #   skip_cleanup: true
 #   target_branch: gh-pages
 #   verbose: true

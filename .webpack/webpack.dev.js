@@ -33,8 +33,7 @@ const config = {
         host: "0.0.0.0",
         port: defaultPort,
         open: true,
-        https: false,
-        public: `http://localhost:${defaultPort}`,
+        public: `localhost:${defaultPort}`,
         publicPath: "/",
         clientLogLevel: "warning",
         stats: {
@@ -46,17 +45,21 @@ const config = {
             cachedAssets: true,
             warnings: true,
         },
+        contentBase: path.join(process.cwd(), "public"),
         // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
         historyApiFallback: {
             rewrites: [
                 {
                     from: /\/static\/css/g,
-                    to: context => process.env.PUBLIC_URL + "/fonts/" + path.basename(context.parsedUrl.pathname),
+                    to: context => {
+                        let name = path.basename(context.parsedUrl.pathname)
+                        name = /fonts.*\.css$/.test(name) ? "index.css" : name
+                        return "/assets/fonts/" + name
+                    },
                 },
                 { from: /.*/g, to: process.env.PUBLIC_URL + "/index.html" },
             ],
         },
-        contentBase: path.join(process.cwd(), "src", "assets"),
         proxy: [
             {
                 context: ["/apis"],
