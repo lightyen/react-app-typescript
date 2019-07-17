@@ -33,7 +33,14 @@ const Home: React.FC<RouteComponentProps> = ({ match }) => {
                     <RotateImg src={image} width="180px" height="180px" />
                 </div>
             </div>
-            <div className="p-0 p-md-3" style={{ maxWidth: "80ch", margin: collapsed ? "auto" : "0" }}>
+            <div
+                className="px-0 px-md-5"
+                style={{
+                    maxWidth: "80ch",
+                    margin: collapsed ? "auto" : "0",
+                    transition: "padding 0.25s ease",
+                }}
+            >
                 <h1>Hello React!</h1>
             </div>
         </div>

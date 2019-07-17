@@ -1,8 +1,14 @@
-import { BreakPoint } from "./type"
+import { BreakPoint, WinSize } from "./type"
 
+export const SET_WINSIZE = "APP_SET_WINSIZE"
 export const SET_COLLAPSED = "APP_SET_COLLAPSED"
 export const SET_SASH_LEFT = "APP_SET_SASH_LEFT"
 export const SET_BREAKPOINT = "APP_SET_BREAKPOINT"
+
+export interface SetWinSizeAction {
+    type: typeof SET_WINSIZE
+    size: WinSize
+}
 
 export interface SetCollapsedAction {
     type: typeof SET_COLLAPSED
@@ -27,5 +33,5 @@ export interface SetBreakpointAction {
     breakpoint: BreakPoint
 }
 
-type Action = SetCollapsedAction | SetSashLeftAction | SetBreakpointAction
+type Action = SetWinSizeAction | SetCollapsedAction | SetSashLeftAction | SetBreakpointAction
 export default Action

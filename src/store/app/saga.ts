@@ -1,8 +1,17 @@
 import { eventChannel } from "redux-saga"
 import { all, call, take, put } from "redux-saga/effects"
-import { SetBreakpointAction } from "./action"
-import { SET_SASH_LEFT } from "./action"
-import { BreakPoint } from "./type"
+import { SetBreakpointAction, SetWinSizeAction } from "./action"
+import { BreakPoint, WinSize } from "./type"
+
+const chan_winsize = eventChannel<WinSize>(emit => {
+    function callback(e: UIEvent) {
+        emit({ width: document.body.clientWidth, heidht: document.body.clientHeight })
+    }
+    window.addEventListener("resize", callback)
+    return () => {
+        window.removeEventListener("resize", callback)
+    }
+})
 
 const chan_xs = eventChannel<BreakPoint>(emit => {
     const mql = window.matchMedia("(min-width: 576px)")
@@ -64,6 +73,16 @@ const chan_lg = eventChannel<BreakPoint>(emit => {
     }
 })
 
+function* responsive_winsize() {
+    while (true) {
+        const size: WinSize = yield take(chan_winsize)
+        yield put<SetWinSizeAction>({
+            type: "APP_SET_WINSIZE",
+            size,
+        })
+    }
+}
+
 function* responsive_xs() {
     while (true) {
         const breakpoint: BreakPoint = yield take(chan_xs)
@@ -104,5 +123,11 @@ function* responsive_lg() {
 }
 
 export default function* watcher() {
-    yield all([call(responsive_xs), call(responsive_sm), call(responsive_md), call(responsive_lg)])
+    yield all([
+        call(responsive_winsize),
+        call(responsive_xs),
+        call(responsive_sm),
+        call(responsive_md),
+        call(responsive_lg),
+    ])
 }
