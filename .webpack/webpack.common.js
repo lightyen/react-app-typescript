@@ -48,7 +48,6 @@ module.exports = function(options) {
     }
 
     process.env.PUBLIC_URL = process.env.PUBLIC_URL || ""
-    process.env.PUBLIC_PATH = process.env.PUBLIC_PATH || ""
 
     /**
      * @type {import("webpack").Plugin[]}
@@ -59,7 +58,6 @@ module.exports = function(options) {
             NODE_ENV: options.mode,
             APP_NAME: packageJSON.name,
             PUBLIC_URL: process.env.PUBLIC_URL,
-            PUBLIC_PATH: process.env.PUBLIC_PATH,
         }),
         new MiniCssExtractPlugin({
             filename: "css/[name].[hash:8].css",
@@ -178,7 +176,7 @@ module.exports = function(options) {
             path: options.dist,
             filename: "js/[name].[hash:8].js",
             chunkFilename: "js/[name].[hash:6].js",
-            publicPath: process.env.PUBLIC_PATH || "/",
+            publicPath: process.env.PUBLIC_URL + "/",
         },
         target: "web",
         module: {

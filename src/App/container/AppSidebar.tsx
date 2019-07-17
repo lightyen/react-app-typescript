@@ -3,7 +3,6 @@ import { RouteComponentProps, NavLink as RrNavLink } from "react-router-dom"
 import styled, { keyframes } from "styled-components"
 import classnames from "classnames"
 import {
-    navConfig,
     NavConfigItem,
     NavConfigNormalItemProps,
     NavConfigDropdownItemProps,
@@ -11,7 +10,8 @@ import {
     NavConfigDividerItemProps,
     Badge,
     Icon,
-} from "~/nav"
+} from "./navigation"
+import { navConfig } from "~/nav"
 
 interface NavItemProps {
     dropdown?: boolean
@@ -102,11 +102,13 @@ const BootstrapBadge: React.FC<Badge & { dropdown?: boolean }> = ({ pill, name, 
     return render ? render({ children: name, className: classes }) : defaultItem({ children: name })
 }
 
-const IconItem: React.FC<Icon> = ({ fa, render }) => {
+const IconItem: React.FC<Icon> = ({ fa, material: MIcon, render }) => {
     const defaultItem: React.FC = ({ children }) => <span className="mr-3">{children}</span>
     const r = render || defaultItem
     if (fa) {
         return r({ children: <i className={fa} /> })
+    } else if (MIcon) {
+        return r({ children: <MIcon /> })
     } else {
         return r({ children: null })
     }

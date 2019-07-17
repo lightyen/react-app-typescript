@@ -5,6 +5,7 @@ const createBaseConfig = require("./webpack.common")
 const url = require("url")
 
 const defaultPort = 3000
+process.env.PUBLIC_URL = process.env.PUBLIC_URL || ""
 
 /**
  * @type { import("webpack").Configuration }
@@ -29,8 +30,8 @@ const config = {
         host: "0.0.0.0",
         port: defaultPort,
         open: true,
-        public: url.resolve(`http://localhost:${defaultPort}/`, process.env.PUBLIC_PATH || "").replace(/\/?$/, ""),
-        publicPath: process.env.PUBLIC_PATH || "",
+        public: url.resolve(`http://localhost:${defaultPort}`, process.env.PUBLIC_URL + "/").replace(/\/?$/, ""),
+        publicPath: process.env.PUBLIC_URL + "/",
         clientLogLevel: "warning",
         stats: {
             all: false,
@@ -43,7 +44,7 @@ const config = {
         },
         // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
         historyApiFallback: {
-            rewrites: [{ from: /.*/g, to: process.env.PUBLIC_PATH || "/" + "index.html" }],
+            rewrites: [{ from: /.*/g, to: process.env.PUBLIC_URL + "/index.html" }],
         },
         proxy: [
             {
