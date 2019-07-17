@@ -50,7 +50,7 @@ const config = {
         historyApiFallback: {
             rewrites: [
                 {
-                    from: /\/css/g,
+                    from: /\/static\/css/g,
                     to: context => process.env.PUBLIC_URL + "/fonts/" + path.basename(context.parsedUrl.pathname),
                 },
                 { from: /.*/g, to: process.env.PUBLIC_URL + "/index.html" },
