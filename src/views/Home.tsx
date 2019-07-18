@@ -30,7 +30,7 @@ const Home: React.FC<RouteComponentProps> = ({ match }) => {
         <div className="fadeIn">
             <div className="row" style={{ justifyContent: "center", maxWidth: collapsed ? "100%" : "80ch" }}>
                 <div className="p-2">
-                    <RotateImg src={image} width="180px" height="180px" />
+                    <RotateImg src={image} width="180px" height="180px" alt="react" />
                 </div>
             </div>
             <div

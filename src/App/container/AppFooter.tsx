@@ -20,7 +20,12 @@ const Github = styled.i.attrs(props => ({
 export default function AppFooter() {
     return (
         <Footer className="container-fluid d-flex align-items-center justify-content-between text-light">
-            <a href="https://github.com/lightyen/react-app-typescript" target="_blank">
+            <a
+                href="https://github.com/lightyen/react-app-typescript"
+                aria-label="repository"
+                target="_blank"
+                rel="noopener"
+            >
                 <Github />
             </a>
             <span className="text-muted">made by lightyen</span>
