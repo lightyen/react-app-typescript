@@ -11,7 +11,7 @@ WebFontLoader.load({
     classes: false,
     custom: {
         families: ["RootFont"],
-        urls: [process.env.PUBLIC_URL + "/static/css/fonts.18749642.css"],
+        urls: [process.env.PUBLIC_URL + "/static/css/fonts.4b17b82b.css"],
         testStrings: {
             RootFont: "Text 預載文字字型",
         },
