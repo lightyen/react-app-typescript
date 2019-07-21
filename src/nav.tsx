@@ -74,7 +74,8 @@ export const navConfig: NavConfig = [
     },
     { type: "normal", path: "/popper", name: <span>Popper</span> },
     { type: "normal", path: "/threejs", name: <span>three.js</span> },
-    { type: "normal", name: <TestLabel color="info" label="Label 1" />, custom: true },
-    { type: "normal", name: <TestLabel color="danger" label="Label 2" />, custom: true },
-    { type: "normal", name: <TestProgress />, custom: true },
+    { type: "custom", name: <TestLabel color="info" label="Label 1" /> },
+    { type: "custom", name: <TestLabel color="danger" label="Label 2" /> },
+    { type: "custom", name: <TestProgress /> },
+    { type: "custom", name: <div style={{ height: 100 }}></div> },
 ]

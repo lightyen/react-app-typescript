@@ -3,8 +3,6 @@ import { RouteComponentProps, Route, Switch, Redirect } from "react-router-dom"
 import styled from "styled-components"
 import routes from "~/routes"
 
-import Scrollbars from "react-custom-scrollbars"
-
 // Component
 import AppSidebar from "./AppSidebar"
 import AppHeader from "./AppHeader"
@@ -47,13 +45,24 @@ const AppBody = styled.section`
     flex-grow: 1;
     display: flex;
     flex-direction: row;
-
     max-height: 100%;
     overflow: hidden;
 `
 
 const Sidebar = styled.nav`
+    height: 100%;
     flex-grow: 1;
+    overflow: hidden;
+`
+
+const ScrollableSidebar = styled.div`
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
+    scrollbar-width: none;
 `
 
 const Content = styled.section`
@@ -83,23 +92,21 @@ const Footer = styled.footer`
 
 interface SashProps {
     width: number
-    left: number
 }
 
-const Sash = styled.div.attrs<SashProps>(({ width, left }) => ({
+const Sash = styled.div.attrs<SashProps>(({ width }) => ({
     style: {
         width: `${width}px`,
-        left: `${left}px`,
     },
 }))<SashProps>`
     height: 100%;
-    display: flex;
     position: absolute;
+    right: 0;
     cursor: ew-resize;
     z-index: 500;
 `
 
-const Sashbar: React.FC<{ left: number }> = ({ left }) => {
+const Sashbar: React.FC = () => {
     const { setSashLeft } = useActions()
 
     const active = React.useRef<boolean>(false)
@@ -138,8 +145,28 @@ const Sashbar: React.FC<{ left: number }> = ({ left }) => {
         }
     }, [setSashLeft])
 
-    return <Sash ref={ref} width={width} left={left - width / 2} onMouseDown={handleMouseDown} />
+    return <Sash ref={ref} width={width} onMouseDown={handleMouseDown} />
 }
+
+interface NavSideProps {
+    collapsed: boolean
+    width: number
+}
+
+const NavSide = styled.div.attrs<NavSideProps>(({ collapsed, width }) => ({
+    style: {
+        minWidth: width,
+        marginLeft: `${collapsed ? -width : 0}px`,
+    },
+}))<NavSideProps>`
+    flex-grow: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    transition: margin-left 0.25s ease;
+    background: #101216;
+`
 
 const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
     const { collapsed, sashLeft } = useSelectors()
@@ -149,20 +176,14 @@ const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
                 <AppHeader />
             </Header>
             <AppBody>
-                <Scrollbars
-                    renderView={props => <div {...props} className="d-flex flex-column" />}
-                    style={{
-                        flexGrow: 0,
-                        maxWidth: sashLeft,
-                        marginLeft: `${collapsed ? -sashLeft : 0}px`,
-                        transition: "margin-left 0.25s ease",
-                    }}
-                >
-                    <Sashbar left={sashLeft} />
+                <NavSide width={sashLeft} collapsed={collapsed}>
                     <Sidebar>
-                        <AppSidebar {...rest} />
+                        <ScrollableSidebar>
+                            <AppSidebar {...rest} />
+                        </ScrollableSidebar>
                     </Sidebar>
-                </Scrollbars>
+                    <Sashbar />
+                </NavSide>
                 <Content>
                     <Main>
                         <AppContent>

@@ -4,6 +4,7 @@ const packageJSON = require("../package.json")
 // @ts-check
 const { EnvironmentPlugin, ProvidePlugin, DllReferencePlugin, ExtendedAPIPlugin } = require("webpack")
 const path = require("path")
+const glob = require("glob")
 
 // Plugins
 const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
@@ -13,6 +14,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const WebpackBarPlugin = require("webpackbar")
 const ManifestPlugin = require("webpack-manifest-plugin")
 const WorkboxPlugin = require("workbox-webpack-plugin")
+const PurgeCSSPlugin = require("purgecss-webpack-plugin")
 
 // NOTE: 關閉 webpack 要求 donate 訊息
 process.env.DISABLE_OPENCOLLECTIVE = "true"

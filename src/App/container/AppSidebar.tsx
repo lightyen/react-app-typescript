@@ -8,6 +8,7 @@ import {
     NavConfigDropdownItemProps,
     NavConfigTitleItemProps,
     NavConfigDividerItemProps,
+    NavConfigCustomItemProps,
     Badge,
     Icon,
 } from "./navigation"
@@ -32,7 +33,6 @@ const NavItem = styled.ul.attrs<NavItemProps>(({ dropdown, open }) => ({
           }
         : {
               height: "100%",
-              background: "#101216",
           },
 }))<NavItemProps>`
     width: 100%;
@@ -120,7 +120,7 @@ const NavTitleItem: React.FC<NavConfigTitleItemProps> = ({ name }) => {
     return <NavTitle>{name}</NavTitle>
 }
 
-const NavNormalItem: React.FC<NavConfigNormalItemProps> = ({ name, path, exact, icon, badge, custom }) => {
+const NavNormalItem: React.FC<NavConfigNormalItemProps> = ({ name, path, exact, icon, badge }) => {
     const content = (
         <>
             {icon && <IconItem {...icon} />}
@@ -135,8 +135,6 @@ const NavNormalItem: React.FC<NavConfigNormalItemProps> = ({ name, path, exact, 
                 <NavLink to={path} exact={exact} activeClassName="active">
                     {content}
                 </NavLink>
-            ) : custom ? (
-                name
             ) : (
                 <NavLink
                     to=""
@@ -155,6 +153,10 @@ const NavDividerItem: React.FC<NavConfigDividerItemProps> = () => {
     return <NavDivider />
 }
 
+const NavCustomItem: React.FC<NavConfigCustomItemProps> = ({ name }) => {
+    return <NavNormal>{name}</NavNormal>
+}
+
 const NavIntermediateItem: React.FC<{ item: NavConfigItem }> = ({ item }) => {
     switch (item.type) {
         case "title":
@@ -165,6 +167,8 @@ const NavIntermediateItem: React.FC<{ item: NavConfigItem }> = ({ item }) => {
             return <NavDropdownItem {...item} />
         case "divider":
             return <NavDividerItem {...item} />
+        case "custom":
+            return <NavCustomItem {...item} />
     }
 }
 

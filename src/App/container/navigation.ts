@@ -25,7 +25,6 @@ export interface NavConfigNormalItemProps {
     exact?: boolean
     icon?: Icon
     badge?: Badge
-    custom?: boolean
 }
 
 export interface NavConfigDropdownItemProps {
@@ -45,10 +44,16 @@ export interface NavConfigTitleItemProps {
     name: React.ReactNode
 }
 
+export interface NavConfigCustomItemProps {
+    type: "custom"
+    name: React.ReactNode
+}
+
 export type NavConfigItem =
     | NavConfigNormalItemProps
     | NavConfigDropdownItemProps
     | NavConfigDividerItemProps
     | NavConfigTitleItemProps
+    | NavConfigCustomItemProps
 
 export type NavConfig = NavConfigItem | NavConfigItem[]
