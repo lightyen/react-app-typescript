@@ -57,8 +57,8 @@ module.exports = function(options) {
             APP_NAME: packageJSON.name,
         }),
         new MiniCssExtractPlugin({
-            filename: "static/css/[name].[contenthash:8].css",
-            chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
+            filename: "static/css/[name].[hash:8].css",
+            chunkFilename: "static/css/[name].[hash:8].chunk.css",
         }),
         new ProvidePlugin({
             $: "jquery",
@@ -201,8 +201,8 @@ module.exports = function(options) {
         entry,
         output: {
             path: dist,
-            filename: isDevelopment ? "static/js/[name].bundle.js" : "static/js/[name].[contenthash:8].js",
-            chunkFilename: isDevelopment ? "static/js/[name].chunk.js" : "static/js/[name].[contenthash:8].chunk.js",
+            filename: isDevelopment ? "static/js/[name].bundle.js" : "static/js/[name].[hash:8].js",
+            chunkFilename: isDevelopment ? "static/js/[name].chunk.js" : "static/js/[name].[hash:8].chunk.js",
             publicPath: process.env.PUBLIC_URL + "/",
         },
         target: "web",
