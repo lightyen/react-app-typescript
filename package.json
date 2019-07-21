@@ -97,6 +97,7 @@
     "prismjs": "1.16.0",
     "pug": "2.0.4",
     "pug-loader": "2.4.0",
+    "purgecss-webpack-plugin": "^1.5.0",
     "react": "16.8.6",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "16.8.6",

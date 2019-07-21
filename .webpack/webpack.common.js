@@ -2,7 +2,7 @@
 const packageJSON = require("../package.json")
 
 // @ts-check
-const { EnvironmentPlugin, ProvidePlugin, DllReferencePlugin } = require("webpack")
+const { EnvironmentPlugin, ProvidePlugin, DllReferencePlugin, ExtendedAPIPlugin } = require("webpack")
 const path = require("path")
 
 // Plugins
@@ -62,6 +62,7 @@ module.exports = function(options) {
             $: "jquery",
             jQuery: "jquery",
         }),
+        new PurgeCSSPlugin({ paths: glob.sync(`${workingDirectory}/src/**/*`, { nodir: true }) }),
         new ManifestPlugin({ fileName: "asset-manifest.json" }),
         // https://developers.google.com/web/tools/workbox/guides/codelabs/webpack
         !isDevelopment &&
@@ -120,6 +121,7 @@ module.exports = function(options) {
                     favicon: path.resolve(workingDirectory, "public", "assets", "favicon.ico"),
                     manifest: process.env.PUBLIC_URL + "/manifest.json",
                     vendor: vendor ? "/vendor/vendor.js" : undefined,
+                    production: !isDevelopment,
                 }),
             )
         }
@@ -133,6 +135,10 @@ module.exports = function(options) {
                 manifest: require(path.join(vendor, "vendor.json")),
             }),
         )
+    }
+
+    if (!isDevelopment) {
+        plugins.push(new ExtendedAPIPlugin())
     }
 
     plugins = plugins.filter(p => !!p)

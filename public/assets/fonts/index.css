@@ -1,11 +1,13 @@
 @font-face {
     font-family: RootFont;
-    src: url(./NotoSansTC-Regular.woff2);
-    unicode-range: U+4E00-9FFF;
+    src: local("微軟正黑體"), local("Microsoft YaHei Mono"), local("Helvetica"),
+        url(./NotoSansTC-Regular.woff2);
+    unicode-range: U+0100-9FFF;
 }
 
 @font-face {
     font-family: RootFont;
-    src: url(./FiraCode-Regular.woff2);
+    src: local("Fira Code"),
+        url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/woff2/FiraCode-Regular.woff2);
     unicode-range: U+0000-00FF;
 }

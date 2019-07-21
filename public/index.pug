@@ -3,6 +3,11 @@ html(lang="en")
   head
     if htmlWebpackPlugin.options.manifest
       link(rel="manifest", href=htmlWebpackPlugin.options.manifest)
+    if htmlWebpackPlugin.options.production
+      - for (const css of htmlWebpackPlugin.files.css)
+        link(as="style", href=css, rel="preload")
+      - for (const js of htmlWebpackPlugin.files.js)
+        link(as="style", href=js, rel="preload")
   body
     noscript You need to enable JavaScript to run this app.
     #root
