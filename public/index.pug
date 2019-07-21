@@ -1,15 +1,23 @@
 doctype html
 html(lang="en")
   head
-    if htmlWebpackPlugin.options.manifest
-      link(rel="manifest", href=htmlWebpackPlugin.options.manifest)
-    if htmlWebpackPlugin.options.production
-      - for (const css of htmlWebpackPlugin.files.css)
-        link(as="style", href=css, rel="preload")
-      - for (const js of htmlWebpackPlugin.files.js)
-        link(as="script", href=js, rel="preload")
+    title #{htmlWebpackPlugin.options.title}
+    meta(name="charset",content="utf-8")
+    meta(name="viewport",content="width=device-width,initial-scale=1,shrink-to-fit=no")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge")
+    link(rel="shortcut icon", href=htmlWebpackPlugin.files.favicon)
+    if htmlWebpackPlugin.manifest
+      link(rel="manifest", href=htmlWebpackPlugin.manifest)
+    each css in htmlWebpackPlugin.files.css
+      link(as="style", href=css, rel="preload")
+    each js in htmlWebpackPlugin.files.js
+      link(as="script", href=js, rel="preload")
+    each css in htmlWebpackPlugin.files.css
+      link(href=css, rel="stylesheet")
   body
     noscript You need to enable JavaScript to run this app.
     #root
-    if htmlWebpackPlugin.options.vendor
-      script(type="text/javascript", src=htmlWebpackPlugin.options.vendor)
+    if htmlWebpackPlugin.dll
+      script(type="text/javascript", src=htmlWebpackPlugin.dll)
+    each js in htmlWebpackPlugin.files.js
+      script(type="text/javascript", src=js)

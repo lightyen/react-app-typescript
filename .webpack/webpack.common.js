@@ -9,7 +9,6 @@ const glob = require("glob")
 // Plugins
 const { TsConfigPathsPlugin } = require("awesome-typescript-loader")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const ExcludeAssetsPlugin = require("html-webpack-exclude-assets-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const WebpackBarPlugin = require("webpackbar")
 const ManifestPlugin = require("webpack-manifest-plugin")
@@ -66,20 +65,6 @@ module.exports = function(options) {
         }),
         new PurgeCSSPlugin({ paths: glob.sync(`${workingDirectory}/src/**/*`, { nodir: true }) }),
         new ManifestPlugin({ fileName: "asset-manifest.json" }),
-        // https://developers.google.com/web/tools/workbox/guides/codelabs/webpack
-        !isDevelopment &&
-            new WorkboxPlugin.GenerateSW({
-                clientsClaim: true,
-                exclude: [/\.map$/, /asset-manifest\.json$/],
-                navigateFallback: process.env.PUBLIC_URL + "/index.html",
-                navigateFallbackBlacklist: [
-                    // Exclude URLs starting with /_, as they're likely an API call
-                    new RegExp("^/_"),
-                    // Exclude URLs containing a dot, as they're likely a resource in
-                    // public/ and not a SPA route
-                    new RegExp("/[^/]+\\.[^/]+$"),
-                ],
-            }),
     ]
 
     for (const name in entry) {
@@ -87,22 +72,33 @@ module.exports = function(options) {
             if (name === "fonts") {
                 continue
             }
-            const exclude = Object.keys(entry).slice()
-            exclude.splice(Object.keys(entry).indexOf(name), 1)
+            const exclude = { ...entry }
+            delete exclude[name]
+            const excludeAssets = Object.keys(exclude).map(
+                key => new RegExp(`${key.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`),
+            )
             plugins.push(
                 new HtmlWebpackPlugin({
-                    inject: true,
-                    filename: name + ".html",
-                    meta: {
-                        viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
-                        "X-UA-Compatible": {
-                            "http-equiv": "X-UA-Compatible",
-                            content: "ie=edge",
-                        },
-                        charset: "utf-8",
-                        description: packageJSON.description,
-                        author: packageJSON.author,
+                    templateParameters: (compilation, assets, options) => {
+                        // NOTE: 去掉不需要的檔案
+                        assets.css = assets.css.filter(path => !excludeAssets.some(e => e.test(path)))
+                        assets.js = assets.js.filter(path => !excludeAssets.some(e => e.test(path)))
+                        const manifest = process.env.PUBLIC_URL + "/manifest.json"
+                        const dll = vendor ? "/vendor/vendor.js" : undefined
+                        return {
+                            compilation,
+                            webpackConfig: compilation.options,
+                            htmlWebpackPlugin: {
+                                files: assets,
+                                options,
+                                manifest,
+                                dll,
+                            },
+                        }
                     },
+                    inject: false,
+                    filename: name + ".html",
+                    template: path.resolve(workingDirectory, "public", "index.pug"),
                     minify: isDevelopment
                         ? false
                         : {
@@ -117,18 +113,12 @@ module.exports = function(options) {
                               minifyCSS: true,
                               minifyURLs: true,
                           },
-                    excludeAssets: exclude.map(name => new RegExp(`${name}.*\\.js`)),
-                    title: packageJSON.name,
-                    template: path.resolve(workingDirectory, "public", "index.pug"),
+                    title: packageJSON.name || "React",
                     favicon: path.resolve(workingDirectory, "public", "assets", "favicon.ico"),
-                    manifest: process.env.PUBLIC_URL + "/manifest.json",
-                    vendor: vendor ? "/vendor/vendor.js" : undefined,
-                    production: !isDevelopment,
                 }),
             )
         }
     }
-    plugins.push(new ExcludeAssetsPlugin())
 
     if (vendor) {
         plugins.push(
@@ -140,10 +130,26 @@ module.exports = function(options) {
     }
 
     if (!isDevelopment) {
+        // https://developers.google.com/web/tools/workbox/guides/codelabs/webpack
+        plugins.push(
+            new WorkboxPlugin.GenerateSW({
+                clientsClaim: true,
+                exclude: [/\.map$/, /asset-manifest\.json$/],
+                navigateFallback: process.env.PUBLIC_URL + "/index.html",
+                navigateFallbackBlacklist: [
+                    // Exclude URLs starting with /_, as they're likely an API call
+                    new RegExp("^/_"),
+                    // Exclude URLs containing a dot, as they're likely a resource in
+                    // public/ and not a SPA route
+                    new RegExp("/[^/]+\\.[^/]+$"),
+                ],
+            }),
+        )
+
+        /** __webpack_hash__ The hash of the compilation available as free var. */
+        /** WARNING: Don't combine it with the HotModuleReplacementPlugin. It would break and you don't need it as the HotModuleReplacementPlugin export the same stuff. */
         plugins.push(new ExtendedAPIPlugin())
     }
-
-    plugins = plugins.filter(p => !!p)
 
     /**
      * @type {import("webpack").Loader}
