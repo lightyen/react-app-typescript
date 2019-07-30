@@ -73,13 +73,16 @@ pre {
         color: #f92672;
     }
     &.constant,
-    &.tag,
-    &.keyword {
+    &.keyword,
+    &.tag {
         color: #569cd6;
     }
-
     &.attr-name {
-        color: #8cc3f0;
+        color: #72acdb;
+    }
+    &.script,
+    &.attr-value {
+        color: #e7bba6;
     }
     &.boolean,
     &.number {
@@ -90,6 +93,9 @@ pre {
     &.char,
     &.inserted {
         color: #ce9178;
+    }
+    &.template-string {
+        color: #ce7878;
     }
     &.builtin {
         color: #4ec9b0;
@@ -192,4 +198,8 @@ div.code-toolbar {
         margin-left: 0;
         margin-right: 0.3rem;
     }
+}
+
+#text {
+    color: black;
 }

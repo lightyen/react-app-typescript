@@ -4,10 +4,6 @@ import { ConnectedRouter } from "connected-react-router"
 import AppRouter from "./AppRouter"
 import ErrorBoundary from "~/components/ErrorBoundary"
 
-// prismjs
-import "prismjs/plugins/line-numbers/prism-line-numbers.css"
-import "prismjs/plugins/toolbar/prism-toolbar.css"
-
 // styles
 import "bootstrap"
 import "./icons"

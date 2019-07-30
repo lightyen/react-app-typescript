@@ -104,13 +104,15 @@ const BootstrapBadge: React.FC<Badge & { dropdown?: boolean }> = ({ pill, name, 
     return render ? render({ children: name, className: classes }) : defaultItem({ children: name })
 }
 
-const IconItem: React.FC<Icon> = ({ fa, material: MaterialIcon, render }) => {
-    const defaultItem: React.FC = ({ children }) => <div className="mr-3">{children}</div>
+const IconItem: React.FC<Icon> = ({ fa, material: Material, custom: Custom, render }) => {
+    const defaultItem: React.FC = ({ children }) => <span className="mr-3">{children}</span>
     const r = render || defaultItem
     if (fa) {
         return r({ children: <i className={fa} /> })
-    } else if (MaterialIcon) {
-        return r({ children: <MaterialIcon /> })
+    } else if (Material) {
+        return r({ children: <Material /> })
+    } else if (Custom) {
+        return r({ children: <Custom /> })
     } else {
         return r({ children: null })
     }

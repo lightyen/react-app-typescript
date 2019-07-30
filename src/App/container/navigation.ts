@@ -6,6 +6,7 @@ import { SvgIconProps } from "@material-ui/core/SvgIcon"
 export interface Icon {
     fa?: string
     material?: React.ComponentType<SvgIconProps>
+    custom?: React.ComponentType
     hover?: string
     render?: React.FunctionComponent<unknown>
 }

@@ -49,25 +49,6 @@
       "presentation": {
         "clear": true
       }
-    },
-    {
-      "label": "Open Chrome with Debugger",
-      "type": "shell",
-      "group": "none",
-      "isBackground": true,
-      "linux": {
-        "command": "google-chrome http://localhost:3000/ --remote-debugging-port=9222"
-      },
-      "windows": {
-        "command": "start chrome http://localhost:3000/ --remote-debugging-port=9222"
-      },
-      "osx": {
-        "command": "open -a \"Google Chrome\" http://localhost:3000/ --args --remote-debugging-port=\"9222\""
-      },
-      "problemMatcher": [],
-      "presentation": {
-        "clear": true
-      }
     }
   ]
 }

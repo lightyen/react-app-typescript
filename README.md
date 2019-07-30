@@ -66,11 +66,7 @@ yarn test
 
 ### Debug
 
-在 vscode 中按下 `F5` 後 launch browser 進行調試，或者直接在瀏覽器使用開發者工具(F12)
-
-> Firefox 需要去 **about:debugging** 勾選 **Enable debugging of add-ons** 才可以使用
-
-詳細資訊描述在：**.vscode/launch.json**
+直接在瀏覽器使用開發者工具(F12)
 
 ## 懶人包
 
@@ -90,7 +86,7 @@ yarn test
 
 按 `F1` > `Start Format Files: Workspace` 可以格式化所有的程式碼風格
 
-> 不喜歡我風格的朋友可以自行修改 **.editorconfig**, **.prettierrc**, **tslint.json**
+> 不喜歡我風格的朋友可以自行修改 **.editorconfig**, **.prettierrc**, **.eslintrc** 等檔案
 
 ## 其他知識參考
 

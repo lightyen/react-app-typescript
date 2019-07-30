@@ -13,7 +13,7 @@ const TestProgress: React.FC = () => {
             <div className="progress" style={{ height: 5 }}>
                 <div className="progress-bar bg-info w-25"></div>
             </div>
-            <small className="text-muted">1265 Processes. 2/8 Cores.</small>
+            <small className="text-muted"> Progress 3/8</small>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "formatFiles.excludePattern": "node_modules,dist,src/assets,.webpack/*.js,.gitignore,.editorconfig,yarn.lock",
+  "formatFiles.excludePattern": "node_modules,dist,.webpack/*.js,.gitignore,.editorconfig,yarn.lock",
   "files.associations": {
     "*.ejs": "html",
     ".prettierrc": "json",
