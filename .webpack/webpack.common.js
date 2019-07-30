@@ -72,7 +72,23 @@ module.exports = function(options) {
              * @type {string}
              */
             const request = resource.request
-            resource.request = "!prism-loader!" + request.replace(/[♾️]/g, "")
+            const options = {
+                // plugins: ["line-numbers", "toolbar", "show-language"],
+                // resource: {
+                //     js: "javascript",
+                //     ts: "typescript",
+                //     jsx: "jsx",
+                //     tsx: "tsx",
+                //     go: "go",
+                //     sass: "sass",
+                //     scss: "scss",
+                //     css: "css",
+                //     json: "json",
+                // },
+                // data: {
+                // }
+            }
+            resource.request = `!!prismjs-loader?${JSON.stringify(options)}!` + request.replace(/[♾️]/g, "")
         }),
         new ManifestPlugin({ fileName: "asset-manifest.json" }),
     ]
@@ -329,7 +345,7 @@ module.exports = function(options) {
         resolveLoader: {
             alias: {
                 "custom-loader": path.join(__dirname, "./custom-loader"),
-                "prism-loader": path.join(__dirname, "./prism-loader"),
+                "prismjs-loader": path.join(__dirname, "./prismjs-loader"),
             },
         },
         plugins,

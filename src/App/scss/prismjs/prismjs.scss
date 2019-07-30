@@ -1,4 +1,7 @@
 @import "./prismjs/plugins/prism-line-numbers.scss";
 @import "./prismjs/plugins/prism-toolbar.scss";
+@import "./prismjs/plugins/prism-autolinker.scss";
+@import "./prismjs/plugins/prism-show-invisibles.scss";
+@import "./prismjs/plugins/prism-command-line.scss";
 
 @import "./prismjs/themes/vscode-like.scss";
