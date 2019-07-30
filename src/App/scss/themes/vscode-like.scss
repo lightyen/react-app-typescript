@@ -55,7 +55,10 @@ pre {
     .style &.string {
         color: $primary-text;
     }
-    &.comment,
+
+    &.comment {
+        color: #3c8b3c;
+    }
     &.prolog,
     &.doctype,
     &.cdata {
