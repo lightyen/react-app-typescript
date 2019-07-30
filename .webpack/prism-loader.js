@@ -66,6 +66,6 @@ exports.default = function(source, sourceMap) {
     document.body.appendChild(pre)
 
     Prism.highlightElement(code, false)
-    const es = `export default \`${document.body.innerHTML}\``
+    const es = `export default \`${document.body.innerHTML.replace(/[`${}]/g, "\\$&")}\``
     this.callback(null, es)
 }
