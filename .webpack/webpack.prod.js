@@ -8,6 +8,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const path = require("path")
 const createBaseConfig = require("./webpack.common")
 const fs = require("fs")
+
 process.env.NODE_ENV = "production"
 
 /** DLL 位置 */
@@ -18,7 +19,7 @@ const vendorPath = "" // path.resolve(process.cwd(), "build", "vendor")
  */
 const plugins = [
     new ContextReplacementPlugin(/moment[/\\]locale$/, /^es$|zh/),
-    new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 10240 }),
+    new CompressionWebpackPlugin({ algorithm: "gzip", threshold: 10240, exclude: /\.map$/ }),
     new CleanWebpackPlugin({
         cleanOnceBeforeBuildPatterns: vendorPath
             ? ["**/*", "!vendor", "!vendor/vendor.js", "!vendor/manifest.json"]
@@ -41,6 +42,7 @@ const plugins = [
  */
 const config = {
     mode: "production",
+    devtool: "source-map",
     stats: {
         children: false,
         modules: false,
@@ -56,8 +58,12 @@ const config = {
         },
     },
     optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin()],
+        minimizer: [
+            new TerserPlugin({
+                sourceMap: true,
+            }),
+            new OptimizeCSSAssetsPlugin(),
+        ],
         splitChunks: {
             maxInitialRequests: 6,
             cacheGroups: {

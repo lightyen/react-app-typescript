@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { createBrowserHistory } from "history"
 import { ConnectedRouter } from "connected-react-router"
 import AppRouter from "./AppRouter"
+import ErrorBoundary from "~/components/ErrorBoundary"
 
 // styles
 import "bootstrap"
@@ -18,7 +19,7 @@ import { SET_LOCALE, setLocale } from "~/store/i18n"
 const history = createBrowserHistory({ basename: process.env.PUBLIC_URL + "/" })
 export const store = configureStore(history)
 
-export default function App() {
+const App: React.FC = () => {
     const [ready, setReady] = useState(false)
     useEffect(() => {
         document.title = process.env.APP_NAME
@@ -41,3 +42,9 @@ export default function App() {
         )
     )
 }
+
+export default () => (
+    <ErrorBoundary>
+        <App />
+    </ErrorBoundary>
+)

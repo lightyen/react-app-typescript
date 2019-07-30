@@ -14,12 +14,12 @@ process.env.PUBLIC_URL = ""
  */
 const config = {
     mode: "development",
+    devtool: "source-map",
     performance: false,
     watch: true,
     watchOptions: {
         ignored: /node_modules/,
     },
-    devtool: "source-map",
     resolve: {
         alias: {
             "react-dom": "@hot-loader/react-dom",
