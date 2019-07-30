@@ -1,3 +1,8 @@
+declare module "*♾️" {
+    /** highlight code */
+    const __html: string
+    export default __html
+}
 declare module "*.css"
 declare module "*.less"
 declare module "*.scss"

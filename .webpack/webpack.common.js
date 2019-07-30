@@ -2,7 +2,13 @@
 const packageJSON = require("../package.json")
 
 // @ts-check
-const { EnvironmentPlugin, ProvidePlugin, DllReferencePlugin, ExtendedAPIPlugin } = require("webpack")
+const {
+    EnvironmentPlugin,
+    ProvidePlugin,
+    DllReferencePlugin,
+    ExtendedAPIPlugin,
+    NormalModuleReplacementPlugin,
+} = require("webpack")
 const path = require("path")
 const glob = require("glob")
 
@@ -62,6 +68,13 @@ module.exports = function(options) {
         new ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
+        }),
+        new NormalModuleReplacementPlugin(/♾️$/, function(resource) {
+            /**
+             * @type {string}
+             */
+            const request = resource.request
+            resource.request = "!prism-loader!" + request.replace(/[♾️]/g, "")
         }),
         new PurgeCSSPlugin({ paths: glob.sync(`${workingDirectory}/src/**/*`, { nodir: true }) }),
         new ManifestPlugin({ fileName: "asset-manifest.json" }),
@@ -226,8 +239,10 @@ module.exports = function(options) {
                     ],
                 },
                 {
-                    test: /\.tsx?$/,
-                    exclude: /node_modules|\.test.tsx?$/,
+                    resource: {
+                        test: /\.tsx?$/,
+                        not: [/node_modules|\.test.tsx?$/],
+                    },
                     use: tsxLoader,
                 },
                 {
@@ -313,8 +328,11 @@ module.exports = function(options) {
                     configFileName: path.join(workingDirectory, "tsconfig.json"),
                 }),
             ],
+        },
+        resolveLoader: {
             alias: {
-                // "~": path.resolve(__dirname, "../src"),
+                "custom-loader": path.join(__dirname, "./custom-loader"),
+                "prism-loader": path.join(__dirname, "./prism-loader"),
             },
         },
         plugins,
