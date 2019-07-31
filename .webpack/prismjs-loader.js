@@ -35,7 +35,7 @@ const prismComponents = require("prismjs/components")
  */
 exports.default = function(source, sourceMap) {
     this.cacheable
-    const options = loaderUtils.getOptions(this)
+    const options = loaderUtils.getOptions(this) || {}
     /** ext sheet */
     let extensions = {
         js: "javascript",
