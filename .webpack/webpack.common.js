@@ -74,7 +74,7 @@ module.exports = function(options) {
             const request = resource.request
             const options = {
                 // plugins: ["line-numbers", "toolbar", "show-language"],
-                // resource: {
+                // extensions: {
                 //     js: "javascript",
                 //     ts: "typescript",
                 //     jsx: "jsx",
@@ -87,6 +87,7 @@ module.exports = function(options) {
                 // },
                 // data: {
                 // }
+                // diff: true | { highlight: false }
             }
             resource.request = `!!prismjs-loader?${JSON.stringify(options)}!` + request.replace(/[♾️]/g, "")
         }),
