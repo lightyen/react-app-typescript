@@ -1,7 +1,15 @@
 /**
- * Support Plugins:
+ * Tested Plugins:
  *
- * autolinker, show-invisibles, line-numbers, toolbar, show-language, command-line, diff-highlight
+ * autolinker,
+ * show-invisibles,
+ * line-numbers,
+ * toolbar,
+ * show-language,
+ * command-line,
+ * diff-highlight,
+ * data-uri-highlight,
+ * line-highlight,
  */
 
 // @ts-check
@@ -16,6 +24,7 @@ const { window } = new JSDOM(`<!DOCTYPE html><html><head></head><body></body></h
 global["window"] = window
 global["self"] = window
 global["document"] = window.document
+global["location"] = window.location
 global["getComputedStyle"] = window.getComputedStyle
 
 const Prism = require("prismjs")
@@ -25,6 +34,7 @@ const prismComponents = require("prismjs/components")
  * @type {import("webpack").loader.Loader}
  */
 exports.default = function(source, sourceMap) {
+    this.cacheable
     const options = loaderUtils.getOptions(this)
     /** ext sheet */
     let extensions = {
@@ -40,18 +50,31 @@ exports.default = function(source, sourceMap) {
     }
 
     let plugins = ["line-numbers", "toolbar", "show-language"]
-
-    extensions = Object.assign(extensions, (options && options.extensions))
-    plugins = (options && options.plugins) || plugins
-    const data = (options && options.data) || {}
-    const diff = options && options.diff
-    const diffHighlight = diff && (options.diff.highlight)
+    const {
+        language: _language,
+        extensions: _extensions,
+        plugins: _plugins,
+        data: _data,
+        diff,
+        lineHighlight,
+    } = options
+    extensions = Object.assign(extensions, _extensions)
+    plugins = _plugins || plugins
+    const data = _data || {}
+    const content = source.toString()
+    let ext = path.extname(this.resourcePath)
+    if (ext.startsWith(".")) {
+        ext = ext.slice(1)
+    }
+    const language = _language || extensions[ext] || ""
 
     /** load grammars and plugins */
     for (const lang of Object.values(extensions)) {
         // @ts-ignore
         require(`prismjs/components/prism-${lang}`)
     }
+    // @ts-ignore
+    require(`prismjs/components/prism-${language}`)
     if (diff) {
         // @ts-ignore
         require("prismjs/components/prism-diff")
@@ -64,12 +87,7 @@ exports.default = function(source, sourceMap) {
         // @ts-ignore
         require(`prismjs/plugins/diff-highlight/prism-diff-highlight`)
     }
-    const content = source.toString()
-    let ext = path.extname(this.resourcePath)
-    if (ext.startsWith(".")) {
-        ext = ext.slice(1)
-    }
-    let language = (options && options.language) || extensions[ext] || ""
+
     const shell = language === "bash" || language === "powershell"
 
     /** prepare <pre> */
@@ -96,14 +114,19 @@ exports.default = function(source, sourceMap) {
         }
     }
 
+    const lineHeight = lineHighlight ? lineHighlight["line-height"] : "21px"
+    pre.style.lineHeight = lineHeight
+
     /** prepare <code> */
+    const diffHighlight = diff && (diff.highlight)
     const code = document.createElement("code")
     code.className = classnames(
         !diff && `language-${language}`,
         diff && `language-diff${language && `-${language}`}`,
         diffHighlight && "diff-highlight",
     )
-    code.textContent = content
+
+    code.textContent = content.replace(/\\/g, "\\\\")
 
     /** highlight */
     pre.appendChild(code)

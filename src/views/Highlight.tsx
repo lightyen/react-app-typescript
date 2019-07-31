@@ -1,8 +1,8 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
 
-import myCode from '!!prismjs-loader?{"diff":{"highlight":true}}!./Code/test'
-import c from "!!prismjs-loader!./Home"
+import myCode from '!!prismjs-loader?{"plugins": ["toolbar","show-language","line-highlight"],"data":{"line":"1"}}!./Code/test.css'
+import c from '!!prismjs-loader?{"plugins": ["toolbar","show-language","line-highlight"],"data":{"line":"2-5, 13,16-21"},"lineHighlight":{"line-height": "21px"}}!./Home'
 
 const Highlight: React.FC<RouteComponentProps> = ({ history }) => {
     return (
