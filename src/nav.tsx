@@ -1,6 +1,5 @@
 import React from "react"
 import { NavConfig } from "~/App/container/navigation"
-import LocaleMessage from "~/components/LocaleMessage"
 import { BootstrapColors } from "./components/bootstrap/types"
 
 // material-ui icons
@@ -32,7 +31,7 @@ const TestLabel: React.FC<{ color: BootstrapColors; label: string }> = ({ color,
 /** 全域管理 navigation */
 export const navConfig: NavConfig = [
     { type: "title", name: <span>Test</span> },
-    { type: "normal", path: "/hello", name: <LocaleMessage id="hello" />, icon: { fa: "fas fa-th-large" } },
+    { type: "normal", path: "/hello", name: <span>hello</span>, icon: { fa: "fas fa-th-large" } },
     {
         type: "normal",
         path: "/highlight",

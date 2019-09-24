@@ -1,7 +1,6 @@
 import React from "react"
 import path from "path"
 import { RouteProps } from "react-router-dom"
-import LocaleMessage from "~/components/LocaleMessage"
 import AsyncCompoent from "~/utils/async"
 
 // https://reactjs.org/docs/code-splitting.html
@@ -17,7 +16,7 @@ interface RouteItem extends RouteProps {
 
 const routes: RouteItem[] = [
     { path: "/", exact: true, name: <span>首頁</span>, component: Home },
-    { path: "/hello", exact: true, name: <LocaleMessage id="hello" />, component: Hello },
+    { path: "/hello", exact: true, name: <span>hello</span>, component: Hello },
     { path: "/highlight", exact: true, name: <span>代碼高亮</span>, component: Highlight },
     { path: "/popper", exact: true, name: <span>Popper</span>, component: Popper },
     { path: "/threejs", exact: true, name: <span>three.js</span>, component: ThreeDemo },

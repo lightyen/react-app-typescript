@@ -6,11 +6,9 @@ import { DispatchProps } from "~/typings"
 import { bindActionCreators } from "redux"
 import { useDispatch, useSelector } from "react-redux"
 import { RootStore } from "~/store"
-import { setLocale } from "~/store/i18n"
 import { setCollapsed } from "~/store/app"
 
 const actionCreators = {
-    setLocale,
     setCollapsed,
 }
 
@@ -22,17 +20,13 @@ function useActions(): DispatchProps<typeof actionCreators> {
 function useSelectors() {
     return {
         collapsed: useSelector((state: RootStore) => state.app.collapsed),
-        enable: useSelector((state: RootStore) => state.intl.enable),
-        list: useSelector((state: RootStore) => state.intl.list),
-        locale: useSelector((state: RootStore) => state.intl.locale),
     }
 }
 
 const AppHeader: React.FC = () => {
-    const { setLocale, setCollapsed } = useActions()
-    const { collapsed, enable, list, locale } = useSelectors()
+    const { setCollapsed } = useActions()
+    const { collapsed } = useSelectors()
 
-    const keys = Object.keys(list) as (keyof typeof list)[]
     return (
         <div className="h-100 row align-items-center flex-nowrap" style={{ background: "#20232a" }}>
             <div className="flex-grow-1">
@@ -49,27 +43,6 @@ const AppHeader: React.FC = () => {
                     <Breadcrumbs className="mb-auto flex-nowrap text-nowrap bg-transparent" />
                 </div>
             </div>
-            {enable ? (
-                <span className="dropdown flex-grow-0">
-                    <button className="btn text-light dropdown-toggle" data-toggle="dropdown" data-boundary="window">
-                        {list[locale.locale]}
-                    </button>
-                    <div className="dropdown-menu">
-                        {keys.map(key => (
-                            <button
-                                className="dropdown-item"
-                                key={key}
-                                onClick={(e: React.MouseEvent) => {
-                                    e.stopPropagation()
-                                    setLocale(key)
-                                }}
-                            >
-                                {list[key]}
-                            </button>
-                        ))}
-                    </div>
-                </span>
-            ) : null}
         </div>
     )
 }

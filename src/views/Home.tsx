@@ -1,7 +1,5 @@
 import React from "react"
 import { RouteComponentProps } from "react-router-dom"
-import classnames from "classnames"
-import LocaleMessage from "~/components/LocaleMessage"
 import image from "$/assets/images/256x256.png"
 import styled, { keyframes } from "styled-components"
 
@@ -24,7 +22,7 @@ function useSelectors() {
     }
 }
 
-const Home: React.FC<RouteComponentProps> = ({ match }) => {
+const Home: React.FC<RouteComponentProps> = () => {
     const { collapsed } = useSelectors()
     return (
         <div className="fadeIn">

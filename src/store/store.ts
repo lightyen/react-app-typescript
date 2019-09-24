@@ -6,14 +6,12 @@ import createSagaMiddleware from "redux-saga"
 import { RouterState, routerMiddleware, connectRouter } from "connected-react-router"
 import { AppStore, appReducer } from "./app"
 import { UserStore, userReducer } from "./user"
-import { IntlStore, intlReducer } from "./i18n"
 import { HelloStore, helloReducer } from "./hello"
 import rootSaga from "~/store/saga"
 
 export interface RootStore {
     app: AppStore
     router: RouterState
-    intl: IntlStore
     user: UserStore
     hello: HelloStore
 }
@@ -35,7 +33,6 @@ const createRootReducer = (history: History) =>
     combineReducers({
         user: userReducer,
         app: appReducer,
-        intl: intlReducer,
         router: connectRouter(history),
         hello: helloReducer,
     })
