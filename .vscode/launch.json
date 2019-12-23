@@ -5,55 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Firefox",
-      "type": "firefox",
+      "name": "Debug",
+      "type": "node",
       "request": "launch",
-      "reAttach": true,
-      "sourceMaps": "client",
-      "url": "http://localhost:3000/",
-      "webRoot": "${workspaceFolder}",
-      "pathMappings": [
-        {
-          "url": "webpack:///~/",
-          "path": "${webRoot}/node_modules/"
-        },
-        {
-          "url": "webpack:///./~/",
-          "path": "${webRoot}/node_modules/"
-        },
-        {
-          "url": "webpack:///./",
-          "path": "${webRoot}/"
-        },
-        {
-          "url": "webpack:///src/",
-          "path": "${webRoot}/src/"
-        },
-        {
-          "url": "webpack:///",
-          "path": ""
-        }
-      ]
-    },
-    {
-      "name": "Launch Chrome",
-      "type": "chrome",
-      "request": "launch",
-      "sourceMaps": true,
-      "url": "http://localhost:3000/",
-      "webRoot": "${workspaceFolder}",
-      "port": 9222,
-      "linux": {
-        "runtimeExecutable": "/usr/bin/google-chrome-stable",
-        "runtimeArgs": [
-          "--remote-debugging-port=9222",
-          "--no-first-run",
-          "--no-default-browser-check"
-        ]
-      },
-      "pathMapping": {
-        "/": "${webRoot}"
-      }
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+      "args": ["--config", ".webpack/webpack.dev"],
+      "outputCapture": "std"
     }
   ]
 }
