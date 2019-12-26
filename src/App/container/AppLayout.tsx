@@ -10,9 +10,9 @@ import AppFooter from "./AppFooter"
 import { Loading } from "~/components/Spinner"
 
 // Store
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { bindActionCreators } from "redux"
-import { RootStore } from "~/store"
+import { useSelector } from "~/store"
 import { setSashLeft } from "~/store/app"
 import { DispatchProps } from "~/typings"
 
@@ -21,13 +21,6 @@ const actionCreators = { setSashLeft }
 function useActions(): DispatchProps<typeof actionCreators> {
     const dispatch = useDispatch()
     return useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
-}
-
-function useSelectors() {
-    return {
-        collapsed: useSelector((state: RootStore) => state.app.collapsed),
-        sashLeft: useSelector((state: RootStore) => state.app.sashLeft),
-    }
 }
 
 const App = styled.article`
@@ -169,7 +162,8 @@ const NavSide = styled.div.attrs<NavSideProps>(({ collapsed, width }) => ({
 `
 
 const AppLayout: React.FC<RouteComponentProps> = ({ ...rest }) => {
-    const { collapsed, sashLeft } = useSelectors()
+    const collapsed = useSelector(state => state.app.collapsed)
+    const sashLeft = useSelector(state => state.app.sashLeft)
     return (
         <App className="fadeIn">
             <Header>

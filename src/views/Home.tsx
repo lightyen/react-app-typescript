@@ -3,8 +3,7 @@ import { RouteComponentProps } from "react-router-dom"
 import image from "$/assets/images/256x256.png"
 import styled, { keyframes } from "styled-components"
 
-import { useSelector } from "react-redux"
-import { RootStore } from "~/store"
+import { useSelector } from "~/store"
 
 export const myKeyFrames = keyframes`
   from {transform: rotate(0deg);}
@@ -16,14 +15,8 @@ const RotateImg = styled.img`
     animation-timing-function: linear;
 `
 
-function useSelectors() {
-    return {
-        collapsed: useSelector((state: RootStore) => state.app.collapsed),
-    }
-}
-
 const Home: React.FC<RouteComponentProps> = () => {
-    const { collapsed } = useSelectors()
+    const collapsed = useSelector(state => state.app.collapsed)
     return (
         <div className="fadeIn">
             <div className="row" style={{ justifyContent: "center", maxWidth: collapsed ? "100%" : "80ch" }}>

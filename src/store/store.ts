@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, combineReducers, Middleware, AnyAction } from "redux"
+import { useSelector as useReduxSelector, TypedUseSelectorHook } from "react-redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { History } from "history"
 import createSagaMiddleware from "redux-saga"
@@ -54,3 +55,5 @@ export function configureStore(history: History) {
     sagaMiddleware.run(rootSaga)
     return store
 }
+
+export const useSelector: TypedUseSelectorHook<RootStore> = useReduxSelector

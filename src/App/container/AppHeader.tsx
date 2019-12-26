@@ -4,8 +4,8 @@ import { DispatchProps } from "~/typings"
 
 // Store
 import { bindActionCreators } from "redux"
-import { useDispatch, useSelector } from "react-redux"
-import { RootStore } from "~/store"
+import { useDispatch } from "react-redux"
+import { useSelector } from "~/store"
 import { setCollapsed } from "~/store/app"
 
 const actionCreators = {
@@ -17,15 +17,9 @@ function useActions(): DispatchProps<typeof actionCreators> {
     return useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
-function useSelectors() {
-    return {
-        collapsed: useSelector((state: RootStore) => state.app.collapsed),
-    }
-}
-
 const AppHeader: React.FC = () => {
     const { setCollapsed } = useActions()
-    const { collapsed } = useSelectors()
+    const collapsed = useSelector(state => state.app.collapsed)
 
     return (
         <div className="h-100 row align-items-center flex-nowrap" style={{ background: "#20232a" }}>

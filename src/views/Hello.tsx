@@ -4,9 +4,9 @@ import Button from "~/components/Button"
 import { DispatchProps } from "~/typings"
 import { bindActionCreators } from "redux"
 
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
-import { RootStore } from "~/store"
+import { useSelector } from "~/store"
 import { login, logout } from "~/store/auth"
 import { getHello } from "~/store/hello"
 
@@ -25,14 +25,6 @@ function useActions(): DispatchProps<typeof actionCreators> {
     return React.useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
 }
 
-function useSelectors() {
-    return {
-        logined: useSelector((state: RootStore) => state.user.logined),
-        error: useSelector((state: RootStore) => state.user.error),
-        status: useSelector((state: RootStore) => state.hello.status),
-    }
-}
-
 function useCustomHook() {
     const [count, setCount] = useState(0)
     return { count, setCount }
@@ -42,7 +34,9 @@ const Hello: React.FC<RouteComponentProps> = ({ history }) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const { login, logout, getHello } = useActions()
-    const { logined, status, error } = useSelectors()
+    const logined = useSelector(state => state.user.logined)
+    const error = useSelector(state => state.user.error)
+    const status = useSelector(state => state.hello.status)
     // const { count, setCount } = useCustomHook()
 
     return (
