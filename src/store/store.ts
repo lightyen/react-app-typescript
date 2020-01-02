@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers, Middleware, AnyAction } from "redux"
+import { createStore, applyMiddleware, combineReducers, Middleware, AnyAction, Reducer } from "redux"
 import { useSelector as useReduxSelector, TypedUseSelectorHook } from "react-redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { History } from "history"
@@ -30,7 +30,7 @@ const myMiddleware: Middleware<{}, RootStore> = store => next => (action: AnyAct
     next(action)
 }
 
-const createRootReducer = (history: History) =>
+export const createRootReducer = (history: History) =>
     combineReducers({
         user: userReducer,
         app: appReducer,
@@ -38,7 +38,7 @@ const createRootReducer = (history: History) =>
         hello: helloReducer,
     })
 
-export function configureStore(history: History) {
+export function configureStore(history: History, reducer: Reducer) {
     const rootReducer = createRootReducer(history)
     const sagaMiddleware = createSagaMiddleware()
     const middlewares: Middleware[] = [routerMiddleware(history), myMiddleware, sagaMiddleware]

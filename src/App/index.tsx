@@ -7,14 +7,21 @@ import ErrorBoundary from "~/components/ErrorBoundary"
 
 // styles
 import "bootstrap"
-import "./icons"
-import "./scss/style.scss"
+import "~/icons"
+import "~/scss/style.scss"
 
 // store
-import { configureStore } from "~/store"
+import { configureStore, createRootReducer } from "~/store"
 
 const history = createBrowserHistory({ basename: process.env.PUBLIC_URL + "/" })
-export const store = configureStore(history)
+const rootReducer = createRootReducer(history)
+export const store = configureStore(history, rootReducer)
+
+if (module["hot"]) {
+    module["hot"].accept(["~/store"], () => {
+        store.replaceReducer(rootReducer)
+    })
+}
 
 const App: React.FC = () => {
     React.useEffect(() => {
