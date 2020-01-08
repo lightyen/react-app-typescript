@@ -45,7 +45,7 @@ const config = {
             cachedAssets: true,
             warnings: true,
         },
-        contentBase: path.join(process.cwd(), "public"),
+        contentBase: false,
         // NOTE: 針對 createBrowserHistory, historyApiFallback 需要設定為 true, 且在實際應用中要後端支持。
         historyApiFallback: {
             rewrites: [
