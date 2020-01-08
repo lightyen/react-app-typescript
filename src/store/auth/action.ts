@@ -31,6 +31,13 @@ export const logout = () => {
     return { type: LOGOUT.REQUEST }
 }
 
+const actionCreators = {
+    login,
+    logout,
+}
+
+export default actionCreators
+
 export type SagaLoginAction =
     | {
           type: LOGIN.SUCCESS
@@ -53,5 +60,4 @@ interface AuthFailedAction {
     type: typeof AUTH_FAILED
 }
 
-type Action = LoginAction | SagaLoginAction | LogoutAction | SagaLogoutAction | AuthFailedAction
-export default Action
+export type Action = LoginAction | SagaLoginAction | LogoutAction | SagaLogoutAction | AuthFailedAction

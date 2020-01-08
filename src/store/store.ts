@@ -1,13 +1,12 @@
 import { createStore, applyMiddleware, combineReducers, Middleware, AnyAction, Reducer } from "redux"
-import { useSelector as useReduxSelector, TypedUseSelectorHook } from "react-redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { History } from "history"
 import createSagaMiddleware from "redux-saga"
 
 import { RouterState, routerMiddleware, connectRouter } from "connected-react-router"
-import { AppStore, appReducer } from "./app"
-import { UserStore, userReducer } from "./user"
-import { HelloStore, helloReducer } from "./hello"
+import { AppStore, appReducer } from "./app/reducer"
+import { UserStore, userReducer } from "./user/reducer"
+import { HelloStore, helloReducer } from "./hello/reducer"
 import rootSaga from "~/store/saga"
 
 export interface RootStore {
@@ -55,5 +54,3 @@ export function configureStore(history: History, reducer: Reducer) {
     sagaMiddleware.run(rootSaga)
     return store
 }
-
-export const useSelector: TypedUseSelectorHook<RootStore> = useReduxSelector

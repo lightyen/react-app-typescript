@@ -1,6 +1,5 @@
 import { Reducer } from "redux"
-import { GET_HELLO } from "./action"
-import Action from "./action"
+import { Action, GET_HELLO } from "./action"
 
 export interface HelloStore {
     status: string

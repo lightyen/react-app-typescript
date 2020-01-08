@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React from "react"
 import { RouteComponentProps, Route, Switch, Redirect } from "react-router-dom"
 import styled from "styled-components"
 import routes from "~/routes"
@@ -9,19 +9,7 @@ import AppHeader from "./AppHeader"
 import AppFooter from "./AppFooter"
 import { Loading } from "~/components/Spinner"
 
-// Store
-import { useDispatch } from "react-redux"
-import { bindActionCreators } from "redux"
-import { useSelector } from "~/store"
-import { setSashLeft } from "~/store/app"
-import { DispatchProps } from "~/typings"
-
-const actionCreators = { setSashLeft }
-
-function useActions(): DispatchProps<typeof actionCreators> {
-    const dispatch = useDispatch()
-    return useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
-}
+import { useSelector, useAction } from "~/store"
 
 const App = styled.article`
     height: 100vh;
@@ -100,7 +88,7 @@ const Sash = styled.div.attrs<SashProps>(({ width }) => ({
 `
 
 const Sashbar: React.FC = () => {
-    const { setSashLeft } = useActions()
+    const { setSashLeft } = useAction().app
 
     const active = React.useRef<boolean>(false)
 

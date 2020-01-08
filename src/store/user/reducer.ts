@@ -1,7 +1,6 @@
 import { Reducer } from "redux"
 
-import { LOGIN, LOGOUT, AUTH_FAILED } from "~/store/auth"
-import Action from "~/store/auth/action"
+import { Action, LOGIN, LOGOUT, AUTH_FAILED } from "~/store/auth/action"
 import { isLogin } from "~/utils/auth"
 
 interface UserStoreType {

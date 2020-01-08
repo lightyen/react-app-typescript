@@ -12,6 +12,12 @@ export const getHello = (): GetHelloAction => {
     return { type: GET_HELLO.REQUEST }
 }
 
+const actionCreators = {
+    getHello,
+}
+
+export default actionCreators
+
 export type SagaGetHelloAction =
     | {
           type: GET_HELLO.SUCCESS
@@ -21,5 +27,4 @@ export type SagaGetHelloAction =
           error: unknown
       }
 
-type Action = GetHelloAction | SagaGetHelloAction
-export default Action
+export type Action = GetHelloAction | SagaGetHelloAction

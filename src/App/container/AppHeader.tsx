@@ -1,24 +1,9 @@
-import React, { useMemo } from "react"
+import React from "react"
 import classnames from "classnames"
-import { DispatchProps } from "~/typings"
-
-// Store
-import { bindActionCreators } from "redux"
-import { useDispatch } from "react-redux"
-import { useSelector } from "~/store"
-import { setCollapsed } from "~/store/app"
-
-const actionCreators = {
-    setCollapsed,
-}
-
-function useActions(): DispatchProps<typeof actionCreators> {
-    const dispatch = useDispatch()
-    return useMemo(() => bindActionCreators(actionCreators, dispatch), [dispatch])
-}
+import { useSelector, useAction } from "~/store"
 
 const AppHeader: React.FC = () => {
-    const { setCollapsed } = useActions()
+    const { setCollapsed } = useAction().app
     const collapsed = useSelector(state => state.app.collapsed)
 
     return (

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from "axios"
 import { clearAuthToken } from "./auth"
 import { store } from "~/App"
-import { AUTH_FAILED } from "~/store/auth"
+import { AUTH_FAILED } from "~/store/auth/action"
 
 const APITimeout = 0
 

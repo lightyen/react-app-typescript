@@ -28,10 +28,16 @@ export const setSashLeft = (left: number): SetSashLeftAction => {
     return { type: SET_SASH_LEFT, left }
 }
 
+const actionCreators = {
+    setCollapsed,
+    setSashLeft,
+}
+
+export default actionCreators
+
 export interface SetBreakpointAction {
     type: typeof SET_BREAKPOINT
     breakpoint: BreakPoint
 }
 
-type Action = SetWinSizeAction | SetCollapsedAction | SetSashLeftAction | SetBreakpointAction
-export default Action
+export type Action = SetWinSizeAction | SetCollapsedAction | SetSashLeftAction | SetBreakpointAction
