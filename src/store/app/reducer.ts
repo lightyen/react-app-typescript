@@ -1,6 +1,5 @@
 import { Reducer } from "redux"
-import { Action } from "./action"
-import { BreakPoint, WinSize } from "./type"
+import { Action, BreakPoint, WinSize } from "./action"
 
 export interface AppStore {
     breakpoint: BreakPoint

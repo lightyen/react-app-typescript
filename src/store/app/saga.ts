@@ -1,7 +1,6 @@
 import { eventChannel } from "redux-saga"
 import { all, call, take, put } from "redux-saga/effects"
-import { SetBreakpointAction, SetWinSizeAction } from "./action"
-import { BreakPoint, WinSize } from "./type"
+import { SetBreakpointAction, SetWinSizeAction, BreakPoint, WinSize } from "./action"
 
 const chan_winsize = eventChannel<WinSize>(emit => {
     function callback(e: UIEvent) {

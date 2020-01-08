@@ -1,9 +1,14 @@
-import { BreakPoint, WinSize } from "./type"
-
 export const SET_WINSIZE = "APP_SET_WINSIZE"
 export const SET_COLLAPSED = "APP_SET_COLLAPSED"
 export const SET_SASH_LEFT = "APP_SET_SASH_LEFT"
 export const SET_BREAKPOINT = "APP_SET_BREAKPOINT"
+
+export type BreakPoint = "xs" | "sm" | "md" | "lg" | "xl"
+
+export interface WinSize {
+    width: number
+    heidht: number
+}
 
 export interface SetWinSizeAction {
     type: typeof SET_WINSIZE
