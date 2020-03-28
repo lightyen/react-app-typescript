@@ -14,7 +14,7 @@ process.env.PUBLIC_URL = ""
  */
 const config = {
     mode: "development",
-    devtool: "source-map",
+    devtool: "inline-source-map",
     performance: false,
     watch: true,
     watchOptions: {

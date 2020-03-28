@@ -11,7 +11,7 @@ import {
     NavConfigCustomItemProps,
     Badge,
     Icon,
-} from "./navigation"
+} from "~/layout/navigation"
 import { navConfig } from "~/nav"
 
 interface NavItemProps {

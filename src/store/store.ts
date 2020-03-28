@@ -29,7 +29,7 @@ const myMiddleware: Middleware<{}, RootStore> = store => next => (action: AnyAct
     next(action)
 }
 
-export const createRootReducer = (history: History) =>
+const createRootReducer = (history: History) =>
     combineReducers({
         user: userReducer,
         app: appReducer,
@@ -37,7 +37,7 @@ export const createRootReducer = (history: History) =>
         hello: helloReducer,
     })
 
-export function configureStore(history: History, reducer: Reducer) {
+export function configureStore(history: History) {
     const rootReducer = createRootReducer(history)
     const sagaMiddleware = createSagaMiddleware()
     const middlewares: Middleware[] = [routerMiddleware(history), myMiddleware, sagaMiddleware]
@@ -51,6 +51,15 @@ export function configureStore(history: History, reducer: Reducer) {
         undefined,
         process.env.NODE_ENV === "development" ? composeEnhancers(storeEnhancers) : storeEnhancers,
     )
-    sagaMiddleware.run(rootSaga)
+    let sagaTask = sagaMiddleware.run(rootSaga)
+    module.hot?.accept(["~/store"], () => {
+        store.replaceReducer(rootReducer)
+    })
+    module.hot?.accept(["~/store/saga"], () => {
+        sagaTask.cancel()
+        sagaTask.toPromise().then(() => {
+            sagaTask = sagaMiddleware.run(rootSaga)
+        })
+    })
     return store
 }

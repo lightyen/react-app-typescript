@@ -4,9 +4,9 @@ import styled from "styled-components"
 import routes from "~/routes"
 
 // Component
-import AppSidebar from "./AppSidebar"
-import AppHeader from "./AppHeader"
-import AppFooter from "./AppFooter"
+import AppSidebar from "~/layout/Sidebar"
+import AppHeader from "~/layout/Header"
+import AppFooter from "~/layout/Footer"
 import { Loading } from "~/components/Spinner"
 
 import { useSelector, useAction } from "~/store"

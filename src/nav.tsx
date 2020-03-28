@@ -1,5 +1,5 @@
 import React from "react"
-import { NavConfig } from "~/App/container/navigation"
+import { NavConfig } from "~/layout/navigation"
 import { BootstrapColors } from "./components/bootstrap/types"
 
 // material-ui icons

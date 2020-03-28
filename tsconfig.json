@@ -6,12 +6,11 @@
     "moduleResolution": "node",
     "target": "esnext",
     "lib": ["esnext", "dom", "dom.iterable"],
-    "types": ["react"],
+    "types": ["react", "webpack-env"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"],
-      "$/*": ["public/*"]
+      "~/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"]
 }
